@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "200.00"
+    },
+    {
+      "cardName": "Yemək",
+      "amount": "100.00"
+    }
+  
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

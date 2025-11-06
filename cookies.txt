@@ -1,0 +1,3 @@
+#HttpOnly_localhost     FALSE   /       FALSE   0       sessionId       aabc157f-e481-4db8-a91d-e414a7f43450
+#HttpOnly_localhost     FALSE   /       FALSE   0       connect.sid     s%3Am7NwqRrdM-5-pQDAoWPxxLBUpPy_hLEG.0QwhpQRX2wcSHuMwkDNs9wmOsIg6ShjiIfkxZocvuPQ
+localhost       FALSE   /       FALSE   0       _csrf   sNHRhgo5QA7umSKY5fnhSwDR

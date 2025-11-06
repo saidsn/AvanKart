@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Tamamlandı"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3100.00",
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Tamamlandı"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    },
+    {
+      "invoice": "EQA-XXXXXXXXXX",
+      "amount": "3500.00",
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

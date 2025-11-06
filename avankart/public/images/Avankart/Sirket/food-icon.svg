@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Food">
+  <!-- High contrast fork & spoon icon for yellow background -->
+  <g fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Spoon -->
+    <path d="M20 6c2 0 3.5 1.6 3.5 3.6 0 1.6-1 3.3-2.5 3.9V22c0 1.1-.9 2-2 2s-2-.9-2-2V13.5C15.5 13 14.5 11.2 14.5 9.6 14.5 7.6 16 6 18 6h2z" fill="#222" stroke="#222" />
+    <!-- Fork handle -->
+    <path d="M10 6v10.5c0 1.2.5 2.3 1.5 3.1V24c0 1 .8 2 2 2s2-.9 2-2v-4.4c1-.8 1.5-1.9 1.5-3.1V6" />
+    <!-- Fork prongs -->
+    <path d="M10 6v4M13 6v4M16 6v4" />
+  </g>
+</svg>

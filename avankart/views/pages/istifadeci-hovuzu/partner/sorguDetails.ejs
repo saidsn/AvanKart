@@ -1,0 +1,1107 @@
+
+  <div class="flex flex-col gap-3">
+    <!-- Breadcrumb -->
+    <div
+      class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+    >
+      <div class="flex items-center gap-2">
+        <a
+          href="/hovuz/partner"
+          class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"
+          >Avankart</a
+        >
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/istifadeci-hovuzu/partner" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">İstifadəçi hovuzu</a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/istifadeci-hovuzu/partner" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart partner</a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/istifadeci-hovuzu/partner/<%= partner.partnyor_id || partner.id %>" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"><%= partner.fullName %></a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <a class="text-tertiary-text dark:text-tertiary-text-color-dark">Sorğu detalları</a>
+    </div>
+
+    <!-- Header with back button and actions -->
+    <div
+      class="flex items-center justify-between border-b-[0.5px] border-stroke dark:border-[#FFFFFF1A]"
+    >
+      <div
+        onclick="window.history.back()"
+        class="cursor-pointer py-[17px] flex items-center gap-3"
+      >
+        <span class="icon stratis-arrow-left-sm !w-3 !h-3"></span>
+        <span class="font-medium text-[15px]">Sorğular</span>
+      </div>
+      <div class="flex items-center">
+        <!-- Status Dropdown -->
+        <div class="relative inline-block min-w-[102px]">
+          <button
+            id="statusDropdownButton"
+            class="flex items-center gap-3 justify-between cursor-pointer px-3 py-1 rounded-md bg-white w-full"
+            type="button"
+          >
+            <div class="flex items-center gap-[12px]">
+              <div
+                id="statusDot"
+                class="w-2 h-2 rounded-full <%= 
+                  ticket.status === 'qaralama' ? 'bg-[#BFC8CC]' :
+                  ticket.status === 'baxilir' ? 'bg-[#F9B100]' :
+                  ticket.status === 'hell_olundu' ? 'bg-[#32B5AC]' :
+                  ticket.status === 'redd_edildi' ? 'bg-[#DD3838]' : 'bg-[#BFC8CC]'
+                %>"
+              ></div>
+              <div
+                id="statusText"
+                class="text-[12px] font-medium text-messages"
+              >
+                <%= 
+                  ticket.status === 'qaralama' ? 'Qaralama' :
+                  ticket.status === 'baxilir' ? 'Baxılır' :
+                  ticket.status === 'hell_olundu' ? 'Həll edildi' :
+                  ticket.status === 'redd_edildi' ? 'Rədd edildi' : 'Qaralama'
+                %>
+              </div>
+            </div>
+            <svg
+              class="w-2.5 h-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+
+          <ul
+            id="statusDropdownMenu"
+            class="absolute mt-1 hidden bg-menu border-[.5px] border-stroke rounded-md shadow-md w-full z-10"
+          >
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Qaralama"
+              data-color="#BFC8CC"
+              data-value="qaralama"
+            >
+              Qaralama
+            </li>
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Baxılır"
+              data-color="#F9B100"
+              data-value="baxilir"
+            >
+              Baxılır
+            </li>
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Həll edildi"
+              data-color="#32B5AC"
+              data-value="hell_olundu"
+            >
+              Həll edildi
+            </li>
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Rədd edildi"
+              data-color="#DD3838"
+              data-value="redd_edildi"
+            >
+              Rədd edildi
+            </li>
+          </ul>
+        </div>
+
+        <!-- Priority Dropdown -->
+        <div class="relative inline-block min-w-[102px]">
+          <button
+            id="priorityDropdownButton"
+            class="flex items-center gap-3 justify-between cursor-pointer px-3 py-1 bg-menu border-r border-[#0000001A] w-full"
+            type="button"
+          >
+            <div class="flex items-center gap-[12px]">
+              <img
+                id="priorityImg"
+                src="<%= 
+                  ticket.priority === 'high' ? '/images/Avankart/avankartPartner/high.svg' :
+                  ticket.priority === 'medium' ? '/images/Avankart/avankartPartner/medium.svg' :
+                  '/images/Avankart/avankartPartner/low.svg'
+                %>"
+                alt="<%= ticket.priority %>"
+                class="w-4 h-4"
+              />
+              <div id="priorityText" class="text-[12px] font-medium text-messages">
+                <%= 
+                  ticket.priority === 'high' ? 'Yüksək' :
+                  ticket.priority === 'medium' ? 'Orta' : 'Aşağı'
+                %>
+              </div>
+            </div>
+            <svg
+              class="w-2.5 h-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+
+          <ul
+            id="priorityDropdownMenu"
+            class="absolute mt-1 hidden bg-white border-[.5px] border-stroke rounded-md shadow-md w-full z-10"
+          >
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Aşağı"
+              data-img="/images/Avankart/avankartPartner/low.svg"
+              data-value="low"
+            >
+              Aşağı
+            </li>
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Orta"
+              data-img="/images/Avankart/avankartPartner/medium.svg"
+              data-value="medium"
+            >
+              Orta
+            </li>
+            <li
+              class="dropdown-item px-3 py-2 cursor-pointer hover:bg-item-hover text-[13px]"
+              data-label="Yüksək"
+              data-img="/images/Avankart/avankartPartner/high.svg"
+              data-value="high"
+            >
+              Yüksək
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex items-center gap-2 ml-3">
+          <div
+            onclick="toggleSorguPopup()"
+            class="hover:text-primary border border-[#0000001A] cursor-pointer rounded-[100px] w-[131px] h-[34px] flex items-center justify-center gap-2"
+          >
+            <div class="icon stratis-edit-03 text-xs text-messages"></div>
+            <div class="text-[13px] font-medium">Redaktə et</div>
+          </div>
+          <div
+            onclick="toggleDeleteModal()"
+            class="flex items-center gap-2 text-error hover:bg-error-hover px-3 py-1 rounded-sm cursor-pointer"
+          >
+            <div class="icon stratis-trash-01 w-[15px] h-[15px]"></div>
+            <div class="text-[13px] font-medium">Sil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex gap-[10px] pb-3 w-full">
+      <!-- Left Column - Main Content -->
+      <div style="width: 66.6%;" class="!w-2/3 flex-shrink-0">
+        <!-- Ticket Basic Info -->
+        <div class="my-3 py-[3.5px]">
+          <span class="text-[13px] font-normal opacity-50">Ticket:</span>
+          <span class="text-[13px] font-medium"><%= ticket.ticket_id %></span>
+        </div>
+
+        <div class="text-[13px] font-normal opacity-65">Əsas məlumatlar</div>
+        
+        <!-- Ticket Title and Description -->
+        <div class="my-3">
+          <h3 class="text-[13px] font-medium"><%= ticket.title %></h3>
+          <div class="pt-1 pb-[18px] text-[11px] font-normal opacity-65">
+            <%= ticket.content %>
+          </div>
+        </div>
+
+        <!-- Ticket Category -->
+        <div class="my-3">
+          <span class="text-[11px] font-medium opacity-65 pb-2">Sorğu kateqoriyası</span>
+          <div class="px-3 py-3 bg-container-2 dark:bg-container-2-dark rounded-[8px]">
+            <span class="text-[13px] font-normal"><%= ticket.category %></span>
+          </div>
+        </div>
+
+        <!-- Reason Section -->
+        <% if (ticket.reason) { %>
+        <div>
+          <span class="text-[11px] font-medium opacity-65 pb-2">Problemin səbəbləri</span>
+          <div class="bg-container-2 dark:bg-container-2-dark rounded-[8px]">
+            <div class="py-3 px-3">
+              <span class="text-[13px] font-normal"><%= ticket.reason.name %></span>
+            </div>
+            <% if (ticket.reason.text) { %>
+            <div class="py-3 px-3 border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+              <span class="text-[13px] font-normal"><%= ticket.reason.text %></span>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <% } %>
+
+        <!-- Subject Section -->
+        <div class="my-3">
+          <h3 class="text-[12px] font-medium opacity-65 py-3">Subject</h3>
+          <div class="flex items-center gap-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+            <div class="flex items-center gap-2 pb-[8.5px]">
+              <div class="icon stratis-users-profiles-02 py-[6px]"></div>
+              <span class="text-[13px] font-medium py-[3.5px] pr-3 border-r-[0.5px] opacity-65">
+                <%= ticket.subject %>
+              </span>
+            </div>
+            <div class="pb-3">
+              <span class="text-[13px] font-normal opacity-50">ID: </span>
+              <span class="text-[13px] font-medium"><%= partner.partnyor_id || partner.id %></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Assigned Users Section -->
+        <div class="my-3">
+          <h3 class="text-[12px] font-medium opacity-65 pb-3">Təyin olunmuş şəxslər</h3>
+          
+          <div id="assignedUsersList">
+            <% if (ticket.assignedUsers && ticket.assignedUsers.length > 0) { %>
+              <!-- Table Header -->
+              
+              
+              <!-- Table Body -->
+              <div class="bg-white dark:bg-container-2-dark rounded-b-[8px]">
+                <% ticket.assignedUsers.forEach(function(assignment, index) { %>
+                  <%
+                    // Determine if this is the active assignment
+                    const isActive = assignment.isActive || false;
+                    
+                    // Format the date
+                    const assignedDate = assignment.assignedAt ? new Date(assignment.assignedAt) : new Date();
+                    const formattedDate = assignedDate.toLocaleDateString('az-AZ', { 
+                      day: '2-digit', 
+                      month: '2-digit', 
+                      year: 'numeric' 
+                    });
+                    
+                    // Get user info
+                    const user = assignment.user || {};
+                    const userName = `${user.name || ''} ${user.surname || ''}`.trim() || 'İstifadəçi';
+                    const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                  %>
+                  
+                  <div class="flex justify-between gap-4 px-4 py-3 items-center <%= index < ticket.assignedUsers.length - 1 ? 'border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]' : '' %>">
+                    <!-- Profile Picture -->
+                    <div class="flex items-center gap-1 py-3">
+                      <% if (user.profileImage) { %>
+                        <img 
+                          src="<%= user.profileImage %>" 
+                          alt="<%= userName %>" 
+                          class="w-[34px] h-[34px] rounded-full object-cover"
+                        />
+                      <% } else { %>
+                        <div class="w-[34px] h-[34px] bg-button-disabled dark:bg-button-disabled-color-dark rounded-full flex justify-center items-center">
+                          <span class="text-[12px] font-semibold text-primary dark:text-primary-dark"><%= userInitials %></span>
+                        </div>
+                      <% } %>
+                      <span class="text-[13px] font-medium"><%= userName %></span>
+                    </div>
+                    
+                    <!-- Date / Status -->
+                    <div class="flex items-center">
+                      <% if (isActive) { %>
+                        <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-full flex items-center justify-center gap-1 py-[3.5px] px-3">
+                          <div class="w-2 h-2 bg-[#32B5AC] rounded-full"></div>
+                          <span class="text-[12px] font-medium">Qüvvədə</span>
+                        </div>
+                      <% } else { %>
+                        <div class="bg-table-hover dark:bg-table-hover-dark rounded-full flex items-center justify-center gap-1 py-[3.5px] px-3">
+                          <div class="icon stratis-calendar-check w-[14px] h-[14px]"></div>
+                          <span class="text-[12px] font-medium"><%= formattedDate %></span>
+                        </div>
+                      <% } %>
+                    </div>
+                  </div>
+                <% }); %>
+              </div>
+              
+              <!-- Pagination (if needed) -->
+              <% if (ticket.assignedUsers.length > 10) { %>
+                <div class="flex items-center justify-between px-4 py-3 border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] mt-3">
+                  <div class="text-[12px] opacity-65">
+                    Göstərilir 1-10 / <%= ticket.assignedUsers.length %>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button class="px-3 py-1 text-[12px] border border-[#0000001A] rounded hover:bg-item-hover disabled:opacity-50" disabled>
+                      Əvvəlki
+                    </button>
+                    <button class="px-3 py-1 text-[12px] border border-[#0000001A] rounded hover:bg-item-hover">
+                      Növbəti
+                    </button>
+                  </div>
+                </div>
+              <% } %>
+            <% } else { %>
+              <div class="py-8 text-center text-secondary-text bg-container-2 dark:bg-container-2-dark rounded-[8px]">
+                <div class="icon stratis-users-profiles-02 text-[32px] opacity-30 mb-2"></div>
+                <div class="text-[13px] font-medium mb-1">Təyin olunmuş istifadəçi yoxdur</div>
+                <div class="text-[11px] opacity-50">Bu sorğu hələ heç kimə təhkim edilməyib</div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Assign User Button -->
+        <div class="my-3">
+          <div
+            onclick="openTehkimEtPopup()"
+            class="inline-flex items-center gap-[6px] cursor-pointer hover:bg-item-hover px-3 py-1 rounded-sm"
+          >
+            <div class="icon stratis-user-profile-add-02"></div>
+            <div class="text-[13px] font-medium">
+              Sorğunu yeni şəxsə təhkim et
+            </div>
+          </div>
+        </div>
+
+        <!-- Attachments Section -->
+        <div class="my-3">
+          <h3 class="text-[13px] font-normal opacity-65">Əlaqəli fayllar</h3>
+          
+          <% console.log('Attachments count:', ticket.attachments ? ticket.attachments.length : 0); %>
+          <% if (ticket.attachments && ticket.attachments.length > 0) { %>
+            <% console.log('Rendering attachments:', JSON.stringify(ticket.attachments.map(a => ({id: a._id, name: a.filename})))); %>
+          <% } %>
+          
+          <div id="attachmentsList">
+            <% if (ticket.attachments && ticket.attachments.length > 0) { %>
+              <% ticket.attachments.forEach(function(attachment) { %>
+                <div class="my-3 py-[19.75px] px-4 border-[1px] rounded-lg border-[#0000001A] dark:border-[#FFFFFF1A]">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <% if (attachment.mimetype && attachment.mimetype.includes('pdf')) { %>
+                        <img src="/images/Sorgular Pages Images/pdf-image.svg" alt="PDF file"/>
+                      <% } else if (attachment.mimetype && attachment.mimetype.includes('excel')) { %>
+                        <img src="/images/Sorgular Pages Images/excel-image.svg" alt="Excel file" class="w-[40px] h-[40px]"/>
+                      <% } else { %>
+                        <div class="w-[40px] h-[40px] bg-primary rounded flex items-center justify-center">
+                          <span class="icon stratis-file-02 text-white text-[20px]"></span>
+                        </div>
+                      <% } %>
+                      <div class="flex items-center gap-0.5 flex-col">
+                        <span class="text-[13px] font-medium"><%= attachment.filename %></span>
+                        <span class="text-[11px] font-normal opacity-50">
+                          <% 
+                            const sizeInBytes = attachment.size;
+                            let displaySize;
+                            if (sizeInBytes < 1024) {
+                              displaySize = sizeInBytes + ' B';
+                            } else if (sizeInBytes < 1024 * 1024) {
+                              displaySize = (sizeInBytes / 1024).toFixed(1) + ' KB';
+                            } else {
+                              displaySize = (sizeInBytes / (1024 * 1024)).toFixed(2) + ' MB';
+                            }
+                          %>
+                          <%= displaySize %>
+                        </span>
+                      </div>
+                    </div>
+                    <button 
+                      onclick="downloadFile('<%= attachment._id %>', '<%= attachment.filename %>')"
+                      class="download-file-link bg-transparent border-0 p-0 cursor-pointer"
+                    >
+                      <img
+                        src="/images/Avankart/destek/cloud_download.svg"
+                        alt="Download"
+                        class="w-6 h-6 cursor-pointer"
+                      />
+                    </button>
+                  </div>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <div class="py-6 text-center text-secondary-text">
+                Əlaqəli fayl yoxdur
+              </div>
+            <% } %>
+          </div>
+
+          <!-- Add File Button -->
+          <div
+            onclick="window.toggleFileUploadModal()"
+            class="flex items-center gap-2 justify-center w-[142px] h-[34px] border-[0.5px] border-surface-variant dark:border-surface-variant-dark rounded-[100px] cursor-pointer"
+          >
+            <div class="icon stratis-file-plus-02 py-[9px]"></div>
+            <span class="text-[13px] font-medium py-[6.5px] hover:text-primary dark:hover:text-primary-dark">
+              Fayl əlavə et
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Notes/Comments -->
+      <div style="width: 33.3%;" class="!w-1/3 flex-shrink-0 border-l-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] flex flex-col">
+        <div class="flex-1">
+          <div class="pt-3 px-3">
+            <span class="text-[13px] font-normal opacity-65">Sorğu ilə əlaqəli qeydlər</span>
+          </div>
+          
+          <!-- Notes/Comments List -->
+          <div id="notesList" class="px-3">
+            <% if (ticket.notes && ticket.notes.length > 0) { %>
+              <% ticket.notes.forEach(function(note, index) { %>
+                <% const isOwnNote = note.author && note.author._id && currentUser && note.author._id.toString() === currentUser._id.toString(); %>
+                <div class="<%= isOwnNote ? 'my-5 mx-[32%] px-6 w-[70%]' : 'my-5 px-6 w-[70%]' %>">
+                  <div class="py-4 <%= isOwnNote ? 'bg-focus dark:bg-focus-color-dark text-body-bg dark:text-primary-text-color-dark text-left rounded-tl-4xl rounded-tr-4xl !rounded-bl-4xl' : 'bg-container-2 dark:bg-container-2-dark rounded-tl-4xl rounded-tr-4xl !rounded-br-4xl' %> pl-6 flex justify-center flex-col">
+                    <span class="text-[12px] font-normal"><%= note.content %></span>
+                  </div>
+                  <span class="text-[13px] font-normal px-2 opacity-50 pt-1">
+                    <%= new Date(note.createdAt).toLocaleTimeString('az-AZ', { hour: '2-digit', minute: '2-digit' }) %>
+                  </span>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <div class="my-5 px-6 text-center text-secondary-text">
+                <span class="text-[12px]">Hələ qeyd yoxdur</span>
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Add Note Input -->
+        <div class="bg-sidebar-bg dark:bg-container-2-dark w-full py-2 px-3 h-[66px] sticky bottom-0 flex items-center">
+          <div class="bg-body-bg dark:bg-body-bg-dark rounded-3xl border-0 w-full relative">
+            <input
+              type="text"
+              id="newNoteInput"
+              placeholder="Qeyd əlavə edin..."
+              class="w-full text-[11px] font-normal dark:bg-container-2-dark text-[#1D222B80] dark:text-[#FFFFFF80] rounded-3xl border-0 px-4 pr-10 h-10 outline-none focus:outline-none focus:ring-0 focus:border-transparent"
+            />
+            <div
+              id="sendNoteBtn"
+              class="icon stratis-send-01 cursor-pointer !h-[16px] !w-[16px] absolute right-6 !bottom-2 top-1/2 transform -translate-y-1/2 !mr-2"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Sorgu -->
+    <div id="sorguPopup" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="w-[1000px] max-h-[90vh] mx-auto text-messages bg-body-bg rounded-2xl border-[3px] border-[#0000001A] flex flex-col">
+            <div class="w-full px-6 flex items-center justify-between border-b-[0.5px] border-stroke dark-[#FFFFFF1A] flex-shrink-0">
+                <span class="text-[15px] font-medium py-[18px]">Redaktə et</span>
+                <div class="icon stratis-x-02 w-[9px] h-[9px] cursor-pointer dark:text-primary-text-color-dark"
+                    onclick="toggleSorguPopup()"></div>
+            </div>
+            <div class="flex flex-col gap-3 px-6 overflow-y-auto flex-1">
+                <div class="flex gap-4">
+                    <!-- Sorğu kateqoriyası -->
+                    <div class="w-1/2">
+                        <div class="flex items-center gap-0.5 my-1.5">
+                            <span class="text-[12px] font-medium opacity-65">Sorğu kateqoriyası</span>
+                            <div class="icon stratis-help-circle-contained opacity-65 w-3 h-3"></div>
+                        </div>
+                        <div class="relative">
+                            <button id="categoryDropdownBtn"
+                                class="w-full h-[34px] rounded-[500px] border border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2"
+                                type="button">
+                                <span id="categoryDropdownText">Seçim edin</span>
+                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="categoryDropdownMenu"
+                                class="absolute top-full mt-1 left-0 z-10 hidden min-w-[470px] bg-body-bg dark:bg-body-bg-dark rounded-[8px] border border-[#0000001A] dark:border-[#FFFFFF1A] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
+                                <ul class="py-1 px-1">
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Umumi">Ümumi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Hesab problemi">Hesab problemi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Ödəniş problemi">Ödəniş problemi</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Hidden select -->
+                            <select id="categorySelect" class="hidden">
+                                <option value="">Seçim edin</option>
+                                <option value="Umumi">Ümumi</option>
+                                <option value="Hesab problemi">Hesab problemi</option>
+                                <option value="Ödəniş problemi">Ödəniş problemi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Problemin səbəbləri -->
+                    <div class="w-1/2">
+                        <div class="flex items-center gap-0.5 my-1.5">
+                            <span class="text-[12px] font-medium opacity-65">Problemin səbəbləri</span>
+                        </div>
+                        <div class="relative">
+                            <button id="reasonDropdownBtn"
+                                class="w-full h-[34px] rounded-[500px] border border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                                type="button">
+                                <span id="reasonDropdownText">Seçim edin</span>
+                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="reasonDropdownMenu"
+                                class="absolute top-full mt-1 left-0 z-10 hidden min-w-[470px] bg-body-bg dark:bg-body-bg-dark rounded-[8px] border border-[#0000001A] dark:border-[#FFFFFF1A] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
+                                <ul class="py-1 px-1">
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="İstifadəçiləri balanslarına mədaxil edə bilmirəm">İstifadəçiləri
+                                            balanslarına mədaxil edə bilmirəm</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb.">Kartın
+                                            istifadəsində şübhəli əməliyyatlar
+                                            aşkarlanıb.</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Kart texniki səbəbdən yanlış aktivləşdirilib.">Kart texniki
+                                            səbəbdən yanlış aktivləşdirilib.</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Müəyyən səbəblərə əsasən admin kartı deaktiv edib.">Müəyyən
+                                            səbəblərə əsasən admin kartı deaktiv edib.</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Hidden select -->
+                            <select id="reasonSelect" class="hidden">
+                                <option value="">Seçim edin</option>
+                                <option value="İstifadəçiləri balanslarına mədaxil edə bilmirəm">
+                                    İstifadəçiləri balanslarına mədaxil edə bilmirəm
+                                </option>
+                                <option value="Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb.">
+                                    Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb.
+                                </option>
+                                <option value="Kart texniki səbəbdən yanlış aktivləşdirilib.">
+                                    Kart texniki səbəbdən yanlış aktivləşdirilib.
+                                </option>
+                                <option value="Müəyyən səbəblərə əsasən admin kartı deaktiv edib.">
+                                    Müəyyən səbəblərə əsasən admin kartı deaktiv edib.
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center gap-3">
+                    <div class="min-w-[169px]">
+                        <div class="flex items-center gap-0.5 my-1.5">
+                            <span class="text-[12px] font-medium opacity-65">Subject</span>
+                        </div>
+                        <div class="relative">
+                            <button id="subjectDropdownBtn"
+                                class="min-w-[169px] h-[34px] rounded-[500px] border border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                                type="button">
+                                <span id="subjectDropdownText">Seçim edin</span>
+                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="subjectDropdownMenu"
+                                class="absolute top-full mt-1 left-0 z-10 hidden bg-body-bg dark:bg-body-bg-dark rounded-[8px] min-w-[169px] border border-[#0000001A] dark:border-[#FFFFFF1A] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
+                                <ul class="py-1 px-1">
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Ümumi">Ümumi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="İstifadəçi">İstifadəçi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Müəssisə">Müəssisə</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Şirkət">Şirkət</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block text-[13px] font-medium px-3 py-1 hover:bg-item-hover"
+                                            data-value="Admin panel">Admin panel</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Hidden select -->
+                            <select id="subjectSelect" class="hidden">
+                                <option value="">Seçim edin</option>
+                                <option value="Ümumi">Ümumi</option>
+                                <option value="İstifadəçi">İstifadəçi</option>
+                                <option value="Müəssisə">Müəssisə</option>
+                                <option value="Şirkət">Şirkət</option>
+                                <option value="Admin panel">Admin panel</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="min-w-[289px]">
+                        <div class="flex items-center gap-1.5 my-1.5">
+                            <span class="text-[12px] font-medium opacity-65">ID (Optional)</span>
+                            <div class="icon stratis-help-circle-contained"></div>
+                        </div>
+                        <div
+                            class="flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                            <input id="customSearch" type="text" placeholder="ID nömrəsini daxil edin"
+                                class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] dark:text-primary-text-color-dark" />
+                        </div>
+                    </div>
+                    <div class="min-w-[470px]">
+                        <div class="flex items-center gap-1.5 my-1.5">
+                            <span class="text-[12px] font-medium opacity-65">Prioritet dərəcəsi</span>
+                            <div class="icon stratis-help-circle-contained"></div>
+                        </div>
+                        <div class="btn-group w-full h-[34px] flex rounded-[100px] overflow-hidden">
+                            <button class="prioritet-btn text-[13px] font-normal rounded-l-full min-w-[155px] py-[6.5px] border border-[#0000001A] cursor-pointer text-tertiary-text">
+                                High
+                            </button>
+                            <button class="prioritet-btn text-[13px] font-normal min-w-[155px] py-[6.5px] border-t border-b border-l border-[#0000001A] cursor-pointer text-tertiary-text">
+                                Medium
+                            </button>
+                            <button class="prioritet-btn text-[13px] font-normal rounded-r-full min-w-[155px] py-[6.5px] border border-[#0000001A] cursor-pointer text-tertiary-text">
+                                Low
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-[12px] font-medium opacity-65">Mövzu</span>
+                    <div
+                        class="w-full h-[34px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[500px] flex items-start justify-center flex-col hover:bg-container-2 dark:hover:bg-container-2-dark focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]">
+                        <input type="text" placeholder="Mövzu başlığını daxil edin"
+                            class="text-[12px] my-1.5 font-normal border border-transparent focus:border-transparent focus:ring-0 rounded-[500px] bg-transparent w-full" />
+                    </div>
+                    <div
+                        class="w-full h-[122px] mt-3 focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-start justify-start flex-col hover:bg-container-2 dark:hover:bg-container-2-dark">
+                        <input type="text" placeholder="Sorğu məzmunu..."
+                            class="text-[12px] py-1.5 font-normal border border-transparent focus:border-transparent focus:ring-0 rounded-full w-full bg-transparent dark:bg-bg-container-2 hover:bg-container-2 dark:hover:bg-container-2-dark" />
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div class="text-[12px] font-medium opacity-65">
+                        Təyin olunmuş şəxs
+                    </div>
+                    <div class="relative w-full">
+                        <!-- Dropdown button -->
+                        <button id="assigneeDropdownBtn"
+                            class="w-full h-[34px] rounded-[500px] border border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                            type="button">
+                            <span id="assigneeDropdownText">Seçim edin</span>
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="assigneeDropdownMenu"
+                            class="absolute top-full mt-1 left-0 z-10 hidden w-full bg-body-bg dark:bg-body-bg-dark rounded-[8px] border border-[#0000001A] dark:border-[#FFFFFF1A] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
+                            <ul class="py-1 px-1">
+                                <li class="px-3 py-2 text-[13px] text-secondary-text">
+                                    Yüklənir...
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Hidden select -->
+                        <select id="assigneeSelect" class="hidden">
+                            <option value="">Seçim edin</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <!-- Existing Files Section -->
+                    <% if (ticket.attachments && ticket.attachments.length > 0) { %>
+                    <div class="mb-4">
+                        <div class="text-[12px] font-medium opacity-65 mb-2">Mövcud fayllar</div>
+                        <div class="flex flex-col gap-2">
+                            <% ticket.attachments.forEach(function(attachment) { %>
+                                <div class="py-3 px-4 border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <% if (attachment.mimetype && attachment.mimetype.includes('pdf')) { %>
+                                                <img src="/images/Sorgular Pages Images/pdf-image.svg" alt="PDF file" class="w-[32px] h-[32px]"/>
+                                            <% } else if (attachment.mimetype && attachment.mimetype.includes('excel')) { %>
+                                                <img src="/images/Sorgular Pages Images/excel-image.svg" alt="Excel file" class="w-[32px] h-[32px]"/>
+                                            <% } else { %>
+                                                <div class="w-[32px] h-[32px] bg-primary rounded flex items-center justify-center">
+                                                    <span class="icon stratis-file-02 text-white text-[16px]"></span>
+                                                </div>
+                                            <% } %>
+                                            <div class="flex flex-col">
+                                                <span class="text-[12px] font-medium"><%= attachment.filename %></span>
+                                                <span class="text-[10px] font-normal opacity-50">
+                                                    <% 
+                                                        const sizeInBytes = attachment.size;
+                                                        let displaySize;
+                                                        if (sizeInBytes < 1024) {
+                                                            displaySize = sizeInBytes + ' B';
+                                                        } else if (sizeInBytes < 1024 * 1024) {
+                                                            displaySize = (sizeInBytes / 1024).toFixed(1) + ' KB';
+                                                        } else {
+                                                            displaySize = (sizeInBytes / (1024 * 1024)).toFixed(2) + ' MB';
+                                                        }
+                                                    %>
+                                                    <%= displaySize %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button 
+                                            onclick="deleteTicketFile('<%= attachment._id %>', '<%= attachment.filename %>')"
+                                            class="delete-file-btn bg-transparent border-0 p-0 cursor-pointer group"
+                                            title="Silinəcək kimi işarələ"
+                                        >
+                                            <div class="icon stratis-trash-01 w-[18px] h-[18px] text-error opacity-70 hover:opacity-100"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <!-- Upload New Files Section -->
+                    <div class="text-[12px] font-medium opacity-65 mb-2">
+                        <%= ticket.attachments && ticket.attachments.length > 0 ? 'Yeni fayl əlavə et' : 'Fayllar' %>
+                    </div>
+                    <div id="sorguUploadArea"
+                        class="w-full h-[191px] hover:bg-[#88649A1A] border-2 border-dashed border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-center flex-col">
+                        <div class="py-6">
+                            <div>
+                                <img src="/public/images/Sorgular Pages Images/upload.svg" alt="Upload"
+                                    class="m-auto" />
+                            </div>
+                            <div class="py-3">
+                                <span class="text-[13px] font-normal">Yükləmək üçün fayllarınızı sürüşdürüb,
+                                    buraxın</span>
+                                <div class="flex items-center justify-center gap-3">
+                                    <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]" />
+                                    <div
+                                        class="text-messages dark:text-primary-text-color-dark opacity-50 font-normal text-sm">
+                                        Və ya
+                                    </div>
+                                    <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]" />
+                                </div>
+                                <label
+                                    class="flex items-center gap-2 px-4 mt-2 py-2 bg-menu border border-surface-variant dark:border-surface-variant-dark rounded-full cursor-pointer">
+                                    <div class="flex items-center justify-center m-auto gap-2 hover:text-primary">
+                                        <div class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"></div>
+                                        <span class="text-[13px] font-medium">Fayl əlavə et</span>
+                                    </div>
+                                    <input type="file" id="sorguFileInput" class="hidden" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <span class="text-start text-[12px] opacity-50 font-normal">Yalnız PDF, JPG, PNG faylları
+                            dəstəklənir</span>
+                    </div>
+                    <div id="sorgu-file-list"
+                        class="hidden flex flex-col gap-4 mb-4 pr-1 max-h-[200px] overflow-y-auto custom-scroll"></div>
+                </div>
+            </div>
+            <div class="border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] flex-shrink-0">
+                <div class="flex items-center justify-between px-6 py-5 gap-3">
+                    <div id="fileDeletionInfo" class="hidden text-[12px] text-error font-medium flex items-center gap-2">
+                        <span class="icon stratis-trash-01"></span>
+                        <span id="fileDeletionCount">0</span> fayl silinəcək
+                    </div>
+                    <div class="flex items-center gap-3 ml-auto">
+                        <a href="#"
+                            class="py-[6.5px] px-[18px] bg-surface dark:bg-surface-dark text-[13px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark rounded-[50px]"
+                            onclick="toggleSorguPopup()">Ləğv et</a>
+                        <button id="submitTicketEditBtn"
+                            onclick="handleTicketUpdate(event)"
+                            class="py-[6.5px] px-[18px] text-[13px] text-body-bg dark:text-on-primary-dark font-medium bg-primary dark:bg-primary-dark rounded-[50px] hover:bg-hover-button dark:hover:bg-hover-button-dark">Təsdiqlə</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fayle elave et -->
+    <div id="fileUploadModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="px-6 w-[550px] mx-auto text-messages bg-body-bg rounded-2xl border-[3px] border-[#0000001A]">
+            <div class="w-full flex items-center justify-between">
+                <div class="mt-6 mb-4">
+                    <h1 class="text-[17px] font-semibold">Fayl əlavə et</h1>
+                    <span class="text-[13px] font-normal opacity-50">Sorğu ilə əlaqəli faylları buraya əlavə edin</span>
+                </div>
+                <div class="icon stratis-x-02 text-xs cursor-pointer" onclick="toggleFileUploadModal()"></div>
+            </div>
+            <div>
+                <div id="uploadArea"
+                    class="w-full h-[191px] hover:bg-[#88649A1A] border-2 border-dashed border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-center flex-col">
+                    <div class="py-6">
+                        <div>
+                            <img src="/public/images/Sorgular Pages Images/upload.svg" alt="Upload" class="m-auto" />
+                        </div>
+                        <div class="py-3">
+                            <span class="text-[13px] font-normal">Yükləmək üçün fayllarınızı sürüşdürüb, buraxın</span>
+                            <div class="flex items-center justify-center gap-3">
+                                <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]" />
+                                <div
+                                    class="text-messages dark:text-primary-text-color-dark opacity-50 font-normal text-sm">
+                                    Və ya
+                                </div>
+                                <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]" />
+                            </div>
+                            <label
+                                class="flex items-center gap-2 px-4 mt-2 py-2 bg-menu border border-surface-variant dark:border-surface-variant-dark rounded-full cursor-pointer">
+                                <div class="flex items-center justify-center m-auto gap-2 hover:text-primary">
+                                    <div class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"></div>
+                                    <span class="text-[13px] font-medium">Fayl əlavə et</span>
+                                </div>
+                                <input type="file" id="fileInput" class="hidden" multiple accept=".pdf,.jpg,.jpeg,.png" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <span class="text-start text-[12px] opacity-50 font-normal">Yalnız PDF, JPG, PNG faylları dəstəklənir</span>
+                    <br>
+                    <span class="text-start text-[11px] opacity-40 font-normal">Maksimum: 5MB/fayl, 5 fayl, 20MB ümumi</span>
+                </div>
+                <div id="file-list"
+                    class="hidden flex flex-col gap-4 mt-4 pr-1 max-h-[200px] overflow-y-auto custom-scroll"></div>
+            </div>
+            <div>
+                <div class="flex items-center justify-end pt-4 pb-6 gap-3">
+                    <buttom
+                        class="cursor-pointer py-[6.5px] px-[18px] bg-surface dark:bg-surface-dark text-[13px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark rounded-[50px]"
+                        onclick="toggleFileUploadModal()">Ləğv et</buttom>
+                    <button
+                        class="cursor-pointer py-[6.5px] px-[18px] text-[13px] text-body-bg dark:text-body-bg-dark font-medium bg-primary hover:bg-hover-button rounded-[50px]">
+                        Yüklə
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="relative bg-body-bg w-[306px] p-3 border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] dark:bg-[#161E22]">
+            <div class="flex flex-col gap-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                    <div class="icon stratis-trash-01 w-[16px] h-[17px] text-error dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white">
+                    Sorğunu sil
+                </h2>
+                <div
+                    class="flex flex-wrap gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] pr-10">Seçilən sorğunu silmək istədiyinizə
+                        əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-[12px]">
+                    <button onclick="toggleDeleteModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer dark:bg-[#36393E] dark:text-white">
+                        Xeyr
+                    </button>
+                    <button
+                        onclick="confirmDeleteTicket()"
+                        class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tehkimEtPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="relative bg-body-bg w-[515px] border-[#0000001A] border-3 shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div>
+                <div class="border-b-[0.5px] border-[#0000001A]">
+                    <div class="py-[18px] px-5 flex items-center justify-between">
+                        <div class="text-[15px] font-medium">İstifadəçilər</div>
+                        <img src="/public/images/Avankart/destek/closeIcon.svg" alt="Close Icon" class="cursor-pointer"
+                            onclick="closeTehkimEtPopup()" />
+                    </div>
+                </div>
+                <div>
+                    <div class="mx-3 mt-3">
+                        <div
+                            class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                            <input id="customSearchTehkimEt" type="text" placeholder="İstifadəçi axtar..."
+                                class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] dark:text-primary-text-color-dark">
+                            <div class="absolute right-3">
+                                <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 my-2 max-h-[315px] h-full overflow-auto">
+                        <!-- Users will be dynamically loaded here -->
+                        <div class="py-8 text-center text-secondary-text">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                            <div class="text-[13px]">Yüklənir...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden inputs for JavaScript -->
+    <input type="hidden" id="currentTicketId" value="<%= ticket.ticket_id %>">
+    <input type="hidden" id="currentPartnerId" value="<%= partner.partnyor_id || partner.id %>">
+    <input type="hidden" id="ticketTitle" value="<%= ticket.title %>">
+    <input type="hidden" id="ticketContent" value="<%= ticket.content %>">
+    <input type="hidden" id="ticketCategory" value="<%= ticket.category %>">
+    <input type="hidden" id="ticketReason" value="<%= ticket.reason ? ticket.reason.name : '' %>">
+    <input type="hidden" id="ticketSubject" value="<%= ticket.subject %>">
+    <input type="hidden" id="ticketPriority" value="<%= ticket.priority %>">
+    <meta name="csrf-token" content="<%= csrfToken %>">
+
+    <!-- Define toggleFileUploadModal IMMEDIATELY for inline onclick handlers -->
+    <script>
+      // Download file function - Simple iframe approach for Brave browser
+      window.downloadFile = function(fileId, filename) {
+        console.log('🔽 Starting download:', fileId, filename);
+        
+        const url = `/istifadeci-hovuzu/partner/tickets/files/${fileId}/download`;
+        
+        // Method: Hidden iframe (works best with Brave's security)
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.style.position = 'fixed';
+        iframe.style.width = '1px';
+        iframe.style.height = '1px';
+        iframe.style.opacity = '0';
+        
+        // Set the src to trigger download
+        iframe.src = url;
+        
+        // Add to document
+        document.body.appendChild(iframe);
+        
+        console.log('✅ Download iframe created, file should start downloading...');
+        
+        // Remove iframe after a delay
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+          console.log('🧹 Cleanup complete');
+        }, 5000);
+      };
+      
+      // Emergency inline definition to ensure function is available before any onclick handlers
+      window.toggleFileUploadModal = function() {
+        const modal = document.getElementById("fileUploadModal");
+        if (!modal) {
+          console.warn('fileUploadModal not found');
+          return;
+        }
+        
+        if (modal.classList.contains("hidden")) {
+          modal.classList.remove("hidden");
+        } else {
+          modal.classList.add("hidden");
+          // Clear file list
+          const fileList = document.getElementById("file-list");
+          if (fileList) {
+            fileList.innerHTML = '';
+            fileList.classList.add("hidden");
+          }
+          // Reset file input
+          const fileInput = document.getElementById("fileInput");
+          if (fileInput) {
+            fileInput.value = '';
+          }
+        }
+      };
+      
+      // Delete ticket file function
+      window.deleteTicketFile = async function(fileId) {
+        if (!confirm('Bu faylı silmək istədiyinizə əminsiniz?')) {
+          return;
+        }
+        
+        try {
+          console.log('🗑️ Deleting file:', fileId);
+          
+          const response = await fetch(`/istifadeci-hovuzu/partner/tickets/files/${fileId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+          });
+          
+          if (response.ok) {
+            console.log('✅ File deleted successfully');
+            // Reload the page to refresh the file list
+            window.location.reload();
+          } else {
+            const error = await response.json();
+            console.error('❌ Delete failed:', error);
+            alert('Fayl silinərkən xəta baş verdi: ' + (error.message || 'Naməlum xəta'));
+          }
+        } catch (error) {
+          console.error('❌ Delete error:', error);
+          alert('Fayl silinərkən xəta baş verdi');
+        }
+      };
+      
+      console.log('INLINE: toggleFileUploadModal and deleteTicketFile defined');
+    </script>
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <!-- <script src="/js/Avankart/sidebar.js"></script> -->
+    <!-- <script src="/js/Avankart/toggleSidebar.js"></script> -->
+    <script src="/js/Avankart/notificationsModal.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/fileUpload.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/sorgular.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/ticketAssignment.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/ticketEdit.js"></script>

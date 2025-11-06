@@ -1,0 +1,354 @@
+<aside
+  id="sidebar"
+  class="fixed transition-all duration-300 w-[242px] collapsed-sidebarfixed flex flex-col justify-between z-100 min-h-screen bg-sidebar-bg dark:bg-side-bar-bg-dark border-r-[0.5px] border-stroke dark:border-[#FFFFFF1A] text-secondary-text dark:text-secondary-text-color-dark"
+>
+  <div>
+    <div
+      class="h-[70px] py-[25px] flex items-center justify-center border-b-[0.5px] border-stroke dark:border-[#FFFFFF1A] relative"
+    >
+      <div
+        id="logoContainer"
+        class="transition-all duration-300 h-auto flex items-center justify-center"
+      >
+        <img
+          id="logoLight"
+          src="/images/error/avankartLogo.svg"
+          alt="avankartLogo"
+          class="block dark:hidden transition-all duration-300"
+        />
+
+        <img
+          id="logoDark"
+          src="/images/error/avankartLogoDarkMode.svg"
+          alt="avankartLogo"
+          class="hidden dark:block transition-all duration-300"
+        />
+      </div>
+      <div
+        id="sidebarToggle"
+        class="curve-left-div bg-[#fff] hover:text-primary dark:hover:text-primary-dark text-messages dark:text-primary-text-color-dark cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-[4px] dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark w-[25px] h-[25px] flex items-center justify-center"
+      >
+        <div
+          id="sidebarIcon"
+          class="icon stratis-arrow-curve-left-up text-xs"
+        ></div>
+      </div>
+    </div>
+    <div class="flex flex-col justify-between px-3 pt-5 text-[13px]">
+      <div
+        class="flex flex-col border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]"
+      >
+        <ul class="flex flex-col gap-2 pb-2">
+          <li>
+            <a
+              href="/"
+              class="<%= currentPath === '/' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-category-2-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Dashboard -->
+                <%= __("partials.sidebar.dashboard") %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/hesablashmalar"
+              class="<%= currentPath === '/hesablashmalar' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-receipt-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Hesablaşmalar -->
+                <%= __("partials.sidebar.hesablashmalar") %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/partner/avankart-partner"
+              class="<%= currentPath === '/partner/avankart-partner' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-users-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Avankart Partner -->
+                <%= __("partials.sidebar.avankart_partner") %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/muessise-info"
+              class="<%= currentPath === '/muessise-info' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-layers-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Müəssisə məlumatları -->
+                <%= __("partials.sidebar.muessise_melumatlari") %>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="flex flex-col gap-2 pt-2">
+          <li>
+            <a
+              href="/notifications"
+              class="<%= currentPath === '/notifications' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-bell-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Bildirişlər -->
+                <%= __("partials.sidebar.bildirishler") %>
+              </span>
+              <span
+                id="sidebar-notification-count"
+                class="span4-1 menu-count bg-[#fafafa] dark:bg-side-bar-bg-dark ml-auto flex items-center justify-center w-[19px] h-[19px] mr-3 text-[10px] border-[.5px] border-stroke dark:border-[#FFFFFF1A] rounded-[2px] text-center"
+              ></span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/sorgular"
+              id="sorgusidebar"
+              class="<%= currentPath === '/sorgular' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-flag-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Sorğular -->
+                <%= __("partials.sidebar.sorgular") %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/settings"
+              class="<%= currentPath === '/settings' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark"
+            >
+              <div
+                class="iconex iconex-filter-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+              ></div>
+              <span class="menu-text">
+                <!-- Tənzimləmələr -->
+                <%= __("partials.sidebar.tenzimlemeler") %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/auth/logout"
+              class="flex items-center gap-2 rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-error group dark:hover:bg-side-bar-item-dark dark:hover:text-error-dark"
+            >
+              <div
+                class="iconex iconex-logout-1 w-5 h-5 text-messages dark:text-primary-text-color-dark group-hover:text-error dark:group-hover:text-error-dark"
+              ></div>
+              <span class="menu-text group-hover:text-error">
+                <!-- Çıxış et -->
+                <%= __("partials.sidebar.chixish_et") %>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col justify-between px-3 pt-5 text-[13px]">
+    <div class="text-center pb-3 space-y-2">
+      <div class="menu-support-full">
+        <div
+          class="destek-div bg-[#fff] dark:bg-side-bar-item-dark text-messages dark:text-primary-text-color-dark p-3 rounded-[12px] border border-stroke dark:border-[#FFFFFF1A] flex flex-col items-center"
+        >
+          <div
+            class="destek-logo bg-[#fafafa] flex items-center justify-center p-[12.5px] rounded-full dark:bg-side-bar-bg-dark"
+          >
+            <div class="iconex iconex-headphones-1 w-5 h-5"></div>
+          </div>
+          <p class="text-[11px] pt-1 pb-3">
+            <!-- Köməyə ehtiyacın var? -->
+            <%= __("partials.sidebar.komeye_ehtiyacin_var") %>
+          </p>
+          <button
+            onclick="openSupportModal()"
+            class="w-full text-[13px] px-[74.5px] py-[6.5px] rounded-[100px] border border-surface-variant dark:border-surface-variant-dark hover:cursor-pointer hover:text-focus dark:hover:text-focus-color-dark"
+          >
+            <!-- Dəstək -->
+            <%= __("partials.sidebar.destek") %>
+          </button>
+
+          <!-- Main modal -->
+        </div>
+      </div>
+      <div
+        onclick="openSupportModal()"
+        class="menu-support-icon cursor-pointer hidden flex items-center justify-center px-3"
+      >
+        <div
+          class="bg-sidebar-item dark:bg-side-bar-item-dark text-messages dark:text-primary-text-color-dark rounded-[12px] py-3 px-[5px] border border-stroke dark:border-[#FFFFFF1A] flex flex-col items-center"
+        >
+          <div
+            class="flex items-center justify-center p-[12.5px] rounded-full bg-sidebar-bg dark:bg-side-bar-bg-dark"
+          >
+            <div class="iconex iconex-headphones-1 w-5 h-5"></div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="text-tertiary-text dark:text-tertiary-text-color-dark text-xs"
+      >
+        <p id="versionText">Version 1.0.0</p>
+      </div>
+
+      <div
+        onclick="closeSupportModal()"
+        id="supportOverlay"
+        class="fixed inset-0 hidden"
+      ></div>
+      <div
+        id="supportModal"
+        class="border border-stroke dark:border-[#FFFFFF1A] w-[250px] h-[371px] bg-menu dark:bg-menu-dark hidden fixed bottom-[50px] left-[250px] z-50 shadow-xl rounded-[12px]"
+      >
+        <div class="p-3">
+          <div
+            onclick="closeSupportModal()"
+            class="w-[18px] h-[18px] absolute right-[13px] cursor-pointer"
+          >
+            <div class="icon stratis-x-02"></div>
+          </div>
+          <div class="text-start pl-2">
+            <h3
+              class="text-[13px] font-bold text-messages dark:text-primary-text-color-dark mt-3"
+            >
+              <!-- Köməyə ehtiyacın var? -->
+              <%= __("partials.sidebar.komeye_ehtiyacin_var") %>
+            </h3>
+            <p
+              class="mt-[5px] font-normal text-[10px] text-tertiary-text dark:text-tertiary-text-color-dark"
+            >
+              <!-- 7/24 cavablamağa hazırıq -->
+              <%= __("partials.sidebar.7_24_cavablamaga_hazir") %>
+            </p>
+          </div>
+          <div
+            class="pt-3 border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] pb-5"
+          >
+            <div
+              onclick="window.location.href='/sorgular'"
+              class="flex items-center gap-2 p-2 rounded-xl hover:bg-input-hover dark:hover:bg-input-hover-dark group cursor-pointer"
+            >
+              <div
+                class="w-10 h-10 bg-sidebar-bg dark:bg-side-bar-bg-dark group-hover:bg-body-bg dark:group-hover:bg-body-bg-dark rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="iconex iconex-flag-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+                ></div>
+              </div>
+              <div class="text-start">
+                <div
+                  class="text-messages dark:text-primary-text-color-dark text-[13px] font-medium"
+                >
+                  <!-- Sorğular -->
+                  <%= __("partials.sidebar.sorgular") %>
+                </div>
+                <div
+                  class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal"
+                >
+                  <!-- Problem üzrə sorğu yarat -->
+                  <%= __("partials.sidebar.problem_uzre_sorgu_yarat") %>
+                </div>
+              </div>
+            </div>
+            <div
+              onclick="openFaqModal()"
+              class="flex items-center gap-2 p-2 mt-2 rounded-xl hover:bg-input-hover dark:hover:bg-input-hover-dark group cursor-pointer"
+            >
+              <div
+                class="w-10 h-10 bg-sidebar-bg dark:bg-side-bar-bg-dark group-hover:bg-body-bg dark:group-hover:bg-body-bg-dark rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="iconex iconex-message-square-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+                ></div>
+              </div>
+              <div class="text-start">
+                <div
+                  class="text-messages dark:text-primary-text-color-dark text-[13px] font-medium"
+                >
+                  FAQ
+                </div>
+                <div
+                  class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal"
+                >
+                  <!-- Tez-tez verilən suallar -->
+                  <%= __("partials.sidebar.tez_tez_verilen_suallar") %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-5">
+            <div
+              class="flex items-center gap-2 p-2 rounded-xl hover:bg-input-hover dark:hover:bg-input-hover-dark group hidden"
+            >
+              <div
+                class="w-10 h-10 bg-sidebar-bg dark:bg-side-bar-bg-dark group-hover:bg-body-bg dark:group-hover:bg-body-bg-dark rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="iconex iconex-calling-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+                ></div>
+              </div>
+              <div class="text-start">
+                <div
+                  class="text-messages dark:text-primary-text-color-dark text-[13px] font-medium"
+                >
+                  *0000
+                </div>
+                <div
+                  class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal"
+                >
+                  <!-- Qaynar xəttə müraciət et -->
+                  <%= __("partials.sidebar.qaynar_xette_muraciet_et") %>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-2 p-2 mt-2 rounded-xl hover:bg-input-hover group"
+            >
+              <div
+                class="w-10 h-10 bg-sidebar-bg dark:bg-side-bar-bg-dark group-hover:bg-body-bg dark:group-hover:bg-body-bg-dark rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="iconex iconex-case-1 w-5 h-5 text-messages dark:text-primary-text-color-dark"
+                ></div>
+              </div>
+              <div class="text-start">
+                <div
+                  class="text-messages dark:text-primary-text-color-dark text-[13px] font-medium"
+                >
+                  <!-- E-poçt -->
+                  <%= __("partials.sidebar.e_poct") %>
+                </div>
+                <div
+                  class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal"
+                >
+                  support@avankart.com
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FAQ Modal -->
+      <div id="faqModal"></div>
+    </div>
+  </div>
+</aside>

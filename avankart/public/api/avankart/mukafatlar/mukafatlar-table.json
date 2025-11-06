@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "name": "Yemək",
+      "value": 83,
+      "logo": "/public/images/Avankart/mukafatlar/foodLogo.svg"
+    },
+    {
+      "name": "Hədiyyə",
+      "value": 45,
+      "logo": "/public/images/Avankart/mukafatlar/giftLogo.svg"
+    },
+    {
+      "name": "Yanacaq",
+      "value": 320,
+      "logo": "/public/images/Avankart/mukafatlar/fuelLogo.svg"
+    },
+    {
+      "name": "Market",
+      "value": 90,
+      "logo": "/public/images/Avankart/mukafatlar/marketLogo.svg"
+    },
+    {
+      "name": "Biznes",
+      "value": 75,
+      "logo": "/public/images/Avankart/mukafatlar/businessLogo.svg"
+    },
+    {
+      "name": "Premium",
+      "value": 36,
+      "logo": "/public/images/Avankart/mukafatlar/premiumLogo.svg"
+    },
+    {
+      "name": "Avto Yuma",
+      "value": 250,
+      "logo": "/public/images/Avankart/mukafatlar/avtoWashLogo.svg"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

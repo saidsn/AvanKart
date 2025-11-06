@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "App Store",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/mdi_apple.svg",
+      "link": "apple.com/store/avankartpeople",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Google Play Store",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/logos_google-play-icon.svg",
+      "link": "google.com/store/avankartpeople",
+      "status": "Deaktiv"
+    },
+    {
+      "name": "AppGallery",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/simple-icons_appgallery.svg",
+      "link": "appgallery.com/store/avankartpeople",
+      "status": "Aktiv"
+    }
+  ],
+  "recordsTotal": 3,
+  "recordsFiltered": 3
+}

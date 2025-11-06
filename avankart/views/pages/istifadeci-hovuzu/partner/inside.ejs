@@ -1,0 +1,1125 @@
+<div class="flex flex-col gap-3">
+                    <!-- Hidden inputs for JavaScript -->
+                    <input type="hidden" id="currentPartnerId" value="<%= partner.partnyor_id || partner.id %>">
+                    
+                    <div
+                        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+                        <div class="flex items-center gap-2">
+                            <a href="../dashboard/dashboard.html"
+                                class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">İstifadəç
+                                hovuzu</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart
+                                partner</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-tertiary-text dark:text-tertiary-text-color-dark cursor-default"><%= partner.fullName %></span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="w-[23%] flex gap-1">
+                            <div class="w-full border-r-[.5px] border-stroke pr-2 pt-3">
+                                <!-- Header: Avatar and Name -->
+                                <div class="flex justify-between gap-3 relative border-b border-stroke pb-5">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex items-center justify-center w-16 h-16 rounded-full bg-button-disabled text-primary font-semibold text-[22px]">
+                                            <%= partner.initials %>
+                                        </div>
+                                        <div class="flex flex-col gap-1">
+                                            <h2 class="text-[17px] font-semibold text-[#1D222B]">
+                                                <%= partner.fullName %>
+                                            </h2>
+                                            <div
+                                                class="flex items-center gap-2 text-[12px] font-normal text-secondary-text">
+                                                <span
+                                                    class="font-normal text-[12px] text-messages opacity-65">ID:</span>
+                                                <span class="font-normal text-[12px] text-messages">
+                                                    <%= partner.id %>
+                                                </span>
+                                                <div class="icon iconex-copy-1 w-[12px] h-[15px] text-[#1D222B] cursor-pointer" onclick="copyToClipboard('<%= partner.id %>')"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Sağ yuxarı ox ikonu -->
+                                    <div id="wrapper" class="relative inline-block text-left z-50">
+                                        <div onclick="toggleDropdown(this)"
+                                            class="icon stratis-dot-vertical text-messages text-base cursor-pointer z-50">
+                                        </div>
+
+                                        <div class="hidden absolute right-[-12px] max-w-[244px] z-25 dropdown-menu">
+
+                                            <div class="relative h-[8px]">
+                                                <div
+                                                    class="absolute top-1/2 right-4 w-3 h-3 bg-menu rotate-45 border-l-[.5px] border-t-[.5px] z-50 border-[.5px] border-stroke">
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="rounded-xl shadow-lg bg-menu overflow-hidden relative z-50 border-[.5px] border-stroke">
+                                                <div class="py-[3.5px] text-sm">
+                                                    <div onclick="openConfirmModal()"
+                                                        class="flex items-center gap-2 px-4 py-[3.5px] hover:bg-input-hover cursor-pointer">
+                                                        <span class="icon stratis-password-01 text-[13px] mt-1"></span>
+                                                        <span
+                                                            class="font-medium text-[#1D222B] text-[13px] whitespace-nowrap">Şifrəni
+                                                            sıfırla</span>
+                                                    </div>
+                                                    <div onclick="openMailadressiPopup()"
+                                                        class="flex items-center gap-2 px-4 py-[3.5px] hover:bg-input-hover cursor-pointer">
+                                                        <span class="icon stratis-mail-01 text-[13px] mt-1"></span>
+                                                        <span
+                                                            class="font-medium text-[#1D222B] text-[13px] whitespace-nowrap">Mail
+                                                            adresini dəyiş</span>
+                                                    </div>
+<%
+  const statusNum = Number(
+    typeof partner.statusNumber !== 'undefined'
+      ? partner.statusNumber
+      : partner.status
+  );
+%>
+
+<% if (statusNum === 1) { %>
+  <!-- Active -> show Deaktiv et -->
+  <div id="js-toggle-status-menu"
+       data-status="1"
+       onclick="window.togglePartnerStatus && window.togglePartnerStatus('<%= partner.partnyor_id || partner.id %>')"
+       class="flex items-center gap-2 px-4 py-[3.5px] hover:bg-error-hover cursor-pointer">
+    <span id="js-toggle-status-icon" class="icon stratis-minus-circle-contained text-error text-[13px]"></span>
+    <span id="js-toggle-status-text" class="font-medium text-error text-[13px] whitespace-nowrap">Deaktiv et</span>
+  </div>
+<% } else if (statusNum === 0) { %>
+  <!-- Inactive -> show Aktiv et -->
+  <div id="js-toggle-status-menu"
+       data-status="0"
+       onclick="window.togglePartnerStatus && window.togglePartnerStatus('<%= partner.partnyor_id || partner.id %>')"
+       class="flex items-center gap-2 px-4 py-[3.5px] hover:bg-success-hover cursor-pointer">
+    <span id="js-toggle-status-icon" class="icon stratis-check-circle-contained text-success text-[13px]"></span>
+    <span id="js-toggle-status-text" class="font-medium text-success text-[13px] whitespace-nowrap">Aktiv et</span>
+  </div>
+<% } %>
+<!-- statusNum === 2 => don't render the action -->
+                                                      
+                                                    <div class="h-[.5px] bg-stroke my-1"></div>
+                                                    <div onclick="openSilinmeMuracietPopUp()"
+                                                        class="flex items-center gap-2 px-4 py-[3.5px] hover:bg-error-hover cursor-pointer">
+                                                        <span
+                                                            class="icon stratis-trash-01 text-error text-[13px]"></span>
+                                                        <span
+                                                            class="font-medium text-error text-[13px] whitespace-nowrap">Silinmə
+                                                            üçün müraciət et</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 py-3">
+                                    <div class="flex-1 flex bg-sidebar-bg rounded-xl py-2 pl-3 items-center gap-2">
+                                        <div>
+                                            <div
+                                                class="flex items-center justify-center w-9 h-9 bg-table-hover rounded-full">
+                                                <!-- İkon buraya -->
+                                                <div
+                                                    class="icon stratis-grid-03 w-[12px] h-[15px] text-base text-[#1D222B]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-1">
+                                            <div class="text-[11px] text-tertiary-text">
+                                                Ümumi QR kod sayı
+                                            </div>
+                                            <div class="text-[17px] font-semibold"><%= partner.qr_stats.total || 0 %></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 flex bg-sidebar-bg rounded-xl py-2 pl-3 items-center gap-2">
+                                        <div>
+                                            <div
+                                                class="flex items-center justify-center w-9 h-9 bg-table-hover rounded-full">
+                                                <!-- İkon buraya -->
+                                                <div
+                                                    class="icon stratis-grid-03 w-[12px] h-[15px] text-base text-[#1D222B]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-1">
+                                            <div class="text-[11px] text-tertiary-text">
+                                                Bu ayda yaradılan
+                                            </div>
+                                            <div class="text-[17px] font-semibold"> <%= partner.qr_stats.this_month || 0 %> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Personal Information  -->
+                                <div class="max-w-md mx-auto pb-5 bg-white rounded-md">
+                                    <h3 class="text-xs font-normal text-[#1D222B]">
+                                        Şəxsi məlumatlar
+                                    </h3>
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Cinsi:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.gender %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Doğum
+                                                tarixi:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.birth_date || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Vəzifə:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.duty || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Email:</span>
+                                            <span
+                                                class="text-[#1D222B] font-medium text-[13px]"><%= partner.email || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Üzvlük:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.muessise.name || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Telefon
+                                                nömrəsi:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.phone || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Qeydiyyat
+                                                tarixi:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.created_at || '—' %></span>
+                                        </div>
+                                        <div class="flex justify-between border-b-[.5px] border-stroke py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">İşə başlama:</span>
+                                            <span class="text-[#1D222B] font-medium text-[13px]"><%= partner.hire_date || '—' %></span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between border-b-[.5px] border-stroke items-center py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">Status:</span>
+                                            <span
+                                                class="flex items-center gap-2 font-medium bg-container-2 text-[13px] text-[#1D222B] rounded-full px-2 py-1">
+                                                <span class="w-[6px] h-[6px] rounded-full <%= partner.statusColor === 'bg-success' ? 'bg-[#4FC3F7]' : partner.statusColor === 'bg-error' ? 'bg-[#FF9800]' : 'bg-[#9E9E9E]' %> block"></span>
+                                                <%= partner.status %>
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between py-[9.5px] px-2">
+                                            <span class="text-tertiary-text font-normal text-[13px]">2 addımlı
+                                                doğrulama:</span>
+                                            <div class="icon stratis-minus-circle-contained text-sm text-error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- HTML -->
+                        <div class="w-[77%] flex-1">
+                            <div class="flex flex-col gap-4">
+                                <div id="mainView" class="inline-block">
+                                    <div class="flex justify-between border-b border-stroke py-3 mb-3">
+                                        <div
+                                            class="inline-flex border-b border-stroke flex-wrap gap-5 -mb-px text-[13px] font-medium text-center text-tertiary-text">
+                                            <div>
+                                                <div class="main-tab-link inline-flex items-center justify-center py-2 rounded-t-lg text-messages border-b-2 border-messages"
+                                                    data-tab="qr">
+                                                    Qr kod tarixçəsi ( <%= partner.qr_stats.total || 0 %> )
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="main-tab-link inline-flex items-center justify-center py-2 rounded-t-lg"
+                                                    data-tab="sorgular">
+                                                    Sorğular
+                                                </div>
+                                            </div>
+                                            </ul>
+                                        </div>
+                                        <div id="qrTableWrapper">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="relative font-normal flex items-center max-w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                                    <input id="customSearch" type="text"
+                                                        placeholder="Müəssisə adı ilə axtar..."
+                                                        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                                    <div class="absolute right-3">
+                                                        <div
+                                                            class="icon stratis-search-02 dark:text-primary-text-color-dark">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="reload_btn" 
+                                                    class="w-[155px] h-[34px] border-[1px] cursor-pointer border-surface-variant rounded-[100px] flex items-center justify-between gap-2 pl-[18px] pr-[20px] hover:text-primary dark:bg-table-hover-dark dark:border-on-surface-variant dark:text-white">
+                                                    <span class="text-[13px] font-medium">Səhifəni yenilə</span>
+                                                    <span
+                                                        class="icon stratis-arrow-refresh-04 !w-[12px] !h-[12px] text-messages hover:text-messages dark:text-white"></span>
+                                                </button >
+                                                <div onclick="openFilterModal()"
+                                                    class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                                    <div
+                                                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]">
+                                                    </div>
+                                                    <span class="">Filterlə</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="sorgularTableWrapper">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="relative font-normal flex items-center max-w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                                    <input id="customSearchSorgular" type="text"
+                                                        placeholder="İstifadəçi axtar..."
+                                                        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                                    <div class="absolute right-3">
+                                                        <div
+                                                            class="icon stratis-search-02 dark:text-primary-text-color-dark">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="reload_btn"
+                                                    class="w-[155px] h-[34px] border-[1px] border-surface-variant rounded-[100px] flex items-center justify-between gap-2 pl-[18px] pr-[20px] hover:text-primary dark:bg-table-hover-dark dark:border-on-surface-variant dark:text-white">
+                                                    <span  class="text-[13px] font-medium">Səhifəni yenilə  </span>
+                                                    <span
+                                                        class="icon stratis-arrow-refresh-04 !w-[12px] !h-[12px] text-messages hover:text-messages dark:text-white"></span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Content hissələri -->
+                                    <div id="qr" class="tab-content">
+                                        <table id="myTable"
+                                            class="table-fixed w-full border-collapse whitespace-nowrap">
+                                            <thead class="border-none pb-0.5">
+                                                <tr
+                                                    class="bg-container-2  border-none text-[12px] text-secondary-text  font-normal">
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke  px-4 py-2 filtering text-left">
+                                                        Müəssisə
+                                                    </th>
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke  px-4 py-2 filtering text-left">
+                                                        QR kod sayı
+                                                    </th>
+                                                    <th class="border-r-[.5px] border-r-stroke  px-4 py-2 filtering">
+                                                        Məbləğ (AZN)
+                                                    </th>
+                                                    <th class="border-r-[.5px] border-r-stroke  px-4 py-2 filtering">
+                                                        Başlama tarixi
+                                                    </th>
+                                                    <th class="border-r-[.5px] border-r-stroke  px-4 py-2 filtering">
+                                                        Ayrılma tarixi
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class="pt-2">
+                                            <div class="bg-sidebar-bg  rounded-t-[8px] px-6 flex flex-col gap-3">
+                                                <div class="py-5 flex items-center justify-between">
+                                                    <div class="text-[13px] flex items-center gap-2">
+                                                        <span class="font-normal opacity-65">Səhifə sayı:</span>
+                                                        <span id="pageCount" class="font-medium">1 / 1</span>
+                                                    </div>
+                                                    <div class="flex items-center gap-5">
+                                                        <div>
+                                                            <div id="customPagination" class="flex items-center"></div>
+                                                        </div>
+                                                        <div>
+                                                            <input class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                                            transition-all ease-out duration-300" type="text"
+                                                                placeholder="Səhifə" />
+                                                            <a href="#"
+                                                                class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="sorgular" class="tab-content hidden">
+                                        <div class="table border-x border-dashed border-stroke w-full min-w-full"
+                                            style="table-layout: fixed">
+                                            <div class="table-row border-b border-dashed border-stroke">
+                                                <div id="column-Qaralama"
+                                                    class="table-cell border-r border-dashed border-stroke px-2 py-3 align-top w-1/4">
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="w-[6px] h-[6px] rounded-full bg-[#BFC8CC]"></span>
+                                                        <h3 class="font-medium text-xs text-messages">Qaralama</h3>
+                                                    </div>
+                                                    <div id="qaralama-tickets" class="space-y-2">
+                                                        <!-- Tickets will be loaded here -->
+                                                    </div>
+                                                </div>
+                                                <div id="column-Baxılır"
+                                                    class="table-cell border-r border-dashed border-stroke px-2 py-3 align-top w-1/4">
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="w-[6px] h-[6px] rounded-full bg-[#F9B100]"></span>
+                                                        <h3 class="font-medium text-xs text-messages">Baxılır</h3>
+                                                    </div>
+                                                    <div id="baxilir-tickets" class="space-y-2">
+                                                        <!-- Tickets will be loaded here -->
+                                                    </div>
+                                                </div>
+                                                <div id="column-Həll-olundu"
+                                                    class="table-cell border-r border-dashed border-stroke px-2 py-3 align-top w-1/4">
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="w-[6px] h-[6px] rounded-full bg-[#32B5AC]"></span>
+                                                        <h3 class="font-medium text-xs text-messages">Həll olundu</h3>
+                                                    </div>
+                                                    <div id="hell-olundu-tickets" class="space-y-2">
+                                                        <!-- Tickets will be loaded here -->
+                                                    </div>
+                                                </div>
+                                                <div id="column-Rədd-edildi" class="table-cell px-2 py-3 align-top w-1/4">
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="w-[6px] h-[6px] rounded-full bg-[#DD3838]"></span>
+                                                        <h3 class="font-medium text-xs text-messages">Rədd edildi</h3>
+                                                    </div>
+                                                    <div id="redd-edildi-tickets" class="space-y-2">
+                                                        <!-- Tickets will be loaded here -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Pagination for tickets -->
+                                            <div id="ticketsPagination" class="mt-4 flex justify-center items-center gap-2 hidden">
+                                                <button id="prevPageBtn" class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50" disabled>
+                                                    Əvvəlki
+                                                </button>
+                                                <span id="pageInfo" class="text-sm text-gray-600">Səhifə 1</span>
+                                                <button id="nextPageBtn" class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50" disabled>
+                                                    Növbəti
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="detailView" class="hidden">
+                                    <div class="flex flex-col gap-3">
+                                        <div class="bg-sidebar-bg mt-3 p-3 rounded-lg h-[69px]">
+                                            <div class="flex gap-3 text-message b-2 w-full">
+                                                <div class="border-r-[0.5px] border-[#0000001A] max-w-[220px] w-full">
+                                                    <div class="flex items-center gap-2.5">
+                                                        <div class="w-[40px] h-[40px] rounded-[50%]">
+                                                            <img src="/images/Avankart/istifadeciHovuzu/ozsutLogo.svg"
+                                                                alt="Logo">
+                                                        </div>
+                                                        <div>
+                                                            <div class="text-[13px] font-medium">Özsüt Restoran</div>
+                                                            <div
+                                                                class="text-[11px] text-messages opacity-65 font-normal">
+                                                                ID: <span class="opacity-100">MM-XXXXXXXX</span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="flex flex-col gap-1 justify-left border-r-[0.5px] border-[#0000001A] max-w-[220px] w-full">
+                                                    <h3 class="text-[11px] text-tertiary-text font-normal">QR kod sayı
+                                                    </h3>
+                                                    <p class="text-[13px] font-medium">4352</p>
+                                                </div>
+                                                <div
+                                                    class="flex flex-col gap-1 justify-left border-r-[0.5px] border-[#0000001A] max-w-[220px] w-full">
+                                                    <h3 class="text-[11px] text-tertiary-text font-normal">Məbləğ</h3>
+                                                    <p class="text-[13px] font-medium">3.200.00 ₼</p>
+                                                </div>
+                                                <div
+                                                    class="flex flex-col gap-1 justify-left border-r-[0.5px] border-[#0000001A] max-w-[220px] w-full">
+                                                    <h3 class="text-[11px] text-tertiary-text font-normal">Başlama
+                                                        tarixi</h3>
+                                                    <p class="text-[13px] font-medium">01.12.2023</p>
+                                                </div>
+                                                <div class="flex flex-col gap-1 justify-left max-w-[220px] w-full">
+                                                    <h3 class="text-[11px] text-tertiary-text font-normal">Ayrılma
+                                                        tarixi</h3>
+                                                    <p class="text-[13px] font-medium">16.12.2023</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="workplaceChart" class="flex w-full mt-[13px] mb-[12px] overflow-x-auto">
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Yemək kartı</div>
+                                                <div
+                                                    class="bg-[#FCD099] flex justify-between items-center rounded-l-full h-[30px] w-full">
+                                                    <div class="text-[12px] font-medium text-messages pl-1">115,000.00
+                                                        AZN</div>
+                                                    <div class="text-[11px] font-normal text-messages opacity-65 pr-1">
+                                                        70%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Hədiyyə</div>
+                                                <div
+                                                    class="bg-[#99DEB4] flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-[12px] font-medium text-messages pl-1">2,000.00 AZN
+                                                    </div>
+                                                    <div class="text-[11px] font-normal text-messages opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Yanacaq</div>
+                                                <div
+                                                    class="bg-[#879AFC] flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-on-primary text-[12px] font-medium pl-1">2,000.00
+                                                        AZN</div>
+                                                    <div
+                                                        class="text-[11px] font-normal text-on-primary opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Martket</div>
+                                                <div
+                                                    class="bg-[#88649A] flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-on-primary text-[12px] font-medium pl-1">2,000.00
+                                                        AZN</div>
+                                                    <div
+                                                        class="text-[11px] font-normal text-on-primary opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Biznes</div>
+                                                <div
+                                                    class="bg-[#00A3FF] flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-on-primary text-[12px] font-medium pl-1">2,000.00
+                                                        AZN</div>
+                                                    <div
+                                                        class="text-[11px] font-normal text-on-primary opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Premium</div>
+                                                <div
+                                                    class="bg-[#32B5AC] flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-on-primary text-[12px] font-medium pl-1">2,000.00
+                                                        AZN</div>
+                                                    <div
+                                                        class="text-[11px] font-normal text-on-primary opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1">
+                                                <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">
+                                                    Avto Yuma</div>
+                                                <div
+                                                    class="bg-[#0076B2] rounded-r-full flex justify-between items-center h-[30px] w-full">
+                                                    <div class="text-on-primary text-[12px] font-medium pl-1">2,000.00
+                                                        AZN</div>
+                                                    <div
+                                                        class="text-[11px] font-normal text-on-primary opacity-65 pr-1">
+                                                        5%</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col whitespace-nowrap flex-1 ml-1">
+                                                <div
+                                                    class="text-[11px] font-normal text-messages opacity-50 mb-[6px] w-full">
+                                                    Toplam məbləğ</div>
+                                                <div
+                                                    class="bg-sidebar-bg rounded-full flex justify-between items-center h-[30px] w-full">
+                                                    <div id="totalAmount" class="text-[12px] font-medium text-messages pl-1">0.00 ₼</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]">
+                                            <div id="backToMain"
+                                                class="flex items-center gap-2 cursor-pointer text-[15px] text-messages dark:text-primary-text-color-dark font-medium pt-[5px]">
+                                                <div class="icon stratis-arrow-left-sm text-xs"></div>
+                                                QR kod tarixçəsi ( <span id="qrTotalCount"><%= partner.qr_stats.total || 0 %></span> )
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                                    <input id="qrTableSearch" type="text" placeholder="Search..."
+                                                        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                                    <div class="absolute right-3">
+                                                        <div
+                                                            class="icon stratis-search-02 dark:text-primary-text-color-dark">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button id="tx-refresh"   
+                                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                                    <span>Səhifəni yenilə</span>
+                                                    <span
+                                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                                            </button>
+                                                <div onclick="openQrFilterModal()"
+                                                    class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                                    <a href="#"
+                                                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+                                                    <a href="#" class="">Filterlə</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- burda qr Table olacaq -->
+                                        <table id="qrTable"
+                                            class="qrTableFixed w-full border-collapse whitespace-nowrap">
+                                            <thead class="border-none pb-0.5">
+                                                <tr
+                                                    class="bg-container-2 border-none text-[12px] text-secondary-text font-normal">
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke px-4 py-2 qrTableFiltering text-left">
+                                                        Tranzaksiya ID
+                                                    </th>
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke px-4 py-2 qrTableFiltering text-left">
+                                                        Kart kateqoriyası
+                                                    </th>
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke px-4 py-2 qrTableFiltering">
+                                                        Məbləğ (AZN)
+                                                    </th>
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke px-4 py-2 qrTableFiltering">
+                                                        Tarix
+                                                    </th>
+                                                    <th
+                                                        class="border-r-[.5px] border-r-stroke px-4 py-2 qrTableFiltering">
+                                                        Status
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class="pt-2">
+                                            <div class="bg-sidebar-bg rounded-t-[8px] px-6 flex flex-col gap-3">
+                                                <div class="py-5 flex items-center justify-between">
+                                                    <div class="text-[13px] flex items-center gap-2">
+                                                        <span class="font-normal opacity-65">Səhifə sayı:</span>
+                                                        <span id="qrUniqueTablePageCount" class="font-medium">1 /
+                                                            1</span>
+                                                    </div>
+                                                    <div class="flex items-center gap-5">
+                                                        <div>
+                                                            <div id="qrUniqueTablePagination" class="flex items-center">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <input class="qrUniqueTablePageInput w-[63px] h-[32px] text-[12px] text-center ftext-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                                            transition-all ease-out duration-300" type="text"
+                                                                placeholder="Səhifə" />
+                                                            <a href="#"
+                                                                class="qrUniqueTableGoButton text-[13px] text-body-bg font-medium bg-primary hover:bg-hover-button rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- popups -->
+
+
+    <div id="mailadressiPopup" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="relative w-[450px] h-[219px] border-[#0000001A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-body-bg z-100">
+            <div class="flex justify-between ml-[24px] mr-[29px] mt-[26px]">
+                <p class="font-medium text-[15px]">Mail adresini dəyiş</p>
+                <div onclick="closeMailadressiPopup()" class="icon stratis-x-02 text-xs cursor-pointer"></div>
+            </div>
+            <div class="font-poppins mt-5 ml-6">
+                <label
+                    class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages  opacity-65">Email</label>
+                <input type="email" placeholder="Email adresinizi daxil edin" class="cursor-pointer max-w-[400px] w-[100%] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark
+                hover:bg-input-hover
+                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                transition-all ease-out duration-300">
+            </div>
+            <div class="absolute bottom-[24px] right-[12px] flex gap-[12px]">
+                <button href="#"
+                    class=" text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[83px] !h-[34px] cursor-pointer"
+                    onclick="closeMailadressiPopup()">Ləğv et</button>
+                <button href="#"
+                    class=" text-[12px] text-on-primary font-medium bg-primary rounded-[50px] !w-[156px] !h-[34px] cursor-pointer hover:bg-[#88649A] transition"
+                    onclick="openConfirmModal()">Dəyişikliyi
+                    təsdiqlə</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="deAktivModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="relative bg-body-bg w-[306px] h-[208px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] z-0 dark:bg-[#161E22]">
+            <div
+                class="flex items-center dark:bg-[#2E3135] justify-center mt-[12px] ml-[12px] w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                <div class="icon stratis-minus-circle-contained w-[16px] h-[17px] text-error dark:text-[#FFFFFF]"></div>
+            </div>
+
+            <h2 class="ml-3 mt-3 text-messages font-medium text-[15px] dark:text-white">
+                Deaktiv et
+            </h2>
+
+            <div
+                class="flex flex-wrap mt-[12px] ml-[12px] gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] pr-10">İstifadəçini deaktiv etmək istədiyinizə
+                    əminsiniz?</span>
+            </div>
+
+            <div class="absolute bottom-[12px] right-[12px] flex gap-[12px]">
+                <button onclick="closeDeAktivModal()"
+                    class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer dark:bg-[#36393E] dark:text-white">
+                    Xeyr
+                </button>
+                <button onclick="openConfirmModal()"
+                    class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                    Bəli, sil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="silinmeMuracietPopUp" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="bg-body-bg w-[450px] h-[690px] border-[#0000001A] border-[2px]
+              shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex items-center justify-end p-6">
+                <div onclick="closeSilinmeMuracietPopUp()" class="icon stratis-x-02 text-xs cursor-pointer"></div>
+            </div>
+            <div
+                class=" mt-2 gap-[3px] font-normal ml-[24px] mr-[26px] text-center text-[12px] leading-[160%]  font-poppins text-messages opacity-100">
+                <div class="text-[17px] font-semibold mb-[5px]">Silinmə müraciəti</div>
+                <div class="font-normal  opacity-65 text-[12px]">İstifadəçi məlumatlarını aşadığan kontrol
+                    edərək, silinməsi üçün müraciət edə bilərsiniz</div>
+            </div>
+            <div class="space-y-3 text-[12px] text-messages  ml-[24px] mr-[26px] pt-[24px]">
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50 ">İstifadəçi:</span>
+                    <span class=" font-medium">Ramin Orucov</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Cinsi:</span>
+                    <span class=" font-medium">Kişi</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Doğum tarixi:</span>
+                    <span class=" font-medium">16.12.1997</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Mail</span>
+                    <span class=" font-medium whitespace-nowrap">ramin.orucov@gmail.com</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Telefon</span>
+                    <span class=" font-medium whitespace-nowrap">+994 50 770 35 22</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Vəzifəsi</span>
+                    <span class=" font-medium whitespace-nowrap">UX Designer</span>
+                </div>
+                <div class="flex justify-between border-b pb-3">
+                    <span class="font-normal opacity-50">Silən şəxs:</span>
+                    <span class=" font-medium whitespace-nowrap">Ramin Orucov</span>
+                </div>
+            </div>
+
+            <div class="space-y-[6px] ml-[24px] mr-[26px]">
+                <label class="block text-messages opacity-65 text-[12px] mt-[12px] font-medium">Silinmə
+                    səbəbi</label>
+                <div class="relative">
+                    <textarea class="w-full h-[73px]  border pt-[3px] pl-[12px] text-gray-700  resize-none focus:outline-none  focus:ring-gray-300 border-stroke border-opacity-[10%] rounded-[8px] text-[12px] placeholder-on-surface-variant-dark
+                      hover:bg-input-hover
+                      focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0
+                      active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                      transition-all ease-out duration-300" placeholder="Silinmə səbəbini daxil edin"
+                        maxlength="150 !text-[10px] !text-messages !opacity-50"></textarea>
+
+                    <span class="absolute bottom-2 right-4 text-sm text-gray-400">max: 150</span>
+                </div>
+            </div>
+            <button onclick="submitDeleteRequest()"
+                class="cursor-pointer text-[13px] mt-[33px] flex items-center justify-center ml-[24px] mr-[26px] w-[400px] font-poppins leading-[160%] font-medium h-[34px] bg-error rounded-full text-on-primary">
+                Silinmə üçün göndər
+            </button>
+
+            <button onclick="closeSilinmeMuracietPopUp()"
+                class="cursor-pointer mt-[12px] text-[13px] flex items-center justify-center ml-[24px] mr-[26px] w-[400px]  font-poppins leading-[160%] font-medium h-[34px] bg-surface-bright rounded-full text-  disabled:bg-[#7450864D]  ">
+                Ləğv et
+            </button>
+        </div>
+    </div>
+
+    <div id="filterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <form onsubmit="return false;" data-url="/hesablashmalar/datatable" id="filterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">
+                            Filter
+                        </div>
+                        <div onclick="openFilterModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <div class="relative">
+                            <span
+                                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Müəssisə</span>
+                            <button id="dropdownDefaultButton_company"
+                                class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                                type="button" onclick="toggleDropdown_company()">
+                                Seçim edin
+                                <div>
+                                    <img src="/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                        class="w-[15px] h-[13px] dark:invert">
+                                </div>
+                            </button>
+                            <div id="dropdown_company"
+                                class="hidden absolute mt-2 w-[402px] max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A] visible">
+                                <!-- Dynamic content will be populated here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65 dark:text-white">Tarix
+                            aralığı</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('startDate')" class="relative w-[195px] group">
+                                    <input id="startDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+           hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="start_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                    </div>
+                                    <div class="text-[11px] font-normal opacity-50">
+                                        Başlanğıc tarixini
+                                        qeyd edin</div>
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('endDate')" class="relative w-[195px] group">
+                                    <input id="endDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+           hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="end_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                    </div>
+                                    <div class="text-[11px] font-normal opacity-50">
+                                        Son tarixi qeyd edin
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Məbləğ aralığı</span>
+                        <div class="value-container mt-2">
+                            <span id="min-value" class="value-label text-[13px] text-messages font-medium"></span>
+                            <span id="max-value" class="value-label text-[13px] text-messages font-medium"></span>
+                        </div>
+                        <div id="slider-range" class="mt-2" style="height: 8px; background: #f0f0f0; border-radius: 4px;"></div>
+                        <div class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                            <span>Min</span>
+                            <span>Max</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-3">
+                    <button
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="closeFilterModal()">Bağla</button>
+                    <button onclick="clearFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+                    <button onclick="applyFilters()"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="qrFilterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <form onsubmit="return false;"
+                data-url="/api/avankart/istifadeciHovuzu/avankartPartner/avankartPartner-qr-details" id="qrFilterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">
+                            Filter
+                        </div>
+                        <div onclick="closeQrFilterModal()"
+                            class="icon stratis-x-02 text-xs cursor-pointer dark:hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65 dark:text-white">Tarix aralığı</span>
+                        <div class="flex items-center gap-3">
+                            <!-- Başlanğıc tarixi -->
+                            <div class="w-1/2">
+                                <div onclick="openQrDatePicker('qrStartDate')" class="relative w-[195px] group">
+                                    <input id="qrStartDate" type="date" name="qrStartDate"
+                                        class="qr-date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                                        hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Başlanğıc tarixini qeyd edin</div>
+                                </div>
+                            </div>
+
+                            <!-- Son tarix -->
+                            <div class="w-1/2">
+                                <div onclick="openQrDatePicker('qrEndDate')" class="relative w-[195px] group">
+                                    <input id="qrEndDate" type="date" name="qrEndDate"
+                                        class="qr-date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                                        hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Son tarixi qeyd edin</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Kart kateqoriyası</span>
+                        <div class="mt-[6px]">
+                            <div class="flex items-center flex-wrap gap-4">
+                                <label for="cbx-yemək"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-yemək" class="peer hidden" name="card_category"
+                                        value="yemək">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Yemək kartı</div>
+                                </label>
+                                <label for="cbx-yanacaq"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-yanacaq" class="peer hidden" name="card_category"
+                                        value="yanacaq">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Yanacaq kartı</div>
+                                </label>
+                                <label for="cbx-hediyye"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-hediyye" class="peer hidden" name="card_category"
+                                        value="hədiyyə">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Hədiyyə kartı</div>
+                                </label>
+                                <label for="cbx-market"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-market" class="peer hidden" name="card_category"
+                                        value="market">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Market kartı</div>
+                                </label>
+                                <label for="cbx-biznes"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-biznes" class="peer hidden" name="card_category"
+                                        value="biznes">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Biznes kartı</div>
+                                </label>
+                                <label for="cbx-premium"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-premium" class="peer hidden" name="card_category"
+                                        value="premium">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Premium kartı</div>
+                                </label>
+                                <label for="cbx-avto-yuma"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-avto-yuma" class="peer hidden" name="card_category"
+                                        value="avto_yuma">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                           peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Avto Yuma kartı</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Status</span>
+                        <div class="mt-[6px]">
+                            <div class="flex items-center flex-wrap gap-4">
+                                <label for="cbx-success"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-success" class="peer hidden" name="card_status"
+                                        value="success">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Uğurlu</div>
+                                </label>
+                                <label for="cbx-fail"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-fail" class="peer hidden" name="card_status"
+                                        value="fail">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Uğursuz</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Məbləğ aralığı</span>
+                        <div class="qr-value-container">
+                            <span id="qrTableMinValue"
+                                class="qr-value-label"></span>
+                            <span id="qrTableMaxValue"
+                                class="qr-value-label"></span>
+                        </div>
+                        <div id="qrTableSliderRange"></div>
+                        <div class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                            <span>Min</span>
+                            <span>Max</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-3">
+                    <button
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="closeQrFilterModal()">Bağla</button>
+                    <button onclick="clearQrFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+                    <button onclick="applyQrFilters()"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <% scripts = `<meta name="csrf-token" content="${csrfToken}">
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script>
+        // Global variables for partner and workplace IDs
+        window.selectedPartnerId = '` + (partner.partnyor_id || partner.id) + `';
+        window.selectedPartnerStatus = ` + Number(typeof partner.statusNumber !== 'undefined' ? partner.statusNumber : partner.status) + `;
+        console.log('[inside.ejs]', { selectedPartnerId: window.selectedPartnerId, selectedPartnerStatus: window.selectedPartnerStatus });
+        var selectedWorkplaceId = null; // Will be set when a workplace is selected
+    </script>
+    <script>
+        function copyToClipboard(text) {
+          if (!navigator.clipboard) {
+            // Eski tarayıcılar için fallback
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand('copy');
+              alertModal('Kopyalandı!');
+            } catch (err) {
+              alertModal('Kopyalama başarısız.', 'error');
+            }
+            document.body.removeChild(textarea);
+            return;
+          }
+
+          // Modern tarayıcılar
+          navigator.clipboard.writeText(text)
+            .then(() => alertModal('Kopyalandı!'))
+            .catch(err => alertModal('Kopyalama başarısız.', 'error'));
+        }
+    </script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/toggleTab.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/initQrSlider.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/avankartPartnerQrTable.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/avankartPartnerSorgularTable.js"></script>
+    <!-- <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/qrTable.js"></script> -->
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/openDatePicker.js"></script>
+    <script src="/js/Avankart/istifadeciHovuzu/avankartPartner/countdown.js"></script>`; %>

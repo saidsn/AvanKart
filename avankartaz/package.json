@@ -1,0 +1,21 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "t": "npx @tailwindcss/cli -i ./public/tailwind.css -o ./public/css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3"
+  },
+  "dependencies": {
+    "flowbite": "^3.1.2",
+    "tailwindcss": "^4.0.9"
+  }
+}

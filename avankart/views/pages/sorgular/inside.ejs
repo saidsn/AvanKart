@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="csrf-token"
+      content="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/icons.css" />
+    <link rel="stylesheet" href="/iconex.css" />
+    <title><%= sorgu ? sorgu.title : 'Sorğu' %> - <%= __('partials.sidebar.sorgular') %></title>
+  </head>
+
+  <body class="font-medium bg-body-bg dark:bg-body-bg-dark">
+    <div class="flex h-screen">
+      <!-- Sidebar include -->
+      <% if (typeof include !=='undefined' ) { %> <%- include('../../partials/sidebar') %> <% } else { %>
+      <!-- Sidebar məzmunu buraya əlavə edin -->
+      <aside class="fixed w-[242px] bg-sidebar-bg dark:bg-side-bar-bg-dark">
+        <div class="p-4">
+          <h2 class="text-white">Sidebar</h2>
+        </div>
+      </aside>
+      <% } %>
+
+      <section class="flex-1 flex flex-col">
+        <!-- Header include -->
+        <% if (typeof include !=='undefined' ) { %> <%-
+        include('../../partials/header') %> <% } else { %>
+        <!-- Header məzmunu buraya əlavə edin -->
+        <header class="h-[70px] bg-body-bg dark:bg-body-bg-dark border-b">
+          <div class="flex items-center h-full px-4">
+            <h1 class="text-messages dark:text-primary-text-color-dark">
+              Header
+            </h1>
+          </div>
+        </header>
+        <% } %>
+      </section>
+
+      <!-- Main content - content sola çəkilmiş, chat sağda -->
+      <main
+        id="mainContent"
+        class="ml-[242px] mt-[70px] text-messages dark:text-primary-text-color-dark py-3 px-5 pr-[36%]"
+        style="width: calc(100% - 242px)"
+      >
+        <div>
+          <!-- Breadcrumb -->
+          <div
+            class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+          >
+            <div class="flex items-center gap-2">
+              <a
+                href="/dashboard"
+                class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"
+                >Avankart</a
+              >
+              <div class="icon stratis-slash-01-forward"></div>
+            </div>
+            <a class="text-tertiary-text dark:text-tertiary-text-color-dark"
+              ><%= __('partials.sidebar.sorgular') %></a
+            >
+          </div>
+
+          <!-- Header -->
+          <div
+            class="flex items-center justify-between border-b-[0.5px] border-stroke dark:border-[#FFFFFF1A]"
+          >
+            <div class="!py-[17px] flex items-center gap-3">
+              <a
+                href="/sorgular"
+                class="icon stratis-arrow-left-sm !w-3 !h-3"
+              ></a>
+              <a href="/sorgular" class="font-medium text-[15px]">
+                <!-- Sorğular -->
+                <%= __("sorgular.inside.breadcrumb_sorgular") %>
+              </a>
+            </div>
+            <div class="flex items-center gap-3">
+              <div
+                class="flex items-center gap-2 border-r-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] px-3"
+              >
+                <div
+                  class="<%= sorgu && sorgu.status === 'Baxılır' ? 'bg-[#F9B100]' : sorgu && sorgu.status === 'Həll olundu' ? 'bg-[#32B5AC]' : sorgu && sorgu.status === 'Rədd edildi' ? 'bg-[#FF4444]' : 'bg-[#888888]' %> w-[6px] h-[6px] rounded-[50%]"
+                ></div>
+                <span class="!text-[12px] font-medium">
+                  <%= sorgu ? sorgu.status : 'N/A' %>
+                </span>
+              </div>
+              <div class="flex items-center gap-2 justify-center">
+                <% if (sorgu && sorgu.priority) { %>
+                <img
+                  src="/images/Sorgular Pages Images/<%= sorgu.priority === 'high' ? 'High' : sorgu.priority === 'medium' ? 'Medium' : 'Low' %>.svg"
+                  alt="<%= sorgu.priority %>"
+                  onerror="this.style.display='none'"
+                />
+                <span class="text-[13px] font-medium">
+                  <%= sorgu.priority.charAt(0).toUpperCase() + sorgu.priority.slice(1) %>
+                </span>
+                <% } else { %>
+                <span class="text-[13px] font-medium">N/A</span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full">
+            <!-- Sol tərəf - Sorğu məlumatları -->
+            <div class="w-full pr-4">
+              <!-- Ticket ID -->
+              <div class="my-3 py-[3.5px]">
+                <span class="text-[13px] font-normal opacity-50">
+                  <!-- Ticket: -->
+                  <%= __("sorgular.inside.sorgular_ticket_id") %>
+                </span>
+                <span class="text-[13px] font-medium">
+                  <%= sorgu ? sorgu.ticket_id : 'N/A' %>
+                </span>
+              </div>
+
+              <!-- Əsas məlumatlar -->
+              <div class="text-[13px] font-normal opacity-65">
+                Əsas məlumatlar
+              </div>
+              <div class="my-3 w-full">
+                <h3 class="text-[13px] font-medium">
+                  <%= sorgu ? sorgu.title : __("sorgular.inside.sorgu_melumat_yoxdur") %>
+                </h3>
+                <div class="pt-1 pb-[18px] text-[11px] font-normal opacity-65">
+                  <%= sorgu ? sorgu.content :  __("sorgular.inside.sorgu_mezmun_yoxdur") %>
+                </div>
+              </div>
+
+              <!-- Sorğu kateqoriyası -->
+              <div class="my-3">
+                <span class="text-[11px] font-medium opacity-65 pb-2">
+                  <!-- Sorğu kateqoriyası -->
+                  <%= __("sorgular.inside.sorgu_kateqoriyasi") %>
+                </span>
+                <div
+                  class="px-3 py-3 bg-container-2 dark:bg-container-2-dark rounded-[8px]"
+                >
+                  <span class="text-[13px] font-normal">
+                    <%= sorgu ? sorgu.category : __("sorgular.inside.sorgu_kateqoriya_yoxdur") %>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Problemin səbəbləri -->
+              <% if (sorgu && sorgu.reason) { %>
+              <div>
+                <span class="text-[11px] font-medium opacity-65 pb-2">
+                  <!-- Problemin səbəbləri -->
+                  <%= __("sorgular.inside.problemin_sebebleri") %>
+                </span>
+                <div
+                  class="bg-container-2 dark:bg-container-2-dark rounded-[8px]"
+                >
+                  <% if (sorgu.problemReasons && sorgu.problemReasons.length> 0)
+                  { sorgu.problemReasons.forEach((reason, index)=> { %>
+                  <div
+                    class="py-3 px-3 <%= index < sorgu.problemReasons.length - 1 ? 'border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]' : '' %>"
+                  >
+                    <span class="text-[13px] font-normal"> <%= __('sorgular.inside.'+reason) %> </span>
+                  </div>
+                  <% }); } else { %>
+                  <div class="py-3 px-3">
+                    <span class="text-[13px] font-normal">
+                      <%= sorgu.reason %>
+                    </span>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+              <% } %>
+
+              <!-- Subject -->
+              <div class="my-3">
+                <h3 class="text-[12px] font-medium opacity-65 py-3">
+                  <!-- Subject -->
+                  <%= __("sorgular.inside.inside_subject") %>
+                </h3>
+                <div
+                  class="flex items-center gap-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] w-full"
+                >
+                  <div class="flex items-center gap-2 pb-[8.5px]">
+                    <div class="icon stratis-users-profiles-02 py-[6px]"></div>
+                    <span
+                      class="text-[13px] font-medium py-[3.5px] pr-3 border-r-[0.5px] opacity-65"
+                    >
+                      <%= sorgu ? sorgu.subject : 'N/A' %>
+                    </span>
+                  </div>
+                  <div class="pb-3">
+                    <span class="text-[13px] font-normal opacity-50">ID: </span>
+                    <span class="text-[13px] font-medium">
+                      <%= (sorgu && sorgu.user_id) ? (sorgu.user_id.initials ||
+                      'N/A' ) : 'N/A' %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Təyin olunmuş şəxslər -->
+              <% if (sorgu && sorgu.assigned && sorgu.assigned.length> 0) { %>
+              <div class="my-3">
+                <h3 class="text-[12px] font-medium opacity-65">
+                  <!-- Təyin olunmuş şəxs -->
+                  <%= __("sorgular.inside.teyin_olunmus_sexs") %>
+                </h3>
+                <% sorgu.assigned.forEach((person, index)=> { %>
+                <div
+                  class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+                >
+                  <div class="flex items-center gap-1 py-3">
+                    <div
+                      class="w-[34px] h-[34px] bg-button-disabled dark:bg-button-disabled-color-dark rounded-[50%] flex justify-center items-center"
+                    >
+                      <div
+                        class="text-[12px] font-semibold font-poppins leading-[160%] text-primary dark:text-primary-dark"
+                      >
+                        <%= person.initials || person.name.substring(0,
+                        2).toUpperCase() %>
+                      </div>
+                    </div>
+                    <h3 class="text-[13px] font-normal"><%= person.name %></h3>
+                  </div>
+                  <div class="flex items-center py-[15.5px]">
+                    <% if (index===sorgu.assigned.length - 1) { %>
+                    <div
+                      class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-[500px] flex items-center justify-center gap-1 py-[3.5px] px-2"
+                    >
+                      <div
+                        class="bg-[#32B5AC] w-[6px] h-[6px] rounded-[50%]"
+                      ></div>
+                      <span class="!text-[12px] font-medium py-[4px] px-2">
+                        <!-- Qüvvədə -->
+                        <%= __("sorgular.inside.quvvede") %>
+                      </span>
+                    </div>
+                    <% } else { %>
+                    <div
+                      class="bg-table-hover dark:bg-table-hover-dark rounded-[500px] flex items-center justify-center gap-1 py-[4.5px] px-[2px]"
+                    >
+                      <div
+                        class="icon stratis-calendar-check w-[18px] h-[18px] py-[5px] ml-2.5"
+                      ></div>
+                      <span class="!text-[12px] font-medium py-[4px] px-2"
+                        >12.01.2024</span
+                      >
+                    </div>
+                    <% } %>
+                  </div>
+                </div>
+                <% }); %>
+              </div>
+              <% } %>
+
+              <!-- Əlaqəli fayllar -->
+              <% if (sorgu && sorgu.files && sorgu.files.length> 0) { %>
+              <div class="my-3" id="existing-files-section">
+                <h3 class="text-[13px] font-normal opacity-65">
+                  <!-- Əlaqəli fayllar -->
+                  <%= __("sorgular.inside.elaqeli_fayllar") %>
+                </h3>
+                <% sorgu.files.forEach(file=> { %>
+                <div
+                  class="my-3 py-[19.75px] px-4 border-[1px] rounded-lg border-[#0000001A] dark:border-[#FFFFFF1A]"
+                >
+                  <div class="flex items-center justify-between">
+                    <div
+                      class="flex items-center gap-2"
+                      style="image-rendering: pixelated"
+                    >
+                      <% var fileIcon='/images/Sorgular Pages Images/upload.svg'
+                      ; if (file.file_type) { if
+                      (file.file_type.includes('pdf')) {
+                      fileIcon='/images/Sorgular Pages Images/pdf-image.svg' ; }
+                      else if (file.file_type.includes('image')) {
+                      fileIcon='/images/Sorgular Pages Images/upload.svg' ; }
+                      else if (file.file_type.includes('excel') ||
+                      file.file_type.includes('spreadsheet')) {
+                      fileIcon='/images/Sorgular Pages Images/excel-image.svg' ;
+                      } else if (file.file_type.includes('word')) {
+                      fileIcon='/images/Sorgular Pages Images/upload.svg' ; } }
+                      %>
+                      <img
+                        src="<%= fileIcon %>"
+                        alt="<%= file.file_type || 'File' %>"
+                        class="w-10 h-10"
+                        onerror="this.src='/images/Sorgular Pages Images/upload.svg'"
+                      />
+                      <div class="flex gap-0.5 flex-col">
+                        <span class="text-[13px] font-medium">
+                          <%= file.file_name %>
+                        </span>
+                        <span class="text-[11px] font-normal opacity-50">
+                          <%= file.file_size || '0MB' %>
+                        </span>
+                      </div>
+                    </div>
+                    <a href="<%= file.file_route %>" download>
+                      <img
+                        src="/images/Sorgular Pages Images/cloud_download.svg"
+                        alt="Cloud-download"
+                        class="w-6 h-6 cursor-pointer"
+                        onerror="this.style.display='none'"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <% }); %>
+              </div>
+              <% } else { %>
+              <!-- Empty state for files -->
+              <div
+                class="my-3"
+                id="files-section-placeholder"
+                style="display: none"
+              >
+                <h3 class="text-[13px] font-normal opacity-65">
+                  <!-- Əlaqəli fayllar -->
+                  <%= __("sorgular.inside.elaqeli_fayllar") %>
+                </h3>
+              </div>
+              <% } %>
+
+              <!-- Fayl əlavə et düyməsi -->
+              <div
+                class="flex items-center gap-2 justify-center w-[142px] h-[34px] border-[0.5px] border-surface-variant dark:border-surface-variant-dark rounded-[100px] cursor-pointer"
+                onclick="toggleSorgu()"
+              >
+                <div class="icon stratis-file-plus-02 py-[9px]"></div>
+                <span
+                  class="text-[13px] font-medium py-[6.5px] hover:text-primary dark:hover:text-primary-dark"
+                >
+                  <!-- Fayl əlavə et -->
+                  <%= __("sorgular.inside.fayl_elave_et_button") %>
+                </span>
+              </div>
+            </div>
+
+            <!-- File Upload Modal -->
+            <div
+              id="overlay"
+              class="hidden fixed top-0 left-0 w-full h-full bg-[#0000002A] z-50"
+            ></div>
+            <div
+              class="sorgu-div hidden px-6 w-[550px] mx-auto text-messages dark:text-primary-text-color-dark bg-body-bg dark:bg-body-bg-dark rounded-2xl border-[3px] !border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50"
+            >
+              <div class="w-full flex items-center justify-between">
+                <div class="mt-6 mb-4">
+                  <h1 class="text-[17px] font-semibold">
+                    <!-- Fayl əlavə et -->
+                    <%= __("sorgular.inside.fayl_elave_popup_title") %>
+                  </h1>
+                  <span class="text-[13px] font-normal opacity-50">
+                    <!-- Sorğu ilə əlaqəli faylları buraya əlavə edin -->
+                    <%= __("sorgular.inside.fayl_elave__popup_sorgu_ile_elaqeli_fayllari_elave_et") %>
+                  </span>
+                </div>
+                <div
+                  class="icon stratis-x-02 w-[9px] h-[9px] cursor-pointer dark:text-primary-text-color-dark"
+                  onclick="toggleSorgu()"
+                ></div>
+              </div>
+
+              <!-- Drop Zone -->
+              <div
+                id="upload-drop-zone"
+                class="w-full h-[191px] border-2 border-dashed border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-center flex-col relative"
+              >
+                <div class="py-6">
+                  <div>
+                    <img
+                      src="/images/Sorgular Pages Images/upload.svg"
+                      alt="Upload"
+                      class="m-auto"
+                    />
+                  </div>
+                  <div class="py-3">
+                    <span class="text-[13px] font-normal">
+                      <!-- Yükləmək üçün fayllarınızı sürüşdürüb, buraxın -->
+                      <%= __("sorgular.inside.fayl_yukleme_dropzone_text") %>
+                    </span>
+                    <div class="flex items-center justify-center gap-3">
+                      <hr
+                        class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]"
+                      />
+                      <div
+                        class="text-messages dark:text-primary-text-color-dark opacity-50 font-normal text-sm"
+                      >
+                        <!-- Və ya -->
+                        <%= __("sorgular.inside.ve_ya") %>
+                      </div>
+                      <hr
+                        class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]"
+                      />
+                    </div>
+                    <label
+                      class="flex items-center gap-2 px-4 py-2 border border-surface-variant dark:border-surface-variant-dark rounded-full cursor-pointer"
+                    >
+                      <div
+                        class="flex items-center justify-center m-auto gap-2"
+                      >
+                        <div
+                          class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"
+                        ></div>
+                        <span class="text-[13px] font-medium">
+                          <!-- Fayl əlavə et -->
+                          <%= __("sorgular.inside.fayl_elave_et") %>
+                        </span>
+                      </div>
+                      <input
+                        type="file"
+                        id="fileInput"
+                        name="files"
+                        multiple
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        class="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Loading overlay -->
+                <div
+                  id="uploadLoader"
+                  class="hidden absolute inset-0 bg-[#00000080] rounded-[8px] flex items-center justify-center"
+                >
+                  <div class="text-center text-white">
+                    <div
+                      class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"
+                    ></div>
+                    <span class="text-sm">
+                      <!-- Fayllar yüklənir... -->
+                      <%= __("sorgular.inside.fayllar_yuklenir") %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- File List -->
+              <div id="file-list" class="mt-3 pt-[11.5px] px-4"></div>
+
+              <!-- Messages -->
+              <div id="upload-messages" class="mt-2"></div>
+
+              <div class="pt-2">
+                <span class="text-start text-[12px] opacity-50 font-normal">
+                  <!-- Yalnız PDF, JPG, PNG faylları dəstəklənir (Max 10MB) -->
+                  <%= __("sorgular.inside.fayl_yukleme_desteklenen_fayllar") %>
+                </span>
+              </div>
+
+              <!-- Modal Footer -->
+              <div
+                class="mt-2 border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+              >
+                <div class="flex items-center justify-end py-5 gap-3">
+                  <button
+                    type="button"
+                    class="py-[6.5px] px-[18px] bg-surface dark:bg-surface-dark text-[13px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark rounded-[50px]"
+                    onclick="toggleSorgu()"
+                  >
+                    <!-- Ləğv et -->
+                    <%= __("sorgular.inside.legv_et") %>
+                  </button>
+                  <button
+                    type="button"
+                    id="uploadBtn"
+                    onclick="uploadFiles()"
+                    class="py-[6.5px] px-[18px] text-[13px] text-body-bg dark:text-body-bg-dark font-medium bg-primary dark:bg-primary-dark rounded-[50px]"
+                  >
+                    <!-- Yüklə -->
+                    <%= __("sorgular.inside.yukle_button") %>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sağ tərəf - Chat hissəsi - daha geniş -->
+            <div
+              class="w-[35%] fixed right-0 top-[70px] border-l-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] h-[calc(100vh-70px)] flex flex-col bg-body-bg dark:bg-body-bg-dark"
+            >
+              <div class="flex-shrink-0">
+                <div
+                  class="pt-3 px-3 pb-3 border-b border-[#0000001A] dark:border-[#FFFFFF1A]"
+                >
+                  <span class="text-[13px] font-normal opacity-65">
+                    <!-- Sorğu ilə əlaqəli qeydlər -->
+                  </span>
+                </div>
+              </div>
+
+              <!-- Chat messages -->
+              <div
+                class="flex-1 overflow-y-auto overflow-x-hidden px-3 py-2"
+                id="chatBox"
+              >
+                <div class="chat-container">
+                  <% if (chatData && chatData.messages &&
+                  chatData.messages.length> 0) {
+                  chatData.messages.forEach(message=> { 
+                    if (message.isOwn)
+                  { %>
+                  <!-- Öz mesajımız - Sağda -->
+                  <div class="my-5 mx-[32%] px-6 w-[70%]">
+                    <div
+                      class="py-4 bg-focus dark:bg-focus-color-dark text-body-bg dark:text-primary-text-color-dark text-left rounded-tl-4xl rounded-tr-4xl !rounded-bl-4xl pl-6 flex justify-center flex-col"
+                    >
+                      <span class="text-[12px] font-normal">
+                        <%= message.message %>
+                      </span>
+                    </div>
+                    <span class="text-[13px] font-normal px-2 opacity-50 pt-1">
+                      <%= message.time %>
+                    </span>
+                  </div>
+                  <% } else { %>
+                  <!-- Digər istifadəçinin mesajı - Solda -->
+                  <div class="my-5 px-6 w-[70%]">
+                    <div
+                      class="py-4 bg-container-2 dark:bg-container-2-dark rounded-tl-4xl rounded-tr-4xl !rounded-br-4xl flex pl-6 justify-center flex-col"
+                    >
+                      <span class="text-[12px] font-normal text-start block">
+                        <%= message.message %>
+                      </span>
+                    </div>
+                    <span class="text-[13px] font-normal px-2 opacity-50 pt-1">
+                      <%= message.time %>
+                    </span>
+                  </div>
+                  <% } }); } else { %>
+                  <div class="my-5 px-6 w-[70%]" id="no-messages">
+                    <div
+                      class="py-4 bg-container-2 dark:bg-container-2-dark rounded-tl-4xl rounded-tr-4xl !rounded-br-4xl flex pl-6 justify-center flex-col"
+                    >
+                      <span
+                        class="text-[12px] font-normal text-start block opacity-50"
+                      >
+                        <!-- Hələ ki mesaj yoxdur... -->
+                        <%= __("sorgular.inside.hele_ki_mesaj_yoxdur") %>
+                      </span>
+                    </div>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+
+              <!-- Chat input -->
+              <div
+                class="flex-shrink-0 bg-sidebar-bg dark:bg-container-2-dark w-full py-2 px-3 h-[66px] flex items-center border-t border-[#0000001A] dark:border-[#FFFFFF1A]"
+              >
+                <form
+                  class="bg-body-bg dark:bg-body-bg-dark rounded-3xl border-0 w-full relative"
+                  onsubmit="return false;"
+                >
+                  <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Type your message here ..."
+                    class="w-full text-[11px] font-normal dark:bg-container-2-dark text-[#1D222B80] dark:text-[#FFFFFF80] rounded-3xl border-0 px-4 pr-10 h-10 outline-none focus:outline-none focus:ring-0 focus:border-transparent"
+                  />
+                  <button
+                    type="submit"
+                    id="sendMessageBtn"
+                    class="icon stratis-send-01 cursor-pointer !h-[16px] !w-[16px] absolute right-6 !bottom-2 top-1/2 transform -translate-y-1/2 !mr-2"
+                  ></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <%- include('../../partials/footer') %> 
+    <%- include('../../partials/chat') %>
+    
+    <!-- Scripts -->
+    <script src="/js/Sorgular-Pages-js/sorgular-js-2.js"></script>
+    <script src="/js/toggleSidebar.js"></script>
+    <script src="/js/mode.js"></script>
+
+    <!-- Pass ticket ID to JavaScript -->
+    <script>
+      window.TICKET_ID = '<%= sorgu ? sorgu.ticket_id : "" %>';
+    </script>
+
+    <!-- File Upload Script -->
+    <script src="/js/fileUpload.js"></script>
+
+    <!-- Chat functionality -->
+    <script>
+      function addMessageToChat(message, isOwn) {
+        const chatContainer = document.getElementById("chatBox");
+        const currentTime = new Date().toLocaleTimeString("az-AZ", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+
+        const messageDiv = document.createElement("div");
+        messageDiv.className = isOwn
+          ? "my-5 mx-[32%] px-6 w-[70%]"
+          : "my-5 px-6 w-[70%]";
+
+        messageDiv.innerHTML = `
+               <div class="py-4 ${
+                 isOwn
+                   ? "bg-focus dark:bg-focus-color-dark text-body-bg dark:text-primary-text-color-dark text-left rounded-tl-4xl rounded-tr-4xl !rounded-bl-4xl"
+                   : "bg-container-2 dark:bg-container-2-dark rounded-tl-4xl rounded-tr-4xl !rounded-br-4xl"
+               } 
+                   pl-6 flex justify-center flex-col">
+                   <span class="text-[12px] font-normal ${
+                     isOwn ? "" : "text-start block"
+                   }">${message}</span>
+               </div>
+               <span class="text-[13px] font-normal px-2 opacity-50 pt-1">${currentTime}</span>
+           `;
+        document.getElementById("no-messages")?.remove();
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+      const scrollToBottom = () => {
+        const chatBox = document.getElementById("chatBox");
+        chatBox.scrollTop = chatBox.scrollHeight;
+      };
+
+      // Sayfa açıldığında:
+      window.addEventListener("load", scrollToBottom);
+    </script>
+  </body>
+</html>

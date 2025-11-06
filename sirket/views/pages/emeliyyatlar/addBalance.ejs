@@ -1,0 +1,295 @@
+<div class="flex flex-col gap-2">
+    <div id="overlay" class="fixed inset-0 z-100 bg-[#00000033] hidden"></div>
+    <div
+        class="emaildogrulama-div hidden w-[450px] dark:bg-table-hover-dark bg-body-bg border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-101">
+        <div class="flex items-center justify-between py-0.5 mb-5">
+            <span class="text-[15px] font-medium dark:text-white">Hesab təsdiqi</span>
+            <img onclick="tesdiqlePop()" src="/public/images/settings/Close.svg" alt="Close"
+                class="cursor-pointer block dark:hidden" />
+            <img onclick="tesdiqlePop()" src="/public/images/settings/close-dark.svg" alt="Close"
+                class="cursor-pointer hidden dark:block" />
+        </div>
+        <div class="mt-5">
+            <div>
+                <h1 class="text-[22px] font-semibold pb-1 dark:text-white">OTP</h1>
+                <div class="text-[13px] font-medium dark:text-white">
+                    ramin.orucovvv@gmail.com <span class="font-normal opacity-65">email adresinə göndərilən 6
+                        rəqəmli şifrəni daxil edin</span>
+                </div>
+            </div>
+            <form action="#">
+                <div class="w-full text-center space-y-4">
+
+                    <div id="countdown"
+                        class="text-messages my-6 dark:bg-inverse-surface dark:text-white bg-inverse-on-surface  rounded-full w-[60px] h-[27px] mx-auto py-1 text-[12px] mb-[24px] font-medium  leading--[160%] font-poppins">
+                        4:59
+                    </div>
+
+                    <div class="grid grid-cols-6 gap-2">
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                        <input type="text" maxlength="1"
+                            class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke  border-opacity-[10%]  pl-[12px] placeholder-on-surface-variant-dark
+                            hover:bg-input-hover
+                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                            transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+                    </div>
+                    <div class="mt-6 flex items-center justify-center gap-4">
+                        <a href="#" class="text-[12px] font-normal opacity-65 dark:text-white">Email adresinə mesaj
+                            gəlmədi?</a>
+                        <a href="#" class="text-[12px] font-medium dark:text-white">Yenidən göndər</a>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 mt-[30px]">
+                    <button type="button"
+                        class="text-[13px] font-medium bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] cursor-pointer dark:text-on-surface-variant-dark dark:bg-surface-bright-dark"
+                        onclick="tesdiqlePop()">Ləğv et</button>
+                    <button type="submit"
+                        class="text-[13px] font-medium bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:bg-hover-button"
+                        onclick="submitEmail()">Təsdiqlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+        <div class="flex items-center gap-2">
+            <a href="/" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart</a>
+            <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="/isci/isciler-balance"
+                class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">İşçilərin
+                balansı</a>
+            <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="text-tertiary-text dark:text-tertiary-text-color-dark">Kartlar</div>
+        </div>
+
+    </div>
+    <div class="flex flex-col gap-2">
+        <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark mt-1 px-3 rounded-lg h-[63px]">
+            <div class="flex gap-3 text-message w-full dark:text-primary-text-color-dark">
+                <div class="w-full py-3">
+                    <p class="text-[11px] opacity-65 pb-[6px]">Aktiv balans</p>
+                    <p class="text-[13px] font-medium" id="detail-invoice"><%- sirket_balance %> AZN</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-lg flex pt-5 py-3 px-4">
+            <div class="w-1/5 flex flex-col gap-2 border-r border-stroke dark:border-surface-variant-dark pr-4">
+                <div class="relative flex items-center max-w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                    <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                    <div class="absolute right-3">
+                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                    </div>
+                </div>
+                <div class="px-1">
+                    <label for="newCheckbox1"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal py-3 px-1 border-b border-stroke dark:border-surface-variant-dark">
+                        <input type="checkbox" id="newCheckbox1" class="peer hidden">
+                        <div
+                            class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary
+                                                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                            <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                            </div>
+                        </div>
+                        <div class="text-[13px] font-medium dark:text-white opacity-65">
+                            Hamısını seç</div>
+                    </label>
+                    <% permissions.forEach(perm=> { %>
+                        <label for="newCheckbox_<%=perm._id%>"
+                            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal py-3 px-1 border-b border-stroke dark:border-surface-varinat-dark">
+                            <input type="checkbox" value="<%=perm._id%>" id="newCheckbox_<%=perm._id%>"
+                                class="peer hidden" data-type="permCheckbox"
+                                data-target-id="target_created_<%=perm._id%>" data-perm-name="<%=perm.name%>">
+                            <div
+                                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary
+                                                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                </div>
+                            </div>
+                            <div class="text-[13px] font-medium dark:text-white opacity-65">
+                                <%=perm.name%>
+                            </div>
+                        </label>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="w-4/5 flex flex-col gap-3 pl-3 !overflow-y-auto">
+                <div id="addedPermissionGroup" class="p-0 m-0 gap-3 flex flex-col w-full"></div>
+                <div class="flex w-full border-t border-surface dark:border-surface-variant-dark pt-3">
+                    <% let i=0; cards.forEach(card=> {
+                        %>
+                        <div class="flex flex-col" style="width: <%= cards.length > 0 ? 100/(cards.length+1) : 30 %>%;">
+                            <div
+                                class="text-[11px] font-normal text-messages dark:text-tertiary-text-color-dark opacity-50 mb-[6px]">
+                                <%= card.name %>
+                            </div>
+                            <div style="background-color: <%- card.background_color ?? '#ACE099'; %>;" class="bg-[#FCD099] flex gap-1 justify-between items-center <%- cards.length === 1
+                                                        ? 'rounded-full'
+                                                        : i === 0
+                                                        ? 'rounded-l-full rounded-r-none'
+                                                        : i === cards.length - 1
+                                                            ? 'rounded-l-none rounded-r-full'
+                                                            : 'rounded-l-none rounded-r-none'
+                                                    %> h-[30px]  w-full">
+                                <div class="text-[12px] font-medium text-messages pl-2"><span
+                                        id="total_card_balance_<%=card._id%>">0 ₼</span>
+                                </div>
+                                <div class="text-[10px] font-normal text-messages opacity-65 pr-1"><span
+                                        id="total_card_faiz_<%=card._id%>">0</span>%
+                                </div>
+                            </div>
+                        </div>
+                        <% i++; }) %>
+                            <div class="flex flex-col ml-[11px]">
+                                <div
+                                    class="text-[11px] font-normal text-messages dark:text-tertiary-text-color-dark opacity-50 mb-[6px]">
+                                    Toplam məbləğ</div>
+                                <div
+                                    class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-full h-[30px]  w-full flex items-center justify-start">
+                                    <div
+                                        class="text-[12px] font-medium text-messages dark:text-primary-text-color-dark pl-[12px]">
+                                        <span id="total_card_balancelar">0 ₼</span>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                <div
+                    class="bg-sidebar-bg dark:bg-side-bar-bg-dark border-t border-surface dark:border-surface-variant-dark pt-3 flex justify-end gap-2">
+                    <button type="button"
+                        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:text-white dark:bg-[#36393E]">
+                        Ləğv et
+                    </button>
+                    <button type="button" onclick="sendToServer()"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">
+                        Dəyişikliyi təsdiqlə
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<% scripts=` <script>
+    const sirketCards = ${JSON.stringify(cards)};
+    </script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <!-- <script src="/js/uzv-sirket/iscilerinBalansi/editTable.js"></script> -->
+    <script src="/js/uzv-sirket/iscilerinBalansi/editTable2.js"></script>
+    <script src="/js/uzv-sirket/iscilerinBalansi/editTable3.js"></script>
+    <script src="/js/uzv-sirket/iscilerinBalansi/edit.js"></script>`; %>
+
+    <% styles=`<link rel="stylesheet" href="/css/datatables/datatables.min.css" />
+    <style>
+        /* Bu hissəni öz CSS faylında əlavə et */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* IE */
+        input[type=number]::-ms-clear {
+            display: none;
+        }
+
+        .row-hidden td:not(:last-child):not(:nth-last-child(2)) {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .row-hidden td:last-child,
+        .row-hidden td:nth-last-child(2) {
+            position: relative;
+            /* z-index çalışması için gerekli */
+            z-index: 10000;
+            background-color: var(--color-table-hover);
+        }
+
+        .row-hidden td:last-child:hover,
+        .row-hidden td:nth-last-child(2):hover {
+            position: relative;
+            /* z-index çalışması için gerekli */
+            z-index: 10000;
+            background-color: #f6f6f6;
+        }
+
+        /* Dark mod */
+        .dark .row-hidden td:last-child,
+        .dark .row-hidden td:nth-last-child(2) {
+            position: relative;
+            /* z-index çalışması için gerekli */
+            z-index: 10000;
+            background-color: var(--color-table-hover-dark);
+            /* dark mode */
+        }
+
+        .dark .row-hidden td:last-child:hover,
+        .dark .row-hidden td:nth-last-child(2):hover {
+            position: relative;
+            /* z-index çalışması için gerekli */
+            z-index: 10000;
+            background-color: #242c30;
+            /* dark mode */
+        }
+    </style>
+    <title>Add Balance</title>`; %>

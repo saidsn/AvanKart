@@ -1,0 +1,53 @@
+{
+  "breadcrumb_sorgular": "Sorğular",
+  "sorgular_table_header": "Sorğular",
+  "sehifeni_yenile": "Səhifəni yenilə",
+  "filter_button": "Filter",
+  "yeni_sorgu_button": "Yeni sorğu",
+  "filter_popup_title": "Filter",
+  "tarix_araligi": "Tarix aralığı",
+  "baslangic_tarix_qeyd_edin": "Başlanğıc tarix qeyd edin",
+  "son_tarix_qeyd_edin": "Son tarix qeyd edin",
+  "filter_qaralama": "Qaralama",
+  "filter_baxilir": "Baxılır",
+  "filter_hell_olundu": "Həll olundu",
+  "filter_redd_edildi": "Rədd edildi",
+  "filter_muessise": "Müəssisə",
+  "filter_AP_istifadeci": "AP İstifadəçi",
+  "filteri_bagla_button": "Bağla",
+  "filterleri_temizle_button": "Filterləri təmizlə",
+  "filterle_button": "Filterlə",
+
+  "yeni_sorgu_popup_title": "Yeni sorğu",
+  "sorgu_kategoriyasi": "Sorğu kateqoriyası",
+
+  "sechim_edin": "Seçim edin",
+
+  "sorgu_kategoriya_umumi": "Ümumi",
+  "sorgu_kategoriya_hesab_problemi": "Hesab problemi",
+  "sorgu_kategoriya_odenish_problemi": "Ödəniş problemi",
+
+  "sorgu_problemin_sebebleri": "Problemin səbəbləri",
+  "sorgu_problemin_sebebleri_istifadeci_balanslarina_medaxil": "İstifadəçiləri balanslarına mədaxil edə bilmirəm",
+  "sorgu_problemin_sebebleri_kartin_istifadesinde_subheli_ameliyatlar_ashkarlanib": "Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb.",
+  "sorgu_problemin_sebebleri_kart_texniki_sebebden_yanlis_aktivlesdirilib": "Kart texniki səbəbdən yanlış aktivləşdirilib.",
+  "sorgu_problemin_sebebleri_admin_karti_deaktiv_edib": "Müəyyən səbəblərə əsasən admin kartı deaktiv edib.",
+
+  "sorgu_subject": "Subject",
+  "sorgu_subject_AP_istifadeci": "AP İstifadəçi",
+  "sorgu_subject_muessise": "Müəssisə",
+
+  "sorgu_movzu": "Mövzu",
+  "sorgu_movzu_placeholder_text": "Mövzu başlığını daxil edin",
+
+  "sorgu_fayl_yukle_text": "Yükləmək üçün fayllarınızı sürüşdürüb, buraxın",
+  "ve_ya": "Və ya",
+  "sorgu_fayl_elave_et": "Fayl əlavə et",
+  "sorgu_file_types_text": "Yalnız PDF, JPG, PNG faylları dəstəklənir",
+  "sorgu_legv_et_button": "Ləğv et",
+  "sorgu_yarat_button": "Yarat",
+
+  "sorgular_table_sehife_sayi": "Səhifə sayı",
+
+  "sorgular_table_go_button": "GO"
+}

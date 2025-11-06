@@ -1,0 +1,167 @@
+<div class="w-full h-[100%] flex min-h-screen">
+  <div
+    class="w-[57%] max-w-[1100px] flex flex-col h-full bg-sidebar-bg min-h-screen dark:bg-side-bar-bg-dark"
+  >
+    <div class="fixed top-[89px] left-[200px] gap-[8px] flex flex-col">
+      <a href="/" class="flex items-center gap-[8px] cursor-pointer">
+        <div
+          class="icon stratis-arrow-left-sm text-messages !w-[11px] !h-[11px] dark:text-white"
+        ></div>
+        <div
+          class="text-[12px] text-messages font-medium leading-[160%] font-poppins dark:text-white"
+        >
+          <%= __('login.back') %>
+        </div>
+      </a>
+      <div class="justify-center font-poppins">
+        <h1
+          class="font-medium pb-[4px] text-[15px] leading-[160%] text-messages dark:text-white"
+        >
+          <%= __('login.privileges_title') %>
+        </h1>
+        <span
+          class="text-messages text-[12px] font-normal leading-[160%] opacity-[50%] dark:text-white"
+          ><%= __('login.privileges_subtitle') %></span
+        >
+      </div>
+    </div>
+    <div
+      class="w-[79%] max-w-[872px] h-[60%] max-h-[621px] pt-[201px] pl-[114px]"
+    >
+      <img
+        src="/images/login-pages-images/login-1 chart.svg"
+        alt="Chart"
+        class="block dark:hidden"
+      />
+      <img
+        src="/images/login-pages-images/LoginPageLogo.svg"
+        alt=""
+        class="hidden dark:block"
+      />
+    </div>
+  </div>
+  <div
+    class="w-[43%] max-w-[820px] flex flex-col justify-center items-center dark:bg-[var(--color-body-bg-dark)]"
+  >
+    <div class="absolute top-[30px] w-[100px] h-[19.85px]">
+      <img
+        src="/images/logo/main-logo.svg"
+        alt="Avankar Logo"
+        class="block dark:hidden"
+      />
+      <img
+        src="/images/logo/Avankar-Logo-Dark-Theme.svg"
+        alt=""
+        class="hidden dark:block"
+      />
+    </div>
+    <div class="w-[100%] max-w-[500px]">
+      <div class="flex gap-[12px] text-center pb-[24px]">
+        <h2
+          class="text-[22px] font-poppins font-semibold leading-[160%] text-messages dark:text-white"
+        >
+          <%= __('login.welcome') %>
+        </h2>
+        <span class="font-poppins leading--[160%] text-[22px] h-[35px] w-[22px]"
+          >👋</span
+        >
+      </div>
+      <span
+        id="loginFormErrors"
+        class="block text-[12px] text-red-500 font-poppins mt-[4px] hidden"
+      ></span>
+      <form
+        id="deleteTicketForm"
+        onsubmit="return false;"
+        autocomplete="off"
+        data-url="/delete-ticket-post"
+      >
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="font-poppins">
+          <label
+            for="emailInput"
+            class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages opacity-65 dark:text-white"
+          >
+            <%= __('login.email') %>
+          </label>
+          <input
+            name="email"
+            type="email"
+            id="emailInput"
+            placeholder="<%= __('login.email_placeholder')%>"
+            value="ms@example.com"
+            class="cursor-pointer max-w-[500px] w-[100%] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke border-opacity-[10%] dark:text-white rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:hover:bg-[#282c34] dark:bg-[var(--color-table-hover-dark)]"
+            required
+          />
+          <span
+            id="emailError"
+            class="block text-[12px] text-red-500 font-poppins mt-[4px] hidden"
+          ></span>
+        </div>
+        <div class="pt-[12px]">
+          <label
+            for="idField"
+            class="block font-poppins font-medium text-[12px] leading-[160%] pb-[6px] text-messages opacity-65 dark:text-white"
+          >
+            <!-- <%= __('login.pass') %> -->
+            IDniz (PA-XXXXXXX)
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              id="idField"
+              name="idField"
+              placeholder="ID"
+              value="StrongPass123!"
+              class="cursor-pointer max-w-[500px] w-[100%] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke border-opacity-[10%] dark:text-white rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:hover:bg-[#282c34] dark:bg-[var(--color-table-hover-dark)]"
+              required
+            />
+            <span
+              id="hideeye"
+              onclick="togglePassword()"
+              class="icon iconex-hide-1 absolute top-[8px] right-[12px] cursor-pointer text-messages opacity-[30%] !w-[18px] !h-[18px] dark:text-primary-text-color-dark"
+            ></span>
+          </div>
+          <span
+            id="passwordError"
+            class="block text-[12px] text-red-500 font-poppins mt-[4px] hidden"
+          ></span>
+        </div>
+        <div class="pt-[8px]">
+          <label class="flex items-center gap-[6px]">
+            <input
+              name="rememberMeInput"
+              id="vue-checkbox"
+              type="checkbox"
+              class="rounded-[2px] w-[14px] h-[14px] border-[1px] border-surface-variant text-primary focus:outline-none focus:ring-0 focus:shadow-none hover:bg-surface-container-low disabled:bg-switch dark:bg-[var(--color-table-hover-dark)]"
+            />
+            <span
+              id="rememberMeText"
+              class="text-[13px] font-poppins font-normal leading-[160%] text-messages dark:text-white"
+            >
+              <%= __('login.remember_me') %>
+            </span>
+          </label>
+        </div>
+        <button
+          type="submit"
+          id="loginButton"
+          onclick="submitForm('login')"
+          class="cursor-pointer mt-[24px] w-[100%] max-w-[500px] font-poppins leading-[160%] font-medium h-[40px] bg-primary rounded-full text-on-primary text-[15px] hover:bg-hover-button focus:bg-primary focus:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.2)] disabled:bg-primary disabled:opacity-[30%] transition-all ease-out duration-300 focus:outline-none"
+        >
+          <!-- <%= __('login.signin') %> -->
+          Silinməyə müraciət et
+        </button>
+        <div class="text-center pt-[18.5px]">
+          <a
+            href="/auth/forget-password"
+            class="text-[13px] font-medium font-poppins text-messages px-[18px] py-[6.5px] hover:bg-[#F6D9FF] rounded-[50px] active:bg-[#F6D9FF] disabled:bg-none dark:text-white dark:hover:bg-[rgba(32,28,46,255)]"
+          >
+            <%= __('login.forgot_password') %>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/js/login-pages-js/hide-eye.js"></script>

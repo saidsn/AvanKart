@@ -1,0 +1,87 @@
+{
+  "data": [
+    {
+      "logo": "/images/Avankart/Sirket/Veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 1.500,
+      "date": "2024, Yanvar",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, Dekabr",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, Noyabr",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, Oktyabr",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, Sentyabr",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": "3.500",
+      "date": "2023, Avqust",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, İyul",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, İyun",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/Sirket/Veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "ReceiptNumber": "EQA-XXXXXXXXXX",
+      "amount": 3.500,
+      "date": "2023, May",
+      "status": "Aktiv"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

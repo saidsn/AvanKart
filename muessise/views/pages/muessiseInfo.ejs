@@ -1,0 +1,1464 @@
+<div class="w-full">
+  <div class="w-full relative h-[200px]">
+    <img
+      src="/<%- muessise.daxili_cover_image_path %>"
+      alt=""
+      class="w-full h-full"
+    />
+    <img
+      class="profile-imageabsolute bottom-0 -translate-y-1/2 w-[100px] h-[100px] ml-[20px] rounded-full"
+      src="/<%- muessise.profile_image_path %>"
+      alt="<%= muessise.muessise_name %> logo"
+    />
+  </div>
+
+  <div class="flex w-[100%] mt-[62px]">
+    <div
+      class="w-[25%] px-[20px] border-r border-stroke pt-[12px] min-h-screen rounded-lg"
+    >
+      <div
+        class="bg-sidebar-bg py-[10px] px-[12px] mb-[8px] dark:bg-[#0C1418] rounded-sm"
+      >
+        <p class="text-[12px] font-medium text-messages pb-1 dark:text-white">
+          Dəyişiklik versiyaları
+        </p>
+        <span
+          class="text-[11px] font-normal text-messages opacity-50 pr-[8px] dark:text-[#FFFFFF] opacity-50"
+        >
+          Son düzəliş tarixi:
+        </span>
+        <span
+          id="openPopupBtn"
+          class="text-[11px] font-normal text-tertiary-text hover:text-messages dark:text-tertiary-text-color-dark dark:hover:text-primary-text-color-dark cursor-pointer group"
+        >
+          <% const date = new Date(muessise.updatedAt); const gun =
+          String(date.getDate()).padStart(2, '0'); const ay =
+          String(date.getMonth() + 1).padStart(2, '0'); const il =
+          date.getFullYear(); const formattedDate = `${gun}.${ay}.${il}`; %>
+          <span
+            class="group-hover:border-b group-hover:border-messages dark:group-hover:border-b dark:group-hover:border-primary-text-color-dark"
+            ><%= formattedDate %></span
+          >
+          <div
+            class="icon stratis-chevron-up rotate-180 text-[10px] mb-[1px] w-2.5 h-2.5 ms-3 dark:text-primary-text-color-dark"
+          ></div>
+        </span>
+        <%- include('../partials/muessise/editHistory.ejs') %>
+      </div>
+      <div
+        class="bg-sidebar-bg py-[5.5px] px-[12px] dark:bg-[#0C1418] rounded-sm"
+      >
+        <span
+          class="text-[11px] font-normal text-messages opacity-50 pr-[4px] dark:text-[#FFFFFF] opacity-65"
+          >Üzv olduğu tarix:</span
+        ><span
+          class="text-[12px] font-medium text-messages dark:text-[#FFFFFF]"
+        >
+          <%= new Date(muessise.createdAt).toLocaleString('tr-TR', { day:
+          '2-digit' , month: '2-digit' , year: 'numeric' , hour: '2-digit' ,
+          minute: '2-digit' }) %>
+        </span>
+      </div>
+      <div class="mt-[16px]">
+        <div class="flex justify-between items-center">
+          <p
+            class="muessise-name text-[22px] font-semibold text-messages dark:text-[#FFFFFF]"
+          >
+            <%= muessise.muessise_name %>
+          </p>
+          <button
+            onclick="openMainEditPopup()"
+            class="border-[1px] border-surface-variant w-[107px] h-[25px] flex gap-[10px] justify-center items-center rounded-[100px] dark:text-[#FFFFFF] hover:cursor-pointer hover:text-focus text-[12px] font-medium text-messages dark:hover:text-focus"
+          >
+            <span
+              class="icon iconex-edit-1-1 !w-[10px] !h-[10px] text-messages dark:text-[#FFFFFF]"
+            ></span
+            >Redaktə et
+          </button>
+        </div>
+      </div>
+      <div class="mt-1">
+        <span class="py-[2.5px] flex items-center gap-[4px]">
+          <span
+            class="font-normal text-[12px] text-messages dark:text-[#FFFFFF] opacity-65 mr-1"
+            >ID:
+          </span>
+          <span
+            class="muessise-id font-normal text-[12px] text-messages dark:text-[#FFFFFF]"
+          >
+            <%= muessise.muessise_id %>
+          </span>
+          <span
+            onclick="copyToClipboard('<%= muessise.muessise_id %>')"
+            class="icon iconex-copy-1 w-[12px] h-[15px] ml-[6px] dark:text-[#FFFFFF] cursor-pointer"
+          ></span>
+        </span>
+      </div>
+      <p
+        class="muessise-description pt-2 font-normal text-[12px] text-messages opacity-65 pb-[20px] border-b-[0.5px] border-[#0000001A] dark:text-[#FFFFFF] opaicity-65"
+      >
+        <%= muessise.description %>
+      </p>
+      <div
+        class="flex gap-4 flex-col pb-[20px] border-b-[0.5px] pt-4 border-[#0000001A]"
+      >
+        <div class="flex gap-[11px] items-center text-messages">
+          <span
+            class="icon iconex-bookmark-1 text-xl dark:text-[#FFFFFF]"
+          ></span>
+          <span
+            class="muessise-category opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]"
+          >
+            <%= muessise.activity_type %>
+          </span>
+        </div>
+        <div class="flex gap-[11px] items-center text-messages">
+          <span
+            class="icon iconex-location-1 text-xl dark:text-[#FFFFFF]"
+          ></span>
+          <span
+            class="muessise-address opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]"
+          >
+            <%= muessise.address %>
+          </span>
+        </div>
+        <% if(muessise.phone.length > 0 ){ %>
+        <div class="muessise-phones">
+          <% muessise.phone.forEach(function(p) { %>
+          <div class="flex gap-[11px] items-center text-messages">
+            <span
+              class="icon iconex-calling-1 text-xl dark:text-[#FFFFFF]"
+            ></span>
+            <span
+              class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]"
+            >
+              <%= p.prefix %> <%= p.number %>
+            </span>
+          </div>
+          <% }) %>
+        </div>
+        <% } %> <% muessise.email.forEach(function(mail) { %>
+        <div class="flex gap-[11px] items-center text-messages">
+          <span class="icon iconex-case-1 text-xl dark:text-[#FFFFFF]"></span>
+          <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]">
+            <%= mail %>
+          </span>
+        </div>
+        <% }) %>
+      </div>
+      <div class="pt-4 pb-[20px] border-b-[0.5px] border-[#0000001A]">
+        <p
+          class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50"
+        >
+          Kartlar
+        </p>
+        <div class="muessise-cards flex flex-wrap gap-3">
+          <% muessise.cards.forEach(function(card) {%>
+          <div
+            class="w-[84px] h-[27px] flex gap-1 items-center justify-center rounded-full"
+            style="background-color: <%= card.background_color %>"
+          >
+            <img
+              class="w-[16px] h-[16px]"
+              src="https://api.avankart.com/v1/icon/<%= card.icon %>"
+              alt="<%= card.name %>"
+            />
+            <span class="font-normal text-[12px] text-messages"
+              ><%= card.name %></span
+            >
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A]">
+        <p
+          class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50"
+        >
+          İş günləri
+        </p>
+        <div class="flex gap-1 flex-wrap">
+          <div class="flex gap-2 flex-wrap">
+            <% Object.entries(muessise.schedule).forEach(([day, info]) => {
+            const shortDay = day.slice(0, 2).toUpperCase(); %>
+            <div class="relative group">
+              <div
+                class="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs <%= info.isOpen ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>"
+              >
+                <%= shortDay %>
+              </div>
+              <div
+                class="<%= info.isOpen ? '' : 'hidden' %> absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-max px-2 py-1 text-xs text-on-primary bg-messages rounded opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              >
+                <%= info.isOpen ? `${info.open} - ${info.close}` : 'Bağlıdır' %>
+                <div
+                  class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-[8px] border-t-messages border-transparent z-15"
+                ></div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 pb-4 border-b-[0.5px] border-[#0000001A]">
+        <p
+          class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50"
+        >
+          Xidmətlər
+        </p>
+        <div class="muessise-services flex gap-3">
+          <div
+            class="px-2 py-1 text-[12px] flex items-center justify-center rounded-full <%= muessise.services.includes('lunch') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>"
+          >
+            Nahar
+          </div>
+          <div
+            class="px-2 py-1 text-[12px] flex items-center justify-center rounded-full <%= muessise.services.includes('takeaway') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>"
+          >
+            Al apar
+          </div>
+          <div
+            class="px-2 py-1 text-[12px] flex items-center justify-center rounded-full <%= muessise.services.includes('delivery') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>"
+          >
+            Çatdırılma
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A]">
+        <p
+          class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50"
+        >
+          Sosial media
+        </p>
+        <div class="flex flex-col muessise-social">
+          <div
+            class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer"
+          >
+            <img
+              src="/images/muessise melumatlari images/devicon_linkedin.svg"
+              alt="linkedin"
+            />
+            <span
+              class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65"
+              >Linkedin</span
+            >
+          </div>
+          <div
+            class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer"
+          >
+            <img
+              src="/images/muessise melumatlari images/skill-icons_instagram.svg"
+              alt="linkedin"
+            />
+            <span
+              class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65"
+              >İnstagram</span
+            >
+          </div>
+          <div
+            class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer"
+          >
+            <img
+              src="/images/muessise melumatlari images/devicon_facebook.svg"
+              alt="linkedin"
+            />
+            <span
+              class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65"
+              >Facebook</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A] mb-[17px]">
+        <p
+          class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]"
+        >
+          Web sayt
+        </p>
+        <div class="muessise-websites py-3flex flex-col gap-2">
+          <% muessise.website.forEach(function(site) { %>
+          <a
+            href="<%= site %>"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex gap-2 items-center hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer py-2 px-2 rounded"
+          >
+            <div class="icon iconex-link-1 text-xl dark:text-[#FFFFFF]"></div>
+            <span
+              class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65"
+            >
+              <%= site.replace(/^https?:\/\//, '' ) %>
+            </span>
+          </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-[75%] px-2 w-[100%]">
+      <div class="flex flex-col">
+        <div class="py-3 flex flex-col gap-4 border-stroke mb-3">
+          <div class="border-b border-stroke inline-block">
+            <ul
+              class="inline-flex flex-wrap gap-5 -mb-px text-[13px] font-medium text-center text-tertiary-text"
+            >
+              <li>
+                <a
+                  href="#"
+                  id="main-tab-users"
+                  class="main-tab-button inline-flex items-center justify-center py-2 text-messages border-b-2 border-messages rounded-t-lg hover:text-messages dark:text-[#FFFFFF] hover:border-b-2 hover:border-messages group dark:border-b-[#FFFFFF]"
+                  data-content="users-content"
+                >
+                  İstifadəçilər
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  id="main-tab-rekvizitler"
+                  class="main-tab-button inline-flex items-center justify-center py-2 text-messages border-b-2 border-messages rounded-t-lg hover:text-messages dark:text-[#FFFFFF] hover:border-b-2 hover:border-messages group dark:border-b-[#FFFFFF]"
+                  data-content="rekvizitler-content"
+                >
+                  Rekvizitlər
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  id="main-tab-muqavileler"
+                  class="main-tab-button inline-flex items-center justify-center py-2 text-messages border-b-2 border-messages rounded-t-lg hover:text-messages dark:text-[#FFFFFF] hover:border-b-2 hover:border-messages group dark:border-b-[#FFFFFF]"
+                  data-content="muqavileler-content"
+                >
+                  Müqavilələr
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="main-content-area" class="flex flex-col">
+          <div
+            id="users-content"
+            class="main-content-block"
+            style="display: block"
+          >
+            <div
+              id="original-controls-container"
+              class="flex items-center justify-between gap-4 mb-3 users-controls-and-tables"
+            >
+              <div class="flex items-center">
+                <div
+                  class="inline-flex gap-1 items-center border border-surface-variant rounded-full p-1 dark:bg-[#161E22] dark:border-[#40484C]"
+                >
+                  <button
+                    id="tab-users"
+                    class="notification-type bg-inverse-on-surface text-messages active rounded-full py-[3px] px-3 text-[12px] font-medium dark:bg-[#2E3135] dark:text-[#FFFFFF]"
+                  >
+                    İstifadəçilər
+                  </button>
+                  <button
+                    id="tab-permissions"
+                    class="notification-type text-tertiary-text cursor-pointer rounded-full py-[3px] px-3 text-[12px] font-medium dark:text-[#FFFFFF80]"
+                  >
+                    Səlahiyyət qrupları
+                  </button>
+                  <button
+                    id="tab-roles"
+                    class="notification-type text-tertiary-text cursor-pointer rounded-full py-[3px] px-3 text-[12px] font-medium dark:text-[#FFFFFF80]"
+                  >
+                    Vəzifələr
+                  </button>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div
+                  class="relative flex items-center max-w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+                >
+                  <input
+                    id="customSearch"
+                    type="text"
+                    placeholder="Search..."
+                    class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+                  />
+                  <div class="absolute right-3">
+                    <div
+                      class="icon stratis-search-02 dark:text-primary-text-color-dark"
+                    ></div>
+                  </div>
+                </div>
+                <div
+                id="reloadBtn"
+                  class="max-w-[155px] border border-surface-variant rounded-full flex items-center justify-center gap-2 text-[13px] text-messages hover:text-focus font-medium py-[6.5px] px-[18px] dark:border-[#40484C] dark:bg-[#161E22] dark:text-[#FFFFFF] dark:hover:text-focus"
+                >
+                  <a href="#">Səhifəni yenilə</a>
+                  <a
+                    href="#"
+                    class="icon stratis-arrow-refresh-04 text-messages dark:text-[#FFFFFF]"
+                  ></a>
+                </div>
+                <button
+                  id="add-button"
+                  class="add-button cursor-pointer bg-primary hover:bg-focus text-on-primary border border-surface-variant rounded-full flex items-center justify-center gap-2 text-[13px] font-medium py-[6.5px] px-[18px] dark:border-none"
+                >
+                  <div class="icon stratis-plus-02 mt-[2.5px]"></div>
+                  <span class="add-button-text">Hesab əlavə et</span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="selection-controls"
+              class="border-b border-stroke dark:border-[#40484C] pb-3 flex items-center justify-between gap-4 mb-3 users-controls-and-tables"
+              style="visibility: hidden; opacity: 0"
+            >
+              <div class="flex items-center gap-6">
+                <div
+                  class="flex items-center gap-4 border-r-[.5px] border-stroke dark:border-[#40484C] pr-2"
+                >
+                  <p class="font-semibold dark:text-primary-text-color-dark">
+                    Seçilən istifadəçi sayı:
+                  </p>
+                  <p
+                    id="selected-count"
+                    class="flex items-center justify-center w-6 h-6 bg-gray-50 dark:bg-menu-dark dark:text-primary-text-color-dark border-[0.5px] dark:border-[#40484C]"
+                  >
+                    0
+                  </p>
+                </div>
+                <button
+                  id="select-all-btn"
+                  class="cursor-pointer dark:text-primary-text-color-dark text-sm font-semibold px-2 py-1 rounded-full hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D]"
+                >
+                  Hamısını seç
+                </button>
+                <button
+                  id="clear-selection-btn"
+                  class="cursor-pointer dark:text-primary-text-color-dark text-sm font-semibold hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] px-2 py-1 rounded-full"
+                >
+                  Seçimləri təmizlə
+                </button>
+                <button
+                  id="delete-selected-btn"
+                  onclick="showDeleteItemPopup()"
+                  class="cursor-pointer text-sm flex items-center gap-1 font-semibold text-error hover:bg-error-hover px-2 py-1 rounded-full"
+                >
+                  <div class="icon stratis-trash-01 text-error"></div>
+                  Seçilənləri sil
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="overlay"
+              class="hidden fixed inset-0 w-full h-full bg-[#0000002A] z-100"
+            ></div>
+
+            <%- include('../partials/muessise/hesabAdd.ejs') %> <%-
+            include('../partials/muessise/editUser.ejs') %>
+
+            <!-- Yeni Qrup Popup -->
+            <div
+              id="YeniQrupPop"
+              class="w-[450px] hidden border rounded-2xl p-6 z-101 bg-body-bg fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:bg-[#161E22] dark:border-[#FFFFFF1A]"
+            >
+              <div class="flex items-center justify-between">
+                <div class="text-[15px] font-medium dark:text-white">
+                  Yeni Qrup
+                </div>
+                <img
+                  src="/images/Sorgular Pages Images/Close.svg"
+                  alt="Close"
+                  onclick="closeYeniQrupPopup()"
+                  class="cursor-pointer block dark:hidden"
+                />
+                <img
+                  src="/images/avankart-partner-pages-images/Close-dark.svg"
+                  alt="Close"
+                  onclick="closeYeniQrupPopup()"
+                  class="cursor-pointer hidden dark:block"
+                />
+              </div>
+              <div class="mt-5">
+                <div
+                  class="text-[12px] font-medium opacity-65 mb-1.5 dark:text-[#FFFFFFA6]"
+                >
+                  Qrup adı
+                </div>
+                <input
+                  type="text"
+                  placeholder="Qrup adını daxil edin"
+                  class="dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-outline-dark cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-surface-variant rounded-full pl-[12px] hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-on-surface-variant"
+                />
+              </div>
+              <div class="flex items-center justify-end gap-3 mt-[30px]">
+                <button
+                  type="button"
+                  class="bg-surface rounded-full text-[13px] px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-[#36393E] dark:text-[#BFC8CC]"
+                  onclick="closeYeniQrupPopup()"
+                >
+                  Ləğv et
+                </button>
+                <button
+                  type="button"
+                  onclick="clickBasMuhasiblerPop()"
+                  class="bg-primary rounded-full text-white text-[13px] px-[18px] py-[6.5px] cursor-pointer dark:hover:bg-[#88649A] transition"
+                >
+                  İrəli
+                </button>
+              </div>
+            </div>
+
+            <%- include('../partials/muessise/basMuhasibler.ejs') %> <%-
+            include('../partials/muessise/butunIstifadecilerPop.ejs') %>
+
+            <!-- Yeni Vəzifə Popup -->
+            <div
+              id="YeniVezifePop"
+              class="w-[450px] z-101 bg-body-bg dark:bg-side-bar-item-dark text-messages border-[3px] border-[#0000001A] dark:border-[#FFFFFF1A] shadow-md rounded-2xl fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hidden"
+            >
+              <form
+                id="vezifeDarkForm"
+                onsubmit="return false;"
+                data-url="/rbac/create-duty"
+              >
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <div class="flex items-center justify-center flex-col">
+                  <div
+                    class="flex items-center justify-center rounded-full bg-selected dark:bg-selected-color-dark h-[52px] w-[52px]"
+                  >
+                    <div
+                      class="icon iconex-case-1 dark:text-primary-text-color-dark"
+                    ></div>
+                  </div>
+                  <div
+                    class="text-[17px] font-semibold text-messages dark:text-primary-text-color-dark pt-3"
+                  >
+                    Yeni vəzifə
+                  </div>
+                  <div
+                    class="text-[13px] font-normal text-secondary-text dark:text-secondary-text-color-dark"
+                  >
+                    Vəzifə adını aşağıda qeyd edin
+                  </div>
+                  <div class="flex items-center justify-center mt-6">
+                    <input
+                      type="text"
+                      name="name"
+                      class="border-0 dark:bg-side-bar-item-dark font-semibold text-center text-[26px] dark:text-primary-text-color-dark placeholder:text-center placeholder:text-on-surface-variant-dark dark:placeholder:text-outline-dark focus:outline-none focus:ring-0 focus:shadow-none"
+                      placeholder="Vəzifəni daxil edin"
+                    />
+                  </div>
+                </div>
+                <div class="mt-8">
+                  <button
+                    type="submit"
+                    id="vezifeDarkButton"
+                    onclick="submitForm('vezifeDark')"
+                    class="w-full h-[40px] cursor-pointer bg-primary text-white text-[15px] font-medium rounded-full flex items-center justify-center"
+                  >
+                    Yadda saxla
+                  </button>
+                  <div
+                    onclick="closeYeniVezifePopup()"
+                    class="w-full h-[40px] mt-3 cursor-pointer bg-surface dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[15px] font-medium rounded-full flex items-center justify-center"
+                  >
+                    Ləğv et
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <%- include('../partials/muessise/saveBasMuhasibler') %> <%-
+            include('../partials/popup/permissionEditPopups') %>
+
+            <div
+              id="deletePopUp"
+              class="w-[306px] hidden border-[0.5px] border-[#0000001A] dark:border-stroke-color-dark rounded-[12px] p-3 z-101 bg-body-bg dark:bg-body-bg-dark fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <div
+                class="bg-[#DD38381A] w-[40px] h-[40px] rounded-[500px] flex items-center justify-center"
+              >
+                <div
+                  class="icon stratis-trash-01 text-error dark:text-error-dark"
+                ></div>
+              </div>
+              <div class="mt-3 mb-4">
+                <div
+                  class="mb-1 text-[15px] font-medium dark:text-on-primary-dark"
+                >
+                  Silmək
+                </div>
+                <div
+                  class="text-[13px] font-normal opacity-65 dark:text-secondary-text-color-dark"
+                >
+                  İstifadəçini silmək istədiyinizə əminsiniz?
+                </div>
+              </div>
+              <div class="flex items-center justify-end">
+                <div class="flex items-center gap-3">
+                  <div
+                    id="cancelDeleteBtn"
+                    class="bg-surface dark:bg-surface-dark px-3 py-[3px] rounded-[50px] text-[12px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark cursor-pointer"
+                    onclick="cancelDelete()"
+                  >
+                    Xeyr
+                  </div>
+                  <div
+                    id="confirmDeleteBtn"
+                    class="bg-error dark:bg-error-dark text-white dark:text-on-primary-dark rounded-[100px] px-[18px] py-[3px] text-[12px] font-medium cursor-pointer"
+                  >
+                    Bəli, sil
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Multiple Delete Confirmation Popup -->
+            <div
+              id="multipleDeletePopUp"
+              class="w-[306px] hidden border-[0.5px] border-[#0000001A] dark:border-stroke-color-dark rounded-[12px] p-3 z-101 bg-body-bg dark:bg-body-bg-dark fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <div
+                class="bg-[#DD38381A] w-[40px] h-[40px] rounded-[500px] flex items-center justify-center"
+              >
+                <div
+                  class="icon stratis-trash-01 text-error dark:text-error-dark"
+                ></div>
+              </div>
+              <div class="mt-3 mb-4">
+                <div
+                  class="mb-1 text-[15px] font-medium dark:text-on-primary-dark"
+                >
+                  Silmək
+                </div>
+                <div
+                  class="delete-message text-[13px] font-normal opacity-65 dark:text-secondary-text-color-dark"
+                >
+                  Seçilən elementləri silmək istədiyinizə əminsiniz?
+                </div>
+              </div>
+              <div class="flex items-center justify-end">
+                <div class="flex items-center gap-3">
+                  <div
+                    id="cancelMultipleDeleteBtn"
+                    class="bg-surface dark:bg-surface-dark px-3 py-[3px] rounded-[50px] text-[12px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark cursor-pointer"
+                    onclick="cancelMultipleDelete()"
+                  >
+                    Xeyr
+                  </div>
+                  <div
+                    id="confirmMultipleDeleteBtn"
+                    class="bg-error dark:bg-error-dark text-white dark:text-on-primary-dark rounded-[100px] px-[18px] py-[3px] text-[12px] font-medium cursor-pointer"
+                    onclick="confirmMultipleDelete()"
+                  >
+                    Bəli, sil
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Permission Delete Confirmation Popup -->
+            <div
+              id="deletePermissionPopUp"
+              class="w-[306px] hidden border-[0.5px] border-[#0000001A] dark:border-stroke-color-dark rounded-[12px] p-3 z-101 bg-body-bg dark:bg-body-bg-dark fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <div
+                class="bg-[#DD38381A] w-[40px] h-[40px] rounded-[500px] flex items-center justify-center"
+              >
+                <div
+                  class="icon stratis-trash-01 text-error dark:text-error-dark"
+                ></div>
+              </div>
+              <div class="mt-3 mb-4">
+                <div
+                  class="mb-1 text-[15px] font-medium dark:text-on-primary-dark"
+                >
+                  Qrupu sil
+                </div>
+                <div
+                  class="text-[13px] font-normal opacity-65 dark:text-secondary-text-color-dark"
+                >
+                  Bu səlahiyyət qrupunu silmək istədiyinizdən əminsiniz?
+                </div>
+              </div>
+              <div class="flex items-center justify-end">
+                <div class="flex items-center gap-3">
+                  <div
+                    id="cancelDeletePermissionBtn"
+                    class="bg-surface dark:bg-surface-dark px-3 py-[3px] rounded-[50px] text-[12px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark cursor-pointer"
+                    onclick="cancelDeletePermission()"
+                  >
+                    Xeyr
+                  </div>
+                  <div
+                    id="confirmDeletePermissionBtn"
+                    class="bg-error dark:bg-error-dark text-white dark:text-on-primary-dark rounded-[100px] px-[18px] py-[3px] text-[12px] font-medium cursor-pointer"
+                    onclick="confirmDeletePermission()"
+                  >
+                    Bəli, sil
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="users-table" class="table-container">
+              <table id="myTable" class="table-auto border-collapse min-w-full">
+                <thead class="border-none pb-0.5">
+                  <tr
+                    class="bg-container-2 border-none text-xs text-tertiary-text font-base dark:bg-[#161E22]"
+                  >
+                    <th
+                      class="w-[58px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg"
+                    >
+                      <input
+                        type="checkbox"
+                        id="usersCheckbox"
+                        class="peer hidden"
+                      />
+                      <label
+                        for="usersCheckbox"
+                        class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition"
+                      >
+                        <div class="icon stratis-check-01 scale-60"></div>
+                      </label>
+                    </th>
+                    <th
+                      class="min-w-[120px] max-w-[200px] border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      Ad və soyad
+                    </th>
+                    <th
+                      class="min-w-[0%] border-r-[.5px] border-r-stroke pl-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      Cinsi
+                    </th>
+                    <th
+                      class="min-w-[0%] border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      Vəzifəsi
+                    </th>
+                    <th
+                      class="min-w-[150px] border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      E-poçt
+                    </th>
+                    <th
+                      class="min-w-[120px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      Telefon nömrəsi
+                    </th>
+                    <th
+                      class="min-w-[100px] border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF] opacity-65"
+                    >
+                      Qrup
+                    </th>
+                    <th
+                      class="w-12 min-w-[48px] px-2 py-2 rounded-r-lg border-l-[.5px] border-l-stroke dark:border-[#FFFFFF1A] sticky right-0 bg-white dark:bg-[#0F1419]"
+                    ></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <!-- Səlahiyyət qrupları Table -->
+            <div
+              id="permissions-table"
+              class="table-container"
+              style="display: none"
+            >
+              <table
+                id="permissionsTable"
+                class="table-auto border-collapse min-w-full"
+              >
+                <thead class="border-none pb-0.5">
+                  <tr
+                    class="bg-container-2 dark:text-[#FFFFFFA6] border-none text-xs text-tertiary-text font-base dark:bg-[#161E22]"
+                  >
+                    <th
+                      class="w-[58px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg"
+                    >
+                      <input
+                        type="checkbox"
+                        id="permissionsCheckbox"
+                        class="peer hidden"
+                      />
+                      <label
+                        for="permissionsCheckbox"
+                        class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition"
+                      >
+                        <div class="icon stratis-check-01 scale-60"></div>
+                      </label>
+                    </th>
+                    <th
+                      class="min-w-[150px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Qrup adı
+                    </th>
+                    <th
+                      class="min-w-[120px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      İcazələr
+                    </th>
+                    <th
+                      class="min-w-[100px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Şəxs sayı
+                    </th>
+                    <th
+                      class="min-w-[150px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Qrupun yaranma tarixi
+                    </th>
+                    <th
+                      class="w-10 px-4 py-2 rounded-r-lg border-l-[.5px] border-l-stroke"
+                    ></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Səlahiyyət qrupları Table -->
+
+            <!-- Vəzifələr Table -->
+            <div id="roles-table" class="table-container" style="display: none">
+              <table
+                id="rolesTable"
+                class="table-auto border-collapse min-w-full"
+              >
+                <thead class="border-none pb-0.5">
+                  <tr
+                    class="bg-container-2 dark:text-[#FFFFFFA6] border-none text-xs text-tertiary-text font-base dark:bg-[#161E22]"
+                  >
+                    <th
+                      class="w-[58px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg"
+                    >
+                      <input
+                        type="checkbox"
+                        id="rolesCheckbox"
+                        class="peer hidden"
+                      />
+                      <label
+                        for="rolesCheckbox"
+                        class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition"
+                      >
+                        <div class="icon stratis-check-01 scale-60"></div>
+                      </label>
+                    </th>
+                    <th
+                      class="min-w-[150px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Vəzifə adı
+                    </th>
+                    <th
+                      class="min-w-[120px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Vəzifədə olan şəxslər
+                    </th>
+                    <th
+                      class="min-w-[100px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Yaradan şəxs
+                    </th>
+                    <th
+                      class="min-w-[150px] border-r-[.5px] border-r-stroke px-4 py-2 filtering"
+                    >
+                      Yaranma tarixi
+                    </th>
+                    <th
+                      class="w-10 px-4 py-2 rounded-r-lg border-l-[.5px] border-l-stroke"
+                    ></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div class="pt-2 pagination-container">
+              <div
+                class="w-full bg-sidebar-bg dark:bg-container-2-dark rounded-t-[8px] px-6 flex flex-col gap-3"
+              >
+                <div class="py-5 flex items-center justify-between">
+                  <div class="text-[13px] flex items-center gap-2">
+                    <span
+                      class="font-normal opacity-65 dark:text-secondary-text-color-dark"
+                      >Səhifə sayı:</span
+                    >
+                    <span
+                      id="pageCount"
+                      class="font-medium dark:text-primary-text-color-dark"
+                      >1 / 49</span
+                    >
+                  </div>
+                  <div class="max-w-[584px] flex items-center gap-5">
+                    <div>
+                      <div
+                        id="customPagination"
+                        class="flex items-center text-[13px] inline-flex -space-x-px text-base h-10"
+                      ></div>
+                    </div>
+                    <div>
+                      <input
+                        class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                        type="text"
+                        placeholder="Səhifə"
+                      />
+
+                      <a
+                        href="#"
+                        class="go-button text-[13px] text-body-bg dark:text-on-primary-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+                        >GO</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="users-popup"
+            class="popup-menu z-10 w-[183px]"
+            style="display: none"
+          >
+            <div class="relative inline-block w-full h-full">
+              <div
+                class="absolute top-[-11.5px] right-[0px] transform -translate-x-1/2 z-10"
+              >
+<svg class="w-[14px] h-[12px] fill-white dark:fill-[#161E22]" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="50 0, 100 100, 0 100"></polygon>
+</svg>
+
+
+
+              </div>
+              <div
+                class="relative w-full h-full border-[#0000001A] border-[0.5px] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-[8px] bg-menu z-0 dark:bg-[#161E22]"
+              >
+                <div onclick="clickRedakteEt()" class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] 
+                       hover:bg-item-hover 
+                       dark:hover:bg-item-hover-dark 
+                       transition ease-out duration-300 
+                       active:bg-item-hover dark:active:bg-item-hover-dark 
+                       disabled:bg-none">
+                  <div
+                    class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark"
+                  ></div>
+                  <span
+                    class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark"
+                    >Redaktə et</span
+                  >
+                </div>
+                <div class="h-[0.5px] bg-[#0000001A]"></div>
+                <div
+                  onclick="deleteUser()"
+                  class="flex items-center py-[3.5px] mt-1 mb-[4px] pl-[12px] cursor-pointer h-[28px] transition ease-out duration-300 hover:bg-[#DD38381A] active:bg-[#DD38381A] disabled:bg-body-bg"
+                >
+                  <div
+                    class="icon stratis-trash-01 w-[13px] h-[13px] text-error mr-[9px] disabled:text-on-surface-variant-dark dark:text-[#E03B3B]"
+                  ></div>
+                  <span
+                    class="text-[13px] text-error font-medium disabled:text-on-surface-variant-dark dark:text-[#E03B3B]"
+                  >
+                    Cihazı sil
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+
+          <div id="permissions-not-default-popup" class="popup-menu z-10 w-[196px]" style="display: none">
+            <div class="relative inline-block w-full h-full">
+              <div class="absolute top-[-11.5px] right-[0px] transform -translate-x-1/2 z-10">
+               <svg class="w-[14px] h-[12px] fill-white dark:fill-[#161E22]" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="50 0, 100 100, 0 100"></polygon>
+</svg>
+              </div>
+
+
+              <div
+            class="relative w-full h-full border-[#0000001A] border-[0.5px] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-[8px] bg-menu z-0 dark:bg-[#161E22]">
+
+                <div id="edit-group-name-btn" data-action="edit-group-name" class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] 
+                       hover:bg-item-hover dark:hover:bg-item-hover-dark 
+                       transition ease-out duration-300 
+                       active:bg-item-hover dark:active:bg-item-hover-dark 
+                       disabled:bg-none">
+                  <div
+                    class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">
+                  </div>
+                  <span class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">Qrup adını
+                    dəyiş</span>
+                </div>
+
+
+                <div id="edit-permissions-btn" data-action="edit-permissions" class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] 
+                       hover:bg-item-hover dark:hover:bg-item-hover-dark
+                       transition ease-out duration-300 
+                       active:bg-item-hover dark:active:bg-item-hover-dark 
+                       disabled:bg-none">
+                         <div
+                    class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">
+                  </div>
+                  <span class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">İcazələri redaktə
+                    et</span>
+                </div>
+
+
+                <div  class="flex items-center py-[3.5px] mt-1 mb-[4px] pl-[12px] cursor-pointer h-[28px] transition ease-out duration-300 hover:bg-[#DD38381A] active:bg-[#DD38381A] disabled:bg-body-bg"
+                  onclick="deleteCurrentPermission()">
+                  <div class="icon stratis-trash-01 w-[13px] h-[13px] text-error mr-[9px] disabled:text-on-surface-variant-dark dark:text-[#E03B3B]"></div>
+                  <span class="text-[13px] text-error font-medium disabled:text-on-surface-variant-dark dark:text-[#E03B3B]">Qrupu sil</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="RedakteEtPopUpVezife"
+            class="w-[450px] hidden bg-body-bg dark:bg-side-bar-item-dark z-101 text-messages dark:text-primary-text-color-dark border-[3px] border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-2xl fixed left-[50%] top-[50%] transform -translate-1/2 p-6"
+          >
+            <form
+              onsubmit="return false;"
+              id="roleNameUpdateForm"
+              data-url="/rbac/edit-duty"
+            >
+              <div class="flex items-center justify-center flex-col">
+                <div
+                  class="flex items-center justify-center rounded-full bg-selected dark:bg-selected-color-dark h-[52px] w-[52px]"
+                >
+                  <div class="icon iconex-case-1"></div>
+                </div>
+                <div
+                  class="text-[17px] font-semibold text-messages dark:text-primary-text-color-dark pt-3"
+                >
+                  Redaktə et
+                </div>
+                <div
+                  class="text-[13px] font-normal text-secondary-text dark:text-secondary-text-color-dark"
+                >
+                  Vəzifə adını aşağıda qeyd edin
+                </div>
+                <div class="flex items-center justify-center text-center mt-6">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  <input
+                    type="hidden"
+                    id="vezife-adi-popup-id"
+                    value=""
+                    name="id"
+                  />
+                  <input
+                    type="text"
+                    value="Baş Mühasib"
+                    id="vezife-adi-popup-name"
+                    name="name"
+                    class="dark:bg-side-bar-item-dark border-0 font-semibold text-center text-[26px] placeholder:text-center placeholder:text-on-surface-variant-dark dark:placeholder:text-outline-dark focus:outline-none focus:ring-0 focus:shadow-none"
+                    placeholder="Vəzifəni daxil edin"
+                  />
+                </div>
+              </div>
+              <div class="mt-8">
+                <div
+                  onclick="submitForm('roleNameUpdate')"
+                  class="w-full h-[40px] cursor-pointer bg-primary text-white text-[15px] font-medium rounded-[100px] flex items-center justify-center"
+                >
+                  Dəyişikliyi təsdiqlə
+                </div>
+                <div
+                  class="w-full h-[40px] mt-3 cursor-pointer bg-surface dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[15px] font-medium rounded-[100px] flex items-center justify-center"
+                  onclick="redakteVezife()"
+                >
+                  Ləğv et
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div id="roles-popup" class="popup-menu z-10 w-[183px]" style="display: none">
+            <div class="relative inline-block w-full h-full">
+
+
+              <div class="absolute top-[-11.5px] right-[0px] transform -translate-x-1/2 z-10">
+         <svg class="w-[14px] h-[12px] fill-white dark:fill-[#161E22]" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="50 0, 100 100, 0 100"></polygon>
+</svg>
+              </div>
+
+
+              <div
+            class="relative w-full h-full border-[#0000001A] border-[0.5px] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-[8px] bg-menu z-0 dark:bg-[#161E22]">
+
+                <div onclick="redakteVezife()" id="roles-popup-edit" class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] 
+                       hover:bg-item-hover dark:hover:bg-item-hover-dark
+                       transition ease-out duration-300 
+                       active:bg-item-hover dark:active:bg-item-hover-dark 
+                       disabled:bg-none">
+                  <div class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">
+
+                  </div>
+                  <span class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">Redaktə et</span>
+                </div>
+
+
+                <div class="h-[0.5px] bg-[#0000001A]"></div>
+
+                <div onclick="deleteRole()"
+                  class="flex items-center py-[3.5px] mt-1 mb-[4px] pl-[12px] cursor-pointer h-[28px] transition ease-out duration-300 hover:bg-[#DD38381A] active:bg-[#DD38381A] disabled:bg-body-bg">
+                  <div class="icon stratis-trash-01 w-[13px] h-[13px] text-error mr-[9px] disabled:text-on-surface-variant-dark">
+                  </div>
+                  <span class="text-[13px] text-error font-medium disabled:text-on-surface-variant-dark">
+                    Sil
+                  </span>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          
+
+                <!-- 3 dotsa basanda aclan popup -->
+          <div id="permissions-popup" class="popup-menu z-10 w-[196px]" style="display: none">
+            <div class="relative inline-block w-full h-full">
+              <div class="absolute top-[-11.5px] right-[0px] transform -translate-x-1/2 z-10">
+   <svg class="w-[14px] h-[12px] fill-white dark:fill-[#161E22]" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="50 0, 100 100, 0 100"></polygon>
+</svg>
+              </div>
+          
+              <div
+                class="relative w-full h-full border-[#0000001A] border-[0.5px] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-[8px] bg-menu z-0 dark:bg-[#161E22]">
+                <div onclick="openDefaultPermUsers2()"
+class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] 
+       hover:bg-item-hover dark:hover:bg-item-hover-dark 
+       transition ease-out duration-300 
+       active:bg-item-hover dark:active:bg-item-hover-dark 
+       disabled:bg-none">
+                  <div
+                    class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">
+                  </div>
+                  <span
+                    class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark dark:text-primary-text-color-dark">
+                    İstifadəçiləri
+                    redaktə
+                    et</span>
+                </div>
+          
+                <div onclick="deleteCurrentPermission()"
+                  class="flex items-center py-[3.5px] mt-1 mb-[4px] pl-[12px] cursor-pointer h-[28px] transition ease-out duration-300 hover:bg-[#DD38381A] active:bg-[#DD38381A] disabled:bg-body-bg">
+                  <div
+                    class="icon stratis-trash-01 w-[13px] h-[13px] text-error mr-[9px] disabled:text-on-surface-variant-dark dark:text-[#E03B3B]">
+                  </div>
+                  <span class="text-[13px] text-error font-medium disabled:text-on-surface-variant-dark dark:text-[#E03B3B]">Qrupu
+                    sil</span>
+                </div>
+          
+              </div>
+          
+            </div>
+          </div>
+          
+          
+          <!-- default permission active users popup -->
+          <form id="editThisDefaultPermGroupForm" onsubmit="return false" data-url="/rbac/edit-perm">
+            <div id="TetbiqHesabi"
+              class="w-[995px] z-101 hidden  bg-body-bg text-messages border-[3px] border-[#0000001A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-2xl fixed left-[50%] top-[50%] transform -translate-1/2 dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+              <div class="px-6 py-[18px] border-b-[0.5px] border-[#0000001A]">
+                <div class="flex items-center justify-between">
+                  <div class="defaultPermName">
+                    <div class="text-[15px] font-medium dark:text-white">
+                      Tətbiq hesabı
+                    </div>
+                    <span class="text-[12px] opacity-65 dark:text-white">Tətbiq hesabı qrupunda olan istifadəçiləri görə
+                      bilərsiniz</span>
+                  </div>
+                  <img onclick="closeDefeaultPermPopup()" src="/images/Sorgular Pages Images/Close.svg" alt="Close"
+                    class="cursor-pointer block dark:hidden" />
+                  <img onclick="closeDefeaultPermPopup()" src="/images/avankart-partner-pages-images/Close-dark.svg"
+
+                    alt="Close" class="cursor-pointe hidden dark:block" />
+                </div>
+              </div>
+              <div class="px-6">
+                <div class="my-4 flex items-center !justify-between">
+                  <div class="relative w-[695px]">
+                    <input type="hidden" name="name" id="hiddenPermDefaultName" />
+          
+                    <input type="text" id="customSearch" placeholder="Ad, soyad, email, vəzifə"
+                      class="cursor-pointer w-[695px] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-surface-variant rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-on-surface-variant"
+                      autocomplete="off" />
+                    <span id="hideeye"
+                      class="icon stratis-search-02 !absolute dark:!text-white dark:opacity-100 top-[8px] cursor-pointer text-messages opacity-[30%] right-[12px] !w-[15px] !h-[15px]"></span>
+                  </div>
+                  <div onclick="openAddPermUsersPopup('TetbiqHesabi')"
+                    class="flex items-center justify-center gap-2 cursor-pointer rounded-[50px] w-[207px] h-[34px] hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] transition">
+                    <div class="icon stratis-plus-02 !w-[10px] !h-[10px] dark:text-white"></div>
+                    <div class="text-[13px] font-medium dark:text-white">
+                      Yeni istifadəçi əlavə et
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="w-full rounded-[8px] mt-3 flex flex-col gap-3 relative">
+                    <table id="myTablePop2">
+                      <thead class="border-none pb-0.5">
+                        <tr
+                          class="bg-container-2 border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white">
+                          <th class="px-4 filtering">Ad və soyad</th>
+                          <th class="px-4 py-2 filtering">Cinsi</th>
+                          <th class="px-4 py-2 filtering">Vəzifəsi</th>
+                          <th class="px-4 py-2 filtering">Email</th>
+                          <th class="px-4 py-2 filtering">Telefon nömrəsi</th>
+                        </tr>
+                      </thead>
+                      <tbody class="font-base text-xs">
+                        <!-- Table rows will be populated by JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-[30px] px-6 py-5 flex items-center justify-end gap-3 border-t-[0.5px] border-[#0000001A]">
+                <button type="reset"
+                  class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark">
+                  Filterləri təmizlə
+                </button>
+                <button onclick="closeDefeaultPermPopup()" type="button"
+                  class="bg-primary flex items-center gap-2 rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">
+                  <div class="icon stratis-plus-02"></div>
+                  <div class="text-[13px] font-medium">Qrupa əlavə et</div>
+                </button>
+              </div>
+            </div>
+          </form>
+          <%- include('../partials/muessise/yeniVezifePopup.ejs') %> <%-
+          include('../partials/muessise/saveMuhasibler.ejs') %> <%-
+          include('../partials/popup/muessiseEditpop.ejs') %>
+
+          <div
+            id="deletePopUp"
+            class="w-[306px] hidden border-[0.5px] border-[#0000001A] dark:border-stroke-color-dark rounded-[12px] p-3 z-101 bg-body-bg dark:bg-body-bg-dark fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <div
+              class="bg-[#DD38381A] w-[40px] h-[40px] rounded-[500px] flex items-center justify-center"
+            >
+              <div
+                class="icon stratis-trash-01 text-error dark:text-error-dark"
+              ></div>
+            </div>
+            <div class="mt-3 mb-4">
+              <div
+                class="mb-1 text-[15px] font-medium dark:text-on-primary-dark"
+              >
+                Silmək
+              </div>
+              <div
+                class="relative w-full h-full border-[#0000001A] border-[0.5px] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-[8px] bg-menu z-0"
+              >
+                <div
+                  class="flex items-center my-1 py-[3.5px] pl-[12px] cursor-pointer h-[28px] hover:bg-item-hover transition ease-out duration-300 active:bg-item-hover disabled:bg-none"
+                >
+                  <div
+                    class="icon stratis-edit-02 w-[13px] h-[13px] mr-2 text-messages disabled:text-on-surface-variant-dark"
+                  ></div>
+                  <span
+                    class="text-[13px] font-medium text-messages disabled:text-on-surface-variant-dark"
+                    >Redaktə et</span
+                  >
+                </div>
+                <div class="h-[0.5px] bg-[#0000001A]"></div>
+                <div
+                  class="flex items-center py-[3.5px] mt-1 mb-[4px] pl-[12px] cursor-pointer h-[28px] transition ease-out duration-300 hover:bg-[#DD38381A] active:bg-[#DD38381A] disabled:bg-body-bg"
+                >
+                  <div
+                    class="icon stratis-trash-01 w-[13px] h-[13px] text-error mr-[9px] disabled:text-on-surface-variant-dark"
+                  ></div>
+                  <span
+                    class="text-[13px] text-error font-medium disabled:text-on-surface-variant-dark"
+                    >Sil</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('../partials/muessise/rekvizitlerContent.ejs') %> <%-
+        include('../partials/muessise/muqavileContent.ejs') %>
+      </div>
+    </div>
+    <% styles=`
+    <style>
+      .dt-column-order {
+        display: none !important;
+      }
+
+      .muqavile-icon {
+        color: #1d222b;
+      }
+
+      /* For light mode */
+      .selected-row-light {
+        background-color: #fafafa !important;
+        /* A slightly darker light gray */
+      }
+
+      /* For dark mode */
+      .selected-row-dark {
+        background-color: #242c30 !important;
+        /* A distinct dark gray */
+      }
+
+      table,
+      thead,
+      table.dataTable > thead > tr > th,
+      table.dataTable > thead > tr > td,
+      div.dt-container.dt-empty-footer tbody > * {
+        border: none;
+        font-weight: 400;
+      }
+
+      td {
+        padding: 20px;
+      }
+
+      .custom-date::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+      }
+
+      table tbody tr:last-child td {
+        border-bottom: 0.5px solid #e0e0e0 !important;
+      }
+
+      .time-input {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .time-input:focus {
+        cursor: text;
+        outline: none;
+        box-shadow: none;
+      }
+
+      .custom-scroll {
+        --sb-track-color: #ffffff;
+        --sb-thumb-color: #b9b9b9;
+        --sb-size: 4px;
+      }
+
+      .custom-scroll::-webkit-scrollbar {
+        width: var(--sb-size);
+      }
+
+      .custom-scroll::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 39px;
+      }
+
+      .custom-scroll::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border-radius: 39px;
+      }
+
+      /* 🌙 Dark mode scroll üçün dəyişənləri yenidən təyin et */
+      .dark .custom-scroll {
+        --sb-track-color: #1e1e1e;
+        --sb-thumb-color: #5a5a5a;
+      }
+
+      #autocomplete {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 300px;
+        z-index: 5;
+      }
+    </style>
+
+    `%> <% footerPart=` ${ include('../partials/muessise/restoranDetails.ejs') }
+    ${ include('../partials/muessise/editMuessise.ejs') } `; %>
+    <div id="mapModal" class="hidden">
+      <div
+        onclick="closeMapModal()"
+        class="fixed inset-0"
+        style="z-index: 999"
+      ></div>
+      <div
+        style="z-index: 9999"
+        class="border-3 border-stroke dark:border-[#FFFFFF1A] w-[450px] h-[450px] overflow-hidden bg-sidebar-item dark:bg-side-bar-item-dark fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-xl rounded-[12px] max-h-[100vh]"
+      >
+        <div class="w-full h-full" id="map"></div>
+      </div>
+    </div>
+    <% scripts=`
+    
+    <script>
+      function copyToClipboard(text) {
+        if (!navigator.clipboard) {
+          // Eski tarayıcılar için fallback
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand("copy");
+            alertModal("Kopyalandı!");
+          } catch (err) {
+            alertModal("Kopyalama başarısız.", "error");
+          }
+          document.body.removeChild(textarea);
+          return;
+        }
+
+        // Modern tarayıcılar
+        navigator.clipboard
+          .writeText(text)
+          .then(() => alertModal("Kopyalandı!"))
+          .catch((err) => alertModal("Kopyalama başarısız.", "error"));
+      }
+      const mapModal = document.getElementById("mapModal");
+      function openMapModal() {
+        mapModal.classList.toggle("hidden");
+      }
+
+      function closeMapModal() {
+        mapModal.classList.toggle("hidden");
+      }
+    </script>
+    <script src="/js/muessise melumatlari pages/map.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb9a_LNBjwrJDPvf09azKB4dWI3X1eIYM&libraries=places,marker,geocoding&callback=initMap&loading=async"
+      defer
+      async
+    ></script>
+    <script src="/js/muessise melumatlari pages/main.js"></script>
+    <script src="/js/muessise melumatlari pages/editİnfoDrop.js"></script>
+    <script src="/js/muessise melumatlari pages/mainTable.js"></script>
+    <script src="/js/muessise melumatlari pages/cardsDataLoader.js"></script>
+
+    <script src="/js/muessise melumatlari pages/change.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/notificationsModal.js"></script>
+    <script src="/js/muessise melumatlari pages/popup3Table.js"></script>
+    <script src="/js/muessise melumatlari pages/edit.js"></script>
+    <script src="/js/muessise melumatlari pages/editPopup.js"></script>
+    <script src="/js/muessise melumatlari pages/contractsTable.js"></script>
+    <script src="/js/muessise melumatlari pages/contractsTable2.js"></script>
+    <script src="/js/muessise melumatlari pages/popupTable.js"></script>
+    <script src="/js/muessise melumatlari pages/popupTable2.js"></script>
+    <script src="/js/flowbite.min.js"></script>
+    <script src="/js/muessise melumatlari pages/myTableMuessise.js"></script>
+    <!-- <script src="/js/muessise melumatlari pages/displayMuessiseInfo.js"></script> -->
+    <script src="/js/muessise melumatlari pages/permissionEdit.js"></script>
+    <script src="/js/Avankart Profili/Popup.js"></script>
+
+    ` %>
+  </div>
+</div>

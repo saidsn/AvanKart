@@ -1,0 +1,735 @@
+<div
+  id="EditPermissionDefaultPopup"
+  class="w-[450px] hidden bg-body-bg dark:bg-side-bar-item-dark z-101 text-messages dark:text-primary-text-color-dark border-[3px] border-[#0000001A] dark:border-[#FFFFFF1A] shadow-md rounded-2xl fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6"
+>
+  <form
+    id="editPermissionDefaultForm"
+    onsubmit="return false;"
+    data-url="/muessise-info/edit-permission-default-name"
+  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <input type="hidden" id="edit-permission-default-id" name="id" value="" />
+
+    <div class="flex items-center justify-center flex-col">
+      <div
+        class="flex items-center justify-center rounded-full bg-selected dark:bg-selected-color-dark h-[52px] w-[52px]"
+      >
+        <div
+          class="icon stratis-edit-02 dark:text-primary-text-color-dark"
+        ></div>
+      </div>
+      <div
+        class="text-[17px] font-semibold text-messages dark:text-primary-text-color-dark pt-3"
+      >
+        Qrup adını redaktə et
+      </div>
+      <div
+        class="text-[13px] font-normal text-secondary-text dark:text-secondary-text-color-dark"
+      >
+        Səlahiyyət qrupu adını aşağıda dəyişin
+      </div>
+      <div class="flex items-center justify-center mt-6">
+        <input
+          type="text"
+          id="edit-permission-default-name"
+          name="name"
+          class="border-0 dark:bg-side-bar-item-dark font-semibold text-center text-[26px] dark:text-primary-text-color-dark placeholder:text-center placeholder:text-on-surface-variant-dark dark:placeholder:text-outline-dark focus:outline-none focus:ring-0 focus:shadow-none"
+          placeholder="Qrup adını daxil edin"
+        />
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <button
+        type="submit"
+        onclick="submitForm('editPermissionDefault')"
+        class="w-full h-[40px] cursor-pointer bg-primary text-white text-[15px] font-medium rounded-full flex items-center justify-center"
+      >
+        Dəyişikliyi təsdiqlə
+      </button>
+      <div
+        onclick="closeEditPermissionDefaultPopup()"
+        class="w-full h-[40px] mt-3 cursor-pointer bg-surface dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[15px] font-medium rounded-full flex items-center justify-center"
+      >
+        Ləğv et
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Normal Permission Edit Popup (tam edit - ad + permissions) -->
+<div
+  id="EditPermissionFullPopup"
+  class="w-[995px] hidden min-h-[680px] z-101 bg-body-bg text-messages border-[3px] border-[#0000001A] shadow-md rounded-2xl fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:bg-[#161E22] dark:border-[#FFFFFF1A]"
+>
+  <div
+    class="flex items-center justify-between px-6 py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+  >
+    <div class="text-[15px] font-medium dark:text-white">
+      Səlahiyyət qrupunu redaktə et
+    </div>
+    <img
+      src="/images/Sorgular Pages Images/Close.svg"
+      alt="Close"
+      class="cursor-pointer block dark:hidden"
+      onclick="closeEditPermissionFullPopup()"
+    />
+    <img
+      src="/images/avankart-partner-pages-images/Close-dark.svg"
+      alt="Close"
+      class="cursor-pointer hidden dark:block"
+      onclick="closeEditPermissionFullPopup()"
+    />
+  </div>
+
+  <div class="flex">
+    <!-- Sol hissə - İstifadəçilər -->
+    <div
+      class="w-[242px] h-[544px] border-r-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+    >
+      <div
+        class="py-[14px] flex items-start px-4 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+      >
+        <div
+          class="text-[13px] font-medium text-messages pt-[5px] dark:text-white"
+        >
+          İstifadəçilər
+        </div>
+        <button
+          onclick="addUserToPermissionGroup()"
+          class="flex items-center justify-center duration-150 gap-2.5 cursor-pointer rounded-full w-[97px] h-[34px] hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] dark:text-white"
+        >
+          <div class="icon stratis-plus-02 !w-3 !h-3"></div>
+          <div class="text-[12px] font-medium text-messages dark:text-white">
+            Əlavə et
+          </div>
+        </button>
+      </div>
+
+      <div
+        id="permission-users-list"
+        class="my-3 px-4 flex flex-col gap-[23px]"
+      >
+        <!-- İstifadəçilər dinamik olaraq yüklənəcək -->
+      </div>
+    </div>
+
+    <!-- Sağ hissə - Səlahiyyətlər -->
+    <div class="mx-3 w-full">
+      <form
+        id="editPermissionFullForm"
+        onsubmit="return false;"
+        data-url="/muessise-info/edit-permission-full"
+      >
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="hidden" id="edit-permission-full-id" name="id" value="" />
+
+        <!-- Qrup adı -->
+        <div
+          class="py-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+        >
+          <label
+            class="block text-[12px] font-medium text-messages dark:text-white mb-2"
+          >
+            Qrup adı
+          </label>
+          <input
+            type="text"
+            id="edit-permission-full-name"
+            name="name"
+            class="w-full h-[34px] px-3 border border-surface-variant dark:border-surface-variant-dark rounded-full text-[13px] text-messages dark:text-primary-text-color-dark dark:bg-menu-dark focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none"
+            placeholder="Qrup adını daxil edin"
+          />
+        </div>
+
+        <!-- Səlahiyyətlər -->
+        <div class="py-3">
+          <!-- Dashboard -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-dashboard-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-dashboard-checkbox"
+                name="permissions[dashboard]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium dark:text-white opacity-65">
+                Dashboard
+              </div>
+            </label>
+            <div class="permission-level-selector" data-permission="dashboard">
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- Əməliyyatlar -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-emeliyyatlar-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-emeliyyatlar-checkbox"
+                name="permissions[emeliyyatlar]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Əməliyyatlar
+              </div>
+            </label>
+            <div
+              class="permission-level-selector"
+              data-permission="emeliyyatlar"
+            >
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- Hesablaşma -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-hesablasma-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-hesablasma-checkbox"
+                name="permissions[hesablasma]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Hesablaşma
+              </div>
+            </label>
+            <div class="permission-level-selector" data-permission="hesablasma">
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- İşçilərin balansı -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-iscilerin-balansi-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-iscilerin-balansi-checkbox"
+                name="permissions[iscilerin_balansi]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                İşçilərin balansı
+              </div>
+            </label>
+            <div
+              class="permission-level-selector"
+              data-permission="iscilerin_balansi"
+            >
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- E-qaimə -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-e-qaime-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-e-qaime-checkbox"
+                name="permissions[e_qaime]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                E-qaimə
+              </div>
+            </label>
+            <div class="permission-level-selector" data-permission="e_qaime">
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- İşçilər -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-isciler-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-isciler-checkbox"
+                name="permissions[isciler]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                İşçilər
+              </div>
+            </label>
+            <div class="permission-level-selector" data-permission="isciler">
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- Avankart Partner -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-avankart-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-avankart-checkbox"
+                name="permissions[avankart_partner]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Avankart Partner
+              </div>
+            </label>
+            <div
+              class="permission-level-selector"
+              data-permission="avankart_partner"
+            >
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- Şirkət məlumatları -->
+          <div
+            class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+          >
+            <label
+              for="edit-sirket-melumatlari-checkbox"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="edit-sirket-melumatlari-checkbox"
+                name="permissions[sirket_melumatlari]"
+                value="full"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Şirkət məlumatları
+              </div>
+            </label>
+            <div
+              class="permission-level-selector"
+              data-permission="sirket_melumatlari"
+            >
+              <button
+                type="button"
+                class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+              >
+                <div class="text-[12px] font-medium">İcazə</div>
+                <img
+                  src="/images/muessise melumatlari images/chevron-down.svg"
+                  alt="chevron-down"
+                  class="dark:invert"
+                />
+              </button>
+            </div>
+          </div>
+
+          <!-- Şirkət məlumatları alt bölmələri -->
+          <div
+            id="company-info-subsections"
+            class="mt-5 h-0 overflow-hidden duration-600"
+          >
+            <!-- Profil -->
+            <div
+              class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <label
+                for="edit-profil-checkbox"
+                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+              >
+                <input
+                  type="checkbox"
+                  id="edit-profil-checkbox"
+                  name="permissions[profil]"
+                  value="full"
+                  class="peer hidden"
+                />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                  ></div>
+                </div>
+                <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                  Profil
+                </div>
+              </label>
+              <div class="permission-level-selector" data-permission="profil">
+                <button
+                  type="button"
+                  class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+                >
+                  <div class="text-[12px] font-medium">İcazə</div>
+                  <img
+                    src="/images/muessise melumatlari images/chevron-down.svg"
+                    alt="chevron-down"
+                    class="dark:invert"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- İstifadəçilər -->
+            <div
+              class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <label
+                for="edit-istifadeciler-checkbox"
+                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+              >
+                <input
+                  type="checkbox"
+                  id="edit-istifadeciler-checkbox"
+                  name="permissions[istifadeciler]"
+                  value="full"
+                  class="peer hidden"
+                />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                  ></div>
+                </div>
+                <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                  İstifadəçilər
+                </div>
+              </label>
+              <div
+                class="permission-level-selector"
+                data-permission="istifadeciler"
+              >
+                <button
+                  type="button"
+                  class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+                >
+                  <div class="text-[12px] font-medium">İcazə</div>
+                  <img
+                    src="/images/muessise melumatlari images/chevron-down.svg"
+                    alt="chevron-down"
+                    class="dark:invert"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Səlahiyyət qrupları -->
+            <div
+              class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <label
+                for="edit-salahiyyet-qruplari-checkbox"
+                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+              >
+                <input
+                  type="checkbox"
+                  id="edit-salahiyyet-qruplari-checkbox"
+                  name="permissions[salahiyyet_qruplari]"
+                  value="full"
+                  class="peer hidden"
+                />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                  ></div>
+                </div>
+                <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                  Səlahiyyət qrupları
+                </div>
+              </label>
+              <div
+                class="permission-level-selector"
+                data-permission="salahiyyet_qruplari"
+              >
+                <button
+                  type="button"
+                  class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+                >
+                  <div class="text-[12px] font-medium">İcazə</div>
+                  <img
+                    src="/images/muessise melumatlari images/chevron-down.svg"
+                    alt="chevron-down"
+                    class="dark:invert"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Rekvizitlər -->
+            <div
+              class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <label
+                for="edit-rekvizitler-checkbox"
+                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+              >
+                <input
+                  type="checkbox"
+                  id="edit-rekvizitler-checkbox"
+                  name="permissions[rekvizitler]"
+                  value="full"
+                  class="peer hidden"
+                />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                  ></div>
+                </div>
+                <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                  Rekvizitlər
+                </div>
+              </label>
+              <div
+                class="permission-level-selector"
+                data-permission="rekvizitler"
+              >
+                <button
+                  type="button"
+                  class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+                >
+                  <div class="text-[12px] font-medium">İcazə</div>
+                  <img
+                    src="/images/muessise melumatlari images/chevron-down.svg"
+                    alt="chevron-down"
+                    class="dark:invert"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Müqavilələr -->
+            <div
+              class="flex items-center justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <label
+                for="edit-muqavileler-checkbox"
+                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+              >
+                <input
+                  type="checkbox"
+                  id="edit-muqavileler-checkbox"
+                  name="permissions[muqavileler]"
+                  value="full"
+                  class="peer hidden"
+                />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                  ></div>
+                </div>
+                <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                  Müqavilələr
+                </div>
+              </label>
+              <div
+                class="permission-level-selector"
+                data-permission="muqavileler"
+              >
+                <button
+                  type="button"
+                  class="permission-level-btn text-messages opacity-50 cursor-pointer flex items-center gap-2 dark:text-[#FFFFFF80]"
+                >
+                  <div class="text-[12px] font-medium">İcazə</div>
+                  <img
+                    src="/images/muessise melumatlari images/chevron-down.svg"
+                    alt="chevron-down"
+                    class="dark:invert"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div
+    class="mt-0.5 py-5 px-6 flex items-center justify-end border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+  >
+    <div class="flex items-center justify-end gap-3">
+      <button
+        type="button"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+        onclick="closeEditPermissionFullPopup()"
+      >
+        Ləğv et
+      </button>
+      <button
+        type="button"
+        onclick="submitForm('editPermissionFull')"
+        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+      >
+        Yadda saxla
+      </button>
+    </div>
+  </div>
+</div>

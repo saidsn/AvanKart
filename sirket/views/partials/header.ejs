@@ -1,0 +1,66 @@
+<header
+  id="mainHeader"
+  class="fixed z-50 top-0 left-[242px] right-0 h-[70px] bg-body-bg dark:bg-body-bg-dark py-[10px] pr-5 pl-6 border-b-[0.5px] border-stroke dark:border-[#FFFFFF1A] flex items-center"
+>
+  <div class="flex justify-between items-center w-full">
+    <h2 class="text-[15px] text-messages dark:text-primary-text-color-dark">
+      <%- typeof title !== 'undefined' ? title : 'Avankart' %>
+    </h2>
+
+    <div class="flex items-center gap-2">
+      <div class="border-r-[.5px] border-stroke dark:border-[#FFFFFF1A] pr-3">
+        <div
+          class="cursor-pointer flex items-center gap-2 hover:bg-item-hover dark:hover:bg-item-hover-dark py-[5.5px] pl-2 pr-[59px] rounded-[500px]"
+        >
+          <img
+            class="w-9 h-9 rounded-full text-image dark:text-image-dark"
+            src="/images/dashboard/profile.png"
+            alt="Profile Photo"
+          />
+          <div class="flex items-center">
+            <div>
+              <div
+                class="text-messages dark:text-primary-text-color-dark text-[15px] font-medium"
+                id="headerMyNamePlace"
+              >
+                Sadiq Abdullayev
+              </div>
+              <div
+                class="text-sm text-secondary-text dark:text-tertiary-text-color-dark text-[12px] font-normal"
+                id="headerDutyNamePlace"
+              >
+                Təyin olunmayıb
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        onclick="openNotificationsModal()"
+        class="flex items-center cursor-pointer pl-3"
+      >
+        <div
+          class="relative w-[50px] h-[50px] hover:bg-item-hover dark:hover:bg-item-hover-dark rounded-full flex items-center justify-center"
+        >
+          <div
+            class="icon stratis-bell-03 text-messages dark:text-primary-text-color-dark"
+          ></div>
+          <span
+            class="w-[19px] h-[19px] flex items-center justify-center absolute bottom-[25px] right-[2px] bg-error dark:bg-error-dark text-on-primary dark:text-on-primary-dark text-[10px] rounded-full"
+          >
+            0
+          </span>
+        </div>
+      </div>
+      <div
+        onclick="closeNotifications()"
+        id="notificationsOverlay"
+        class="z-50 hidden fixed inset-0"
+      ></div>
+      <div
+        id="notificationsModal"
+        class="hidden absolute z-100 top-[70px] right-5"
+      ></div>
+    </div>
+  </div>
+</header>

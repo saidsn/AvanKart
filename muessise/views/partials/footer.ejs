@@ -1,0 +1,49 @@
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/notifications/notificationsSocket.js"></script>
+<script type="module">
+  // Cookie içinden sessionId gönderiliyor (otomatik)
+  // Header ile fingerprint göndermek için extra ayar yapmalıyız
+  const socket = io({
+    extraHeaders: {
+      'x-fingerprint': getFingerprint(),
+      'x-device-os': getDeviceOS()
+    },
+    query: {
+      fingerprint: getFingerprint(),
+      'x-device-os': getDeviceOS()
+    },
+    withCredentials: true,
+    transports: ['websocket', 'polling'],
+    reconnection: true,
+    reconnectionAttempts: 5
+  });
+
+  socket.on('connect', () => {
+    console.log('Socket bağlı:', socket.id);
+  });
+
+  socket.on('connect_error', (err) => {
+    console.error('Socket bağlantı hatası:', err.message);
+  });
+
+  window.socket = socket; // global olarak erişilebilir yapıyoruz
+
+  // Fingerprint hesaplayıcı (senin sistemine uygun şekilde güncelle)
+  function getFingerprint() {
+    const ip = '<%= clientIp %>'; // Yerel geliştirme ortamında sabit, production'da istemezsin
+    const ua = navigator.userAgent.trim();
+    return btoa(`${ip}-${ua}`);
+  }
+
+  function getDeviceOS() {
+    const ua = navigator.userAgent;
+
+    if (/Android/i.test(ua)) return 'Android';
+    if (/iPhone|iPad|iPod/i.test(ua)) return 'iOS';
+    if (/Windows NT/i.test(ua)) return 'Windows';
+    if (/Mac OS X/i.test(ua)) return 'macOS';
+    if (/Linux/i.test(ua)) return 'Linux';
+
+    return 'Unknown';
+  }
+</script>

@@ -1,0 +1,877 @@
+{
+  "info": {
+    "name": "Avankartaz API Collection",
+    "description": "Avankartaz backend API endpoints (GET & POST only)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "FAQs",
+      "item": [
+        {
+          "name": "Get All FAQs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/faqs",
+              "host": ["{{base_url}}"],
+              "path": ["faqs"]
+            }
+          }
+        },
+        {
+          "name": "Get Single FAQ",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/faqs/:id",
+              "host": ["{{base_url}}"],
+              "path": ["faqs", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create FAQ",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Sample question?\",\n  \"answer\": \"Sample answer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/faqs",
+              "host": ["{{base_url}}"],
+              "path": ["faqs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blog Categories",
+      "item": [
+        {
+          "name": "Get All Blog Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blog-categories?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["blog-categories"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az",
+                  "description": "az, tr, en, ru"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Blog Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blog-categories/:slug?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["blog-categories", ":slug"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Blog Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": {\n    \"az\": \"Texnologiya\",\n    \"tr\": \"Teknoloji\",\n    \"en\": \"Technology\",\n    \"ru\": \"Технология\"\n  },\n  \"slug\": \"texnologiya\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/blog-categories",
+              "host": ["{{base_url}}"],
+              "path": ["blog-categories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blogs",
+      "item": [
+        {
+          "name": "Get All Blogs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blogs?lang=az&category=&startDate=&endDate=&search=&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["blogs"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                },
+                {
+                  "key": "category",
+                  "value": ""
+                },
+                {
+                  "key": "startDate",
+                  "value": ""
+                },
+                {
+                  "key": "endDate",
+                  "value": ""
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Blog",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blogs/:slug?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["blogs", ":slug"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Blog",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Blog başlığı",
+                  "type": "text"
+                },
+                {
+                  "key": "slug",
+                  "value": "",
+                  "description": "Optional - avtomatik generate olunur",
+                  "type": "text"
+                },
+                {
+                  "key": "lang",
+                  "value": "az",
+                  "description": "az, tr, en, ru",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "description": "Category ID",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "Blog məzmunu...",
+                  "type": "text"
+                },
+                {
+                  "key": "coverImage",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "detailImage",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/blogs",
+              "host": ["{{base_url}}"],
+              "path": ["blogs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "item": [
+        {
+          "name": "Upload Single Image",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/upload-image",
+              "host": ["{{base_url}}"],
+              "path": ["upload-image"]
+            }
+          }
+        },
+        {
+          "name": "Upload Multiple Images",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/upload-images",
+              "host": ["{{base_url}}"],
+              "path": ["upload-images"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Application Categories",
+      "item": [
+        {
+          "name": "Get All Application Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/application-categories?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["application-categories"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Application Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/application-categories/:slug?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["application-categories", ":slug"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Application Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": {\n    \"az\": \"Təhsil\",\n    \"tr\": \"Eğitim\",\n    \"en\": \"Education\",\n    \"ru\": \"Образование\"\n  },\n  \"slug\": \"tehsil\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/application-categories",
+              "host": ["{{base_url}}"],
+              "path": ["application-categories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company Applications",
+      "item": [
+        {
+          "name": "Get All Company Applications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/company-applications?search=&startDate=&endDate=&minEmployeeCount=&maxEmployeeCount=&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["company-applications"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "startDate",
+                  "value": ""
+                },
+                {
+                  "key": "endDate",
+                  "value": ""
+                },
+                {
+                  "key": "minEmployeeCount",
+                  "value": ""
+                },
+                {
+                  "key": "maxEmployeeCount",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Company Application",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/company-applications/:id",
+              "host": ["{{base_url}}"],
+              "path": ["company-applications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Company Application",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"ABC Şirkəti\",\n  \"employeeCount\": 50,\n  \"email\": \"info@abc.com\",\n  \"phone\": \"+994501234567\",\n  \"message\": \"Müraciət mesajı\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/company-applications",
+              "host": ["{{base_url}}"],
+              "path": ["company-applications"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Institution Applications",
+      "item": [
+        {
+          "name": "Get All Institution Applications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/institution-applications?search=&category=&startDate=&endDate=&lang=az&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["institution-applications"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "category",
+                  "value": ""
+                },
+                {
+                  "key": "startDate",
+                  "value": ""
+                },
+                {
+                  "key": "endDate",
+                  "value": ""
+                },
+                {
+                  "key": "lang",
+                  "value": "az"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Institution Application",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/institution-applications/:id?lang=az",
+              "host": ["{{base_url}}"],
+              "path": ["institution-applications", ":id"],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "az"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Institution Application",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"institutionName\": \"ABC Təhsil Mərkəzi\",\n  \"category\": \"\",\n  \"email\": \"info@abc.edu\",\n  \"phone\": \"+994501234567\",\n  \"message\": \"Müraciət mesajı\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/institution-applications",
+              "host": ["{{base_url}}"],
+              "path": ["institution-applications"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "Get All Subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/subscriptions?search=&startDate=&endDate=&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["subscriptions"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "startDate",
+                  "value": ""
+                },
+                {
+                  "key": "endDate",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Subscription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/subscriptions/:id",
+              "host": ["{{base_url}}"],
+              "path": ["subscriptions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/subscriptions",
+              "host": ["{{base_url}}"],
+              "path": ["subscriptions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Social Medias",
+      "item": [
+        {
+          "name": "Get All Social Medias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/social-medias?search=",
+              "host": ["{{base_url}}"],
+              "path": ["social-medias"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Social Media",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/social-medias/:id",
+              "host": ["{{base_url}}"],
+              "path": ["social-medias", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Social Media",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Facebook",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "https://facebook.com/company",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "description": "active or inactive",
+                  "type": "text"
+                },
+                {
+                  "key": "icon",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/social-medias",
+              "host": ["{{base_url}}"],
+              "path": ["social-medias"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact Methods",
+      "item": [
+        {
+          "name": "Get All Contact Methods",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/contact-methods?search=",
+              "host": ["{{base_url}}"],
+              "path": ["contact-methods"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Contact Method",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/contact-methods/:id",
+              "host": ["{{base_url}}"],
+              "path": ["contact-methods", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Contact Method",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "WhatsApp",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "+994501234567",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "description": "active or inactive",
+                  "type": "text"
+                },
+                {
+                  "key": "icon",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/contact-methods",
+              "host": ["{{base_url}}"],
+              "path": ["contact-methods"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mobile App Links",
+      "item": [
+        {
+          "name": "Get All Mobile App Links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/mobile-app-links?search=",
+              "host": ["{{base_url}}"],
+              "path": ["mobile-app-links"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Mobile App Link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/mobile-app-links/:id",
+              "host": ["{{base_url}}"],
+              "path": ["mobile-app-links", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Mobile App Link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "App Store",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "https://apps.apple.com/app/...",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "description": "active or inactive",
+                  "type": "text"
+                },
+                {
+                  "key": "icon",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/mobile-app-links",
+              "host": ["{{base_url}}"],
+              "path": ["mobile-app-links"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/v1/avankartaz",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+<div>
+  <div
+    class="flex items-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+  >
+    <a
+      href="/"
+      class="hover:text-primary dark:hover:text-primary-dark"
+      >Avankart</a
+    >
+    <div class="icon stratis-slash-01-forward"></div>
+    <a
+      href="/people/avankart-people"
+      class="text-messages dark:text-primary-text-color-dark hover:text-primary dark:hover:text-primary-dark"
+      >İşçilər</a
+    >
+    <div class="icon stratis-slash-01-forward"></div>
+    <span
+      class="cursor-pointer text-tertiary-text dark:text-secondary-text-color-dark"
+      ><%= user.name + " " +user.surname %></span
+    >
+  </div>
+  <div
+    class="bg-sidebar-bg dark:bg-side-bar-bg-dark my-3 px-3 rounded-lg h-[69px]"
+  >
+    <div class="flex items-center gap-3 text-message w-full">
+      <div
+        class="border-r-[0.5px] border-[#0000001A] max-w-[273px] w-full py-3"
+      >
+        <p
+          class="text-[11px] opacity-65 pb-[6px] dark:text-tertiary-text-color-dark"
+        >
+          ID
+        </p>
+        <p
+          class="text-[13px] font-medium dark:text-primary-text-color-dark"
+          id="detail-invoice"
+        >
+          <%= user.people_id %>
+        </p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] max-w-[273px] w-full py-3"
+      >
+        <p
+          class="text-[11px] opacity-65 pb-[6px] dark:text-tertiary-text-color-dark"
+        >
+          Ad və Soyad
+        </p>
+        <p
+          class="text-[13px] font-medium dark:text-primary-text-color-dark"
+          id="detail-customers"
+        >
+           <%= user.name + " " +user.surname %>
+        </p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] dark:border-surface-variant-dark max-w-[273px] w-full py-3"
+      >
+        <p
+          class="text-[11px] opacity-65 pb-[6px] dark:text-tertiary-text-color-dark"
+        >
+          Cinsi
+        </p>
+        <p
+          class="text-[13px] font-medium dark:text-primary-text-color-dark"
+          id="detail-transactions"
+        >
+         <%= __('partials.popup.muessiseEditPopup.'+user.gender??'male') %>
+        </p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] dark:border-surface-variant-dark max-w-[273px] w-full py-3"
+      >
+        <p
+          class="text-[11px] opacity-65 pb-[6px] dark:text-tertiary-text-color-dark"
+        >
+          Email
+        </p>
+        <p
+          class="text-[13px] font-medium dark:text-primary-text-color-dark"
+          id="detail-transactions"
+        >
+         <%= user.email %>
+        </p>
+      </div>
+      <div
+        class="hidden flex items-center justify-start bg-container-2 dark:bg-container-2-dark rounded-full h-7 w-fit text-ellipsis"
+        id="detail-status"
+      >
+        <div
+          class="flex items-center justify-start bg-container-2 dark:bg-container-2-dark px-3 rounded-full h-7 text-ellipsis"
+        >
+          <span
+            class="w-[6px] h-[6px] rounded-full bg-[#4FC3F7] shrink-0 mr-2"
+          ></span>
+          <span
+            class="text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+            ><%= user.status %></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="userPeopleid" value="<%= user.people_id %>">
+  <div class="flex flex-col gap-3">
+    <div
+      class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]"
+    >
+      <div
+        onclick="window.location.href='/people/avankart-people'"
+        class="flex !mb-[12.5px] gap-[14px] mt-[17px] items-center cursor-pointer"
+      >
+        <div
+          class="icon stratis-arrow-left-sm !w-[11px] !h-[11px] text-messages dark:text-primary-text-color-dark"
+        ></div>
+        <div class="text-[15px] font-medium dark:text-primary-text-color-dark">
+          Kartlar üzrə tranzaksiya
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div
+          class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+        >
+          <input
+            id="customSearch"
+            type="text"
+            placeholder="Search..."
+            class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+          />
+          <div class="absolute right-3">
+            <div
+              class="icon stratis-search-02 dark:text-primary-text-color-dark"
+            ></div>
+          </div>
+        </div>
+
+        <div id="refreshPage"
+          class="w-[155px] border cursor-pointer border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+        >
+          <span>Səhifəni yenilə</span>
+          <span
+            class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"
+          ></span>
+        </div>
+        <div
+          onclick="openFilterModal()"
+          class="hidden w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+        >
+          <a
+            href="#"
+            class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"
+          ></a>
+          <a href="#" class="">Filter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="overlay"
+    class="hidden w-full h-full fixed top-0 left-0 bg-[#0000002A] z-100"
+  ></div>
+
+  <table id="myTable" class="table-fixed border-collapse w-full">
+    <thead class="border-none pb-0.5 w-full">
+      <tr
+        class="bg-container-2 w-full dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal"
+      >
+        <th
+          class="!max-w-[819px] !w-full text-left border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering"
+        >
+          Kart adı
+        </th>
+        <th
+          class="!max-w-[819px] !w-full border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering text-left"
+        >
+          Məbləğ
+        </th>
+        <th
+          class="!max-w-[819px] !w-full border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering text-left"
+        >
+          Tarix
+        </th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="pt-2">
+    <div
+      class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3"
+    >
+      <div class="py-5 flex items-center justify-between">
+        <div class="text-[13px] flex items-center gap-2">
+          <span class="font-normal opacity-65">Səhifə sayı:</span>
+          <span id="pageCount" class="font-medium">1 / 49</span>
+        </div>
+        <div class="flex items-center gap-5">
+          <div>
+            <div id="customPagination" class="flex items-center"></div>
+          </div>
+          <div>
+            <input
+              class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+              type="text"
+              placeholder="Səhifə"
+            />
+
+            <a
+              href="#"
+              class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+              >GO</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% scripts= `
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/isciler/inside/usertable.js"></script>
+`; %>

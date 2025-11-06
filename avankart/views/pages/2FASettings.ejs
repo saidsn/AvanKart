@@ -1,0 +1,480 @@
+<% styles=` <style>
+  @keyframes scanBar {
+  0% {
+  top: -100%;
+  }
+  50% {
+  top: 100%;
+  }
+  100% {
+  top: -100%;
+  }
+  }
+  .qr-animate {
+  position: relative;
+  background-color: #fafafa;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  overflow: hidden;
+  }
+  @keyframes fadeIn {
+  from {
+  opacity: 0;
+  transform: scale(0.9);
+  }
+  to {
+  opacity: 1;
+  transform: scale(1);
+  }
+  }
+  .scan-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(2, 163, 66, 0.6);
+  animation: scanBar 5s ease-in-out forwards;
+  z-index: 10;
+  pointer-events: none;
+  }
+  </style>
+  ` %>
+  <div class="pt-3 px-5">
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+        <div class="flex items-center gap-2">
+          <a href="/"
+            class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart</a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/settings"
+            class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Tənzimləmələr</a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <a class="text-tertiary-text dark:text-tertiary-text-color-dark">2 addımlı doğrulama</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">2 addımlı doğrulama
+        </div>
+        <div class="flex gap-3">
+          <form
+            class="w-[352px] h-[230px] py-5 px-6 bg-container dark:bg-container-color-dark rounded-2xl border border-stroke dark:border-[#FFFFFF1A]"
+            onsubmit="return false;" id="toggleEmailForm" data-url="/settings/change-otp">
+            <div
+              class="w-15 h-15 bg-success-bg rounded-[500px] border-[.5px] border-success dark:border-success-color-dark flex items-center justify-center">
+              <div class="iconex iconex-shield-1-1 w-6 h-6 text-success dark:text-success-color-dark"></div>
+            </div>
+            <div class="text-[17px] text-messages dark:text-primary-text-color-dark font-semibold pt-3 pb-[7px]">Email
+              doğrulama</div>
+            <div class="text-[13px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal pb-5">Email
+              adresinizi təsdiqləyərək hesabınızı daha güvənli saxlayın</div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="hidden" name="changed" value="email">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <input type="checkbox" class="sr-only peer" <%= user.otp_email_status === 1 ? 'checked' : '' %>>
+              <div 
+              onclick="toggleEmail()"
+                class="w-10 h-[22px] rounded-[500px] p-[2px] bg-switch dark:bg-switch-dark peer peer-checked:bg-focus dark:peer-checked:bg-focus-color-dark after:content-[''] after:absolute after:bg-switch-2 after:border after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:after:translate-x-4.5">
+              </div>
+            </label>
+          </form>
+          <form
+            class="w-[352px] h-[230px] py-5 px-6 bg-container dark:bg-container-color-dark rounded-2xl border border-stroke dark:border-[#FFFFFF1A]"
+            onsubmit="return false;" id="toggleNomreForm" data-url="/settings/change-otp">
+            <div
+              class="w-15 h-15 bg-success-bg rounded-[500px] border-[.5px] border-success dark:border-success-color-dark flex items-center justify-center">
+              <div class="iconex iconex-iphone-1 w-6 h-6 text-success dark:text-success-color-dark"></div>
+            </div>
+            <div class="text-[17px] text-messages dark:text-primary-text-color-dark font-semibold pt-3 pb-[7px]">Nömrə
+              doğrulama</div>
+            <div class="w-[250px] text-[13px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal pb-5">
+              Telefon nömrənizi əlavə edərək hesabınızı daha güvənli saxlayın</div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="hidden" name="changed" value="sms">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <input type="checkbox" class="sr-only peer" <%= user.otp_sms_status === 1  ? 'checked' : '' %>>
+              <div onclick="toggleNomre('toggleNomre')"
+                class="w-10 h-[22px] rounded-[500px] p-[2px] bg-switch dark:bg-switch-dark peer peer-checked:bg-focus dark:peer-checked:bg-focus-color-dark after:content-[''] after:absolute after:bg-switch-2 after:border after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:after:translate-x-4.5">
+              </div>
+            </label>
+          </form>
+          <form
+            class="w-[352px] h-[230px] py-5 px-6 bg-container dark:bg-container-color-dark rounded-2xl border border-stroke dark:border-[#FFFFFF1A]"
+            onsubmit="return false;" id="toggleAuthenticatorForm" data-url="/settings/change-otp">
+            <div
+              class="w-15 h-15 bg-success-bg rounded-[500px] border-[.5px] border-success dark:border-success-color-dark flex items-center justify-center">
+              <div class="iconex iconex-scanner-1 w-6 h-6 text-success dark:text-success-color-dark"></div>
+            </div>
+            <div class="text-[17px] text-messages dark:text-primary-text-color-dark font-semibold pt-3 pb-[7px]">
+              Authenticator</div>
+            <div class="w-[250px] text-[13px] text-tertiary-text dark:text-tertiary-text-color-dark font-normal pb-5">QR
+              kod və ya Auth key ilə hesabınızı daha güvənli saxlayın</div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only peer" <%= user.otp_authenticator_status === 1 ? 'checked' : '' %>>
+              <input type="hidden" name="changed" value="authenticator">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <div onclick="toggleAuthenticator('toggleAuthenticator')"
+                class="w-10 h-[22px] rounded-[500px] p-[2px] bg-switch dark:bg-switch-dark peer peer-checked:bg-focus dark:peer-checked:bg-focus-color-dark after:content-[''] after:absolute after:bg-switch-2 after:border after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:after:translate-x-4.5">
+              </div>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="overlay" class="hidden fixed top-0 left-0 w-full h-full bg-[#0000002A] z-50 "></div>
+
+  <!-- EMAIL DOĞRULAMA POPUP -->
+  <form
+    class="emaildogrulama-div hidden w-[450px] dark:bg-table-hover-dark bg-body-bg border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50"
+    onsubmit="return false;" id="toggleEmailOtpForm" data-url="/settings/accept-otp">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="flex items-center justify-between py-0.5 mb-5">
+      <span class="text-[15px] font-medium dark:text-white">2 addımlı doğrulama</span>
+      <img onclick="toggleEmail()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden" />
+      <img onclick="toggleEmail()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+    <div class="mt-5">
+      <div>
+        <h1 class="text-[22px] font-semibold pb-1 dark:text-white">OTP</h1>
+        <div class="text-[13px] font-medium dark:text-white">
+          <%= user.email %> <span class="font-normal opacity-65">email adresinə göndərilən 6 rəqəmli şifrəni daxil
+              edin</span>
+        </div>
+      </div>
+      <div class="w-full text-center space-y-4">
+        <div id="countdown"
+          class="text-messages my-6 dark:bg-inverse-surface dark:text-white bg-inverse-on-surface rounded-full w-[60px] h-[27px] mx-auto py-1 text-[12px] mb-[24px] font-medium leading--[160%] font-poppins">
+          4:59
+        </div>
+        <div class="grid grid-cols-6 gap-2">
+          <input type="text" maxlength="1" name="otp1" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp2" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp3" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp4" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp5" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp6" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+        </div>
+        <div class="mt-6 flex items-center justify-center gap-4">
+          <a href="#" class="text-[12px] font-normal opacity-65 dark:text-white">Email adresinə mesaj gəlmədi?</a>
+          <a href="#" class="text-[12px] font-medium dark:text-white" onclick="sendNewOtp('countdown')">Yenidən göndər</a>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-3 mt-[30px]">
+        <button type="button"
+          class="text-[13px] font-medium bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] cursor-pointer dark:text-on-surface-variant-dark dark:bg-surface-bright-dark"
+          onclick="toggleEmail()">Ləğv et</button>
+        <button type="submit"
+          class="text-[13px] font-medium bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:bg-hover-button"
+          onclick="submitForm('toggleEmailOtpForm')"
+          >Təsdiqlə</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- EMAIL SUCCESS POPUP -->
+  <div
+    class="email-ugurlu w-[450px] h-[306px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <div class="flex items-center justify-end">
+      <img src="/images/settings/Close.svg" alt="Close" class="cursor-pointer block dark:hidden"
+        onclick="submitEmail()">
+      <img src="/images/settings/close-dark.svg" alt="Close" class="cursor-pointer hidden dark:block"
+        onclick="submitEmail()">
+    </div>
+    <div class="mt-5 flex items-center justify-center flex-col">
+      <img src="/images/settings/Shield.svg" alt="Shield">
+      <span class="text-[22px] font-semibold mt-[32px] dark:text-white">Uğurlu</span>
+      <span class="mt-1 opacity-65 text-[13px] font-normal dark:text-white">Email ilə 2 addımlı doğrulama
+        təsdiqləndi</span>
+    </div>
+  </div>
+
+  <!-- SMS DOĞRULAMA POPUP -->
+  <form
+    class="dark:bg-table-hover-dark nomredogrulama-div w-[450px] border-[3px] bg-body-bg hidden border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50"
+    onsubmit="return false;" id="toggleNomreOtpForm" data-url="/settings/accept-otp">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="flex items-center justify-between py-0.5 mb-5">
+      <span class="text-[15px] font-medium dark:text-white">2 addımlı doğrulama</span>
+      <img onclick="toggleNomre()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden" />
+      <img onclick="toggleNomre()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+    <div class="mt-5">
+      <div>
+        <h1 class="text-[22px] font-semibold pb-1 dark:text-white">OTP</h1>
+        <div class="text-[13px] font-medium dark:text-white">
+          <% if (user.phone_suffix && user.phone) { %>
+            <% const phoneStr=user.phone.toString(); let formattedPhone='' ; if (phoneStr.length>= 9) {
+              formattedPhone = `+${user.phone_suffix} ${phoneStr.substring(0, 2)} ${phoneStr.substring(2, 5)}
+              ${phoneStr.substring(5, 7)} ${phoneStr.substring(7, 9)}`;
+              } else {
+              formattedPhone = `+${user.phone_suffix} ${user.phone}`;
+              }
+              %>
+              <%= formattedPhone %> <span class="font-normal opacity-65">nömrəsinə göndərilən 6 rəqəmli şifrəni daxil
+                  edin</span>
+                <% } else { %>
+                  +994 50 111 22 33 <span class="font-normal opacity-65">nömrəsinə göndərilən 6 rəqəmli şifrəni daxil
+                    edin</span>
+                  <% } %>
+        </div>
+      </div>
+      <div class="w-full text-center space-y-4">
+        <div id="countdown"
+          class="text-messages my-6 dark:bg-inverse-surface dark:text-white bg-inverse-on-surface rounded-full w-[60px] h-[27px] mx-auto py-1 text-[12px] mb-[24px] font-medium leading--[160%] font-poppins">
+          4:59
+        </div>
+        <div class="grid grid-cols-6 gap-2">
+          <input type="text" maxlength="1" name="otp1" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp2" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp3" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp4" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp5" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp6" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+ hover:bg-input-hover
+ focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+ active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+ transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+        </div>
+        <div class="mt-6 flex items-center justify-center gap-4">
+          <a href="#" class="text-[12px] font-normal opacity-65 dark:text-white">Nömrənizə mesaj gəlmədi?</a>
+          <a href="#" class="text-[12px] font-medium dark:text-white" onclick="sendNewOtp('countdown')">Yenidən göndər</a>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-3 mt-[30px]">
+        <button type="button"
+          class="text-[13px] font-medium bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] cursor-pointer dark:text-on-surface-variant-dark dark:bg-surface-bright-dark"
+          onclick="toggleNomre()">Ləğv et</button>
+        <button type="submit"
+          class="text-[13px] font-medium bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:bg-hover-button"
+          onclick="submitForm('toggleNomreOtpForm')">Təsdiqlə</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- SMS SUCCESS POPUP -->
+  <div
+    class="nomre-ugurlu w-[352px] h-[274px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <div class="flex items-center justify-end">
+      <img onclick="submitNomre()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden">
+      <img onclick="submitNomre()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block">
+    </div>
+    <div class="mt-5 flex items-center justify-center flex-col">
+      <img src="/images/settings/Shield.svg" alt="Shield">
+      <span class="text-[22px] font-semibold mt-[32px] !text-messages dark:text-white">Uğurlu</span>
+      <span class="mt-1 opacity-65 text-[13px] font-normal !text-messages dark:text-white">Nömrə ilə 2 addımlı doğrulama
+        təsdiqləndi</span>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATOR SETUP POPUP -->
+  <div
+    class="authenticator-div w-[450px] h-[544px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[18px] p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <div class="flex items-center justify-end py-0.5 mb-5">
+      <img onclick="toggleAuthenticator()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden" />
+      <img onclick="toggleAuthenticator()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+    <div class="mt-5 m-auto text-center">
+      <div>
+        <h1 class="text-[22px] font-semibold pb-1 dark:text-white">Google Authenticator</h1>
+        <div class="text-[13px] font-normal opacity-65 dark:text-white">
+          QR kod və ya Auth Key ilə 2 addımlı doğrulamanı aktivləşdirin
+        </div>
+      </div>
+      <div class="w-full text-center space-y-4">
+        <div id="qrBox"
+          class="my-6 dark:!bg-table-hover-dark bg-container-2 w-[180px] h-[180px] p-[15px] m-auto rounded-[8px] relative overflow-hidden">
+          <div class="scan-bar"></div>
+
+          <img src="" alt="Alarm Clock" id="qrImageCont" class="hidden">
+
+        </div>
+        <div
+          class="dark:bg-transparent bg-container-2 flex items-center justify-center gap-[18.5px] w-[317px] h-[50px] m-auto rounded-[500px]">
+          <div class="text-[17px] font-semibold dark:text-white">XXXX - XXXX - XXXX - XXXX</div>
+          <div class="icon iconex-copy-1 cursor-pointer dark:text-white"></div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center flex-col w-full gap-3 mt-[30px] mb-6">
+        <a href="#"
+          class="text-[13px] font-medium w-full bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] hover:bg-hover-button"
+          onclick="ireliAuthenticator()">İrəli</a>
+        <a href="#"
+          class="text-[13px] font-medium w-full bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+          onclick="toggleAuthenticator()">Ləğv et</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATOR OTP POPUP -->
+  <form
+    class="authenticator-tesdiq w-[450px] h-[396px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50"
+    onsubmit="return false;" id="toggleAuthenticatorOtpForm" data-url="/settings/accept-otp">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="flex items-center justify-end py-0.5 mb-5">
+      <img onclick="ireliAuthenticator()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden" />
+      <img onclick="ireliAuthenticator()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+    <div id="otpContainer" class="mt-5 m-auto text-center">
+      <div>
+        <h1 class="text-[22px] font-semibold pb-1 dark:text-white">Google Authenticator</h1>
+        <div class="text-[13px] font-normal opacity-65 dark:text-white">
+          Authentication mobil tətbiqndə sizə təqdim edilmiş 6 rəqəmli pin kodu daxil edin
+        </div>
+      </div>
+      <div class="w-full text-center space-y-4">
+        <div class="grid grid-cols-6 gap-2 my-6">
+          <input type="text" maxlength="1" name="otp1" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp2" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp3" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp4" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp5" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+          <input type="text" maxlength="1" name="otp6" class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark
+hover:bg-input-hover
+focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" required />
+        </div>
+      </div>
+      <div id="countdown2"
+        class="text-messages my-6 dark:bg-inverse-surface dark:text-white bg-inverse-on-surface rounded-full w-[60px] h-[27px] mx-auto py-1 text-[12px] mb-[24px] font-medium leading--[160%] font-poppins">
+        00:30
+      </div>
+      <div class="flex items-center justify-center flex-col w-full gap-3 mb-[30px]">
+        <button type="submit"
+          class="text-[13px] font-medium w-full bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:hover-button hover:bg-hover-button"
+          onclick="submitForm('toggleAuthenticatorOtpForm')">Təsdiqlə</button>
+        <button type="button"
+          class="text-[13px] font-medium w-full bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] cursor-pointer dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+          onclick="ireliAuthenticator()">Ləğv et</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- AUTHENTICATOR SUCCESS POPUP -->
+  <div
+    class="authenticator-ugurlu w-[352px] h-[274px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <div class="flex items-center justify-end">
+      <img onclick="submitTesdiq()" src="/images/settings/Close.svg" alt="Close"
+        class="cursor-pointer block dark:hidden">
+      <img onclick="submitTesdiq()" src="/images/settings/close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block">
+    </div>
+    <div class="mt-5 flex items-center justify-center flex-col">
+      <img src="/images/settings/Shield.svg" alt="Shield">
+      <span class="text-[22px] font-semibold mt-[32px] text-messages dark:text-white">Uğurlu</span>
+      <span class="mt-1 opacity-65 text-[13px] font-normal dark:text-white">Auth key ilə 2 addımlı doğrulama
+        təsdiqləndi</span>
+    </div>
+  </div>
+
+  <!-- TIMEOUT MODAL -->
+  <div id="timeoutModal"
+    class="w-[450px] dark:bg-table-hover-dark bg-body-bg hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <div id="timeoutModal" class="flex items-center justify-end">
+      <img src="/images/settings/Close.svg" alt="Close" class="cursor-pointer block dark:hidden"
+        onclick="closeVaxtBitdi()">
+      <img src="/images/settings/close-dark.svg" alt="Close" class="cursor-pointer hidden dark:block"
+        onclick="closeVaxtBitdi()">
+    </div>
+    <div class="mt-5 flex items-center justify-center flex-col">
+      <img src="/images/settings/Alarm clock.svg" alt="Alarm Clock" class="pb-6 block dark:hidden">
+      <img src="/images/settings/Alarm clock.svg" alt="Alarm Clock" class="pb-6 hidden dark:block">
+      <div class="mt-6 flex items-center justify-center flex-col">
+        <span class="text-[22px] font-semibold p dark:text-white">Vaxtı bitdi!</span>
+        <span class="text-[13px] font-normal opacity-65 dark:text-white">Təqdim edilən pin kodun vaxtı bitdi.</span>
+      </div>
+      <div class="w-full mt-[30px]">
+        <div
+          class="w-full h-[34px] flex items-center justify-center flex-col rounded-[100px] bg-primary text-body-bg text-[13px] font-medium cursor-pointer">
+          Yenidən yoxla</div>
+        <div
+          class="mt-3 mb-6 w-full h-[34px] flex items-center justify-center flex-col rounded-[100px] bg-surface text-on-surface-variant text-[13px] font-medium cursor-pointer dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+          onclick="closeVaxtBitdi()">Ləğv et</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <%- include('../partials/footer')%>
+  <% scripts=`
+      <script src="/js/jquery-dataTables.min.js"></script>
+      <script  src="/js/settings/settings.js"></script>
+      <script src="/js/settings/settings-2.js"></script>
+      <script src="/js/settings/settings-3.js"></script>
+      <script src="/js/settings/settingsTable.js"></script>
+      <script src="/js/submitForm.js"></script>
+      ` %>

@@ -1,0 +1,945 @@
+<div>
+  <div class="text-[13px] font-medium font-poppins mb-3">
+    <a href="/" class="dark:text-white">Avankart</a>
+    <span class="text-messages pl-[15.5px] pr-[19.5px] dark:text-white">/</span>
+    <a href="" class="opacity-65 dark:text-white">Aktiv cihazlar</a>
+  </div>
+  <div class="flex items-center justify-between border-b-[0.5px] border-stroke">
+    <div
+      id="toggleContainer"
+      class="flex !mb-[12.5px] gap-[8px] mt-[12.5px] items-center border border-surface-variant rounded-full p-1 dark:bg-table-hover-dark dark:border-on-surface-variant"
+    >
+      <button
+        id="aktivButton"
+        class="px-3 py-[3px] pr-[16px] text-messages dark:text-secondary-text-color-dark text-[12px] rounded-full font-medium hover:dark:text-primary-text-color-dark cursor-pointer bg-inverse-on-surface dark:bg-[#2E3135]"
+      >
+        Aktiv işçilər (<span id="aktivSay">0</span>)
+      </button>
+      <span
+        id="ayrilanlarSpan"
+        class="px-3 py-[3px] pr-[16px] text-messages dark:text-secondary-text-color-dark text-[12px] rounded-full font-medium hover:dark:text-primary-text-color-dark cursor-pointer"
+      >
+        İşdən ayrılanlar (<span id="ayrilanlarSay">0</span>)
+      </span>
+    </div>
+    <div class="flex items-center gap-2">
+      <div class="relative">
+        <input
+          type="email"
+          id="customSearch"
+          placeholder="Search"
+          class="cursor-pointer w-[237px] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-surface-variant rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-on-surface-variant"
+          autocomplete="off"
+        />
+        <span
+          id="hideeye"
+          class="icon stratis-search-02 absolute dark:!text-white dark:opacity-100 top-[8px] cursor-pointer text-messages opacity-[30%] right-[12px] !w-[15px] !h-[15px]"
+        ></span>
+      </div>
+
+      <div id="reload_btn" class="w-[155px] h-[34px] border-[1px] border-surface-variant rounded-[100px] flex items-center justify-between gap-2 pl-[18px] pr-[20px] hover:text-primary dark:bg-table-hover-dark dark:border-on-surface-variant dark:text-white">
+        <span class="text-[13px] font-medium">Səhifəni yenilə</span>
+        <span class="icon stratis-arrow-refresh-04 !w-[12px] !h-[12px] text-messages hover:text-messages dark:text-white"></span>
+      </div>
+      <div
+        onclick="openFilterModal()"
+        class="w-[92px] h-[34px] border-[1px] border-surface-variant rounded-[100px] flex items-center hover:text-primary gap-2 pl-[18px] pr-[20px] text-messages dark:bg-table-hover-dark dark:border-on-surface-variant dark:text-white"
+      >
+        <a
+          href="#"
+          class="icon stratis-filter !w-[12px] !h-[9px] text-messages hover:text-messages dark:text-white"
+        ></a>
+        <a href="#" class="text-[13px] font-medium">Filter</a>
+      </div>
+      <div
+        onclick="toggleIsci()"
+        class="w-[129px] h-[34px] bg-primary rounded-[100px] text-body-bg flex items-center justify-center gap-3 pl-[22px] pr-[18px] hover:bg-hover-button"
+      >
+        <a
+          href="#"
+          class="icon stratis-user-profile-add-02 !w-[13px] !h-[12px]"
+        ></a>
+        <a href="#" class="text-[13px] font-medium">Yeni işçi</a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="overlay"
+    class="hidden w-full h-full fixed top-0 left-0 bg-[#0000002A] z-100"
+  ></div>
+  <!-- <form
+    action=""
+    onsubmit="return false"
+    data-url="/partner/get-user-data"
+    id="getUserForm"
+  >
+    <input type="text" name="partnyor_id" />
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <button onclick="submitForm(`getUser`)">Submit</button>
+  </form> -->
+
+  <form
+    id="filterPopForm"
+    class="!w-[450px] hidden p-6 rounded-2xl border-[3px] border-[#0000001A] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] text-messages fixed top-[50%] left-[50%] transform -translate-1/2 z-101 bg-body-bg dark:bg-table-hover-dark"
+    action="#"
+    method="post"
+    onsubmit="return false"
+  >
+    <div>
+      <div class="flex items-center justify-between">
+        <div class="text-[15px] font-medium text-messages dark:text-white">
+          Filter
+        </div>
+        <img
+          src="/images/Sorgular Pages Images/Close.svg"
+          alt="Close"
+          onclick="openFilterModal()"
+          class="block dark:hidden"
+        />
+        <img
+          src="/images/avankart-partner-pages-images/Close-dark.svg"
+          alt="Close"
+          onclick="openFilterModal()"
+          class="hidden dark:block"
+        />
+      </div>
+    </div>
+    <div class="mt-3">
+      <span class="text-[12px] font-medium opacity-65 dark:text-white"
+        >Tarix aralığı</span
+      >
+      <div class="flex items-center gap-3">
+        <div class="w-1/2">
+          <div class="relative w-full">
+            <input
+              id="startDate"
+              name="startDate"
+              class="dark:text-primary-text-color-dark custom-date cursor-pointer text-[13px] font-normal placeholder-[#BFC8CC] dark:placeholder-[#636B6F] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-full px-3 py-[6.5px] w-full appearance-none focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+              type="date"
+              placeholder="dd/mm/yyyy"
+            />
+            <div
+              onclick="openDatePicker('startDate')"
+              id="startCalendar"
+              class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"
+            ></div>
+          </div>
+          <div class="flex items-center gap-2 mt-1.5">
+            <div
+              class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-primary-text-color-dark"
+            ></div>
+            <div
+              class="text-[11px] font-normal opacity-50 dark:text-primary-text-color-dark"
+            >
+              Başlanğıc tarixini qeyd edin
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2">
+          <div class="relative w-full">
+            <input
+              id="endDate"
+              name="endDate"
+              class="dark:text-primary-text-color-dark custom-date cursor-pointer text-[13px] font-normal placeholder-[#BFC8CC] dark:placeholder-[#636B6F] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-full px-3 py-[6.5px] w-full appearance-none focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+              type="date"
+              placeholder="dd/mm/yyyy"
+            />
+            <div
+              onclick="openDatePicker('endDate')"
+              id="endCalendar"
+              class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"
+            ></div>
+          </div>
+          <div class="flex items-center gap-2 mt-1.5">
+            <div
+              class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-primary-text-color-dark"
+            ></div>
+            <div
+              class="text-[11px] font-normal opacity-50 dark:text-primary-text-color-dark"
+            >
+              Son tarixi qeyd edin
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-4">
+      <span class="text-[12px] font-medium opacity-65 dark:text-white"
+        >Cinsi</span
+      >
+      <div class="mt-[6px]">
+        <div class="flex items-center flex-wrap gap-4 dark:text-white">
+          <label
+            for="newCheckbox1"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+          >
+            <input
+              type="checkbox"
+              id="newCheckbox1"
+              name="gender"
+              value="male"
+              class="peer hidden"
+            />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22] transition"
+            >
+              <div
+                class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+              ></div>
+            </div>
+            <div>Kişi</div>
+          </label>
+          <label
+            for="newCheckbox2"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+          >
+            <input
+              type="checkbox"
+              id="newCheckbox2"
+              name="gender"
+              value="female"
+              class="peer hidden"
+            />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22] transition"
+            >
+              <div
+                class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+              ></div>
+            </div>
+            <div>Qadın</div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-end gap-3 mt-[30px]">
+      <button
+        type="button"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-white"
+        onclick="openFilterModal()"
+      >
+        Bağla
+      </button>
+      <button
+        type="reset"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-white"
+      >
+        Filterləri təmizlə
+      </button>
+      <button
+        type="button"
+        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+        onclick="redrawMyTable3()"
+      >
+        Filterlə
+      </button>
+    </div>
+  </form>
+
+  <!-- Yeni ishci Pop-Up -->
+
+  <div
+    id="yeni-isci-div"
+    class="hidden !z-[999] fixed transform -translate-x-1/2 -translate-y-1/2 top-[50%] left-[50%]"
+  >
+    <div
+      class="relative w-[450px] h-[418px] dark:bg-menu-dark border-[#0000001A] border-[2px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white z-50"
+    >
+      <div class="flex items-center justify-end p-6" onclick="toggleIsci()">
+        <img
+          src="/images/Sorgular Pages Images/Close.svg"
+          alt="Close"
+          class="cursor-pointer block dark:hidden"
+        />
+        <img
+          src="/images/avankart-partner-pages-images/Close-dark.svg"
+          alt="Close"
+          class="hidden dark:block"
+        />
+      </div>
+      <div
+        class="gap-[3px] font-normal w-[380px] m-auto text-[12px] leading-[160%] text-center font-poppins text-messages opacity-100"
+      >
+        <div
+          class="text-[17px] font-semibold mb-[4px] text-messages dark:text-white"
+        >
+          İşçi əlavə et
+        </div>
+        <div class="font-normal opacity-65 text-messages dark:text-[#FFFFFFA6]">
+          İşçiləri birbaşa exceldən əlavə edə bilərsiniz və ya ID nömrəsini
+          yazaraq əlavə edə bilərsiniz
+        </div>
+      </div>
+
+      <div class="mt-[24px] ml-[24px]">
+        <label
+          class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages opacity-65 dark:text-white"
+          >ID</label
+        >
+        <input
+          id="idInput"
+          type="text"
+          placeholder="İşçinin ID nömrəsini daxil edin"
+          class="cursor-pointer max-w-[400px] w-[100%] h-[34px] dark:bg-menu-dark dark:border-[#ffffff1A] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+        />
+        <div id="searchError" class="text-red-500 text-[12px] mt-1 hidden">
+          Xəta baş verdi
+        </div>
+      </div>
+
+      <button
+        id="submitByIdBtn"
+        type="button"
+        class="cursor-pointer mt-[30px] flex items-center justify-center mx-[24px] w-[100%] max-w-[400px] font-poppins leading-[160%] font-medium h-[40px] bg-primary rounded-full text-on-primary text-[15px] hover:bg-hover-button focus:bg-primary focus:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.2)] disabled:bg-primary disabled:opacity-[30%] transition-all ease-out duration-300 focus:outline-none"
+      >
+        ID üzrə axtar
+        <span class="icon stratis-search-02 w-[13px] h-[13px] ml-[6px]"></span>
+      </button>
+
+      <div
+        class="flex items-center justify-center my-[26px] max-w-[400px] m-auto"
+      >
+        <div
+          class="w-full border-t border-stroke border-[0.5px] dark:bg-[#ffffff1A]"
+        ></div>
+        <span
+          class="mx-2 w-[28px] px-[2.5px] text-messages dark:text-white opacity-[50%] font-poppins text-[10px] font-medium leading-none whitespace-nowrap"
+          >və ya</span
+        >
+        <div
+          class="w-full border-t border-stroke border-[0.5px] dark:bg-[#ffffff1A]"
+        ></div>
+      </div>
+
+      <button
+        type="submit"
+        onclick="selectExcelFile()"
+        class="flex justify-center items-center gap-[10px] dark:text-white cursor-pointer w-[100%] mx-[24px] max-w-[400px] font-poppins leading-[160%] font-medium h-[40px] border-[1px] border-surface-variant rounded-full text-[13px] text-messages hover:text-focus focus:text-focus disabled:border-[#7450864D] disabled:text-[#7450864D]"
+      >
+        <img
+          src="/images/avankart-partner-pages-images/vscode-icons_file-type-excel.svg"
+          alt="excel"
+        />
+        Exceldən əlavə et
+      </button>
+
+      <!-- Gizli input -->
+      <input
+        type="file"
+        id="excelFileInput"
+        accept=".xlsx, .xls"
+        class="hidden"
+      />
+    </div>
+  </div>
+
+  <!-- Id -->
+  <div
+    id="ishciId"
+    class="hidden z-100 fixed transform -translate-y-1/2 -translate-x-1/2 top-[50%] left-[50%]"
+  >
+    <div
+      class="relative w-[450px] border-[#0000001A] dark:border-[#FFFFFF1A] border-[2px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-menu-dark z-0"
+    >
+      <div class="flex items-center justify-end p-6">
+        <span
+          onclick="SearchId()"
+          class="icon stratis-x-02 cursor-pointer text-xs text-messages dark:text-primary-text-color-dark"
+        ></span>
+      </div>
+      <div
+        class="gap-[3px] font-normal w-[380px] m-auto text-[12px] leading-[160%] text-center font-poppins text-messages opacity-100"
+      >
+        <div
+          class="text-[17px] font-semibold mb-[4px] dark:text-primary-text-color-dark"
+        >
+          İşçi əlavə et
+        </div>
+        <div class="font-normal opacity-65 dark:text-secondary-text-color-dark">
+          İşçinin vəzifəsini təyin edərək əlavə edin
+        </div>
+      </div>
+
+      <div
+        id="userInfoResult"
+        class="space-y-3 text-[12px] text-messages max-w-[400px] w-[100%] m-auto pt-[36px]"
+      ></div>
+
+      <button
+        id="inviteButton"
+        type="button"
+        class="cursor-pointer mt-[30px] flex items-center justify-center mx-[24px] w-[100%] max-w-[400px] font-poppins leading-[160%] font-medium h-[40px] bg-primary rounded-full text-on-primary text-[15px] hover:bg-hover-button focus:bg-primary focus:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.2)] disabled:bg-primary disabled:opacity-[30%] transition-all ease-out duration-300 focus:outline-none"
+      >
+        Əlavə et
+      </button>
+
+      <div
+        class="flex items-center justify-center my-[26px] max-w-[400px] m-auto"
+      >
+        <div
+          class="w-full border-t border-stroke border-[0.5px] dark:border-[#FFFFFF1A]"
+        ></div>
+        <span
+          class="mx-2 w-[28px] px-[2.5px] text-messages dark:text-tertiary-text-color-dark opacity-[50%] font-poppins text-[10px] font-medium leading-none whitespace-nowrap"
+          >və ya</span
+        >
+        <div
+          class="w-full border-t border-stroke border-[0.5px] dark:border-[#FFFFFF1A]"
+        ></div>
+      </div>
+
+      <button
+        type="submit"
+        onclick="excelPopUp()"
+        class="flex justify-center items-center dark:text-primary-text-color-dark gap-[10px] cursor-pointer w-[100%] my-6 mx-[24px] max-w-[400px] font-poppins leading-[160%] font-medium h-[40px] border-[1px] border-surface-variant rounded-full text-[13px] text-messages hover:text-focus focus:text-focus disabled:border-[#7450864D] disabled:text-[#7450864D]"
+      >
+        <img
+          src="/images/avankart-partner-pages-images/vscode-icons_file-type-excel.svg"
+          alt="excel"
+        />
+        Exceldən əlavə et
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="excelIsciler"
+    class="!w-[1200px] h-[700px] hidden bg-body-bg dark:bg-menu-dark !z-100 border-[1px] border-[#0000001A] rounded-2xl fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2"
+  >
+    <div class="px-5">
+      <div class="flex items-center justify-between">
+        <div
+          class="text-[15px] font-medium text-messages py-[18px] dark:text-white"
+        >
+          Exceldən əlavə et
+        </div>
+        <div
+          class="py-[21px] cursor-pointer dark:text-white"
+          onclick="excelPopUp()"
+        >
+          <img
+            src="/images/Sorgular Pages Images/Close.svg"
+            alt="Close"
+            class="dark:invert"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <div>
+          <div class="flex flex-col">
+            <div class="pb-4 flex items-center justify-between">
+              <div
+                class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] hover:bg-input-hover dark:bg-menu-dark transition-all ease-out duration-300"
+              >
+                <input
+                  id="customSearch2"
+                  type="text"
+                  placeholder="Işçi axtar"
+                  class="dark:text-white w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:bg-menu-dark dark:border-[#ffffff1A] hover:bg-input-hover"
+                />
+                <div class="absolute right-3 dark:text-white">
+                  <div class="icon stratis-search-02"></div>
+                </div>
+              </div>
+            </div>
+
+            <table
+              id="myTable2"
+              class="table-fixed border-collapse w-full border-b-[.5px] border-b-stroke dark:bg-[#242C30]"
+            >
+              <thead class="border-none pb-0.5">
+                <tr
+                  class="bg-container-2 border-none text-xs text-tertiary-text font-base dark:bg-[#242C30]"
+                >
+                  <th
+                    class="w-[58px] border-r-[.5px] border-r-stroke px-4 py-2 rounded-l-lg"
+                  >
+                    <input
+                      type="checkbox"
+                      id="newCheckboxPop"
+                      class="peer hidden sr-only"
+                    />
+                    <label
+                      for="newCheckboxTable"
+                      class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary peer-checked:text-on-primary dark:peer-checked:text-on-primary peer-checked:border-primary dark:peer-checked:border-primary transition"
+                    >
+                      <div class="icon stratis-check-01 scale-60"></div>
+                    </label>
+                  </th>
+                  <th
+                    class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                  >
+                    ID
+                  </th>
+                  <th
+                    class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                  >
+                    Ad və soyad
+                  </th>
+                  <th
+                    class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                  >
+                    Telefon nömrəsi
+                  </th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="my-5">
+        <div class="flex items-center justify-end gap-x-3">
+          <a
+            href="#"
+            class="bg-surface text-messages py-[6.5px] px-[18px] rounded-[50px] text-[13px] font-medium dark:text-white dark:bg-[#36393E]"
+            onclick="excelPopUp()"
+            >Ləğv et</a
+          >
+          <a
+            href="#"
+            class="bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] text-[13px] font-medium hover:bg-hover-button"
+            >Əlavə et</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="iscisilDiv2"
+    class="hidden z-[9999] fixed transform -translate-x-1/2 -trasnlate-y-1/2 left-[50%]"
+  >
+    <div
+      class="relative w-[306px] h-[187px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-menu-dark z-0"
+    >
+      <div
+        class="flex items-center justify-center mt-[12px] ml-[12px] w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]"
+      >
+        <div class="icon iconex-trash-can-1 w-[14px] h-[17px] text-error"></div>
+      </div>
+
+      <div
+        class="flex flex-wrap mt-[12px] ml-[12px] gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100"
+      >
+        <span class="text-[15px] font-medium dark:text-white"
+          >İşçini silmək istədiyinizə əminsiniz?</span
+        >
+        <span class="font-medium opacity-65 text-white">Silinən işçilər "</span>
+        <span class="text-white">İşdə ayrılan</span>
+        <span class="font-medium opacity-65 text-white">” səhifəsində</span>
+
+        <span class="font-medium opacity-65 text-white">saxlanılacaq</span>
+      </div>
+
+      <div class="absolute bottom-[12px] right-[12px] flex gap-[12px]">
+        <button
+          href="#"
+          class="text-[12px] cursor-pointer text-on-surface-variant font-medium bg-surface-bright dark:bg-surface-bright-dark dark:text-white rounded-[50px] !w-[51px] !h-[25px]"
+          onclick="deletePopUp()"
+        >
+          Xeyr
+        </button>
+        <button
+          href="#"
+          class="cursor-pointer text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px]"
+          onclick="toggleEmail()"
+        >
+          Bəli,sil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="emaildogrulama-div hidden w-[450px] dark:bg-table-hover-dark bg-body-bg border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50"
+  >
+    <div class="flex items-center justify-between py-0.5 mb-5">
+      <span class="text-[15px] font-medium dark:text-white"
+        >Email təsdiqləmə</span
+      >
+      <img
+        onclick="toggleEmail()"
+        src="/images/settings/Close.svg"
+        alt="Close"
+        class="cursor-pointer block dark:hidden"
+      />
+      <img
+        onclick="toggleEmail()"
+        src="/images/settings/close-dark.svg"
+        alt="Close"
+        class="cursor-pointer hidden dark:block"
+      />
+    </div>
+    <div class="mt-5">
+      <div>
+        <h1 class="text-[22px] font-semibold pb-1 dark:text-white">OTP</h1>
+        <div class="text-[13px] font-medium dark:text-white">
+          ramin.orucovvv@gmail.com
+          <span class="font-normal opacity-65"
+            >ramin.orucovvv@gmail.com email adresinə göndərilən 6 rəqəmli
+            şifrəni daxil edin</span
+          >
+        </div>
+      </div>
+      <form action="#">
+        <div class="w-full text-center space-y-4">
+          <div
+            id="countdown"
+            class="text-messages my-6 dark:bg-inverse-surface dark:text-white bg-inverse-on-surface rounded-full w-[60px] h-[27px] mx-auto py-1 text-[12px] mb-[24px] font-medium leading--[160%] font-poppins"
+          >
+            4:59
+          </div>
+
+          <div class="grid grid-cols-6 gap-2">
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="otp-input w-[60px] h-[34px] border-[1px] rounded-[8px] border-stroke border-opacity-[10%] pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white"
+              required
+            />
+          </div>
+          <div class="mt-6 flex items-center justify-center gap-4">
+            <a
+              href="#"
+              class="text-[12px] font-normal opacity-65 dark:text-white"
+              >Email adresinə mesaj gəlmədi?</a
+            >
+            <a href="#" class="text-[12px] font-medium dark:text-white"
+              >Yenidən göndər</a
+            >
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 mt-[30px]">
+          <button
+            type="button"
+            class="text-[13px] font-medium bg-surface text-on-surface-variant py-[6.5px] px-[18px] rounded-[50px] cursor-pointer dark:text-on-surface-variant-dark dark:bg-surface-bright-dark"
+            onclick="toggleEmail()"
+          >
+            Ləğv et
+          </button>
+          <button
+            type="submit"
+            class="text-[13px] font-medium bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:bg-hover-button"
+            onclick="submitEmail()"
+          >
+            Təsdiqlə
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div
+    id="GeriqaytarPop"
+    class="z-[9999] hidden fixed transform -translate-x-1/2 -trasnlate-y-1/2 left-[50%] top-1/3"
+  >
+    <div
+      class="relative w-[355px] h-[165px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-menu-dark z-0"
+    >
+      <div
+        class="flex items-center dark:bg-transparent justify-center mt-[12px] ml-[12px] w-[40px] h-[40px] cursor-pointer bg-container-2 rounded-[50%]"
+      >
+        <div class="icon stratis-refresh-01 text-black w-5 h-5"></div>
+      </div>
+
+      <div
+        class="flex flex-wrap mt-[12px] ml-[12px] gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100"
+      >
+        <span class="text-[15px] font-medium dark:text-white"
+          >Silinən işçini geri qaytarmaq istədiyinizə <br />
+          əminsiniz?</span
+        >
+      </div>
+
+      <div class="absolute bottom-[12px] right-[12px] flex gap-[12px]">
+        <button
+          href="#"
+          class="text-[12px] cursor-pointer text-on-surface-variant font-medium bg-surface-bright dark:bg-surface-bright-dark dark:text-white rounded-[50px] !w-[51px] !h-[25px]"
+          onclick="geriqaytarClick()"
+        >
+          Xeyr
+        </button>
+        <button
+          href="#"
+          class="cursor-pointer text-[12px] text-on-primary font-medium bg-primary rounded-[50px] !w-[118px] !h-[25px]"
+          onclick="toggleEmail2()"
+        >
+          Bəli, geri qaytar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="aktivWrapper"
+    class="w-full rounded-[8px] mt-3 flex flex-col gap-3 mb-2 relative"
+  >
+    <table id="myTable3">
+      <thead class="border-none pb-0.5">
+        <tr
+          class="bg-container-2 border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white"
+        >
+          <th
+            class="w-[58px] border-r-[.5px] border-r-stroke px-4 py-2 rounded-l-lg"
+          >
+            <input type="checkbox" id="newCheckbox" class="peer hidden" />
+            <label
+              for="newCheckbox"
+              class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary peer-checked:text-on-primary dark:peer-checked:text-primary-text-color-dark peer-checked:border-primary transition"
+            >
+              <div class="icon stratis-check-01 scale-60"></div>
+            </label>
+          </th>
+          <th class="px-4 filtering">Ad və soyad</th>
+          <th class="px-4 py-2 filtering">Cinsi</th>
+          <th class="px-4 py-2 filtering">Email</th>
+          <th class="px-4 py-2 filtering">Qr kod sayı</th>
+          <th class="px-4 py-2 filtering">Telefon nömrəsi</th>
+          <th class="px-4 py-2 filtering">Başlama tarixi</th>
+          <th class="px-4 py-2 rounded-r-lg"></th>
+        </tr>
+      </thead>
+      <tbody class="font-base text-xs">
+        <!-- Table rows will be populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    id="ayrilanWrapper"
+    class="hidden w-full rounded-[8px] mt-3 flex flex-col gap-3 mb-2 relative"
+  >
+    <table id="myTableLeft">
+      <thead class="border-none pb-0.5">
+        <tr
+          class="bg-container-2 border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white"
+        >
+          <th
+            class="w-[58px] border-r-[.5px] border-r-stroke px-4 py-2 rounded-l-lg"
+          >
+            <input type="checkbox" id="newCheckboxLeft" class="peer hidden" />
+            <label
+              for="newCheckboxLeft"
+              class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary peer-checked:text-on-primary dark:peer-checked:text-primary-text-color-dark peer-checked:border-primary transition"
+            >
+              <div class="icon stratis-check-01 scale-60"></div>
+            </label>
+          </th>
+          <th class="px-4 filtering">Ad və soyad</th>
+          <th class="px-4 py-2 filtering">Cinsi</th>
+          <th class="px-4 py-2 filtering">Email</th>
+          <th class="px-4 py-2 filtering">Qr kod sayı</th>
+          <th class="px-4 py-2 filtering">Telefon nömrəsi</th>
+          <th class="px-4 py-2 filtering">Başlama tarixi</th>
+          <th class="px-4 py-2 filtering">Ayrılma tarixi</th>
+          <th class="px-4 py-2 rounded-r-lg"></th>
+        </tr>
+      </thead>
+      <tbody class="font-base text-xs">
+        <!-- Table rows will be populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+  <div class="pt-3">
+    <div
+      class="w-full bg-sidebar-bg rounded-t-[8px] py-[10px] px-6 flex flex-col gap-3 dark:bg-table-hover-dark"
+    >
+      <div class="py-2.5 flex items-center justify-between">
+        <div
+          class="text-[13px] flex items-center gap-2 text-messages dark:text-white"
+        >
+          <span class="font-normal opacity-65">Səhifə sayı:</span>
+          <span id="pageCount" class="font-medium">1 / 1</span>
+        </div>
+        <div class="max-w-[584px] flex items-center gap-5">
+          <div>
+            <div
+              id="customPaginationTable1"
+              class="flex items-center dark:text-white"
+            ></div>
+          </div>
+          <div class="flex gap-3">
+            <input
+              class="page-input w-[63px] h-[32px] text-[12px] text-center text-on-surface-variant-dark font-normal bg-menu hover:bg-input-hover border border-stroke rounded-[8px] placeholder-on-surface-variant-dark focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:text-white dark:border-[#ffffff1A]"
+              type="text"
+              placeholder="Səhifə"
+            />
+            <a
+              href="#"
+              class="go-button text-[13px] text-body-bg font-medium bg-primary hover:bg-hover-button rounded-[8px] py-[6.5px] px-[18px]"
+              >GO</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- styles = `
+<link rel="stylesheet" href="/css/jquery-ui.css" />
+<style>
+  /* Add this to your CSS file */
+  .dropdown-triangle::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+    z-index: 51;
+  }
+
+  .dark .dropdown-triangle::before {
+    border-bottom-color: #161e22;
+  }
+
+  .dropdown-triangle::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #0000001a;
+    z-index: 50;
+  }
+
+  .dark .dropdown-triangle::after {
+    border-bottom-color: #ffffff1a;
+  }
+  .dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  .dropdown-trigger {
+    position: relative;
+  }
+
+  .dt-column-order {
+    display: none !important;
+  }
+
+  table,
+  thead,
+  table.dataTable > thead > tr > th,
+  table.dataTable > thead > tr > td,
+  table.dataTable > tbody > tr:last-child > *,
+  div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border: none;
+    font-weight: 400;
+  }
+
+  td {
+    padding: 20px;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+  /* slider-container */
+  .slider-container {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .value-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  #slider-range {
+    height: 6px;
+    border: none;
+    background: #9c78ae;
+    border-radius: 3px;
+  }
+
+  #slider-range .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid #745086;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    top: -7px;
+    margin-left: -10px;
+  }
+
+  .dark .ui-slider-range {
+    background-color: #2e3125;
+  }
+
+  .ui-slider-range {
+    background-color: #e6e6e6;
+  }
+</style>
+` %> <%- scripts = `
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/avankart-partner-pages-js/leftPeople.js"></script>
+<script>
+  let isIsciOpen = false;
+</script>
+
+<script src="/js/avankart-partner-pages-js/pop-up.js"></script>
+<script src="/js/avankart-partner-pages-js/notAndSupport.js"></script>
+` %>

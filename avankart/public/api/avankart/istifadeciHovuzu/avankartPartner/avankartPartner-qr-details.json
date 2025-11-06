@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": 220.00,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": 220.00,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": 220.00,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": 300.00,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğursuz"
+    },
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Hədiyyə",
+      "amount": 2.20,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": 300.00,
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğursuz"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

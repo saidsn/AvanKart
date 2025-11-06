@@ -1,0 +1,395 @@
+<div>
+  <!-- Breadcrumb Navigation + Back Button -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+      <div class="flex items-center gap-2">
+        <a href="/dashboard" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart</a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="#" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Hesablaşmalar</a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/emeliyyatlar/muessise/hesablasma" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Üzv müəssisələr</a>
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-tertiary-text dark:text-tertiary-text-color-dark cursor-default">
+          <%= hesablasma ? hesablasma.company.name : 'Hesablaşma Detalları' %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <% if (error) { %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mt-4">
+      <%= error %>
+    </div>
+  <% } else if (hesablasma) { %>
+
+  <!-- Company Header Section -->
+  <div class="pb-3 rounded-lg">
+    <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-lg ">
+      <div class="bg-sidebar-bg p-3 rounded-lg h-auto">
+          <div class="flex items-center flex-wrap gap-x-2 gap-y-3 text-message b-2">
+              <div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+                  <div class="flex items-center gap-2.5">
+                      <div class="bg-table-hover w-[40px] h-[40px] rounded-full p-2 overflow-hidden">
+                          <img src="<%= hesablasma.company.logo %>" alt="Logo">
+                      </div>
+                      <div>
+                          <div class="text-[13px] font-medium"><%= hesablasma.company.name %></div>
+                          <div class="text-[13px] text-messages font-normal"> <span
+                                  class="opacity-65 pr-2">ID:</span><%= hesablasma.company.id %></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+                  <p class="text-[11px] text-tertiary-text font-normal pb-1">İnvoys nömrəsi</p>
+                  <p class="text-[13px] text-messages font-normal"><%= hesablasma.hesablasma_id || 'N/A' %></p>
+              </div>
+
+              <div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+    <p class="text-[11px] text-tertiary-text font-normal pb-1">Şirkət sayı</p>
+    <p class="text-[13px] text-messages font-normal"><%= hesablasma.company_count || 0 %></p>
+</div>
+
+<div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+    <p class="text-[11px] text-tertiary-text font-normal pb-1">Tranzaksiya sayı</p>
+    <p class="text-[13px] text-messages font-normal"><%= hesablasma.transaction_count || 0 %></p>
+</div>
+
+<div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+    <p class="text-[11px] text-tertiary-text font-normal pb-1">Məbləğ</p>
+    <p class="text-[13px] text-messages font-normal"><%= hesablasma.total ? hesablasma.total.toFixed(2) : '0.00' %> ₼</p>
+</div>
+
+<div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+    <p class="text-[11px] text-tertiary-text font-normal pb-1">Komissiya</p>
+    <p class="text-[13px] text-messages font-normal"><%= hesablasma.komissiya ? hesablasma.komissiya.toFixed(2) : '0.00' %> ₼</p>
+</div>
+
+<div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+    <p class="text-[11px] text-tertiary-text font-normal pb-1">Yekun məbləğ</p>
+    <p class="text-[13px] text-messages font-normal"><%= hesablasma.yekun_mebleg ? hesablasma.yekun_mebleg.toFixed(2) : '0.00' %> ₼</p>
+</div>
+
+              <div class="pr-8 border-r-[0.5px] border-[#0000001A]">
+                  <p class="text-[11px] text-tertiary-text font-normal pb-1">Hesablaşma tarixi</p>
+                  <p class="text-[13px] text-messages font-normal"><%= hesablasma.from_date ? new Date(hesablasma.from_date).toLocaleDateString('az-AZ') : '' %> - 
+                                                                    <%= hesablasma.end_date ? new Date(hesablasma.end_date).toLocaleDateString('az-AZ') : '' %></p>
+              </div>
+
+              <div
+                  class="flex items-center justify-start bg-container-2 dark:bg-container-2-dark px-3 py-[5px] rounded-full whitespace-nowrap overflow-hidden text-ellipsis">
+                  <span class="w-[6px] h-[6px] rounded-full <%= hesablasma.status === 'Aktiv' ? 'bg-[#4FC3F7]' : 
+                  hesablasma.status === 'Gözləyir' ? 'bg-[#FFCA28]' : 
+                  hesablasma.status === 'Tamamlandı' ? 'bg-[#66BB6A]' : 'bg-[#EF5350]' %> shrink-0 mr-2"></span>
+                  <span
+                      class="text-[13px] text-messages dark:text-primary-text-color-dark font-medium"><%= hesablasma.status %></span>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<div class="">
+  
+</div>
+
+  <!-- Transaction Details Table Header -->
+  <div class="flex flex-col gap-3 mb-3">
+    <div class="py-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+      <div class="flex items-center gap-2">
+        <button onclick="history.back()" class="flex items-center text-messages hover:text-primary cursor-pointer">
+          <div class="icon stratis-arrow-left text-sm"></div>
+        </button>
+        <div class="text-[15px] text-messages font-medium">
+          Xidmət verdiyi şirkətlər ( <span class="text-primary dark:text-primary-dark"><%= serviceCompanies ? serviceCompanies.length : 0 %></span> )
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <!-- Search Input -->
+        <div class="relative font-normal flex items-center w-[200px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus">
+          <input type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark px-3 py-2" />
+          <div class="absolute right-3">
+            <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+          </div>
+        </div>
+
+        <div id="refreshTableBtn"
+            class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+            <a href="#">Səhifəni yenilə</a>
+            <a href="#"
+                class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+        </div>
+        
+        <!-- Filter button -->
+        <div onclick="openFilterModal()"
+            class="w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+            <a href="#"
+                class="icon stratis-filter  text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+            <a href="#" class="">Filter</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Transactions Table with Sorting -->
+  <table id="myTable" class="border-collapse w-full">
+    <thead class="border-none pb-0.5">
+      <tr class="bg-container-2 table-fixed dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+        <th class="rounded-l-lg filtering text-left p-3">
+          <div class="flex items-center gap-1">
+            <span>Şirkət</span>
+          </div>
+        </th>
+        <th class="filtering text-left p-3">
+          <div class="flex items-center gap-1">
+            <span>Tranzaksiya sayı</span>
+          </div>
+        </th>
+        <th class="rounded-r-lg filtering text-left p-3">
+          <div class="flex items-center gap-1">
+            <span>Ümumi məbləğ</span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (serviceCompanies && serviceCompanies.length > 0) { %>
+        <% serviceCompanies.forEach(function(company) { %>
+          <tr class="border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] hover:bg-table-hover cursor-pointer" 
+          onclick="window.location.href='/emeliyyatlar/muessise/hesablasma/details/<%= hesablasma._id %>/transactions/<%= company.id %>'"
+          >
+            <td class="p-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+                  <% if (company.logo && company.logo !== '/default-logo.png') { %>
+                    <img src="<%= company.logo %>" alt="<%= company.name %>" class="w-full h-full object-cover">
+                  <% } else { %>
+                    <% if (company.name === 'Veysəloğlu') { %>
+                      <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                        <span class="text-red-500 text-xs font-bold">V</span>
+                      </div>
+                    <% } else { %>
+                      <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span class="text-blue-500 text-xs font-bold">
+                          <%= company.name ? company.name.charAt(0) : 'N' %>
+                        </span>
+                      </div>
+                    <% } %>
+                  <% } %>
+                </div>
+                <div>
+                  <div class="text-[13px] font-medium text-messages dark:text-primary-text-color-dark">
+                    <%= company.name || 'N/A' %>
+                  </div>
+                  <div class="text-[11px] text-messages opacity-65">
+                    ID: <%= company.id || 'N/A' %>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="p-3">
+              <span class="text-[13px] text-messages dark:text-on-primary-dark">
+                <%= company.transactionCount || 0 %>
+              </span>
+            </td>
+            <td class="p-3">
+              <span class="text-[13px] text-messages dark:text-on-primary-dark">
+                <%= company.amount ? company.amount.toFixed(2) : '0.00' %> AZN
+              </span>
+            </td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="3" class="p-6 text-center text-messages opacity-65 dark:text-primary-text-color-dark">
+            Xidmət göstərilən şirkət məlumatları mövcud deyil
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pt-3">
+                        <div
+                            class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3">
+                            <div class="py-2.5 flex items-center justify-between">
+                                <div class="text-[13px] flex items-center gap-2">
+                                    <span class="font-normal opacity-65 dark:text-secondary-text-color-dark">Səhifə
+                                        sayı:</span>
+                                    <span id="pageCount" class="font-medium dark:text-primary-text-color-dark">1 /
+                                        1</span>
+                                </div>
+                                <div class="max-w-[584px] flex items-center gap-5">
+                                    <div>
+                                        <div id="customPagination" class="flex items-center text-[13px]">
+                                            <div class="flex items-center justify-center px-3 h-8 ms-0 leading-tight opacity-50 cursor-not-allowed"
+                                                onclick="changePage(0)">
+                                                <div class="icon stratis-chevron-left"></div>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <button class="cursor-pointer w-10 h-10 rounded-[8px] hover:text-messages 
+                            bg-[#F6D9FF] text-messages" onclick="changePage(0)">1</button>
+
+                                                <button class="cursor-pointer w-10 h-10 rounded-[8px] hover:text-messages 
+                            bg-transparent text-tertiary-text" onclick="changePage(1)">2</button>
+                                            </div>
+                                            <div class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-tertiary-text"
+                                                onclick="changePage(1)">
+                                                <div class="icon stratis-chevron-right"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                                                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                                transition-all ease-out duration-300" type="text" placeholder="Səhifə">
+                                        <a href="#"
+                                            class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+  <!-- Hidden data for JavaScript -->
+  <div id="hiddenData" style="display: none;">
+    <div data-hesablasma-id="<%= hesablasma ? hesablasma.id : '' %>"></div>
+    <div data-pdf-link="<%= pdfLink || '' %>"></div>
+    <div data-card-expenses='<%- JSON.stringify(cardExpenses) %>'></div>
+    <div data-service-companies='<%- JSON.stringify(serviceCompanies) %>'></div>
+  </div>
+
+  
+  
+  
+
+  <% } %>
+</div>
+<div id="filterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <form onsubmit="return false;" id="filterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">
+                            Filter
+                        </div>
+                        <div onclick="openFilterModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 mt-2">
+                    <div class="relative">
+                        <div>
+                            <span
+                                class="text-[12px] text-tertiary-text  dark:text-tertiary-text-color-dark font-medium">Şirkətlər</span>
+                            <button id="dropdownDefaultButton_company"
+                                class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                                type="button" onclick="toggleDropdown_company()">
+                                Seçim edin
+                                <div>
+                                    <img src="/public/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                        class="w-[15px] h-[13px] dark:invert">
+                                </div>
+                            </button>
+                            <div id="dropdown_company"
+                                class="hidden absolute mt-2 w-[402px] max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A] visible">
+
+                                <label for="goory"
+                                    class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                                    <input type="checkbox" id="goory" class="peer hidden">
+                                    <div
+                                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <span class="dark:text-white">Goory Restaurant</span>
+                                </label>
+
+                                <label for="malta"
+                                    class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:bg-[#161E22] dark:hover:bg-input-hover-dark">
+                                    <input type="checkbox" id="malta" class="peer hidden">
+                                    <div
+                                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <span class="dark:text-white">Malta</span>
+                                </label>
+
+                                <label for="ozsut"
+                                    class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:bg-[#161E22] dark:hover:bg-input-hover-dark">
+                                    <input type="checkbox" id="ozsut" class="peer hidden">
+                                    <div
+                                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <span class="dark:text-white">Özsüt</span>
+                                </label>
+
+                                <label for="faxrali"
+                                    class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:bg-[#161E22] dark:hover:bg-input-hover-dark">
+                                    <input type="checkbox" id="faxrali" class="peer hidden">
+                                    <div
+                                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <span class="dark:text-white">Faxrali</span>
+                                </label>
+
+                                <label for="qedimQebele"
+                                    class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:bg-[#161E22] dark:hover:bg-input-hover-dark">
+                                    <input type="checkbox" id="qedimQebele" class="peer hidden">
+                                    <div
+                                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <span class="dark:text-white">Qədim Qəbələ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Məbləğ aralığı</span>
+                        <div class="value-container mt-2">
+                            <span id="min-value" class="value-label text-[13px] text-messages font-medium"></span>
+                            <span id="max-value" class="value-label text-[13px] text-messages font-medium"></span>
+                        </div>
+                        <div id="slider-range" class="mt-2"></div>
+                        <div class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                            <span>Min</span>
+                            <span>Max</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3">
+                    <button type="button"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="openFilterModal()">Bağla</button>
+                    <button type="reset" onclick="clearFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+                    <button onclick="applyFilters()" type="button"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<% scripts=`
+
+    <script src="/js/jquery-ui.js"></script><script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/muessise/hesablasmaDetailsTable.js"></script>
+    <script src="/js/Avankart/muessise/invoys.js"></script>
+    <script src="/js/Avankart/muessise/openDatePicker.js"></script>
+    <script src="/js/Avankart/muessise/analizTable.js"></script>
+    <script src="/js/Avankart/muessise/countdown.js"></script>
+    ` %>

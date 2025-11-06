@@ -1,0 +1,94 @@
+[
+  {
+    "_id": "ObjectId('674e4f9b23e8a1b456c78901')",
+    "hesablasma_id": "HEBL-2024-001",
+    "muessise_id": "ObjectId('674e4f8a23e8a1b456c78701')",
+    "status": "pending",
+    "total_amount": 25000.00,
+    "start_date": "2024-01-01T00:00:00.000Z",
+    "end_date": "2024-01-31T23:59:59.999Z",
+    "created_at": "2024-12-02T10:30:00.000Z",
+    "updated_at": "2024-12-02T10:30:00.000Z",
+    "card_expenses": [
+      {
+        "category": "Ərzaq məhsulları",
+        "amount": 8500.00,
+        "percentage": 34.0
+      },
+      {
+        "category": "Nəqliyyat",
+        "amount": 6200.00,
+        "percentage": 24.8
+      },
+      {
+        "category": "Digər",
+        "amount": 10300.00,
+        "percentage": 41.2
+      }
+    ],
+    "service_companies": [
+      {
+        "company_id": "CM-ABC123",
+        "company_name": "Demo Şirkət 1",
+        "logo": "/images/Avankart/muessise/demo-company-logo.svg",
+        "transaction_count": 15,
+        "amount": 12500.00,
+        "date": "2024-01-31"
+      },
+      {
+        "company_id": "CM-DEF456",
+        "company_name": "Demo Şirkət 2", 
+        "logo": "/images/Avankart/muessise/demo-company-logo.svg",
+        "transaction_count": 8,
+        "amount": 7800.00,
+        "date": "2024-01-31"
+      }
+    ]
+  },
+  {
+    "_id": "ObjectId('674e4f9b23e8a1b456c78902')",
+    "hesablasma_id": "HEBL-2024-002",
+    "muessise_id": "ObjectId('674e4f8a23e8a1b456c78702')",
+    "status": "approved",
+    "total_amount": 18750.50,
+    "start_date": "2024-02-01T00:00:00.000Z",
+    "end_date": "2024-02-29T23:59:59.999Z",
+    "created_at": "2024-12-02T11:15:00.000Z",
+    "updated_at": "2024-12-02T11:15:00.000Z",
+    "card_expenses": [
+      {
+        "category": "Ərzaq məhsulları",
+        "amount": 7200.25,
+        "percentage": 38.4
+      },
+      {
+        "category": "Nəqliyyat",
+        "amount": 5100.75,
+        "percentage": 27.2
+      },
+      {
+        "category": "Digər",
+        "amount": 6449.50,
+        "percentage": 34.4
+      }
+    ],
+    "service_companies": [
+      {
+        "company_id": "CM-GHI789",
+        "company_name": "Demo Şirkət 3",
+        "logo": "/images/Avankart/muessise/demo-company-logo.svg", 
+        "transaction_count": 22,
+        "amount": 11200.30,
+        "date": "2024-02-29"
+      },
+      {
+        "company_id": "CM-JKL012",
+        "company_name": "Demo Şirkət 4",
+        "logo": "/images/Avankart/muessise/demo-company-logo.svg",
+        "transaction_count": 12,
+        "amount": 7550.20,
+        "date": "2024-02-29"
+      }
+    ]
+  }
+]

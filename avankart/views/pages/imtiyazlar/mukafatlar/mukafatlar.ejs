@@ -1,0 +1,79 @@
+<div style="padding:24px">
+  <div style="display:flex;align-items:center;gap:16px">
+    <div class="flex items-center gap-2 ">
+        <a href="/imtiyazlar/mukafatlar" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+        <div class="icon stratis-slash-01-forward"></div>
+    </div>
+    <div class="flex items-center gap-2">
+        <a href="/imtiyazlar/mukafatlar" class="text-tertiary-text dark:text-tertiary-text-color-dark">Mükafatlar</a>
+    </div>
+  </div>
+
+  <div class="mt-6 border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] ">
+    <h1>Mükafatlar</h1>
+  </div>
+    
+  <table class="table-fixed w-full border-collapse mt-5">
+    <thead class="border-none pb-0.5">
+      <tr
+                  class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg ">
+                    Kartlar
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg ">
+                    Mükafat sayı
+                  </th>
+                </tr>
+    </thead>
+    <tbody id="mukafatlarDetailsTableBody">
+    <% if (typeof cards !== 'undefined' && Array.isArray(cards) && cards.length) { %>
+      <% cards.forEach(function(card){ %>
+        <tr class="border-b-[.5px] border-stroke hover:bg-input-hover cursor-pointer" data-card-id="<%= card._id %>">
+          <td class="py-4 px-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center card-bg" data-bg="<%= card.background_color || '#f3f4f6' %>">
+                <% if (card.icon) { %>
+                  <img 
+                  src="https://api.avankart.com/v1/icon/<%= card.icon %>" alt="icon"
+                   class="w-6 h-6" onerror="this.src='/images/default-icon.svg'" />
+                <% } else { %>
+                  <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
+                <% } %>
+              </div>
+              <div class="text-[13px] text-messages font-medium"><%= card.name %></div>
+            </div>
+          </td>
+          <td class="py-4 px-4 text-center"><%= card.mukafat_count || 0 %></td>
+        </tr>
+      <% }) %>
+    <% } %>
+    </tbody>
+  </table>
+</div>
+
+<% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+      <script src="/js/Avankart/mukafatlar/mukafatlarDetails.js"></script>
+`; %>
+
+<script>
+  (function(){
+    function applyBg(){
+      document.querySelectorAll('.card-bg').forEach(function(el){
+        var bg = el.getAttribute('data-bg'); if(bg) el.style.background = bg;
+      });
+    }
+    function attachClicks(){
+      document.querySelectorAll('tr[data-card-id]').forEach(function(r){
+        r.addEventListener('click', function(){
+          const id = this.getAttribute('data-card-id');
+          if(id) location.href = '/imtiyazlar/mukafatlar/' + id;
+        });
+      });
+    }
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded', function(){ applyBg(); attachClicks(); });
+    } else { applyBg(); attachClicks(); }
+  })();
+</script>

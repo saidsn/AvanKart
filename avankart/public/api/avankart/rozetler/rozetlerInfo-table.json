@@ -1,0 +1,94 @@
+{
+  "data": [
+    {
+      "img": "/public/images/Avankart/rozetler/bestEater.svg",
+      "title": "Ən Çox Yemək Yeyən",
+      "description": "10 dəfə yemək ye",
+      "category": "Yemək",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 10,
+      "userCount": 10,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/tidy.svg",
+      "title": "Təmizkar",
+      "description": "50 dəfə maşını yuduzdur",
+      "category": "Yuma",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 50,
+      "userCount": 50,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/selfless.svg",
+      "title": "Fədakar adam",
+      "description": "Hədiyyə kartı ilə 5 əməliyyat yerinə yetir",
+      "category": "Ümumi",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 5,
+      "userCount": 5,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/increaseBalance.svg",
+      "title": "Balansı artır",
+      "description": "Balansı 100 AZN artır",
+      "category": "Hədiyyə",
+      "targetType": "Məbləğ",
+      "targetName": "Mədaxil",
+      "targetValue": "100 AZN",
+      "userCount": 100,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/bestEaterGold.svg",
+      "title": "Ən Çox Yemək Yeyən",
+      "description": "10 dəfə yemək ye",
+      "category": "Yemək",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 10,
+      "userCount": 45,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/bestEaterSuper.svg",
+      "title": "Ən Çox Yemək Yeyən",
+      "description": "10 dəfə yemək ye",
+      "category": "Yemək",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 10,
+      "userCount": 52,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/bestEaterUltra.svg",
+      "title": "Ən Çox Yemək Yeyən",
+      "description": "10 dəfə yemək ye",
+      "category": "Yemək",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 10,
+      "userCount": 38,
+      "date": "12.01.2023"
+    },
+    {
+      "img": "/public/images/Avankart/rozetler/bestEaterUltraSuper.svg",
+      "title": "Ən Çox Yemək Yeyən",
+      "description": "10 dəfə yemək ye",
+      "category": "Yemək",
+      "targetType": "Xidmət sayı",
+      "targetName": "Hədəf sayı",
+      "targetValue": 10,
+      "userCount": 24,
+      "date": "12.01.2023"
+    }
+  ],
+  "recordsTotal": 8,
+  "recordsFiltered": 8
+}

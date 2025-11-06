@@ -1,0 +1,150 @@
+<div id="muqavileler-content" class="main-content-block" style="display: none;">
+    <div
+        class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+        <div class="text-[15px] text-[#1D222B] font-medium dark:text-white">
+            Müqavilələr ( <span id="muqavilelerTotal">0</span> )
+        </div>
+        <div class="flex items-center gap-2">
+            <div
+                class="relative flex items-center max-w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                    focus-within:ring-0 focus-within:outline-none
+                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                    transition-all ease-out duration-300
+                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                <input id="customSearch2" type="text" placeholder="Search..."
+                    class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                    text-[13px] text-messages dark:text-primary-text-color-dark
+                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                <div class="absolute right-3">
+                    <div
+                        class="icon stratis-search-02 dark:text-primary-text-color-dark">
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex items-center justify-center w-[92px] h-[34px] bg-white dark:bg-transparent border-[1px] border-[#DBE4E8] dark:border-surface-variant-dark rounded-full">
+                <button onclick="openContractsTableGrid4()"
+                    class="flex-1 flex items-center justify-center h-full bg-[#F7F9FB] dark:bg-transparent text-messages dark:text-on-primary-dark rounded-full">
+                    <div class="icon stratis-grid-01 cursor-pointer"></div>
+                </button>
+                <button onclick="openContractsTableGrid2()"
+                    class="flex-1 flex items-center justify-center h-full">
+                    <div
+                        class="icon stratis-column-horizontal-01 cursor-pointer">
+                    </div>
+                </button>
+            </div>
+            <div id="refreshPageMuq"
+                class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                <a href="#" class="font-medium text-[13px]">Səhifəni yenilə</a>
+                <a href="#"
+                    class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+            </div>
+            <div onclick="openFilterModal()"
+                class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                <a href="#"
+                    class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+                <a href="#" class>Filter</a>
+            </div>
+        </div>
+    </div>
+    <div
+        class="w-full bg-white dark:bg-body-bg-dark rounded-b-[16px] py-2 flex flex-col gap-1">
+        <!-- Grid Table -->
+        <div id="contractsGrid4" class>
+            <!-- buraya 4 kolonlu table HTML yazılır -->
+            <table id="myTableContracts"
+                class="table-fixed border-collapse w-full">
+                <tbody class="grid grid-cols-4 gap-3">
+                </tbody>
+            </table>
+            <div class="pt-3">
+                <div
+                    class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3">
+                    <div class="py-2.5 flex items-center justify-between">
+                        <div class="text-[13px] flex items-center gap-2">
+                            <span
+                                class="font-normal opacity-65 dark:text-secondary-text-color-dark">Səhifə
+                                sayı:</span>
+                            <span id="pageCountContracts"
+                                class="font-medium dark:text-primary-text-color-dark">1
+                                / 49</span>
+                        </div>
+                        <div class="max-w-[584px] flex items-center gap-5">
+                            <div>
+                                <div id="customPaginationContracts"
+                                    class="flex items-center text-[13px]"></div>
+                            </div>
+                            <div>
+                                <input
+                                    class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                transition-all ease-out duration-300"
+                                    type="text" placeholder="Səhifə">
+                                <a href="#"
+                                    class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal Table -->
+        <div id="contractsGrid2" class="hidden">
+            <!-- buraya 4 kolonlu table HTML yazılır -->
+            <table id="myTable1" class="table-fixed border-collapse w-full">
+                <thead class="border-none pb-0.5">
+                    <tr
+                        class="bg-container-2 dark:bg-container-2-dark border-none text-xs text-tertiary-text dark:text-tertiary-text-color-dark font-base">
+                        <th
+                            class="w-1/2 border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                            Müqavilə adı</th>
+                        <th
+                            class="w-1/2 border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                            Yüklənmə tarixi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <div class="pt-3">
+                <div
+                    class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3">
+                    <div class="py-2.5 flex items-center justify-between">
+                        <div class="text-[13px] flex items-center gap-2">
+                            <span
+                                class="font-normal opacity-65 dark:text-secondary-text-color-dark">Səhifə
+                                sayı:</span>
+                            <span id="pageCount2"
+                                class="font-medium dark:text-primary-text-color-dark">1
+                                / 49</span>
+                        </div>
+                        <div class="max-w-[584px] flex items-center gap-5">
+                            <div>
+                                <div id="customPagination2"
+                                    class="flex items-center text-[13px]"></div>
+                            </div>
+                            <div>
+                                <input
+                                    class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                transition-all ease-out duration-300"
+                                    type="text" placeholder="Səhifə">
+                                <a href="#"
+                                    class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+    </div>
+
+</div>

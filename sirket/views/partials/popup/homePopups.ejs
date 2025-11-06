@@ -1,0 +1,167 @@
+<div
+  id="illerPopupOverlay"
+  class="hidden fixed inset-0 popup-overlay z-50 flex items-center justify-center"
+>
+  <form
+    id="kartlerMeblegYearsForm"
+    onsubmit="return false;"
+    class="w-[515px] h-[545px] rounded-[16px] border-[3px] border-[#0000001A] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] bg-white dark:bg-[#161E22] dark:border-[#FFFFFF1A] overflow-y-auto overflow-x-hidden pb-4"
+  >
+    <div
+      class="flex justify-between px-3 py-[18px] border-b-[0.5px] border-[#0000001A]"
+    >
+      <div
+        class="text-[15px] font-medium mt-1.5 pl-4 text-[#1D222B] dark:text-[#FFFFFF]"
+      >
+        <!-- İllər -->
+        <%= __("partials.popup.homePopups.iller") %>
+      </div>
+      <div
+        onclick="closeIllerModal()"
+        class="cursor-pointer text-xl font-bold text-gray-500 hover:text-gray-700 dark:text-[#FFFFFF]"
+      >
+        ×
+      </div>
+    </div>
+    <div class="relative px-3 pt-3 pb-2">
+      <input type="text" id="illerSearch" placeholder="<%= __('iller_input_placeholder_text') %>" class="border-[1px]
+      border-surface-variant cursor-pointer !w-full h-[34px] font-poppins
+      text-[12px] leading-[160%] rounded-full
+      placeholder-on-surface-variant-dark hover:bg-input-hover
+      focus:border-focus
+      focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0
+      focus:outline-none active:border-focus
+      active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+      transition-all ease-out duration-300 dark:hover:bg-[#282c34]
+      dark:bg-[var(--color-table-hover-dark)] px-4 dark:border-[#40484C]
+      dark:placeholder-[#636B6F] dark:text-on-primary-dark " />
+      <span
+        class="icon stratis-search-02 absolute right-[19px] top-1/2 -translate-y-1/2 cursor-pointer text-messages dark:text-on-primary-dark mr-2 !w-[14px] !h-[14px]"
+      ></span>
+    </div>
+    <div class="px-3 flex flex-col pb-[15px]">
+      <% const currentYear = new Date().getFullYear(); for (let year =
+      currentYear; year > currentYear - 7; year--) { %>
+      <label
+        class="border-b-[0.5px] border-[#0000001A] flex pl-3 !py-3 gap-2 items-center"
+      >
+        <input
+          type="checkbox"
+          value="<%= year %>"
+          name="years[]"
+          class="rounded-[2px] w-[18px] h-[18px] border-[1px] border-surface-variant text-primary focus:outline-none focus:ring-0 focus:shadow-none hover:bg-surface-container-low disabled:bg-switch dark:bg-[var(--color-table-hover-dark)] dark:border-[#40484C]"
+        />
+        <div class="text-[13px] text-[#1D222B] pb-[4px] dark:text-[#FFFFFF]">
+          <%= year %>
+        </div>
+      </label>
+      <% } %>
+    </div>
+    <div class="relative w-full pt-5 border-[#0000001A] border-t-[0.5px]">
+      <div class="absolute right-4 flex items-center gap-3">
+        <button
+          onclick="closeIllerModal()"
+          class="cursor-pointer rounded-[50px] w-[75px] h-[34px] bg-surface-bright text-[13px] text-on-surface-variant font-medium hover:text-messages disabled:text-[#F8F9FF] dark:bg-[#36393E] dark:text-[#FFFFFF]"
+        >
+          <!-- Bağla -->
+          <%= __("partials.popup.homePopups.close_filters_button") %>
+        </button>
+        <button
+          onclick="clearIllerFilters()"
+          class="cursor-pointer rounded-[50px] w-[139px] h-[34px] bg-surface-bright text-[13px] font-medium text-on-surface-variant hover:text-messages disabled:text-[#F8F9FF] dark:bg-[#36393E] dark:text-[#FFFFFF]"
+        >
+          <!-- Filterləri təmizlə -->
+          <%= __("partials.popup.homePopups.clear_filters_button") %>
+        </button>
+        <button
+          onclick="loadKartlarMeblegCharts()"
+          class="cursor-pointer rounded-[100px] w-[70px] h-[34px] bg-[#745086] text-white text-[13px] hover:bg--hover-button-dark focus:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.2)] disabled:bg-[#7450864D] disabled:text-[#FFFFFF80] dark:hover:bg-[#88649A]"
+        >
+          <!-- Filterlə -->
+          <%= __("partials.popup.homePopups.apply_filters_button") %>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Kartlar Popup Modal -->
+<div
+  id="kartlarPopupOverlay"
+  class="hidden fixed inset-0 popup-overlay z-50 flex items-center justify-center"
+>
+  <form
+    id="kartlerMeblegCardsForm"
+    onsubmit="return false;"
+    class="w-[515px] h-[545px] rounded-[16px] border-[3px] border-[#0000001A] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] bg-white dark:bg-[#161E22] dark:border-[#FFFFFF1A]"
+  >
+    <div
+      class="flex justify-between px-3 py-[18px] border-b-[0.5px] border-[#0000001A]"
+    >
+      <div
+        class="text-[15px] font-medium mt-1.5 pl-4 text-[#1D222B] dark:text-[#FFFFFF]"
+      >
+        <!-- İmtiyaz Kartları -->
+        <%= __("partials.popup.homePopups.imtiyaz_kartlari") %>
+      </div>
+      <div
+        onclick="closeKartlarModal()"
+        class="cursor-pointer text-xl font-bold text-gray-500 hover:text-gray-700 dark:text-[#FFFFFF]"
+      >
+        ×
+      </div>
+    </div>
+    <div class="relative px-3 pt-3 pb-2">
+      <input
+        type="text"
+        id="kartlarSearch"
+        placeholder="Kartlar..."
+        class="border-[1px] border-surface-variant cursor-pointer !w-full h-[34px] font-poppins text-[12px] leading-[160%] rounded-full placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:hover:bg-[#282c34] dark:bg-[var(--color-table-hover-dark)] px-4 dark:border-[#40484C] dark:placeholder-[#636B6F] dark:text-on-primary-dark"
+      />
+      <span
+        class="icon stratis-search-02 absolute right-[19px] top-1/2 -translate-y-1/2 cursor-pointer text-messages dark:text-on-primary-dark mr-2 !w-[14px] !h-[14px]"
+      ></span>
+    </div>
+    <div class="px-3 flex flex-col pb-[15px]">
+      <% if(muessise && cards){ cards.forEach(card => { %>
+      <label
+        class="border-b-[0.5px] border-[#0000001A] flex pl-3 !py-3 gap-2 items-center"
+      >
+        <input
+          type="checkbox"
+          value="<%= card._id %>"
+          name="cards[]"
+          class="rounded-[2px] w-[18px] h-[18px] border-[1px] border-surface-variant text-primary focus:outline-none focus:ring-0 focus:shadow-none hover:bg-surface-container-low disabled:bg-switch dark:bg-[var(--color-table-hover-dark)] dark:border-[#40484C]"
+        />
+        <div class="text-[13px] pb-[4px] text-[#1D222B] dark:text-[#FFFFFF]">
+          <%= card.name %>
+        </div>
+      </label>
+      <% }) } %>
+    </div>
+    <div class="relative w-full pt-5 border-[#0000001A] border-t-[0.5px]">
+      <div class="absolute right-4 flex items-center gap-3">
+        <button
+          onclick="closeKartlarModal()"
+          class="cursor-pointer rounded-[50px] w-[75px] h-[34px] bg-surface-bright text-[13px] text-on-surface-variant font-medium hover:text-messages disabled:text-[#F8F9FF] dark:bg-[#36393E] dark:text-[#FFFFFF]"
+        >
+          <%= __("partials.popup.homePopups.close_filters_button") %>
+        </button>
+        <button
+          onclick="clearKartlarFilters()"
+          class="cursor-pointer rounded-[50px] w-[139px] h-[34px] bg-surface-bright text-[13px] font-medium text-on-surface-variant hover:text-messages disabled:text-[#F8F9FF] dark:bg-[#36393E] dark:text-[#FFFFFF]"
+        >
+          <!-- Filterləri təmizlə -->
+          <%= __("partials.popup.homePopups.clear_filters_button") %>
+        </button>
+        <button
+          onclick="loadKartlarMeblegCharts();closeKartlarModal()"
+          class="cursor-pointer rounded-[100px] w-[70px] h-[34px] bg-[#745086] text-white text-[13px] hover:bg-[#88649A] focus:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.2)] disabled:bg-[#7450864D] disabled:text-[#FFFFFF80] dark:hover-bg-[#88649A]"
+        >
+          <!-- Filterlə -->
+          <%= __("partials.popup.homePopups.apply_filters_button") %>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

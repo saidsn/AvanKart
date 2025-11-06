@@ -1,0 +1,1005 @@
+<div class="py-3">
+  <div class="flex flex-col gap-3">
+    <div
+      class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+    >
+      <div class="flex items-center gap-2">
+        <a
+          href="/"></a>                        
+          Avankart</a
+        >
+        <div class="icon stratis-slash-01-forward"></div>
+      </div>
+      <a class="text-tertiary-text dark:text-tertiary-text-color-dark"
+        >
+        <!-- Sorğular -->
+         <%= __("sorgular.sorgular.breadcrumb_sorgular") %>
+        </a
+      >
+    </div>
+    <div class="flex flex-col gap-3">
+      <div
+        class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]"
+      >
+        <div
+          class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium pt-[5px]"
+        >
+          <!-- Sorğular -->
+          <%= __("sorgular.sorgular.sorgular_table_header") %>
+           (<span id="sorgularCount">0</span>)
+        </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+          >
+            <input
+              id="customSearch"
+              type="text"
+              placeholder="Search..."
+              class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+            />
+            <div class="absolute right-3">
+              <div
+                class="icon stratis-search-02 dark:text-primary-text-color-dark"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+          >
+            <a href="#">
+              <!-- Səhifəni yenilə -->
+              <%= __("activeSessions.reload") %>
+            </a>
+            <a
+              href="#"
+              class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"
+            ></a>
+          </div>
+          <div
+            class="w-[92px] h-[34px] border-[1px] border-surface-variant dark:border-surface-variant-dark rounded-[100px] flex items-center gap-2 pl-[18px] pr-[20px]"
+            onclick="toggleFilter()"
+          >
+            <a
+              href="#"
+              class="icon stratis-filter !w-[12px] !h-[9px] text-messages dark:text-primary-text-color-dark"
+            ></a>
+            <a
+              href="#"
+              class="text-[13px] font-medium hover:text-focus dark:hover:text-focus text-messages dark:text-primary-text-color-dark"
+              >
+              <!-- Filter -->
+              <%= __("sorgular.sorgular.filter_button") %>
+              </a
+            >
+          </div>
+          <div
+            class="w-[129px] h-[34px] bg-primary hover:bg-hover-button rounded-[100px] text-body-bg flex items-center justify-center gap-3 pl-[22px] pr-[18px]"
+            onclick="toggleSorgu()"
+          >
+            <a href="#" class="icon stratis-plus-02 !w-[9px] !h-[9px]"></a>
+            <a href="#" class="text-[13px] font-medium">
+              <!-- Yeni sorğu -->
+              <%= __("sorgular.sorgular.yeni_sorgu_button") %>
+            </a>
+          </div>
+
+          <div
+            id="overlay"
+            class="hidden fixed inset-0 w-full h-full bg-[#0000002A] z-100"
+          ></div>
+          <div
+            class="filter-div hidden p-6 w-[450px] h-[398px] m-auto bg-body-bg dark:bg-body-bg-dark border-[3px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-200"
+          >
+            <form
+              id="sorgularFilterForm"
+              method="POST"
+              onsubmit="return false;"
+              autocomplete="off"
+            >
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <div>
+                <div
+                  class="flex items-center justify-between dark:text-primary-text-color-dark"
+                >
+                  <span
+                    class="text-[15px] font-medium dark:text-primary-text-color-dark"
+                    >
+                    <!-- Filter -->
+                    <%= __("sorgular.sorgular.filter_popup_title") %>
+                    </span
+                  >
+                  <div
+                    class="icon stratis-x-02 w-[9px] h-[9px] cursor-pointer dark:text-primary-text-color-dark"
+                    onclick="toggleFilter()"
+                  ></div>
+                </div>
+                <div class="mt-3">
+                  <span
+                    class="text-[12px] font-medium opacity-65 dark:text-secondary-text-color-dark"
+                    >
+                    <!-- Tarix aralığı -->
+                    <%= __("sorgular.sorgular.tarix_araligi") %>
+                    </span
+                  >
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div
+                        class="px-3 border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[100px] flex items-center justify-between w-[195px] hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      >
+                        <input
+                          type="date"
+                          class="date-input bg-transparent py-[6.5px] text-[12px] font-medium text-on-surface-variant-dark dark:text-on-surface-variant-dark border border-transparent focus:border-transparent focus:ring-0 rounded-full"
+                          placeholder="dd/mm/yyyy"
+                          name="start_date"
+                        />
+                        <div
+                          class="icon stratis-calendar-02 w-4 h-4 py-[11px] dark:text-primary-text-color-dark"
+                        ></div>
+                      </div>
+                      <div
+                        class="flex items-center gap-2 mt-1.5 hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      >
+                        <div
+                          class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-tertiary-text-color-dark"
+                        ></div>
+                        <div
+                          class="text-[11px] font-normal opacity-50 dark:text-tertiary-text-color-dark"
+                        >
+                          <!-- Başlanğıc tarixini qeyd edin -->
+                          <%= __("sorgular.sorgular.baslangic_tarix_qeyd_edin") %>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        class="px-3 border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[100px] flex items-center justify-between w-[195px] hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      >
+                        <input
+                          type="date"
+                          class="date-input bg-transparent py-[6.5px] text-[12px] font-medium text-on-surface-variant-dark dark:text-on-surface-variant-dark border border-transparent focus:border-transparent focus:ring-0 rounded-full"
+                          placeholder="dd/mm/yyyy"
+                          name="end_date"
+                        />
+                        <div
+                          class="icon stratis-calendar-02 w-4 h-4 py-[11px] dark:text-primary-text-color-dark"
+                        ></div>
+                      </div>
+                      <div class="flex items-center gap-2 mt-1.5">
+                        <div
+                          class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-tertiary-text-color-dark"
+                        ></div>
+                        <div
+                          class="text-[11px] font-normal opacity-50 dark:text-tertiary-text-color-dark"
+                        >
+                          <!-- Bitmə tarixini qeyd edin -->
+                          <%= __("sorgular.sorgular.son_tarix_qeyd_edin") %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="my-4">
+                  <span
+                    class="text-[12px] font-medium opacity-65 dark:text-secondary-text-color-dark"
+                    >Status</span
+                  >
+                  <div class="mt-1.5 flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                      <label
+                        for="newCheckbox1"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                      >
+                        <input
+                          type="checkbox"
+                          id="newCheckbox1"
+                          class="peer hidden"
+                          name="status[]"
+                          value="Qaralama"
+                        />
+                        <div
+                          class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                        >
+                          <div
+                            class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                          ></div>
+                        </div>
+                        <div class="dark:text-primary-text-color-dark">
+                          <!-- Qaralama -->
+                          <%= __("sorgular.sorgular.filter_qaralama") %>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <label
+                        for="newCheckbox2"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                      >
+                        <input
+                          type="checkbox"
+                          id="newCheckbox2"
+                          class="peer hidden"
+                          name="status[]"
+                          value="Baxılır"
+                        />
+                        <div
+                          class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                        >
+                          <div
+                            class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                          ></div>
+                        </div>
+                        <div class="dark:text-primary-text-color-dark">
+                          <!-- Baxılır -->
+                          <%= __("sorgular.sorgular.filter_baxilir") %>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <label
+                        for="newCheckbox3"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                      >
+                        <input
+                          type="checkbox"
+                          id="newCheckbox3"
+                          class="peer hidden"
+                          name="status[]"
+                          value="Həll olundu"
+                        />
+                        <div
+                          class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                        >
+                          <div
+                            class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                          ></div>
+                        </div>
+                        <div class="dark:text-primary-text-color-dark">
+                          <!-- Həll olundu -->
+                          <%= __("sorgular.sorgular.filter_hell_olundu") %>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 mt-4">
+                    <label
+                      for="newCheckbox4"
+                      class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                    >
+                      <input
+                        type="checkbox"
+                        id="newCheckbox4"
+                        class="peer hidden"
+                        name="status[]"
+                        value="Rədd edildi"
+                      />
+                      <div
+                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                      >
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                        ></div>
+                      </div>
+                      <div class="dark:text-primary-text-color-dark">
+                        <!-- Rədd edildi -->
+                        <%= __("sorgular.sorgular.filter_redd_edildi") %>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <span class="text-[12px] font-medium opacity-65"
+                    >Subject</span
+                  >
+                  <div class="mt-1.5 flex items-center justify-start gap-4">
+                    <div class="flex items-center gap-2">
+                      <label
+                        for="newCheckbox5"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                      >
+                        <input
+                          type="checkbox"
+                          id="newCheckbox5"
+                          class="peer hidden"
+                          name="subject[]"
+                          value="Müəssisə"
+                        />
+                        <div
+                          class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                        >
+                          <div
+                            class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                          ></div>
+                        </div>
+                        <div class="dark:text-primary-text-color-dark">
+                          <!-- Müəssisə -->
+                          <%= __("sorgular.sorgular.filter_mueessise") %>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <label
+                        for="newCheckbox6"
+                        class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+                      >
+                        <input
+                          type="checkbox"
+                          id="newCheckbox6"
+                          class="peer hidden"
+                          name="subject[]"
+                          value="AP İstifadəçi"
+                        />
+                        <div
+                          class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+                        >
+                          <div
+                            class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                          ></div>
+                        </div>
+                        <div class="dark:text-primary-text-color-dark">
+                          <!-- AP İstifadəçi -->
+                          <%= __("sorgular.sorgular.filter_ap_istifadeci") %>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 mb-6">
+                <div class="flex items-center justify-end gap-3">
+                  <button
+                    type="button"
+                    class="text-[13px] text-surface-variant-dark dark:text-on-surface-variant-dark font-medium bg-surface dark:bg-surface-dark py-[6.5px] px-[18px] rounded-[50px] cursor-pointer"
+                    onclick="toggleFilter()"
+                  >
+                    <!-- Bağla -->
+                    <%= __("sorgular.sorgular.filteri_bagla_button") %>
+                  </button>
+                  <button
+                    type="reset"
+                    onclick="clearFilters()"
+                    class="text-[13px] text-surface-variant-dark dark:text-on-surface-variant-dark font-medium bg-surface dark:bg-surface-dark py-[6.5px] px-[18px] rounded-[50px] cursor-pointer"
+                  >
+                    <!-- Filterləri təmizlə -->
+                    <%= __("sorgular.sorgular.filterleri_temizle_button") %>
+                  </button>
+                  <button
+                    type="submit"
+                    id="sorgularFilter"
+                    onclick="filterForm();toggleFilter()" data-form="sorgularFilterForm" data-table="myTable"
+                    class="filter-btn text-[13px] text-body-bg dark:text-body-bg-dark font-medium bg-primary dark:bg-primary-dark py-[6.5px] px-[18px] rounded-[50px] cursor-pointer hover:bg-hover-button dark:hover:bg-hover-button-dark"
+                  >
+                    <!-- Filterlə -->
+                    <%= __("sorgular.sorgular.filterle_button") %>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div
+            id="overlay"
+            class="hidden fixed inset-0 w-full h-full bg-[#0000002A] z-100"
+          ></div>
+          <form
+            id="addSorguForm"
+            method="POST"
+            action="/sorgular/add"
+            onsubmit="return false;"
+            data-url="/sorgular/add"
+            enctype="multipart/form-data"
+            class="sorgu-div hidden px-6 w-[994px] mx-auto text-messages dark:text-primary-text-color-dark bg-body-bg dark:bg-body-bg-dark rounded-2xl border-[3px] !border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-200"
+          >
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div
+              class="w-full flex items-center justify-between border-b-[0.5px] border-stroke dark-[#FFFFFF1A]"
+            >
+              <span class="text-[15px] font-medium py-[18px]">
+                <!-- Yeni sorğu -->
+                <%= __("sorgular.sorgular.yeni_sorgu_popup_title") %>
+              </span>
+              <div
+                class="icon stratis-x-02 w-[9px] h-[9px] cursor-pointer dark:text-primary-text-color-dark"
+                onclick="toggleSorgu()"
+              ></div>
+            </div>
+            <div class="flex items-center justify-between gap-3 my-3">
+              <div>
+                <div class="flex items-center gap-0.5 my-1.5">
+                  <span class="text-[12px] font-medium opacity-65"
+                    >
+                    <!-- Sorğu kateqoriyası -->
+                    <%= __("sorgular.sorgular.sorgu_kategoriyasi") %>
+                    </span
+                  >
+                  <div
+                    class="icon stratis-help-circle-contained opacity-65 w-3 h-3"
+                  ></div>
+                </div>
+                <div class="relative">
+                    <button
+                      id="dropdownDefaultButton"
+                      data-dropdown-toggle="dropdown1"
+                      class="w-[309px] h-[34px] rounded-[500px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      type="button"
+                    >
+                      <!-- Seçim edin -->
+                      <%= __("sorgular.sorgular.sechim_edin") %>
+                      <svg
+                        class="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      id="dropdown1" style="position: absolute;"
+                      class="z-10 bg-body-bg dark:bg-body-bg-dark rounded-[8px] w-[309px] border-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] hidden"
+                    >
+                      <ul
+                        class="py-1 px-1"
+                        aria-labelledby="dropdownDefaultButton"
+                      >
+                        <li class="px-3 py-1" data-value="Umumi">
+                          <a
+                            href="#"
+                            class="block text-[13px] font-medium">
+                            <!-- Ümumi -->
+                            <%= __("sorgular.sorgular.sorgu_kategoriya_umumi") %>
+                            </a
+                          >
+                        </li>
+                        <li class="px-3 py-1" data-value="Hesabproblemi">
+                          <a
+                            href="#"
+                            class="block text-[13px] font-medium">
+                            <!-- Hesab problemi -->
+                            <%= __("sorgular.sorgular.sorgu_kategoriya_hesab_problemi") %>
+                            </a
+                          >
+                        </li>
+                        <li class="px-3 py-1" data-value="Ödənişproblemi">
+                          <a
+                            href="#"
+                            class="block text-[13px] font-medium">
+                            <!-- Ödəniş problemi -->
+                            <%= __("sorgular.sorgular.sorgu_kategoriya_odenish_problemi") %>
+                            </a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <select id="realSelect" name="category" class="hidden">
+                      <option value="">
+                        <!-- Seçim edin -->
+                        <%= __("sorgular.sorgular.sechim_edin") %>
+                      </option>
+                      <option value="Umumi">
+                        <!-- Ümumi -->
+                        <%= __("sorgular.sorgular.sorgu_kategoriya_umumi") %>
+                      </option>
+                      <option value="Hesabproblemi">
+                        <!-- Hesab problemi -->
+                        <%= __("sorgular.sorgular.sorgu_kategoriya_hesab_problemi") %>
+                      </option>
+                      <option value="Ödənişproblemi">
+                        <!-- Ödəniş problemi -->
+                        <%= __("sorgular.sorgular.sorgu_kategoriya_odenish_problemi") %>
+                      </option>
+                    </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center gap-0.5 my-1.5">
+                  <span class="text-[12px] font-medium opacity-65"
+                    >
+                    <!-- Problemin səbəbləri -->
+                    <%= __("sorgular.sorgular.sorgu_problemin_sebebleri") %>
+                    </span
+                  >
+                </div>
+                <div class="relative">
+                    <button
+                      id="dropdownDefaultButton2"
+                      data-dropdown-toggle="dropdown2"
+                      class="w-[309px] h-[34px] rounded-[500px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      type="button"
+                    >
+                      <!-- Seçim edin -->
+                      <%= __("sorgular.sorgular.sechim_edin") %>
+                      <svg
+                        class="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      id="dropdown2" style="position: absolute;"
+                      class="z-10 bg-body-bg dark:bg-body-bg-dark rounded-[8px] w-[309px] border-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] hidden"
+                    >
+                      <ul
+                        class="py-1 px-1"
+                        aria-labelledby="dropdownDefaultButton2"
+                      >
+                        <li
+                          class="px-3 py-1"
+                          data-value="İstifadəçiləri balanslarına mədaxil edə bilmirəm"
+                        >
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- İstifadəçiləri balanslarına mədaxil edə bilmirəm -->
+                            <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_istifadeci_balanslarina_medaxil") %>
+                            </a
+                          >
+                        </li>
+                        <li
+                          class="px-3 py-1"
+                          data-value="Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb."
+                        >
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb. -->
+                            <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_kartin_istifadesinde_subheli_ameliyatlar_ashkarlanib") %>
+                            </a
+                          >
+                        </li>
+                        <li
+                          class="px-3 py-1"
+                          data-value="Kart texniki səbəbdən yanlış aktivləşdirilib."
+                        >
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- Kart texniki səbəbdən yanlış aktivləşdirilib. -->
+                            <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_kart_texniki_sebebden_yanlis_aktivlesdirilib") %>
+                            </a
+                          >
+                        </li>
+                        <li
+                          class="px-3 py-1"
+                          data-value="Müəyyən səbəblərə əsasən admin kartı deaktiv edib."
+                        >
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- Müəyyən səbəblərə əsasən admin kartı deaktiv
+                            edib. -->
+                            <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_admin_karti_deaktiv_edib") %>
+                            </a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <select id="realSelect2" name="purpose" class="hidden">
+
+                      <option value="">
+                        <!-- Seçim edin -->
+                        <%= __("sorgular.sorgular.sechim_edin") %>
+                      </option>
+                      <option
+                        value="İstifadəçiləri balanslarına mədaxil edə bilmirəm"
+                      >
+                        <!-- İstifadəçiləri balanslarına mədaxil edə bilmirəm -->
+                        <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_istifadeci_balanslarina_medaxil") %>
+                      </option>
+                      <option
+                        value="Kartın istifadəsində şübhəli əməliyyatlar aşkarlanıb."
+                      >
+                        <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_kartin_istifadesinde_subheli_ameliyatlar_ashkarlanib") %>
+                      </option>
+                      <option
+                        value="Kart texniki səbəbdən yanlış aktivləşdirilib."
+                      >
+                        <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_kart_texniki_sebebden_yanlis_aktivlesdirilib") %>
+                      </option>
+                      <option
+                        value="Müəyyən səbəblərə əsasən admin kartı deaktiv edib."
+                      >
+                        <%= __("sorgular.sorgular.sorgu_problemin_sebebleri_admin_karti_deaktiv_edib") %>
+                      </option>
+                    </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center gap-0.5 my-1.5">
+                  <span class="text-[12px] font-medium opacity-65"
+                    >
+                    <!-- Subject -->
+                    <%= __("sorgular.sorgular.sorgu_subject") %>
+                    </span
+                  >
+                </div>
+                <div class="relative">
+                    <button
+                      id="dropdownDefaultButton3"
+                      data-dropdown-toggle="dropdown3"
+                      class="w-[309px] h-[34px] rounded-[500px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] font-normal px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-container-2-dark"
+                      type="button"
+                    >
+                      <!-- Seçim edin -->
+                       <%= __("sorgular.sorgular.sechim_edin") %>
+                      <svg
+                        class="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      id="dropdown3" style="position: absolute;"
+                      class="z-10 bg-body-bg dark:bg-body-bg-dark rounded-[8px] w-[309px] border-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] hidden"
+                    >
+                      <ul
+                        class="py-1 px-1"
+                        aria-labelledby="dropdownDefaultButton3"
+                      >
+                        <li class="px-3 py-1" data-value="AP İstifadəçi">
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- AP İstifadəçi -->
+                            <%= __("sorgular.sorgular.sorgu_subject_AP_istifadeci") %>
+                            </a
+                          >
+                        </li>
+                        <li class="px-3 py-1" data-value="Müəssisə">
+                          <a href="#" class="block text-[13px] font-medium"
+                            >
+                            <!-- Müəssisə -->
+                            <%= __("sorgular.sorgular.sorgu_subject_mueessise") %>
+                            </a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+
+                    <select id="realSelect3" name="subject" class="hidden">
+                      <option value="">
+                        <!-- Seçim edin -->
+                        <%= __("sorgular.sorgular.sechim_edin") %>
+                      </option>
+                      <option value="AP İstifadəçi"><%= __("sorgular.sorgular.sorgu_subject_AP_istifadeci") %></option>
+                      <option value="Müəssisə"><%= __("sorgular.sorgular.sorgu_subject_muessise") %></option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-[12px] font-medium opacity-65">
+                <!-- Mövzu -->
+                <%= __("sorgular.sorgular.sorgu_movzu") %>
+              </span>
+              <div
+                class="w-full h-[34px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[500px] flex items-start justify-center flex-col hover:bg-container-2 dark:hover:bg-container-2-dark"
+              >
+              <input
+  type="text"
+  name="title"
+  placeholder="<%= __('sorgular.sorgular.sorgu_movzu_placeholder_text') %>"
+  class="text-[12px] my-1.5 font-normal border border-transparent focus:border-transparent focus:ring-0 rounded-[500px] bg-transparent w-full"
+/>
+              </div>
+              <div
+                class="w-full h-[122px] my-3 border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-start justify-start flex-col hover:bg-container-2 dark:hover:bg-container-2-dark"
+              >
+                <input
+                  type="text"
+                  name="content"
+                  placeholder="Sorğu məzmunu..."
+                  class="text-[12px] py-1.5 font-normal border border-transparent focus:border-transparent focus:ring-0 rounded-full w-full bg-transparent dark:bg-bg-container-2 hover:bg-container-2 dark:hover:bg-container-2-dark"
+                />
+              </div>
+            </div>
+            <div>
+              <!-- <div class="w-full h-[191px] border-2 border-dashed border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-center flex-col hover:bg-[#88649A1A]">
+                                    <div class="py-6">
+                                        <div>
+                                            <img src="/images/Sorgular Pages Images/upload.svg" alt="Upload" class="m-auto">
+                                        </div>
+                                        <div class="py-3">
+                                            <span class="text-[13px] font-normal">Yükləmək üçün fayllarınızı sürüşdürüb, buraxın</span>
+                                            <div class="flex items-center justify-center gap-3">
+                                                <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]">
+                                                <div class="text-messages dark:text-primary-text-color-dark opacity-50 font-normal text-sm">Və ya</div>
+                                                <hr class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]">
+                                            </div>
+                                            <label class="flex items-center gap-2 px-4 py-2 border border-surface-variant dark:border-surface-variant-dark rounded-full cursor-pointer">
+                                                <div class="flex items-center justify-center m-auto gap-2">
+                                                    <div class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"></div>
+                                                    <span class="text-[13px] font-medium">Fayl əlavə et</span>
+                                                </div>
+                                                <input type="file" id="fileInput" class="hidden">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+              <div
+                id="drop-zone"
+                class="w-full h-[191px] border-2 border-dashed border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-center flex-col hover:bg-[#88649A1A]"
+              >
+                <div class="py-6">
+                  <div>
+                    <img
+                      src="/images/Sorgular Pages Images/upload.svg"
+                      alt="Upload"
+                      class="m-auto"
+                    />
+                  </div>
+                  <div class="py-3">
+                    <span class="text-[13px] font-normal"
+                      >
+                      <!-- Yükləmək üçün fayllarınızı sürüşdürüb, buraxın -->
+                      <%= __("sorgular.sorgular.sorgu_fayl_yukle_text") %>
+                      </span
+                    >
+                    <div class="flex items-center justify-center gap-3">
+                      <hr
+                        class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]"
+                      />
+                      <div
+                        class="text-messages dark:text-primary-text-color-dark opacity-50 font-normal text-sm"
+                      >
+                        <!-- Və ya -->
+                        <%= __("sorgular.sorgular.ve_ya") %>
+                      </div>
+                      <hr
+                        class="w-[73px] h-[1px] text-[#0000001A] dark:text-[#FFFFFF1A]"
+                      />
+                    </div>
+                    <label
+                      class="flex items-center gap-2 px-4 py-2 border border-surface-variant dark:border-surface-variant-dark rounded-full cursor-pointer"
+                    >
+                      <div
+                        class="flex items-center justify-center m-auto gap-2"
+                      >
+                        <div
+                          class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"
+                        ></div>
+                        <span class="text-[13px] font-medium"
+                          >
+                          <!-- Fayl əlavə et -->
+                          <%= __("sorgular.sorgular.sorgu_fayl_elave_et") %>
+                          </span
+                        >
+                      </div>
+                      <input type="file" id="fileInput" name="files" multiple class="hidden" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div id="file-list" class="mt-3 pt-[11.5px] px-4"></div>
+              <div class="pt-2">
+                <span class="text-start text-[12px] opacity-50 font-normal"
+                  >
+                  <!-- Yalnız PDF, JPG, PNG faylları dəstəklənir -->
+                  <%= __("sorgular.sorgular.sorgu_file_types_text") %>
+                  </span
+                >
+              </div>
+            </div>
+            <div
+              class="mt-2 border-t-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]"
+            >
+              <div class="flex items-center justify-end py-5 gap-3">
+                <a
+                  href="#"
+                  class="py-[6.5px] px-[18px] bg-surface dark:bg-surface-dark text-[13px] font-medium text-on-surface-variant dark:text-on-surface-variant-dark rounded-[50px]"
+                  onclick="toggleSorgu()"
+                  >
+                  <!-- Ləğv et -->
+                  <%= __("sorgular.sorgular.sorgu_legv_et_button") %>
+                  </a
+                >
+                <a
+                  href="#"
+                  onclick="submitForm('addSorgu')"
+                  class="py-[6.5px] px-[18px] text-[13px] text-body-bg dark:text-on-primary-dark font-medium bg-primary dark:bg-primary-dark rounded-[50px] hover:bg-hover-button dark:hover:bg-hover-button-dark"
+                  >
+                  <!-- Yarat -->
+                  <%= __("sorgular.sorgular.sorgu_yarat_button") %>
+                  </a
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <table id="myTable" class="table-auto"></table>
+      <div>
+        <div
+          class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3"
+        >
+          <div class="py-2.5 flex items-center justify-between">
+            <div class="text-[13px] flex items-center gap-2">
+              <span
+                class="font-normal opacity-65 dark:text-secondary-text-color-dark"
+                >
+                <!-- Səhifə sayı: -->
+                <%= __("sorgular.sorgular.sorgular_table_sehife_sayi") %>
+                </span
+              >
+              <span
+                id="pageCount"
+                class="font-medium dark:text-primary-text-color-dark"
+                >1 / 1</span
+              >
+            </div>
+            <div class="max-w-[584px] flex items-center gap-5">
+              <div>
+                <div
+                  id="customPagination"
+                  class="flex items-center text-[13px]"
+                ></div>
+              </div>
+              <div>
+                <input
+                  class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                  type="text"
+                  placeholder="Səhifə"
+                />
+                <a
+                  href="#"
+                  class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+                  >
+                  <!-- GO -->
+                  <%= __("sorgular.sorgular.sorgular_table_go_button") %>
+                  </a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% scripts = `
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/Sorgular-Pages-js/sorgular-js-1.js"></script>
+<script src="/js/Sorgular-Pages-js/sorgularTable.js"></script>
+` %> <% styles = `
+<style>
+  thead {
+    display: none;
+  }
+
+  .dt-column-order {
+    display: none !important;
+  }
+
+  table.dataTable > tbody > tr > th,
+  table.dataTable > tbody > tr > td {
+    padding: 4px 0;
+    /* table default padding-de deyisiklik*/
+  }
+
+  table,
+  thead,
+  table.dataTable > thead > tr > th,
+  table.dataTable > thead > tr > td,
+  table.dataTable > tbody > tr:last-child > *,
+  div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border: none;
+    font-weight: 400;
+  }
+
+  td {
+    padding: 20px;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .loading-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .progress-container {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: #9c78ae;
+    width: 4%;
+    transition: width 2s linear;
+  }
+
+  .loading-info {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f8f8;
+    /* light mode üçün */
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  /* dark mode üçün əlavə stil */
+  @media (prefers-color-scheme: dark) {
+    .file-item {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff1a;
+    }
+  }
+
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #ccc;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+` %>

@@ -1,0 +1,614 @@
+<div class="flex flex-col gap-3">
+                    <div
+                        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Admin
+                                Panel</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">FAQ </a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <div
+                            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+                            <div id="category-count" class="text-[15px] text-messages font-medium">
+                                FAQ (18)
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                    <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                    <div class="absolute right-3">
+                                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="font-medium text-[13px]">Səhifəni yenilə</span>
+                                    <span
+                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                                </div>
+                                <div class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+                                    onclick="openFilterModal()">
+                                    <span
+                                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"></span>
+                                    <span class="">Filter</span>
+                                </div>
+                                <div onclick="toggleEditModal()"
+                                    class="w-22 border border-stroke rounded-full flex items-center gap-2 text-[13px] bg-primary hover:bg-focus cursor-pointer text-on-primary font-medium py-[6.5px] px-[18px]">
+                                    <span class="icon stratis-plus-01 text-on-primary "></span>
+                                    <span class="">Yeni</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="myTable" class="table-fixed w-full border-collapse">
+                            <thead class="border-none pb-1">
+                                <tr
+                                    class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                                    <th class="filtering rounded-l-lg">
+                                        Sual
+                                    </th>
+                                    <th class="filtering">
+                                        Sual məzmunu
+                                    </th>
+                                    <th class="filtering">
+                                        Kateqoriya
+                                    </th>
+                                    <th class="filtering">
+                                        Yaranma tarixi
+                                    </th>
+                                    <th class="w-10 rounded-r-lg"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="pt-2">
+                            <div
+                                class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+                                <div class="py-5 flex items-center justify-between">
+                                    <div class="text-[13px] flex items-center gap-2">
+                                        <span class="font-normal opacity-65">Səhifə sayı:</span>
+                                        <span id="pageCount" class="font-medium">1 / 1</span>
+                                    </div>
+                                    <div class="flex items-center gap-5">
+                                        <div>
+                                            <div id="customPagination" class="flex items-center">
+                                                <div class="flex items-center justify-center pr-[42px] h-8 ms-0 leading-tight opacity-50 cursor-not-allowed"
+                                                    onclick="changePage(0)">
+                                                    <div class="icon stratis-chevron-left !h-[12px] !w-[7px]"></div>
+                                                </div>
+                                                <div class="flex gap-2">
+                                                    <button class="cursor-pointer w-10 text-[13px] h-10 rounded-[8px] hover:text-messages
+                                bg-[#F6D9FF] text-messages" onclick="changePage(0)">1</button>
+                                                </div>
+                                                <div class="flex items-center justify-center h-8 ms-0 pl-[42px] leading-tight opacity-50 cursor-not-allowed"
+                                                    onclick="changePage(0)">
+                                                    <div class="icon stratis-chevron-right !h-[12px] !w-[7px]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                      focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                      active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                      transition-all ease-out duration-300" type="text" placeholder="Səhifə" />
+                                            <a href="#"
+                                                class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="deleteModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex flex-col p-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                    <div class="iconex iconex-trash-can-1 w-5 h-5 text-error dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white pt-3">
+                    Sil
+                </h2>
+                <div
+                    class="flex flex-wrap pb-4 gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] ">Seçilən sualı silmək istədiyinizə
+                        əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="toggleDeleteModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+                        Xeyr
+                    </button>
+                    <button
+                        class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="w-[564px] rounded-xl shadow-lg bg-white mx-auto">
+            <div class="flex items-center justify-between gap-1 px-6 py-[18px] border-b-[.5px] border-stroke">
+                <h2 class="text-base font-medium text-messages dark:text-primary-text-color-dark px-6">
+                    Yeni mükafat
+                </h2>
+                <img src="/images/Avankart/prize/close.svg" alt="Close Modal" onclick="toggleEditModal()"
+                    class="cursor-pointer text-sm" />
+            </div>
+            <div class="py-3 px-6 flex flex-col gap-3">
+                <div class="flex flex-col gap-[6px]">
+                    <div class="flex items-center gap-[6px]">
+                        <span class="text-[12px] text-secondary-text font-medium">Dil seçimi</span>
+                        <div class="icon stratis-help-circle-contained text-secondary-text text-xs"></div>
+                    </div>
+                    <!-- Dil seçimi -->
+                    <div
+                        class="inline-flex w-fit gap-1 items-center border border-surface-variant dark:border-surface-variant-dark rounded-full p-1">
+                        <button
+                            class="lang-btn active text-messages dark:text-primary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium bg-inverse-on-surface dark:bg-surface-variant-dark rounded-full py-[3px] px-3">
+                            Azərbaycan
+                        </button>
+                        <button
+                            class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                            Türkçə
+                        </button>
+                        <button
+                            class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                            English
+                        </button>
+                        <button
+                            class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                            Russian
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <form action="#" method="post" class="px-6 pb-6 flex flex-col gap-4">
+                <!-- Sual -->
+                <label class="flex flex-col gap-[6px]">
+                    <span class="text-[12px] text-tertiary-text font-medium">Sual</span>
+                    <input type="text" placeholder="Sual başlığını daxil edin" class="w-full px-3 py-[6.5px] font-poppins font-normal text-[12px] leading-[160%] 
+                   border border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] 
+                   rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                   hover:bg-input-hover dark:hover:bg-input-hover-dark
+                   focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] 
+                   focus:ring-0 focus:outline-none
+                   active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                   transition-all ease-out duration-300
+                   cursor-text">
+                </label>
+                <!-- Cavab -->
+                <label class="flex flex-col gap-[6px] relative">
+                    <span class="text-[12px] text-tertiary-text font-medium">Sualın cavabı</span>
+
+                    <div class="mt-1 w-full h-[186px] relative border border-[#0000001A] rounded-[8px] 
+        focus-within:border-focus focus-within:shadow-[0_0_0_2.5px_var(--color-button-disabled)] 
+        focus-within:ring-0 focus-within:outline-none 
+        active:border-focus active:shadow-[0_0_0_2.5px_var(--color-button-disabled)]">
+
+                        <!-- contenteditable hissə -->
+                        <div id="editChoiceContent" contenteditable="true" data-placeholder="Sualın cavabını daxil edin"
+                            class="w-full h-full p-2 text-[12px] border-0 rounded-[8px] overflow-y-auto focus:outline-none relative">
+                        </div>
+
+                        <!-- Toolbar -->
+                        <div class="bg-item-hover bottom-0 rounded-b-[8px] absolute h-[36px] w-full px-3 py-2">
+                            <div class="flex items-center">
+                                <div class="flex items-center gap-1 !border-r border-on-surface-variant-dark">
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextB.svg" alt="Bold"
+                                        onclick="formatText('bold')" />
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextItalic.svg" alt="Italic"
+                                        onclick="formatText('italic')" />
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextUnderline.svg"
+                                        alt="Underline" onclick="formatText('underline')" />
+                                    <img class="cursor-pointer pr-3"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextStrikethrough.svg"
+                                        alt="StrikeThrough" onclick="formatText('strikeThrough')" />
+                                </div>
+
+                                <div class="flex items-center gap-2.5 !border-r border-on-surface-variant-dark">
+                                    <img class="cursor-pointer pl-3"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignLeft.svg" alt="Left"
+                                        onclick="formatText('justifyLeft')" />
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignCenter.svg"
+                                        alt="Center" onclick="formatText('justifyCenter')" />
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignRight.svg" alt="Right"
+                                        onclick="formatText('justifyRight')" />
+                                    <img class="cursor-pointer pr-3"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignJustify.svg"
+                                        alt="Justify" onclick="formatText('justifyFull')" />
+                                </div>
+
+                                <div class="flex items-center gap-1 pl-3">
+                                    <img class="cursor-pointer"
+                                        src="/images/Avankart/Imtiyazlar/Kartlar/Text Feature.svg"
+                                        alt="Feature" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <fieldset class="mb-4">
+                    <legend class="text-[12px] text-tertiary-text font-medium">FAQ kateqoriyaları</legend>
+                    <div class="grid grid-cols-3 gap-3 mt-2">
+
+                        <!-- Yemək -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_yemek" name="faq_categories[]" value="yemek"
+                                class="peer hidden">
+                            <label for="faq_yemek"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Yemək</span>
+                        </label>
+
+                        <!-- Yanacaq -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_yanacaq" name="faq_categories[]" value="yanacaq"
+                                class="peer hidden">
+                            <label for="faq_yanacaq"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Yanacaq</span>
+                        </label>
+
+                        <!-- Hədiyyə -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_hediyye" name="faq_categories[]" value="hediyye"
+                                class="peer hidden">
+                            <label for="faq_hediyye"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Hədiyyə</span>
+                        </label>
+
+                        <!-- Market -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_market" name="faq_categories[]" value="market"
+                                class="peer hidden">
+                            <label for="faq_market"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Market</span>
+                        </label>
+
+                        <!-- Biznes -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_biznes" name="faq_categories[]" value="biznes"
+                                class="peer hidden">
+                            <label for="faq_biznes"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Biznes</span>
+                        </label>
+
+                        <!-- Premium -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_premium" name="faq_categories[]" value="premium"
+                                class="peer hidden">
+                            <label for="faq_premium"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Premium</span>
+                        </label>
+
+                        <!-- Avto Yuma -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_avtoyuma" name="faq_categories[]" value="avto_yuma"
+                                class="peer hidden">
+                            <label for="faq_avtoyuma"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Avto
+                                Yuma</span>
+                        </label>
+
+                        <!-- Müəssisə -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_muesise" name="faq_categories[]" value="muesise"
+                                class="peer hidden">
+                            <label for="faq_muesise"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Müəssisə</span>
+                        </label>
+
+                        <!-- İstifadəçi -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_istifadeci" name="faq_categories[]" value="istifadeci"
+                                class="peer hidden">
+                            <label for="faq_istifadeci"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">İstifadəçi</span>
+                        </label>
+
+                        <!-- Şirkət -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_sirket" name="faq_categories[]" value="sirket"
+                                class="peer hidden">
+                            <label for="faq_sirket"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Şirkət</span>
+                        </label>
+
+                        <!-- Biz kimik? -->
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="faq_bizkimik" name="faq_categories[]" value="biz_kimik"
+                                class="peer hidden">
+                            <label for="faq_bizkimik"
+                                class="w-5 h-5 border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                                <div class="icon stratis-check-01 scale-60"></div>
+                            </label>
+                            <span
+                                class="text-[13px] text-messages dark:text-primary-text-color-dark font-normal cursor-pointer">Biz
+                                kimik?</span>
+                        </label>
+
+                    </div>
+                </fieldset>
+            </form>
+            <div class="flex items-center justify-end gap-3 px-6 py-5 border-t-[.5px] border-stroke">
+                <button onclick="toggleEditModal()"
+                    class="bg-surface rounded-full text-on-surface-variant text-[13px] font-medium px-5 py-2 bg-[#F8F9FF] text-[#40484C] hover:text-[#1D222B] cursor-pointer">Ləğv
+                    et</button>
+                <button
+                    class="bg-primary rounded-full text-white text-[13px] font-medium px-5 py-2 hover:bg-hover-button cursor-pointer">Yarat</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="filterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <form onsubmit="return false;" data-url="/hesablashmalar/datatable" id="filterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">
+                            Filter
+                        </div>
+                        <div onclick="openFilterModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 py-3">
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65 dark:text-white">Tarix
+                            aralığı</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('startDate')" class="relative w-[195px] group">
+                                    <input id="startDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+           hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="start_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                    </div>
+                                    <div class="text-[11px] font-normal opacity-50">
+                                        Başlanğıc tarixini
+                                        qeyd edin</div>
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <!-- <div class="relative w-full">
+                  <input id="endDate" type="date" class="date-input cursor-pointer text-[13px] font-normal placeholder-[#BFC8CC] dark:placeholder-[#636B6F] bg-menu hover:bg-input-hover border border-stroke rounded-full px-3 py-[6.5px] w-full appearance-none
+                        focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                        transition-all ease-out duration-300" placeholder="dd/mm/yyyy" name="start_date">
+                  <div
+                    class="cursor-pointer text-messages icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus">
+                  </div>
+                </div> -->
+                                <div onclick="openDatePicker('endDate')" class="relative w-[195px] group">
+                                    <input id="endDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+           hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="end_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                    </div>
+                                    <div class="text-[11px] font-normal opacity-50">
+                                        Son tarixi qeyd edin
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Kart kateqoriyası</span>
+                        <div class="mt-[6px]">
+                            <div class="flex items-center flex-wrap gap-4">
+                                <label for="cbx-muessise"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-muessise" class="peer hidden" name="card_category"
+                                        value="muessise">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                    peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <div>Müəssisə</div>
+                                </label>
+
+                                <label for="cbx-sirket"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-sirket" class="peer hidden" name="card_category"
+                                        value="sirket">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                    peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <div>Şirkət</div>
+                                </label>
+
+                                <label for="cbx-restoran"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-restoran" class="peer hidden" name="card_category"
+                                        value="restoran">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                    peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <div>Restoranlar</div>
+                                </label>
+
+                                <label for="cbx-kinoteatr"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-kinoteatr" class="peer hidden" name="card_category"
+                                        value="kinoteatr">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                    peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <div>Kinoteatrlar</div>
+                                </label>
+
+                                <label for="cbx-coffeeshop"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-coffeeshop" class="peer hidden" name="card_category"
+                                        value="coffeeshop">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                    peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                                    </div>
+                                    <div>CoffeShop</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-5">
+                    <button type="button"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="openFilterModal()">Bağla</button>
+                    <button type="reset" onclick="clearFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+                    <button onclick="applyFilters()" type="button"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartFaq/avankartFaq.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartFaq/avankartFaqTable.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartFaq/openDatePicker.js"></script>
+  `; %> 
+  <% styles = `
+<style>
+        #myTable tbody::before {
+            content: "";
+            display: table-row;
+            height: 8px;
+            /* boşluq hündürlüyü */
+        }
+
+        .dt-column-order {
+            display: none !important;
+        }
+
+        table,
+        thead,
+        table.dataTable>thead>tr>th,
+        table.dataTable>thead>tr>td,
+        table.dataTable>tbody>tr:last-child>*,
+        div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+            border: none;
+            font-weight: 400;
+        }
+
+        /* Yalnız sidebar scroll üçün */
+        #sidebar .overflow-y-auto::-webkit-scrollbar {
+            width: 0px;
+            /* Scroll barı tam gizlə */
+        }
+
+        #sidebar .overflow-y-auto {
+            scrollbar-width: none;
+            /* Firefox üçün */
+            -ms-overflow-style: none;
+            /* IE 10+ üçün */
+        }
+
+        /* Bu hissəni öz CSS faylında əlavə et */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    </style>
+  `; %>

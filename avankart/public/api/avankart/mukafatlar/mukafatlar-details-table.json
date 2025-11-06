@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "icon": "/public/images/Avankart/mukafatlar/SilverMedal.svg",
+      "title": "20 dəfə ye, 5 AZN qazan",
+      "usagePlace": "Restoran • CoffeShop • Kinoteatr",
+      "target": "Yemək sayı",
+      "serviceCount": 20,
+      "type": "Məbləğ",
+      "reward": "5 AZN",
+      "userCount": 45,
+      "date": "12.01.2023"
+    },
+    {
+      "icon": "/public/images/Avankart/mukafatlar/goldMedal.svg",
+      "title": "50 dəfə xərclə, növbəti dəfə üçün 10% bonus qazan",
+      "usagePlace": "CoffeShop • Restoran • Kinoteatr • Yanacaq doldurma məntəqəsi",
+      "target": "Xərcləmə məbləği",
+      "serviceCount": 50,
+      "type": "Bonus",
+      "reward": "10%",
+      "userCount": 12,
+      "date": "12.01.2023"
+    },
+    {
+      "icon": "/public/images/Avankart/mukafatlar/BronzeMedal.svg",
+      "title": "10 dəfə xərclə, sevdiyin filmə 20% endirim qazan",
+      "usagePlace": "CoffeShop • Restoran • Kinoteatr • Yanacaq doldurma məntəqəsi",
+      "target": "Xərcləmə məbləği",
+      "serviceCount": 10,
+      "type": "Bonus",
+      "reward": "20%",
+      "userCount": 80,
+      "date": "12.01.2023"
+    },
+    {
+      "icon": "/public/images/Avankart/mukafatlar/SilverMedal.svg",
+      "title": "20 dəfə ye, 5 AZN qazan",
+      "usagePlace": "Restoran • CoffeShop • Kinoteatr",
+      "target": "Yemək sayı",
+      "serviceCount": 20,
+      "type": "Məbləğ",
+      "reward": "5 AZN",
+      "userCount": 45,
+      "date": "12.01.2023"
+    },
+    {
+      "icon": "/public/images/Avankart/mukafatlar/goldMedal.svg",
+      "title": "50 dəfə xərclə, növbəti dəfə üçün 10% bonus qazan",
+      "usagePlace": "CoffeShop • Restoran • Kinoteatr • Yanacaq doldurma məntəqəsi",
+      "target": "Xərcləmə məbləği",
+      "serviceCount": 50,
+      "type": "Bonus",
+      "reward": "10%",
+      "userCount": 12,
+      "date": "12.01.2023"
+    },
+    {
+      "icon": "/public/images/Avankart/mukafatlar/BronzeMedal.svg",
+      "title": "10 dəfə xərclə, sevdiyin filmə 20% endirim qazan",
+      "usagePlace": "CoffeShop • Restoran • Kinoteatr • Yanacaq doldurma məntəqəsi",
+      "target": "Xərcləmə məbləği",
+      "serviceCount": 10,
+      "type": "Bonus",
+      "reward": "20%",
+      "userCount": 80,
+      "date": "12.01.2023"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

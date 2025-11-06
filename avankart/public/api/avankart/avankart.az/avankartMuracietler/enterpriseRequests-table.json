@@ -1,0 +1,86 @@
+{
+  "data": [
+    {
+      "name": "Özsüt",
+      "id": 1,
+      "category": "Restoran",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@ozsut.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Tiblisi",
+      "id": 2,
+      "category": "Restoran",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@tiblisi.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Cinema Plus",
+      "id": 3,
+      "category": "Kinoteatr",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@cinemaplus.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Socar Petrol",
+      "id": 4,
+      "category": "Yanacaq doldurma məntəqəsi",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@socarpetrol.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Özsüt",
+      "id": 5,
+      "category": "Restoran",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@ozsut.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Tiblisi",
+      "id": 6,
+      "category": "Restoran",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@tiblisi.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Cinema Plus",
+      "id": 7,
+      "category": "Kinoteatr",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@cinemaplus.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    },
+    {
+      "name": "Socar Petrol",
+      "id": 8,
+      "category": "Yanacaq doldurma məntəqəsi",
+      "massage": "Lorem ipsum dolor sit amet consectetur. Quis massa blandit elementum amet faucibus. Nunc cras platea nisl ullamcorper ultricies eget. In sapien sed laoreet tristique ut adipiscing hendrerit. Augue amet cursus malesuada leo cursus.",
+      "gmail": "hr.@socarpetrol.az",
+      "date": "14.09.2024",
+      "checked": false,
+      "phone": "+994 10 700 00 00"
+    }
+  ],
+  "recordsTotal": 8,
+  "recordsFiltered": 8
+}

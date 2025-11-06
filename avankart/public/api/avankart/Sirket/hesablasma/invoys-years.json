@@ -1,0 +1,110 @@
+{
+  "data": [
+    {
+      "year": 1999,
+      "count": 300
+    },
+    {
+      "year": 2000,
+      "count": 300
+    },
+    {
+      "year": 2001,
+      "count": 200
+    },
+    {
+      "year": 2002,
+      "count": 200
+    },
+    {
+      "year": 2003,
+      "count": 200
+    },
+    {
+      "year": 2004,
+      "count": 500
+    },
+    {
+      "year": 2005,
+      "count": 500
+    },
+    {
+      "year": 2006,
+      "count": 300
+    },
+    {
+      "year": 2007,
+      "count": 300
+    },
+    {
+      "year": 2008,
+      "count": 300
+    },
+    {
+      "year": 2009,
+      "count": 150
+    },
+    {
+      "year": 2010,
+      "count": 150
+    },
+    {
+      "year": 2011,
+      "count": 150
+    },
+    {
+      "year": 2012,
+      "count": 200
+    },
+    {
+      "year": 2013,
+      "count": 200
+    },
+    {
+      "year": 2014,
+      "count": 200
+    },
+    {
+      "year": 2015,
+      "count": 300
+    },
+    {
+      "year": 2016,
+      "count": 300
+    },
+    {
+      "year": 2017,
+      "count": 300
+    },
+    {
+      "year": 2018,
+      "count": 400
+    },
+    {
+      "year": 2019,
+      "count": 300
+    },
+    {
+      "year": 2020,
+      "count": 300
+    },
+    {
+      "year": 2021,
+      "count": 11
+    },
+    {
+      "year": 2022,
+      "count": 12
+    },
+    {
+      "year": 2023,
+      "count": 9
+    },
+    {
+      "year": 2024,
+      "count": 12
+    }
+  ],
+  "recordsTotal": 26,
+  "recordsFiltered": 26
+}

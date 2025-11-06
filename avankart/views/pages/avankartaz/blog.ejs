@@ -1,0 +1,831 @@
+<div class="flex flex-col gap-3">
+                    <div
+                        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Admin
+                                Panel</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Bloq</a>
+                        </div>
+                    </div>
+                    <div id="mainView" class="flex flex-col gap-3">
+                        <div
+                            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+                            <!-- Tabs -->
+                            <div
+                                class="inline-flex gap-1 items-center border border-surface-variant dark:border-surface-variant-dark rounded-full p-1">
+                                <!-- Bloqlar -->
+                                <button id="blogsTab"
+                                    class="notification-type active text-messages dark:text-primary-text-color-dark text-[12px] font-medium bg-inverse-on-surface dark:bg-surface-variant-dark rounded-full py-[3px] px-3"
+                                    onclick="switchTab('blogs')">
+                                    Bloqlar
+                                </button>
+
+                                <!-- Bloq kateqoriyaları -->
+                                <button id="categoriesTab"
+                                    class="notification-type text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer"
+                                    onclick="switchTab('categories')">
+                                    Bloq kateqoriyaları
+                                </button>
+                            </div>
+
+                            <div id="blogsRight" class="flex items-center gap-2">
+                                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                    <input id="customSearchBlog" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                    <div class="absolute right-3">
+                                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="font-medium text-[13px]">Səhifəni yenilə</span>
+                                    <span
+                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                                </div>
+                                <div onclick="toggleBlogFilterModal()"
+                                    class="w-[96px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <div
+                                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]">
+                                    </div>
+                                    <div>Filter</div>
+                                </div>
+                                <div onclick="toggleBlog()"
+                                    class="w-[115px] cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="icon stratis-edit-03 text-on-primary w-4 h-4"></span>
+                                    <span>Bloq yaz</span>
+                                </div>
+                            </div>
+                            <div id="categoriesRight" class="flex items-center gap-2 hidden">
+                                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                    <input id="blogCategoriesSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                    <div class="absolute right-3">
+                                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="font-medium text-[13px]">Səhifəni yenilə</span>
+                                    <span
+                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                                </div>
+                                <div onclick="toggleBlogCategoriesFilterModal()"
+                                    class="w-[96px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <div
+                                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]">
+                                    </div>
+                                    <div>Filter</div>
+                                </div>
+                                <div onclick="toggleEditModal()"
+                                    class="w-[171px] cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="icon stratis-edit-03 text-on-primary w-4 h-4"></span>
+                                    <span>Kateqoriya yarat</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Bloglar content -->
+                        <div id="blogsContent">
+                            <table id="myTableBlog" class="table-auto"></table>
+                            <!-- Bloglar pagination -->
+                            <div class="pt-2">
+                                <div
+                                    class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+                                    <div class="py-5 flex items-center justify-between">
+                                        <div class="text-[13px] flex items-center gap-2">
+                                            <span class="font-normal opacity-65">Səhifə sayı:</span>
+                                            <span id="blogPageCount" class="font-medium">1 / 1</span>
+                                        </div>
+                                        <div class="flex items-center gap-5">
+                                            <div>
+                                                <div id="customPaginationBlog" class="flex items-center">
+                                                    <div class="flex items-center justify-center pr-[42px] h-8 ms-0 leading-tight opacity-50 cursor-not-allowed"
+                                                        onclick="changeBlogPage(0)">
+                                                        <div class="icon stratis-chevron-left !h-[12px] !w-[7px]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex gap-2">
+                                                        <button
+                                                            class="cursor-pointer w-10 text-[13px] h-10 rounded-[8px] hover:text-messages bg-[#F6D9FF] text-messages"
+                                                            onclick="changeBlogPage(0)">1</button>
+                                                    </div>
+                                                    <div class="flex items-center justify-center h-8 ms-0 pl-[42px] leading-tight opacity-50 cursor-not-allowed"
+                                                        onclick="changeBlogPage(0)">
+                                                        <div class="icon stratis-chevron-right !h-[12px] !w-[7px]">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    class="blog-page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                                                    type="text" placeholder="Səhifə" />
+                                                <a href="#"
+                                                    class="blog-go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kateqoriyalar content -->
+                        <div id="categoriesContent" class="hidden">
+                            <table id="blogCategoriesTable" class="table-fixed w-full border-collapse">
+                                <thead class="border-none pb-1">
+                                    <tr
+                                        class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                                        <th class="whitespace-nowrap rounded-l-lg filtering">
+                                            Kateqoriya adı</th>
+                                        <th class="whitespace-nowrap">Yaranma tarixi</th>
+                                        <th class="whitespace-nowrap w-10 rounded-r-lg"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="pt-2">
+                                <div
+                                    class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+                                    <div class="py-5 flex items-center justify-between">
+                                        <div class="text-[13px] flex items-center gap-2">
+                                            <span class="font-normal opacity-65">Səhifə sayı:</span>
+                                            <span id="blogCategoriesPageCount" class="font-medium">1 / 1</span>
+                                        </div>
+                                        <div class="flex items-center gap-5">
+                                            <div>
+                                                <div id="blogCategoriesPagination" class="flex items-center">
+                                                    <div class="flex items-center justify-center pr-[42px] h-8 ms-0 leading-tight opacity-50 cursor-not-allowed"
+                                                        onclick="changeBlogCategoriesPage(0)">
+                                                        <div class="icon stratis-chevron-left !h-[12px] !w-[7px]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex gap-2">
+                                                        <button
+                                                            class="cursor-pointer w-10 text-[13px] h-10 rounded-[8px] hover:text-messages bg-[#F6D9FF] text-messages"
+                                                            onclick="changeBlogCategoriesPage(0)">1</button>
+                                                    </div>
+                                                    <div class="flex items-center justify-center h-8 ms-0 pl-[42px] leading-tight opacity-50 cursor-not-allowed"
+                                                        onclick="changeBlogCategoriesPage(0)">
+                                                        <div class="icon stratis-chevron-right !h-[12px] !w-[7px]">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    class="blog-categories-page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                                                    type="text" placeholder="Səhifə" />
+                                                <a href="#"
+                                                    class="blog-categories-go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="blogView" class="flex flex-col gap-3 hidden">
+                        <div class="flex gap-3">
+                            <!-- Xarici Cover Şəkli -->
+                            <div class="w-[250px] relative h-[150px] bg-image dark:bg-image-dark rounded-[12px] group overflow-hidden cursor-pointer"
+                                onclick="document.getElementById('coverInput').click()">
+
+                                <input type="file" id="coverInput" class="hidden" accept="image/*"
+                                    onchange="previewImage(this, 'coverPreview')" />
+
+                                <img id="coverPreview" src=""
+                                    class="absolute inset-0 w-full h-full object-cover rounded-[12px] hidden z-50" />
+
+                                <!-- Hover overlay -->
+                                <div id="coverHoverOverlay"
+                                    class="absolute inset-0 bg-[rgb(0,0,0,0.2)] rounded-[12px] opacity-0 transition-all duration-500 ease-in-out z-60 flex flex-col items-center justify-center hidden">
+                                    <!-- Edit and Delete buttons -->
+                                    <div
+                                        class="flex gap-3 mb-3 transform translate-y-4 transition-all duration-700 ease-out delay-100">
+                                        <!-- Edit Image Button -->
+                                        <button onclick="editImage(event, 'coverInput')"
+                                            class="flex items-center justify-center bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 p-2 rounded-full transition-all duration-300 w-8 h-8">
+                                            <div class="icon stratis-edit-01 w-4 h-4 text-black z-10"></div>
+                                        </button>
+
+                                        <!-- Delete Image Button -->
+                                        <button onclick="deleteImage(event, 'coverPreview', 'coverHoverOverlay')"
+                                            class="flex items-center justify-center bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 p-2 rounded-full transition-all duration-300 w-8 h-8">
+                                            <div class="icon stratis-trash-01 w-4 h-4 text-black z-10"></div>
+                                        </button>
+
+                                    </div>
+                                    <!-- Text content -->
+                                    <div
+                                        class="text-center transform translate-y-4 transition-all duration-700 ease-out delay-200">
+                                        <p
+                                            class="text-white dark:text-primary-text-color-dark text-[15px] font-medium mb-1">
+                                            Cover şəkli
+                                            əlavə et</p>
+                                        <p
+                                            class="text-white dark:text-secondary-text-color-dark text-[12px] opacity-65">
+                                            200x200 ölçüsündə olmalıdır
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <img class="absolute top-[26px] right-[110px] w-[10px] h-[10px] transition-transform duration-300 ease-in-out group-hover:scale-125 z-10"
+                                    src="/images/muessise melumatlari images/Subtract.svg" alt="plus">
+
+                                <div class="py-[30px] flex flex-col items-center justify-center z-10 relative">
+                                    <div
+                                        class="icon iconex-camera-1 dark:text-primary-text-color-dark !w-[40px] !h-[35px] mb-4 group-hover:scale-125 transition-transform">
+                                    </div>
+                                    <p
+                                        class="text-[15px] font-medium text-messages dark:text-primary-text-color-dark mb-1">
+                                        Cover şəkli
+                                        əlavə et</p>
+                                    <p class="text-[12px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                        200x200 ölçüsündə olmalıdır
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="#" method="post" class="flex flex-col gap-3">
+                            <!-- Sual -->
+                            <div class="flex gap-2 w-full">
+                                <!-- Mövzu -->
+                                <div class="flex flex-col gap-[6px] w-1/2">
+                                    <label for="blogTopic" class="text-[12px] text-tertiary-text font-medium">Bloq
+                                        mövzusu</label>
+                                    <input id="blogTopic" name="blogTopic" type="text"
+                                        placeholder="Mövzu adını daxil edin" class="w-full px-3 py-[6.5px] font-poppins font-normal text-[12px] leading-[160%]
+                border border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] 
+                rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                hover:bg-input-hover dark:hover:bg-input-hover-dark
+                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] 
+                focus:ring-0 focus:outline-none
+                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                transition-all ease-out duration-300 cursor-text">
+                                </div>
+                                <!-- Dil seçimi -->
+                                <div class="relative flex flex-col gap-[6px] w-1/4">
+                                    <label for="selected_language"
+                                        class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Dil
+                                        seçimi</label>
+                                    <input type="hidden" name="language" id="languageInput">
+
+                                    <!-- button və dropdown eyni relative container içindədir -->
+                                    <button id="dropdownDefaultButton_language"
+                                        class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                                        type="button" onclick="toggleDropdown_language()">
+                                        <span id="selected_language">Seçim edin</span>
+                                        <div>
+                                            <img src="/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                                class="w-[15px] h-[13px] dark:invert">
+                                        </div>
+                                    </button>
+
+                                    <!-- tam altına gəlməsi üçün: absolute + top-full + left-0 -->
+                                    <div id="dropdown_language" class="hidden absolute top-full left-0 mt-1 w-full overflow-y-auto overflow-x-hidden custom-scroll 
+        bg-white border-[.5px] border-stroke rounded-lg shadow z-50 
+        dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+                                        <div class="flex flex-col p-1 font-medium">
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectLanguage('AZ')">AZ</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectLanguage('TR')">TR</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectLanguage('ENG')">ENG</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectLanguage('RU')">RU</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Bloq kateqoriyası -->
+                                <div class="relative flex flex-col gap-[6px] w-1/4">
+                                    <label for="selected_blogCategory"
+                                        class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">
+                                        Bloq kateqoriyası
+                                    </label>
+                                    <input type="hidden" name="blogCategory" id="blogCategoryInput">
+
+                                    <button id="dropdownDefaultButton_blogCategory"
+                                        class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                                        type="button" onclick="toggleDropdown_blogCategory()">
+                                        <span id="selected_blogCategory">Seçim edin</span>
+                                        <div>
+                                            <img src="/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                                class="w-[15px] h-[13px] dark:invert">
+                                        </div>
+                                    </button>
+
+                                    <!-- Əsas dəyişiklik buradadır -->
+                                    <div id="dropdown_blogCategory" class="hidden absolute top-full left-0 mt-1 w-full overflow-y-auto overflow-x-hidden custom-scroll 
+        bg-white border-[.5px] border-stroke rounded-lg shadow z-50 
+        dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+                                        <div class="flex flex-col p-1 font-medium">
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectBlogCategory('Müəssisə')">Müəssisə</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectBlogCategory('Restoran')">Restoran</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectBlogCategory('CoffeShop')">CoffeShop</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectBlogCategory('Şirkət')">Şirkət</label>
+                                            <label
+                                                class="flex font-medium hover:bg-item-hover px-3 py-1 cursor-pointer select-none text-[13px]"
+                                                onclick="selectBlogCategory('Yanacaq Doldurma Məntəqəsi')">Yanacaq
+                                                Doldurma Məntəqəsi</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Cavab -->
+                            <div class="flex flex-col gap-[6px] relative">
+                                <label for="blogContent" class="text-[12px] text-tertiary-text font-medium">Bloq
+                                    məzmunu</label>
+                                <div class="mt-1 w-full h-[569px] relative border border-[#0000001A] rounded-[8px] 
+            focus-within:border-focus focus-within:shadow-[0_0_0_2.5px_var(--color-button-disabled)] 
+            focus-within:ring-0 focus-within:outline-none 
+            active:border-focus active:shadow-[0_0_0_2.5px_var(--color-button-disabled)]">
+                                    <!-- contenteditable hissə -->
+                                    <div id="editChoiceContent" contenteditable="true"
+                                        data-placeholder="Sualın cavabını daxil edin"
+                                        class="w-full h-full p-2 text-[12px] border-0 rounded-[8px] overflow-y-auto focus:outline-none relative">
+                                    </div>
+                                    <textarea name="blogContent" id="blogContent" class="hidden"></textarea>
+
+                                    <!-- Toolbar -->
+                                    <div
+                                            style="display: none"
+                                        class="bg-item-hover bottom-0 rounded-b-[8px] absolute h-[36px] w-full px-3 py-2">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="flex items-center gap-1 !border-r border-on-surface-variant-dark">
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextB.svg"
+                                                    alt="Bold" onclick="formatText('bold')" />
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextItalic.svg"
+                                                    alt="Italic" onclick="formatText('italic')" />
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextUnderline.svg"
+                                                    alt="Underline" onclick="formatText('underline')" />
+                                                <img class="cursor-pointer pr-3"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextStrikethrough.svg"
+                                                    alt="StrikeThrough" onclick="formatText('strikeThrough')" />
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-2.5 !border-r border-on-surface-variant-dark">
+                                                <img class="cursor-pointer pl-3"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignLeft.svg"
+                                                    alt="Left" onclick="formatText('justifyLeft')" />
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignCenter.svg"
+                                                    alt="Center" onclick="formatText('justifyCenter')" />
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignRight.svg"
+                                                    alt="Right" onclick="formatText('justifyRight')" />
+                                                <img class="cursor-pointer pr-3"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/TextAlignJustify.svg"
+                                                    alt="Justify" onclick="formatText('justifyFull')" />
+                                            </div>
+                                            <div class="flex items-center gap-1 pl-3">
+                                                <img class="cursor-pointer"
+                                                    src="/images/Avankart/Imtiyazlar/Kartlar/Text Feature.svg"
+                                                    alt="Feature" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit -->
+                            <div class="flex gap-3 items-center py-4">
+                                <button type="submit" id="blogSubmitButton"
+                                    class="inline-block cursor-pointer py-2 px-[18px] rounded-full bg-primary text-white text-[13px] font-medium hover:bg-focus">
+                                    Bloq yarat
+                                </button>
+                                <button type="button" onclick="toggleBlog()"
+                                    class="w-[83px] cursor-pointer py-2 px-[18px] rounded-full bg-surface-bright text-messages text-[13px] font-medium">
+                                    Ləğv et
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div id="blogCategoriesFilterPop"
+        class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <form onsubmit="return false;" data-url="/hesablashmalar/datatable" id="blogCategoriesFilterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">Kateqoriya Filteri</div>
+                        <div onclick="toggleBlogCategoriesFilterModal()"
+                            class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 pt-3 pb-8">
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65 dark:text-white">Tarix aralığı</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('blogCategoriesStartDate')"
+                                    class="relative w-[195px] group">
+                                    <input id="blogCategoriesStartDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                                    hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="categories_start_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Başlanğıc tarixini qeyd edin</div>
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('blogCategoriesEndDate')" class="relative w-[195px] group">
+                                    <input id="blogCategoriesEndDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                                    hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="categories_end_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Son tarixi qeyd edin</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Kart kateqoriyası</span>
+                        <div class="mt-[6px]">
+                            <div class="flex items-center flex-wrap gap-4">
+                                <label for="cbx-cat-muessise"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-cat-muessise" class="peer hidden"
+                                        name="category_filter" value="Müəssisə">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+               peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Müəssisə</div>
+                                </label>
+                                <label for="cbx-cat-sirket"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-cat-sirket" class="peer hidden"
+                                        name="category_filter" value="Şirkət">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+               peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Şirkət</div>
+                                </label>
+                                <label for="cbx-cat-restoran"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-cat-restoran" class="peer hidden"
+                                        name="category_filter" value="Restoranlar">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+               peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Restoranlar</div>
+                                </label>
+                                <label for="cbx-cat-kinoteatr"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-cat-kinoteatr" class="peer hidden"
+                                        name="category_filter" value="Kinoteatrlar">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+               peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Kinoteatrlar</div>
+                                </label>
+                                <label for="cbx-cat-coffeeshop"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-cat-coffeeshop" class="peer hidden"
+                                        name="category_filter" value="CoffeShop">
+                                    <div class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+               peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>CoffeShop</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3">
+                    <button type="button"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="toggleBlogCategoriesFilterModal()">Bağla</button>
+                    <button type="reset" onclick="clearBlogCategoriesFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+                    <button onclick="applyBlogCategoriesFilters()" type="button"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="blogFilterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+            <!-- Form id changed to blogFilterForm -->
+            <form onsubmit="return false;" data-url="/hesablashmalar/datatable" id="blogFilterForm">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-[15px] font-medium">Kateqoriya Filteri (Blog)</div>
+                        <!-- Close calls new toggleBlogFilterModal() -->
+                        <div onclick="toggleBlogFilterModal()"
+                            class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2 pt-3 pb-8">
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65 dark:text-white">Tarix aralığı</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-1/2">
+                                <!-- Date input ids changed to blogStartDate / blogEndDate -->
+                                <div onclick="openDatePicker('blogStartDate')" class="relative w-[195px] group">
+                                    <input id="blogStartDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                  hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                  active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="blog_start_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Başlanğıc tarixini qeyd edin</div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <div onclick="openDatePicker('blogEndDate')" class="relative w-[195px] group">
+                                    <input id="blogEndDate" type="date"
+                                        class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none
+                  hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                  active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                                        placeholder="dd/mm/yyyy" name="blog_end_date">
+                                    <div
+                                        class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="icon stratis-information-circle-contained w-3 h-3 opacity-50"></div>
+                                    <div class="text-[11px] font-normal opacity-50">Son tarixi qeyd edin</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-[12px] font-medium opacity-65">Bloq kateqoriyası</span>
+                        <div class="mt-[6px]">
+                            <div id="blogFilterCategories" class="flex items-center flex-wrap gap-4">
+                                <!-- Categories will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end gap-3">
+                    <button type="button"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                        onclick="toggleBlogFilterModal()">Bağla</button>
+
+                    <button type="reset" onclick="clearBlogFilters()"
+                        class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                        təmizlə</button>
+
+                    <button onclick="applyBlogFilters()" type="button"
+                        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex flex-col p-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                    <div class="iconex iconex-trash-can-1 w-5 h-5 text-error dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white pt-3">
+                    Sil
+                </h2>
+                <div
+                    class="flex flex-wrap pb-4 gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6]">Seçilən kateqoriyanı silmək istədiyinizə
+                        əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="toggleDeleteModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+                        Xeyr
+                    </button>
+                    <button onclick="confirmDeleteCategory()"
+                        class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteBlogModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex flex-col p-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                    <div class="iconex iconex-trash-can-1 w-5 h-5 text-error dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white pt-3">
+                    Sil
+                </h2>
+                <div
+                    class="flex flex-wrap pb-4 gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6]">Seçilən bloqu silmək istədiyinizə
+                        əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="toggleDeleteBlogModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+                        Xeyr
+                    </button>
+                    <button
+                        class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="w-[450px] rounded-xl shadow-lg bg-white p-6 mx-auto">
+            <div class="flex justify-center mb-4">
+                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center modal-icon">
+                    <div class="iconex iconex-case-1 w-5 h-5"></div>
+                </div>
+            </div>
+            <h2 id="modal-title" class="text-center text-[17px] font-semibold text-[#1D222B] mb-1">
+                Yeni kateqoriya
+            </h2>
+            <p id="modal-description"
+                class="w-[333px] px-15 mx-auto text-center text-[13px] font-normal text-secondary-text mb-6">
+                Aşağıdan dil seçərək, kateqoriya adını hər dilə uyğun qeyd edin
+            </p>
+
+            <div
+                class="flex mx-auto w-fit gap-1 items-center border border-surface-variant dark:border-surface-variant-dark rounded-full p-1">
+                <button onclick="toggleLanguage(this)" data-lang="az"
+                    class="lang-btn active text-messages dark:text-primary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium bg-inverse-on-surface dark:bg-surface-variant-dark rounded-full py-[3px] px-3">
+                    Azərbaycan
+                </button>
+                <button onclick="toggleLanguage(this)" data-lang="tr"
+                    class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                    Türkçə
+                </button>
+                <button onclick="toggleLanguage(this)" data-lang="en"
+                    class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                    English
+                </button>
+                <button onclick="toggleLanguage(this)" data-lang="ru"
+                    class="lang-btn text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer">
+                    Russian
+                </button>
+            </div>
+
+            <div class="text-center">
+                <input type="text" placeholder="Blog kateqoriyası" id="categoryInput"
+                    class="w-[326px] text-center rounded-lg px-4 my-8 text-[24px] text-[#1D222B] focus:outline-none border-none ring-0 placeholder-[#BFC8CC] placeholder:text-[24px] modal-link-input" />
+            </div>
+
+            <button id="saveButton"
+                class="w-full cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                <span>Yarat</span>
+            </button>
+            <div onclick="toggleEditModal()"
+                class="w-full mt-2 cursor-pointer bg-surface-bright text-on-surface-variant border-none rounded-full flex items-center justify-center gap-2 text-[13px] font-medium py-[6.5px] px-[18px]">
+                <span>Ləğv et</span>
+            </div>
+        </div>
+    </div>
+
+<% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartBlog/avankartBlog.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartBlog/avankartBlogTable.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartBlog/avankartCategoriesTable.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartBlog/openDatePicker.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartBlog/uploadPhoto.js"></script>
+  `; %> 
+  <% styles = `
+  <style>
+        #blogCategoriesTable tbody::before {
+            content: "";
+            display: table-row;
+            height: 8px;
+            /* boşluq hündürlüyü */
+        }
+
+        #myTableBlog>thead>tr>th,
+        #myTableBlog>thead>tr>td {
+            padding: 0px;
+        }
+
+        .dt-column-order {
+            display: none !important;
+        }
+
+        table,
+        thead,
+        table.dataTable>thead>tr>th,
+        table.dataTable>thead>tr>td,
+        table.dataTable>tbody>tr:last-child>*,
+        div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+            border: none;
+            font-weight: 400;
+        }
+
+        /* Yalnız sidebar scroll üçün */
+        #sidebar .overflow-y-auto::-webkit-scrollbar {
+            width: 0px;
+            /* Scroll barı tam gizlə */
+        }
+
+        #sidebar .overflow-y-auto {
+            scrollbar-width: none;
+            /* Firefox üçün */
+            -ms-overflow-style: none;
+            /* IE 10+ üçün */
+        }
+
+        /* Bu hissəni öz CSS faylında əlavə et */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    </style>
+  `; %>

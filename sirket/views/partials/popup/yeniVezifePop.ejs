@@ -1,0 +1,33 @@
+<div id="YeniVezifePop"
+    class="w-[450px] z-101 bg-body-bg dark:bg-side-bar-item-dark text-messages border-[3px] border-[#0000001A] dark:border-[#FFFFFF1A] shadow-md rounded-2xl fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hidden">
+    <form id="vezifeDarkForm" onsubmit="return false;" data-url="/rbac/create-duty">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="flex items-center justify-center flex-col">
+            <div
+                class="flex items-center justify-center rounded-full bg-selected dark:bg-selected-color-dark h-[52px] w-[52px]">
+                <div class="icon iconex-case-1 dark:text-primary-text-color-dark"></div>
+            </div>
+            <div class="text-[17px] font-semibold text-messages dark:text-primary-text-color-dark pt-3">
+                Yeni vəzifə in ejsgf
+            </div>
+            <div class="text-[13px] font-normal text-secondary-text dark:text-secondary-text-color-dark">
+                Vəzifə adını aşağıda qeyd edin
+            </div>
+            <div class="flex items-center justify-center mt-6">
+                <input type="text" name="name"
+                    class="border-0 dark:bg-side-bar-item-dark font-semibold text-center text-[26px] dark:text-primary-text-color-dark placeholder:text-center placeholder:text-on-surface-variant-dark dark:placeholder:text-outline-dark focus:outline-none focus:ring-0 focus:shadow-none"
+                    placeholder="Vəzifəni daxil edin" />
+            </div>
+        </div>
+        <div class="mt-8">
+            <button type="submit" id="vezifeDarkButton" onclick="submitForm('vezifeDark')"
+                class="w-full h-[40px] cursor-pointer bg-primary text-white text-[15px] font-medium rounded-full flex items-center justify-center">
+                Yadda saxla
+            </button>
+            <div onclick="closeYeniVezifePopup()"
+                class="w-full h-[40px] mt-3 cursor-pointer bg-surface dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[15px] font-medium rounded-full flex items-center justify-center">
+                Ləğv et
+            </div>
+        </div>
+    </form>
+</div>

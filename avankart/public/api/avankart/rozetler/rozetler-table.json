@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "categoryName": "Sosial aktivliklər",
+      "badgeCount": 8,
+      "createdBy": "Fərid İcrai",
+      "creationDate": "12.01.2023"
+    },
+    {
+      "categoryName": "Biznes",
+      "badgeCount": 32,
+      "createdBy": "Orxan İcrai",
+      "creationDate": "12.01.2023"
+    },
+    {
+      "categoryName": "İdman",
+      "badgeCount": 25,
+      "createdBy": "Ramin Orucov",
+      "creationDate": "12.01.2023"
+    }
+  ],
+  "recordsTotal": 3,
+  "recordsFiltered": 3
+}

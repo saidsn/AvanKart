@@ -1,0 +1,64 @@
+{
+  "auth": {
+    "name_required": "İstifadəçi adı tələb olunur.",
+    "mail_required": "Email daxil edilməlidir.",
+    "invalid_email": "Etibarlı bir email daxil edin.",
+    "phone_required": "Telefon nömrəsi tələb olunur.",
+    "invalid_phone": "Telefon nömrəsi düzgün formatda deyil. (Məsələn, +994xxxxxxxxx)",
+    "password_required": "Şifrə daxil edilməlidir."
+  },
+  "excel": {
+    "only_excel_allowed": "Yalnız Excel fayllarına icazə verilir"
+  },
+  "upload": {
+    "only_pdf_images_allowed": "Yalnız PDF və şəkil fayllarına icazə verilir",
+    "no_file_selected": "Heç bir fayl seçilməyib",
+    "image_processing_failed": "%s şəkil faylı emal edilə bilmədi",
+    "invalid_pdf_file": "%s PDF faylı düzgün deyil",
+    "file_processing_failed": "%s faylı emal edilərkən xəta baş verdi: %s",
+    "upload_error": "Fayl yükləmə zamanı xəta baş verdi"
+  },
+  "settings": {
+    "fill_all_fields": "Zəhmət olmasa bütün xanaları doldurun.",
+    "passwords_not_match": "Şifrələr uyğun gəlmir.",
+    "password_complexity": "Şifrə ən azı 8 simvol və xüsusi simvol (!@-_$?) daxil etməlidir."
+  },
+  "add_user": {
+    "fullname_required": "Tam ad daxil edilməlidir.",
+    "fullname_must_contain_two_words": "Tam ad ən azı iki sözdən ibarət olmalıdır.",
+    "gender_required": "Cins seçilməlidir.",
+    "gender_invalid": "Cins yalnız male, female və ya other ola bilər.",
+    "email_required": "Email daxil edilməlidir.",
+    "email_invalid": "Etibarlı bir email daxil edin.",
+    "phone_required": "Telefon nömrəsi daxil edilməlidir.",
+    "phone_invalid": "Telefon nömrəsi yalnız 7-15 rəqəmdən ibarət ola bilər.",
+    "duty_id_invalid": "Vəzifə ID-si düzgün formatda deyil.",
+    "auth_id_invalid": "Səlahiyyət ID-si düzgün formatda deyil.",
+    "validation_failed": "İstifadəçi əlavə olunmadı. Xahiş edirik xətaları yoxlayın."
+  },
+  "delete_user": {
+    "id_or_ids_required": "İstifadəçi ID-si və ya ID-lər göndərilməlidir.",
+    "id_must_be_string": "ID dəyəri string formatında olmalıdır.",
+    "id_invalid_objectid": "ID etibarlı bir ObjectId deyil.",
+    "ids_must_be_array": "ID-lər array formatında olmalıdır.",
+    "id_index_must_be_string": "{{index}} indeksindəki ID string olmalıdır.",
+    "id_index_invalid_objectid": "{{index}} indeksindəki ID etibarlı ObjectId deyil.",
+    "validation_failed": "İstifadəçi silinərkən xətalar baş verdi."
+  },
+  "edit_user": {
+    "user_id_required": "İstifadəçi ID-si tələb olunur.",
+    "user_id_invalid_objectid": "ID etibarlı bir ObjectId deyil.",
+    "full_name_invalid": "Ad və soyad düzgün formatda deyil.",
+    "full_name_not_enough_parts": "Ad və soyad ən azı iki sözdən ibarət olmalıdır.",
+    "gender_invalid": "Cins düzgün daxil edilməyib.",
+    "gender_not_allowed": "Cins yalnız 'male', 'female' və ya 'other' ola bilər.",
+    "email_invalid": "Email düzgün daxil edilməyib.",
+    "email_format_invalid": "Email formatı yanlışdır.",
+    "phone_invalid": "Telefon nömrəsi düzgün deyil.",
+    "phone_format_invalid": "Telefon nömrəsi düzgün formatda deyil.",
+    "duty_id_invalid": "Vəzifə ID-si düzgün deyil.",
+    "auth_id_invalid": "Auth ID düzgün deyil.",
+    "no_update_fields": "Yenilənəcək heç bir sahə göndərilməyib.",
+    "validation_failed": "Redaktə zamanı xətalar baş verdi."
+  }
+}

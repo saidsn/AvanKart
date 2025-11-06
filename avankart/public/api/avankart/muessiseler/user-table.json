@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "name": "Ramin Orucov",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Mühasib",
+      "email": "ramin.orucovv@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "department": "Sistem İnzibatçısı"
+    },
+    {
+      "name": "Ibrahim Feyzullazade",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Proyekt Menecer",
+      "email": "ibrahim.feyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "department": "Proyekt İdarə etmə"
+    },
+    {
+      "name": "Ibrahim Feyzullazade",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Proyekt Menecer",
+      "email": "ibrahim.feyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "department": "Proyekt İdarə etmə"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Mühasib",
+      "email": "ramin.orucovv@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "department": "Sistem İnzibatçısı"
+    },
+    {
+      "name": "Isa Sadiqli",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Baş Mühasib",
+      "email": "isa.sadiqli@gmail.com",
+      "phone": "+994 50 370 13 93",
+      "department": "Baş Mühasiblər"
+    },
+    {
+      "name": "Ibrahim Feyzullazade",
+      "id": "ADM-XXXXXXXXXX",
+      "gender": "Kişi",
+      "position": "Proyekt Menecer",
+      "email": "ibrahim.feyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "department": "Proyekt İdarə etmə"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

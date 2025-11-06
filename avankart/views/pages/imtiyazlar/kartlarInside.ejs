@@ -1,0 +1,935 @@
+<div>
+  <div
+    class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+  >
+    <div class="flex items-center gap-2">
+      <a
+        href="/"
+        class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"
+        >Avankart</a
+      >
+      <div class="icon stratis-slash-01-forward"></div>
+    </div>
+    <div class="flex items-center gap-2">
+      <a
+        href="/imtiyazlar/kartlar"
+        class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"
+        >İmtiyaz kartları</a
+      >
+      <div class="icon stratis-slash-01-forward"></div>
+    </div>
+    <div class="flex items-center gap-2">
+      <span
+        class="text-tertiary-text dark:text-tertiary-text-color-dark cursor-default"
+        ><%= card.name %></span
+      >
+    </div>
+  </div>
+  <div class="flex mt-4 w-full h-auto justify-between">
+    <div class="w-[30%] flex flex-col h-full border-r p-4">
+      <div class="flex flex-col w-full">
+        <div class="w-full flex flex-col justify-center items-center relative">
+          <button
+            id="openCardPopupForUpdate"
+            class="cursor-pointer absolute top-0 right-0 items-center justify-center hover:bg-red-50 transition duration-200 flex items-center gap-1"
+          >
+            <div
+              class="text-xs icon stratis-edit-03 w-[13px] h-[13px] disabled:text-on-surface-variant-dark"
+            ></div>
+            <span class="text-sm">Redaktə et</span>
+          </button>
+          <div
+            style="background-color: <%= card.background %>"
+            class=" w-12 h-12 rounded-full flex items-center justify-center shadow-md"
+          >
+            <img
+              src="https://api.avankart.com/v1/icon/<%= card.icon %>"
+              alt="<%= card.name %>"
+              class="w-4 h-4"
+            />
+          </div>
+          <h2 class="text-lg font-bold text-gray-800"><%= card.name %></h2>
+        </div>
+
+        <p class="text-gray-600 mt-1 w-full text-center text-xs">
+          <%= card.description %>
+        </p>
+        <div class="flex justify-center gap-2 mt-2">
+          <button
+          id="addConditions"
+            class="cursor-pointer bg-primary hover:bg-focus text-on-primary border border-surface-variant rounded-full flex items-center justify-center gap-2 text-[11px] font-medium py-[6.5px] px-[18px]"
+          >
+            <div class="icon stratis-plus-02 mt-[2.5px]"></div>
+            <div id="addConditionsText">Yeni şərt əlavə et</div>
+          </button>
+          <% if (card.status === "active") { %>
+            <button
+              class="cursor-pointer text-[11px] text-red-600 hover:bg-red-50 transition duration-200 flex items-center space-x-2"
+              onclick="openDeleteConditionModal()"
+            >
+              <i class="fas fa-ban"></i>
+              <span>Kartı deaktiv et</span>
+            </button>
+          <% } else { %>
+            <button
+              class="cursor-pointer text-[11px] text-green-600 hover:bg-green-50 transition duration-200 flex items-center space-x-2"
+              onclick="confirmCardActivation('<%= card.id %>')"
+            >
+              <i class="fas fa-check"></i>
+              <span>Kartı aktiv et</span>
+            </button>
+          <% } %>
+        </div>
+      </div>
+      <div
+        id="cardConditionsMenu"
+        class="flex flex-wrap gap-2 text-[13px] justify-between mt-3 border-t p-2 font-normal text-gray-400"
+      >
+        <span
+          class="cursor-pointer min-w-1/4 py-1 hover:text-black transition-all"
+          >Aktivasiya şərtləri</span
+        ><span
+          class="cursor-pointer min-w-1/4 text-black font-bold border-b-2 border-black ![border-bottom-color:black] py-1"
+          >İstifadə qaydaları</span
+        ><span
+          class="cursor-pointer min-w-1/4 py-1 hover:text-black transition-all"
+          >Deaktivasiya şərtləri</span
+        ><span
+          class="cursor-pointer min-w-1/4 py-1 hover:text-black transition-all"
+          >Deaktiv etmə səbəbləri</span
+        >
+      </div>
+      <div id="cardConditions" class="border-t flex flex-col gap-2">
+        <span class="text-gray-600 mt-1 w-full text-center text-xs"
+          >Yemək kartının istifadə qaydalarını idarə edə bilərsiniz</span
+        >
+      </div>
+    </div>
+    <div class="w-[70%] h-auto flex flex-col gap-4 p-2">
+      <div
+        class="py-2 px-1 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] border-b"
+      >
+        <div id="cardDetailsMenu" class="flex rounded-lg">
+          <div
+            class="flex gap-1 items-center rounded-full border border-gray-200 p-0.5"
+          >
+            <button
+              class="cursor-pointer flex gap-2 relative px-2 py-1 rounded-full text-xs font-medium text-gray-500 hover:text-gray-800"
+            >
+              Aktivlər
+            </button>
+            <button
+              class="cursor-pointer flex gap-2 relative px-2 py-1 rounded-full text-xs font-medium text-gray-500 hover:text-gray-800"
+            >
+              Deaktivlər
+            </button>
+            <button
+              class="cursor-pointer flex gap-2 relative px-2 py-1 rounded-full text-xs font-medium text-gray-500 hover:text-gray-800"
+            >
+              Rədd edilənlər
+            </button>
+            <button
+              class="cursor-pointer flex gap-2 px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-900"
+            >
+              Müraciətlər
+              <span
+                id="tableRowCount"
+                class="badge-count flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold"
+                >0</span
+              >
+            </button>
+          </div>
+
+          <div
+            id="selectedValues"
+            class="hidden text-[13px] font-medium py-2 bg-container-2 rounded-lg"
+          ></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div
+            class="relative font-normal flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+          >
+            <input
+              id="customSearch"
+              type="text"
+              placeholder="Search..."
+              class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+            />
+            <div class="absolute right-3">
+              <div
+                class="icon stratis-search-02 dark:text-primary-text-color-dark"
+              ></div>
+            </div>
+          </div>
+          <div
+            class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+          >
+            <a id="refreshTableBtn" href="#">Səhifəni yenilə</a>
+            <a
+              id="refreshTableIcon"
+              href="#"
+              class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"
+            ></a>
+          </div>
+          <div
+            onclick="openFilterModal()"
+            class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+          >
+            <a
+              href="#"
+              class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"
+            ></a>
+            <a href="#" class="">Filterlə</a>
+          </div>
+        </div>
+      </div>
+      <table id="cardDetailsTable" class="table-fixed w-full border-collapse">
+        <thead class="border-none pb-0.5">
+          <tr
+            class="bg-container-2 border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white"
+          >
+            <th class="rounded-l-lg filtering">Ad və soyad</th>
+            <th class="filtering">E-poçt</th>
+            <th class="filtering">Telefon nömrəsi</th>
+            <th class="filtering">Şirkət adı</th>
+            <th class="filtering">Aktivləşdirmə tarixi</th>
+            <th class="w-10 rounded-r-lg"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Yeni Qayda Modal -->
+<div
+  id="newConditionModal"
+  class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100"
+>
+  <div class="bg-white w-1/3 max-w-lg rounded-xl shadow-lg p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold" id="conditionPopupTitle">Yeni qayda</h2>
+      <button
+        class="text-gray-500 hover:text-gray-800"
+        onclick="closeConditionModal()"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Form -->
+    <div class="flex flex-col gap-3">
+      <input
+        type="text"
+        id="conditionTitle"
+        placeholder="Başlıq"
+        class="w-full border border-gray-300 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <textarea
+        id="conditionDescription"
+        placeholder="Qayda məzmunu..."
+        class="w-full h-[300px] border border-gray-300 rounded-md px-4 py-2 text-xs h-40 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+      ></textarea>
+
+      <!-- Footer -->
+      <div class="flex justify-end gap-3 mt-6">
+        <button
+          class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200"
+          onclick="closeConditionModal()"
+        >
+          Bağla
+        </button>
+        <button
+          id="submitCondition"
+          class="px-5 py-2 rounded-full bg-primary text-white hover:bg-focus"
+        >
+          Əlavə et
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="filterPop"
+  class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100"
+>
+  <div
+    class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6"
+  >
+    <form
+      onsubmit="return false;"
+      data-url=""
+      id="filterForm"
+    >
+
+      <div>
+        <div class="flex items-center justify-between">
+          <div class="text-[15px] font-medium">Filter</div>
+          <div
+            onclick="openFilterModal()"
+            class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"
+          ></div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 mt-4">
+        <div>
+          <span class="text-[12px] font-medium opacity-65 dark:text-white"
+            >Tarix aralığı</span
+          >
+          <div class="mt-2 flex items-center gap-3">
+            <div class="w-1/2">
+              <div
+                onclick="openDatePicker('startDate')"
+                class="relative w-[195px] group"
+              >
+                <input
+                  id="startDate"
+                  type="date"
+                  class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                  placeholder="dd/mm/yyyy"
+                  name="start_date"
+                />
+                <div
+                  class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer"
+                ></div>
+              </div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <div
+                  class="icon stratis-information-circle-contained w-2 h-2 text-xs opacity-50"
+                ></div>
+                <div class="text-[11px] font-normal opacity-50">
+                  Başlanğıc tarixini qeyd edin
+                </div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <div
+                onclick="openDatePicker('endDate')"
+                class="relative w-[195px] group"
+              >
+                <input
+                  id="endDate"
+                  type="date"
+                  class="date-input py-[6.5px] text-[12px] font-medium text-messages placeholder-outline border border-stroke rounded-full px-3 w-full appearance-none hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 cursor-pointer"
+                  placeholder="dd/mm/yyyy"
+                  name="end_date"
+                />
+                <div
+                  class="icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-messages group-focus-within:text-focus cursor-pointer"
+                ></div>
+              </div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <div
+                  class="icon stratis-information-circle-contained w-2 h-2 text-xs opacity-50"
+                ></div>
+                <div class="text-[11px] font-normal opacity-50">
+                  Son tarixi qeyd edin
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 flex items-center justify-end gap-3">
+        <button
+          type="button"
+          class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+          onclick="openFilterModal()"
+        >
+          Bağla
+        </button>
+        <button
+          type="reset"
+          onclick="clearFilters()"
+          class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+        >
+          Filterləri təmizlə
+        </button>
+        <button
+          onclick="applyFilters()"
+          type="button"
+          class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+        >
+          Filterlə
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="confirmDeleteCondition" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+  <div class="w-[400px] font-poppins dark:bg-menu-dark dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+    <div class="flex w-full justify-end">
+      <div onclick="closeDeleteConditionModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+    </div>
+    <div class="flex flex-col w-full gap-2 justify-center items-center">
+      <div style="background-color: <%= card.background %>" class=" w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+          <img src="https://api.avankart.com/v1/icon/<%= card.icon %>" alt="<%= card.name %>" class="w-4 h-4"/>
+      </div>
+      <h2 class="text-md font-bold text-gray-800"><%= card.name %></h2>
+      <p class="text-xs text-gray-400">Kartı hansı səbəblərdən deaktiv etmək istədiyinizi seçin</p>
+    </div>
+    <div id="reasonsDeleteCondition" class="flex flex-col gap-4 px-1 py-2 justify-center items-start my-3">
+    </div>
+    <div class=" py-4 flex justify-center flex-col items-center gap-2">
+      <button onclick="submitDeactivateReasons()" id="deactivateBtn" class="cursor-pointer w-full text-xs px-4 py-1.5 bg-red-500 text-white rounded-3xl font-medium hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Deaktiv et
+      </button>
+      <button onclick="closeDeleteConditionModal()"id="cancelBtn" class="cursor-pointer w-full px-4 text-xs py-1.5 text-gray-700 font-medium transition-colors">
+          Leğv et
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="acceptRequestAndActiveCard" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+  <div style="width: 60% !important" class=" font-poppins dark:bg-menu-dark dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2">
+    <div class="flex w-full justify-between border-b p-6">
+      <span class="font-bold">Müraciət</span>
+      <div onclick="closeAcceptionModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+    </div>
+    <div class="w-full flex gap-2 px-6">
+      <div class="flex flex-col py-4 gap-4 border-r" style="width: 40% !important; flex: 0 0 40% !important;">
+        <div class="w-full">
+          <span class="">Şəxsi məlumatlar</span>
+          <div id="personalInfoForAcception" class="flex flex-col gap-2 px-1 py-2"></div>
+        </div>
+        <div class="w-full">
+          <span class="">Digər</span>
+          <div id="otherInfoForAcception" class="flex flex-col gap-2"></div>
+        </div>
+        <div class="w-full">
+          <span class="">Aktiv kartları</span>
+          <div id="activeCardsForAcception" class="grid w-full grid-cols-2 gap-2 p-2"></div>
+        </div>
+      </div>
+      <div class=" py-4 flex flex-col gap-2" style="width: 60% !important; flex: 0 0 60% !important;">
+        <span class="font-bold">Keçmiş müraciətlər</span>
+        <table id="pastRequestTable" class="table-fixed w-full border-collapse">
+          <thead class="border-none pb-0.5">
+            <tr
+              class="bg-container-2 border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white"
+            >
+              <th class="rounded-l-lg filtering">Müraciət tarixi</th>
+              <th class="filtering">Müraciət növü</th>
+              <th class="filtering">Qərar</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="flex w-full justify-end gap-2 border-t p-4">
+      <button
+          href="#"
+          class="text-[13px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[83px] !h-[34px] cursor-pointer"
+          onclick="closeAcceptionModal()"
+        >
+          Bağla
+        </button>
+        <button
+          id="KategoriyaSubmit"
+          href="#"
+          class="text-[13px] text-on-primary font-medium bg-primary rounded-[50px] !w-[91px] !h-[34px] cursor-pointer"
+          onclick="respondToRequestCard()"
+        >
+          Təsdiqlə
+        </button>
+    </div>
+  </div>
+</div>
+
+<div id="rejectRequestAndDeactiveCard" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+  <div class="w-[400px] font-poppins dark:bg-menu-dark dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+    <div class="flex w-full justify-end">
+      <div onclick="closeRejectionModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+    </div>
+    <div class="flex flex-col w-full gap-2 justify-center items-center">
+      <div style="background-color: <%= card.background %>" class=" w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+          <img src="https://api.avankart.com/v1/icon/<%= card.icon %>" alt="<%= card.name %>" class="w-4 h-4"/>
+      </div>
+      <h2 class="text-md font-bold text-gray-800"><%= card.name %></h2>
+      <p class="text-xs text-gray-400">Kartı hansı səbəblərdən deaktiv etmək istədiyinizi seçin</p>
+    </div>
+    <div id="reasonsRejectionCondition" class="flex flex-col gap-4 px-1 py-2 justify-center items-start my-3">
+    </div>
+    <div class=" py-4 flex justify-center flex-col items-center gap-2">
+      <button onclick="submitRejectionReasons()" id="rejectionBtn" class="cursor-pointer w-full text-xs px-4 py-1.5 bg-red-500 text-white rounded-3xl font-medium hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Deaktiv et
+      </button>
+      <button onclick="closeRejectionModal()"id="cancelRejectionBtn" class="cursor-pointer w-full px-4 text-xs py-1.5 text-gray-700 font-medium transition-colors">
+          Leğv et
+      </button>
+    </div>
+  </div>
+</div>
+
+<div
+  id="kart-elaveet-popup"
+  class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100"
+>
+  <div
+    class="w-1/3 bg-body-bg z-100 border-[3px] border-[#0000001A] rounded-2xl shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+  >
+    <div
+      class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] pb-[18px] pt-[18px] px-6"
+    >
+      <div
+        id="cardCreateUpdateTitle"
+        class="text-[15px] font-medium text-messages"
+      >
+        Kart əlavə et
+      </div>
+      <img
+        src="/images/Avankart/Imtiyazlar/Kartlar/Close.svg"
+        alt="Close"
+        class="cursor-pointer"
+        onclick="toggleSorgu() "
+      />
+    </div>
+    <div class="pt-[18px] pb-5 px-6 mt-3">
+      <div>
+        <div class="flex items-center gap-3" onclick="chooseBackgroundColor()">
+          <div
+            id="bgColorForCard"
+            class="bg-container-2 w-[100px] h-[100px] flex items-center justify-center rounded-[500px]"
+          >
+            <img
+              src="/images/Avankart/Imtiyazlar/Kartlar/Camera.svg"
+              alt="Camera"
+              class="cursor-pointer"
+            />
+          </div>
+          <div class="text-[15px] font-medium">Arxa fon rəngi əlavə et</div>
+        </div>
+        <div class="h-[0.5px] w-full bg-[#0000001A] my-3"></div>
+        <div class="flex items-center gap-3" onclick="chooseIcon()">
+          <div
+            class="bg-container-2 w-[100px] h-[100px] flex items-center justify-center rounded-[500px]"
+          >
+            <img
+              id="iconImgForCard"
+              src="/images/Avankart/Imtiyazlar/Kartlar/Camera-2.svg"
+              alt="Camera"
+              class="cursor-pointer"
+            />
+          </div>
+          <div>
+            <div class="text-[15px] font-medium">Karta ikon əlavə et</div>
+            <div class="text-[12px] text-messages font-normal opacity-50">
+              Yalnız JPG, PNG, SVG faylları dəstəklənir, max 2mb.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <div>
+          <span class="text-[12px] font-medium text-messages opacity-65"
+            >Kartın adı</span
+          >
+          <div
+            class="relative mt-1.5 flex focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] items-center border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark"
+          >
+            <input
+              id="newCardName"
+              type="text"
+              placeholder="Daxil edin"
+              class="!w-full h-full bg-transparent border-none focus:outline-none outline-none text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] dark:text-primary-text-color-dark"
+            />
+          </div>
+        </div>
+        <div>
+          <span class="text-[12px] font-medium opacity-65">Təsviri</span>
+          <div
+            class="w-full h-[122px] my-1.5 border-[1px] focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] border-[#0000001A] dark:border-[#FFFFFF1A] rounded-[8px] flex items-start justify-start flex-col hover:bg-container-2 dark:hover:bg-container-2-dark"
+          >
+            <textarea
+              id="newCardDescription"
+              placeholder="Kartın təsviri..."
+              class="rounded-[8px]text-[12px] py-1.5 font-normal border border-transparent focus:border-transparent focus:ring-0 h-full resize-none w-full bg-transparent dark:bg-bg-container-2 hover:bg-container-2 dark:hover:bg-container-2-dark"
+            ></textarea>
+          </div>
+        </div>
+        <div onclick="clickKategoriya()" class="">
+          <span class="text-[12px] font-medium opacity-65"
+            >Müəssisə kateqoriyası</span
+          >
+          <div
+            class="w-full h-[34px] mt-1.5 rounded-[500px] border border-[#0000001A] px-3 cursor-pointer flex items-center justify-between"
+          >
+            <div class="text-[12px] font-normal text-messages">Seçim edin</div>
+            <img
+              src="/images/Avankart/Imtiyazlar/Kartlar/chevron-down.svg"
+              alt="chevron-down"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-[0.5px] w-full bg-[#0000001A]"></div>
+    <div class="my-5 flex items-center justify-end px-6 gap-[12px]">
+      <button
+        href="#"
+        class="text-[13px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[83px] !h-[34px] cursor-pointer"
+        onclick="toggleSorgu()"
+      >
+        Ləğv et
+      </button>
+      <button
+        id="createNewCardSubmit"
+        href="#"
+        class="text-[13px] text-on-primary font-medium bg-primary rounded-[50px] px-4 !h-[34px] cursor-pointer"
+      >
+        Yarat
+      </button>
+      <button
+        id="updateCardSubmit"
+        href="#"
+        class="hidden text-[13px] text-on-primary font-medium bg-primary rounded-[50px] px-4 !h-[34px] cursor-pointer"
+      >
+        Dəyişikliyi təsdiqlə
+      </button>
+    </div>
+    <div
+      id="color-picker"
+      class="w-[336px] hidden bg-body-bg z-101 border border-[#0000001A] rounded-2xl shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+    >
+      <div
+        class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] pb-[18px] pt-[18px] px-6"
+      >
+        <div class="text-[15px] font-medium text-messages">Kart əlavə et</div>
+        <img
+          src="/images/Avankart/Imtiyazlar/Kartlar/Close.svg"
+          alt="Close"
+          class="cursor-pointer"
+          onclick="chooseBackgroundColor()"
+        />
+      </div>
+      <div class="pt-[18px] pb-5 px-6 mt-3">
+        <div class="flex gap-2">
+          <!-- Color square -->
+          <div class="relative">
+            <canvas
+              id="color-area"
+              width="200"
+              height="200"
+              class="rounded-md cursor-pointer"
+            ></canvas>
+            <div
+              id="picker-indicator"
+              class="absolute w-[14px] h-[14px] border-[3px] border-white rounded-full pointer-events-none cursor-circle -translate-x-1/2 -translate-y-1/2"
+            ></div>
+          </div>
+
+          <!-- Hue bar -->
+          <div class="relative">
+            <canvas
+              id="hue-bar"
+              width="20"
+              height="200"
+              class="rounded-md cursor-pointer"
+            ></canvas>
+            <div
+              id="hue-indicator"
+              class="absolute w-[14px] h-[14px] border-[3px] border-white rounded-full pointer-events-none cursor-circle -translate-x-1/2 -translate-y-1/2 left-1/2"
+            ></div>
+          </div>
+
+          <!-- Opacity (alpha) bar -->
+          <div class="relative">
+            <canvas
+              id="alpha-bar"
+              width="20"
+              height="200"
+              class="rounded-md cursor-pointer"
+            ></canvas>
+            <div
+              id="alpha-indicator"
+              class="absolute w-[14px] h-[14px] border-[3px] border-white rounded-full pointer-events-none cursor-circle -translate-x-1/2 -translate-y-1/2 left-1/2"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="w-full h-[36px] bg-[#EEEEEE] !rounded-[8px] my-4 flex items-center gap-1 px-1"
+        >
+          <div
+            class="px-3 py-1 text-[#27222A] text-[14px] font-medium rounded-[6px] bg-body-bg cursor-pointer"
+          >
+            Menu
+          </div>
+          <div
+            class="px-3 py-1 text-[#969298] text-[14px] font-medium cursor-pointer"
+          >
+            Menu
+          </div>
+          <div
+            class="px-3 py-1 text-[#969298] text-[14px] font-medium cursor-pointer"
+          >
+            Menu
+          </div>
+          <div
+            class="px-3 py-1 text-[#969298] text-[14px] font-medium cursor-pointer"
+          >
+            Menu
+          </div>
+        </div>
+        <div class="my-4 flex items-center justify-between">
+          <img
+            src="/images/Avankart/Imtiyazlar/Kartlar/colorize.svg"
+            alt="Colorize"
+            class="w-[22px] h-[22px]"
+          />
+          <div class="flex items-center gap-2">
+            <div
+              class="w-[182px] h-[36px] bg-[#F1EFF2] rounded-[8px] px-2 flex items-center justify-start"
+            >
+              <input
+                type="text"
+                id="hex-value"
+                value="#000"
+                class="w-full text-sm bg-transparent outline-none border-0"
+                readonly
+              />
+            </div>
+            <div
+              class="w-[66px] h-[36px] bg-[#F1EFF2] rounded-[8px] px-2 flex items-center justify-start"
+            >
+              <input
+                type="text"
+                id="alpha-value"
+                value="100 %"
+                class="w-full rounded-[8px] px-1 py-1 text-sm border-0 bg-transparent outline-none"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+        <div class="h-[1px] bg-[#EEE]"></div>
+        <div class="py-4">
+          <div class="text-[12px] font-medium text-[#27222A]">Last used</div>
+          <div class="mt-4 flex items-center gap-2" id="last-used">
+            <div
+              class="w-6 h-6 bg-black rounded-[4px] cursor-pointer"
+              data-color="#000000"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#007AFF] rounded-[4px] cursor-pointer"
+              data-color="#007AFF"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#34C759] rounded-[4px] cursor-pointer"
+              data-color="#34C759"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#FFCC00] rounded-[4px] cursor-pointer"
+              data-color="#FFCC00"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#FF3B30] rounded-[4px] cursor-pointer"
+              data-color="#FF3B30"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#7AC6F5] rounded-[4px] cursor-pointer"
+              data-color="#7AC6F5"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#AF52DE] rounded-[4px] cursor-pointer"
+              data-color="#AF52DE"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#5856D6] rounded-[4px] cursor-pointer"
+              data-color="#5856D6"
+            ></div>
+            <div
+              class="w-6 h-6 bg-[#FF2E55] rounded-[4px] cursor-pointer"
+              data-color="#FF2E55"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="muessise-kategoriyasi"
+      class="w-4/5 hidden bg-body-bg z-101 border-[3px] border-[#0000001A] rounded-2xl shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+    >
+      <div
+        class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] pb-[18px] pt-[18px] px-6"
+      >
+        <div class="text-[15px] font-medium text-messages">
+          Müəssisə kateqoriyası
+        </div>
+        <img
+          src="/images/Avankart/Imtiyazlar/Kartlar/Close.svg"
+          alt="Close"
+          class="cursor-pointer"
+          onclick="clickKategoriya()"
+        />
+      </div>
+      <div class="px-3 pt-3 pb-2">
+        <div
+          class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] hover:bg-input-hover dark:hover:bg-input-hover-dark"
+        >
+          <input
+            id="customSearch"
+            type="text"
+            placeholder="Axtarış..."
+            class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] dark:text-primary-text-color-dark"
+          />
+          <div class="absolute right-3">
+            <div
+              class="icon stratis-search-02 dark:text-primary-text-color-dark"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-2 px-6">
+        <div>
+          <form action="">
+            <label
+              for="newCheckbox18"
+              class="w-full flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input type="checkbox" id="newCheckbox18" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-normal">Restoran</div>
+            </label>
+            <div class="bg-[#0000001A] h-[0.5px] w-full my-2"></div>
+            <label
+              for="newCheckbox19"
+              class="w-full flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input type="checkbox" id="newCheckbox19" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-normal">CoffeShop</div>
+            </label>
+            <div class="bg-[#0000001A] h-[0.5px] w-full my-2"></div>
+            <label
+              for="newCheckbox20"
+              class="w-full flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input type="checkbox" id="newCheckbox20" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-normal">Fast food</div>
+            </label>
+            <div class="bg-[#0000001A] h-[0.5px] w-full my-2"></div>
+            <label
+              for="newCheckbox21"
+              class="w-full flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input type="checkbox" id="newCheckbox21" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="text-[13px] font-normal">Kinoteatr</div>
+            </label>
+          </form>
+        </div>
+      </div>
+      <div class="h-[0.5px] w-full bg-[#0000001A] mt-6"></div>
+      <div
+        class="my-5 bottom-[24px] right-[12px] flex items-center justify-end px-6 gap-[12px]"
+      >
+        <button
+          href="#"
+          class="text-[13px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[83px] !h-[34px] cursor-pointer"
+          onclick="clickKategoriya()"
+        >
+          Bağla
+        </button>
+        <button
+          id="KategoriyaSubmit"
+          href="#"
+          class="text-[13px] text-on-primary font-medium bg-primary rounded-[50px] !w-[91px] !h-[34px] cursor-pointer"
+        >
+          Əlavə et
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="icons-popup"
+      class="w-4/5 hidden bg-body-bg z-101 border-[3px] border-[#0000001A] rounded-2xl shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+    >
+      <div
+        class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] pb-[18px] pt-[18px] px-6"
+      >
+        <div
+          onclick="addiconPop()"
+          class="text-[15px] font-medium text-messages cursor-pointer"
+        >
+          İkonlar
+        </div>
+        <img
+          src="/images/Avankart/Imtiyazlar/Kartlar/Close.svg"
+          alt="Close"
+          class="cursor-pointer"
+          onclick="chooseIcon()"
+        />
+      </div>
+      <div class="px-3 pt-3 pb-2">
+        <div
+          class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark"
+        >
+          <input
+            id="searchIconsForCards"
+            type="text"
+            placeholder="Axtarış..."
+            class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] dark:text-primary-text-color-dark"
+          />
+          <div class="absolute right-3">
+            <div
+              class="icon stratis-search-02 dark:text-primary-text-color-dark"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="h-[0.5px] w-full bg-[#0000001A] mt-6"></div>
+      <div
+        id="icons-container"
+        class="py-3 px-3 grid grid-cols-6 gap-4 max-h-[300px] overflow-y-auto"
+      ></div>
+    </div>
+  </div>
+</div>
+
+
+
+<% scripts=`
+<script>
+  window.CSRF_TOKEN = "${csrfToken}";
+</script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/Avankart/Imtiyazlar/Kartlar/colorPickerJs.js"></script>
+<script src="/js/Avankart/Imtiyazlar/Kartlar/cardCreateUpdateJs.js"></script>
+<script src="/js/Avankart/Imtiyazlar/Kartlar/insideKart/cardConditions.js"></script>
+<script src="/js/Avankart/Imtiyazlar/Kartlar/insideKart/cardDetailsTable.js"></script>
+` %>

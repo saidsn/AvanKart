@@ -1,0 +1,48 @@
+.dt-column-order {
+    display: none !important;
+}
+
+table,
+thead,
+table.dataTable>thead>tr>th,
+table.dataTable>thead>tr>td,
+table.dataTable>tbody>tr:last-child>*,
+div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+    border: none;
+    font-weight: 400;
+}
+
+td {
+    padding: 20px;
+}
+
+.custom-date::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+.custom-scroll {
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #b9b9b9;
+    --sb-size: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 39px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 39px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .custom-scroll {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}

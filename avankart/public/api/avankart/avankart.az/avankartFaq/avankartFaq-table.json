@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "question": "Avankart nədir və necə işləyir?",
+      "answer": "Avankart müxtəlif xidmət və məhsullar üçün ödəniş etməyə imkan verən çoxfunksiyalı kart sistemidir. İstifadəçilər kartı tərəfdaş müəssisələrdə istifadə edə bilərlər.",
+      "category": "Müəssisə",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Avankarta necə qoşula bilərəm?",
+      "answer": "Avankarta qoşulmaq üçün mobil tətbiqimizi yükləyib qeydiyyatdan keçməyiniz və müvafiq kartları aktiv etməyiniz kifayətdir.",
+      "category": "İstifadəçi",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Avankart kartlarını harada istifadə edə bilərəm?",
+      "answer": "Kartlar tərəfdaş müəssisələrdə, restoranlarda, yanacaqdoldurma məntəqələrində, marketlərdə və digər xidmət nöqtələrində istifadə oluna bilər.",
+      "category": "Yemək kartı",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Kartları necə aktiv edə bilərəm?",
+      "answer": "\"Kartlarım\" bölməsindən istədiyiniz kartı seçib aktivləşdirə bilərsiniz. Bəzi kartlar üçün təsdiq prosesi tələb oluna bilər.",
+      "category": "Şirkət",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Kartımın aktivləşməsi rədd edilib, nə etməliyəm?",
+      "answer": "Əgər müraciətiniz rədd olunubsa, səbəbini bildirən bölməsində görə bilərsiniz. Yenidən müraciət üçün tələb olunan məlumatları yeniləyin.",
+      "category": "Yanacaq kartı",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Avankart kartlarının balansını necə artırmaq olar?",
+      "answer": "Balans artırmaq üçün şəxsi hesabınızdan kartınıza vəsait köçürə, işəgötürəninizdən və ya tərəfdaşlardan bonuslar əldə edə bilərsiniz.",
+      "category": "Biznes kartı",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Kartlar arasında balans köçürmək mümkündürmü?",
+      "answer": "Xeyr, hazırda fərqli kartlar arasında balans köçürmək mümkün deyil. Hər kart yalnız öz təyinatına uyğun istifadə olunur.",
+      "category": "Müəssisə",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Kartımı itirsəm və ya bloklamaq istəsəm, nə etməliyəm?",
+      "answer": "\"Kartlarım\" bölməsindən itirilmiş kartı bloklaya və ya müştəri xidməti ilə əlaqə saxlaya bilərsiniz.",
+      "category": "Premium kartı",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Avankart müştəri dəstəyi ilə necə əlaqə saxlaya bilərəm?",
+      "answer": "Bizə tətbiq vasitəsilə \"Dəstək\" bölməsindən, rəsmi veb-saytımızdan və ya çağrı mərkəzimizdən müraciət edə bilərsiniz.",
+      "category": "Hədiyyə kartı",
+      "date": "12.12.2024"
+    },
+    {
+      "question": "Avankart tərəfdaşı olmaq üçün nə etməliyəm?",
+      "answer": "Əgər biznesinizi Avankart ekosisteminə qoşmaq istəyirsinizsə, rəsmi saytımızdan müraciət göndərə və ya biznes dəstəyi ilə əlaqə saxlaya bilərsiniz.",
+      "category": "Avto Yuma kartı",
+      "date": "12.12.2024"
+    }
+  ],
+  "recordsTotal": 10,
+  "recordsFiltered": 10
+}

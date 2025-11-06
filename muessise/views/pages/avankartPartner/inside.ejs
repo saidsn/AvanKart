@@ -1,0 +1,644 @@
+<%- include("../../partials/header", { title: "İstifadəçi detalları" }) %>
+
+<div>
+  <div class="text-[13px] font-medium font-poppins mb-6 dark:text-white">
+    <a href="#">Avankart</a>
+    <span class="text-messages pl-[15.5px] pr-[19.5px] dark:text-white">/</span>
+    <a href="#" class="opacity-65">Aktiv cihazlar</a>
+  </div>
+
+  <!-- User Info Section -->
+  <div
+    class="hidden md:flex bg-sidebar-bg dark:bg-menu-dark dark:text-white p-3 rounded-lg h-[69px]"
+  >
+    <div class="flex gap-3 w-full text-message pb-2">
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[191px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">ID</p>
+        <p class="text-[13px] font-medium"><%= user.partnyor_id %></p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[191px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">Ad və soyad</p>
+        <p class="text-[13px] font-medium">
+          <%= user.name %> <%= user.surname %>
+        </p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[191px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">Cinsi</p>
+        <p class="text-[13px] font-medium"><%= user.gender %></p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[215px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">Email</p>
+        <p class="text-[13px] font-medium"><%= user.email %></p>
+        <div class="hidden" id="userEmail"><%= user.email %></div>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[215px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">QR Kod sayı</p>
+        <p class="text-[13px] font-medium"><%= user.total_qr_codes %></p>
+      </div>
+      <div
+        class="border-r-[0.5px] border-[#0000001A] pr-3 max-w-[191px] w-[100%]"
+      >
+        <p class="text-[11px] opacity-65 pb-[6px]">Telefon nömrəsi</p>
+        <p class="text-[13px] font-medium">
+          <%= user.phone_suffix %> <%= user.phone %>
+        </p>
+      </div>
+      <div class="max-w-[191px] w-[100%]">
+        <p class="text-[11px] opacity-65 pb-[6px]">Başlama tarixi</p>
+        <p class="text-[13px] font-medium">
+          <% const hireDate = user.hire_date || user.createdAt; const dateString
+          = hireDate ? hireDate.toLocaleDateString("az-AZ", { year: "numeric",
+          month: "2-digit", day: "2-digit" }) : "N/A"; %> <%= dateString %>
+        </p>
+      </div>
+    </div>
+    <button
+      class="cursor-pointer text-error text-[12px] py-[3px] ml-3 max-w-[71px] w-[100%] font-medium"
+      onclick="isciniSil()"
+    >
+      İşçini sil
+    </button>
+  </div>
+
+  <!-- Delete Modal -->
+  <div
+    id="overlay"
+    class="hidden w-full h-full fixed top-0 left-0 bg-[#0000002A] z-100"
+  ></div>
+  <div
+    id="iscisilDiv"
+    class="hidden z-101 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+  >
+    <div
+      class="relative w-[306px] h-[187px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-menu-dark z-0"
+    >
+      <div
+        class="flex items-center justify-center mt-[12px] ml-[12px] w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]"
+      >
+        <div class="icon iconex-trash-can-1 w-[14px] h-[17px] text-error"></div>
+      </div>
+      <div
+        class="flex flex-wrap mt-[12px] ml-[12px] gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100"
+      >
+        <span class="text-[15px] font-medium dark:text-white"
+          >İşçini silmək istədiyinizə əminsiniz?</span
+        >
+        <span class="font-medium opacity-65 text-white">Silinən işçilər "</span>
+        <span class="text-white">İşdə ayrılan</span>
+        <span class="font-medium opacity-65 text-white">" səhifəsində</span>
+        <span class="font-medium opacity-65 text-white">saxlanılacaq</span>
+      </div>
+      <div class="absolute bottom-[12px] right-[12px] flex gap-[12px]">
+        <button
+          class="text-[12px] cursor-pointer text-on-surface-variant font-medium bg-surface-bright dark:bg-surface-bright-dark dark:text-white rounded-[50px] !w-[51px] !h-[25px]"
+          onclick="isciniSil()"
+        >
+          Xeyr
+        </button>
+        <button
+          class="cursor-pointer text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px]"
+          onclick="siltesdiq()"
+        >
+          Bəli,sil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="flex w-full mt-[24px] mb-[12px]">
+    <% var definedCards = cards.filter(function(card) { return card.name !==
+    "Təyin olunmamış"; }); var undefinedCards = cards.filter(function(card) {
+    return card.name === "Təyin olunmamış"; }); var totalUndefinedAmount =
+    undefinedCards.reduce(function(sum, card) { return sum + card.value; }, 0);
+    var allCards = []; for (var i = 0; i < definedCards.length; i++) {
+    allCards.push(definedCards[i]); } if (totalUndefinedAmount > 0) { var
+    unknownCard = {}; unknownCard.name = "Naməlum kart"; unknownCard.value =
+    totalUndefinedAmount; unknownCard.color = "#b3babd";
+    allCards.push(unknownCard); } %>
+
+    <div class="flex w-full h-[30px] rounded-full">
+      <% allCards.forEach(function(card, index) { %>
+      <div
+        class="relative flex items-center justify-center text-on-primary text-[10px] font-medium <%= index === 0 ? 'rounded-l-[12px]' : '' %> <%= index === allCards.length - 1 ? 'rounded-r-[12px]' : '' %>"
+        style="
+          background-color: <%= card.color %>;
+          width: <%= ((card.value / total) * 100) %>%;
+        "
+      >
+        <span
+          class="absolute bottom-8 left-0 text-[11px] font-normal text-messages opacity-50 dark:text-white mb-[2px] text-left"
+        >
+          <%= card.name %>
+        </span>
+        <span class="absolute left-0 ml-2">
+          <%= card.value.toFixed(2) %> ₼
+        </span>
+
+        <span class="absolute right-0 mr-2">
+          <%= ((card.value / total) * 100).toFixed(0) %>%
+        </span>
+      </div>
+      <div class="flex-col flex"></div>
+      <% }); %>
+    </div>
+
+    <div class="flex flex-col w-[200px] ml-[20px] -mt-4">
+      <div
+        class="text-[11px] font-normal text-messages opacity-50 dark:text-white"
+      >
+        Toplam məbləğ
+      </div>
+      <div
+        class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-full h-[30px] w-full flex items-center justify-start"
+      >
+        <div
+          class="text-[13px] font-medium text-messages pl-[12px] dark:text-white"
+        >
+          <%= total %> AZN
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Table Section -->
+  <div class="rounded-[12px]">
+    <div class="flex flex-col gap-3">
+      <div
+        class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]"
+      >
+        <a
+          href="/partner/avankart-partner"
+          class="cursor-pointer flex !mb-[12.5px] gap-[14px] mt-[17px] items-center dark:text-white"
+        >
+          <div
+            class="icon stratis-arrow-left-sm !w-[11px] !h-[11px] text-messages dark:text-white"
+          ></div>
+          <div class="text-[15px] font-medium">
+            QR kod sayı (<span id="qr_code_counts">0</span>)
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2">
+          <div
+            class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full hover:bg-input-hover dark:hover:bg-input-hover-dark"
+          >
+            <input
+              type="text"
+              id="customSearch"
+              placeholder="Search"
+              class="cursor-pointer w-[237px] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-surface-variant rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-on-surface-variant"
+              autocomplete="off"
+            />
+            <div class="absolute right-3">
+              <div
+                class="icon stratis-search-02 dark:text-primary-text-color-dark"
+              ></div>
+            </div>
+          </div>
+
+          <div id="refreshTableBtn" onclick="refreshPage()"
+            class="w-[155px] cursor-pointer overflow-hidden border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+          >
+            <button type="button" class=" cursor-pointer"  >Cədvəli yenilə</button>
+            <button type="button"
+              class=" cursor-pointer icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"
+            ></button>
+          </div>
+
+          <div
+            onclick="openFilterModal()"
+            class="w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]"
+          >
+            <a
+              href="#"
+              class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"
+            ></a>
+            <a href="#" class="">Filter</a>
+          </div>
+        </div>
+      </div>
+
+      <table
+        id="myTable"
+        class="table-fixed border-collapse w-full border-b-[.5px] border-b-stroke"
+      >
+        <thead class="border-none pb-0.5">
+          <tr
+            class="bg-container-2 dark:bg-table-hover-dark dark:text-white opacity-65 border-none text-xs text-tertiary-text font-base"
+          >
+            <th class="px-4 py-2 filtering">Tranzaksiya ID</th>
+            <th class="px-4 py-2 filtering">Kart kateqoriyası</th>
+            <th class="px-4 py-2 filtering">Məbləğ (AZN)</th>
+            <th class="px-4 py-2 filtering">Tarix</th>
+            <th class="px-4 py-2 filtering">Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pt-2">
+      <div
+        class="w-full bg-sidebar-bg dark:bg-container-2-dark rounded-t-[8px] px-6 flex flex-col gap-3"
+      >
+        <div class="py-5 flex items-center justify-between">
+          <div class="text-[13px] flex items-center gap-2">
+            <span
+              class="font-normal opacity-65 dark:text-secondary-text-color-dark"
+              >Səhifə sayı:</span
+            >
+            <span
+              id="pageCount"
+              class="font-medium dark:text-primary-text-color-dark"
+              >1 / 1</span
+            >
+          </div>
+          <div class="max-w-[584px] flex items-center gap-5">
+            <div>
+              <div
+                id="customPagination"
+                class="flex items-center text-[13px]"
+              ></div>
+            </div>
+            <div>
+              <input
+                class="page-input w-[63px] h-[32px] text-[12px] text-center text-on-surface-variant-dark font-normal bg-menu hover:bg-input-hover border border-stroke rounded-[8px] placeholder-on-surface-variant-dark focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:text-white dark:border-[#ffffff1A]"
+                type="text"
+                placeholder="Səhifə"
+              />
+              <a
+                href="#"
+                class="go-button text-[13px] text-body-bg dark:text-on-primary-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+                >GO</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Modal -->
+  <div
+    id="filterPop"
+    class="w-[450px] hidden font-poppins text-messages border-[#0000001A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white dark:bg-menu-dark z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6"
+  >
+    <form id="filterForm" >
+      <input type="hidden" id="userId" value="<%= user._id %>" />
+
+      <div>
+        <div class="flex items-center justify-between">
+          <div class="text-[15px] font-medium dark:text-white">Filter</div>
+          <img
+            src="/images/Sorgular Pages Images/Close.svg"
+            alt="Close"
+            onclick="closeFilterModal()"
+            class="cursor-pointer block dark:hidden"
+          />
+          <img
+            src="/images/avankart-partner-pages-images/Close-dark.svg"
+            alt="Close"
+            onclick="closeFilterModal()"
+            class="cursor-pointer hidden dark:block"
+          />
+        </div>
+
+        <!-- Date Range -->
+        <div class="mt-3">
+          <span class="text-[12px] font-medium opacity-65 dark:text-white"
+            >Tarix aralığı</span
+          >
+          <div class="flex items-center gap-3">
+            <div class="w-1/2">
+              <div class="relative w-full">
+                <input
+                  id="startDate"
+                  name="start_date"
+                  class="custom-date dark:text-primary-text-color-dark  cursor-pointer text-[13px] font-normal placeholder-[#BFC8CC] dark:placeholder-[#636B6F] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-full px-3 py-[6.5px] w-full appearance-none focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                  type="date"
+                  placeholder="dd/mm/yyyy"
+                />
+                <div
+                  onclick="openDatePicker('startDate')"
+                  id="startCalendar"
+                  class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"
+                ></div>
+              </div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <div
+                  class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-primary-text-color-dark"
+                ></div>
+                <div
+                  class="text-[11px] font-normal opacity-50 dark:text-primary-text-color-dark"
+                >
+                  Başlanğıc tarixini qeyd edin
+                </div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <div class="relative w-full">
+                <input
+                  id="endDate"
+                  name="end_date"
+                  class="custom-date cursor-pointer dark:text-primary-text-color-dark text-[13px] font-normal placeholder-[#BFC8CC] dark:placeholder-[#636B6F] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-full px-3 py-[6.5px] w-full appearance-none focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                  type="date"
+                  placeholder="dd/mm/yyyy"
+                />
+                <div
+                  onclick="openDatePicker('endDate')" 
+                  id="endCalendar"
+                  class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"
+                ></div>
+              </div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <div
+                  class="icon stratis-information-circle-contained w-3 h-3 opacity-50 dark:text-primary-text-color-dark"
+                ></div>
+                <div
+                  class="text-[11px] font-normal opacity-50 dark:text-primary-text-color-dark"
+                >
+                  Son tarixi qeyd edin
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Categories - Dynamic from cards array -->
+      <div class="my-4">
+        <span class="text-[12px] font-medium opacity-65 dark:text-white"
+          >Kart kateqoriyası</span
+        >
+        <div class="mt-[6px]">
+          <div class="flex items-top flex-wrap gap-x-1 gap-y-4">
+            <% if (allCards && allCards.length> 0) { %> <%
+            allCards.forEach((card, index)=> { %>
+            <label
+              for="card_<%= index %>"
+              class="w-[30%] flex items-top gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="card_<%= index %>"
+                name="card_category"
+                value="<%= card._id %>"
+                class="peer hidden"
+              />
+              <div
+                class="shrink-0 bg-menu border border-surface-variant dark:border-on-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22] transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="dark:text-white"><%= card.name %></div>
+            </label>
+            <% }) %> <% } else { %>
+            <div class="text-[13px] text-gray-500">
+              Kart kateqoriyaları tapılmadı
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction Status -->
+      <div class="my-4">
+        <span class="text-[12px] font-medium opacity-65 dark:text-white"
+          >Transaction Status</span
+        >
+        <div class="mt-[6px]">
+          <div class="flex items-center flex-wrap gap-x-1 gap-y-4">
+            <label
+              for="status_success"
+              class="w-[30%] flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="status_success"
+                name="card_status"
+                value="success"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22] transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="dark:text-white">Uğurlu</div>
+            </label>
+
+            <label
+              for="status_failed"
+              class="w-[30%] flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal"
+            >
+              <input
+                type="checkbox"
+                id="status_failed"
+                name="card_status"
+                value="failed"
+                class="peer hidden"
+              />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22] transition"
+              >
+                <div
+                  class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"
+                ></div>
+              </div>
+              <div class="dark:text-white">Uğursuz</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amount Range Slider -->
+      <div class="my-4">
+        <span class="text-[12px] font-medium opacity-65"
+          ><%= __('hesablasmalar.amount_range')%></span
+        >
+        <div class="value-container mt-2">
+          <span
+            id="min-value"
+            class="value-label text-[13px] text-messages font-medium"
+          ></span>
+          <span
+            id="max-value"
+            class="value-label text-[13px] text-messages font-medium"
+          ></span>
+        </div>
+        <div id="slider-range" class="mt-2"></div>
+        <div
+          class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2"
+        >
+          <span><%= __('hesablasmalar.amount_min')%></span>
+          <span><%= __('hesablasmalar.amount_max')%></span>
+        </div>
+      </div>
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-3 !mt-[30px]">
+        <button
+          type="button"
+          class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+          onclick="closeFilterModal()"
+        >
+          Bağla
+        </button>
+        <button
+          type="button"
+          class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+          onclick="clearFilters()"
+        >
+          Filterləri təmizlə
+        </button>
+        <button
+          type="button"
+          class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+          onclick="applyFilters()"
+        >
+          Filterlə
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- scripts=`
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/avankart-partner-pages-js/qrTable.js"></script>
+<script src="/js/Avankart Profili/Popup.js"></script>
+`%> <%- styles=`
+<link rel="stylesheet" href="/css/jquery-ui.css" /><style>
+  /* Add this to your CSS file */
+    /* Optional: datepicker z-index artırmaq */
+    .ui-datepicker {
+      z-index: 9999 !important;
+    }
+  .dark .dropdown-triangle::before {
+    border-bottom-color: #161e22;
+  }
+
+  .dropdown-triangle::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #0000001a;
+    z-index: 50;
+  }
+
+  .dark .dropdown-triangle::after {
+    border-bottom-color: #ffffff1a;
+  }
+  .dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  .dropdown-trigger {
+    position: relative;
+  }
+
+  .dt-column-order {
+    display: none !important;
+  }
+
+  table,
+  thead,
+  table.dataTable > thead > tr > th,
+  table.dataTable > thead > tr > td,
+  table.dataTable > tbody > tr:last-child > *,
+  div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border: none;
+    font-weight: 400;
+  }
+
+  td {
+    padding: 20px;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .value-label {
+    font-weight: 600;
+    color: #4b5563;
+    background: #f3f4f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .dark .value-label {
+    background: #374151;
+    color: #d1d5db;
+  }
+
+  .value-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  /* Custom slider styles */
+  #slider-range {
+    height: 6px;
+    border: none;
+    background: #9c78ae;
+    /* Purple background for the entire track */
+    border-radius: 3px;
+  }
+
+  /* Slider range (colored part between handles) */
+  #slider-range .ui-slider-range {
+    background: #e6e6e6;
+    /* Gray color for area between handles */
+  }
+
+  /* Slider handles */
+  #slider-range .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid #745086;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    top: -7px;
+    margin-left: -10px;
+  }
+</style>
+`%>

@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 280,
+      "transactions": 380,
+      "amount": 120.0,
+      "date": "Mart, 2025",
+      "status": "Davam edir"
+    },
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 250,
+      "transactions": 190,
+      "amount": 100.0,
+      "date": "Mart, 2025",
+      "status": "Tamamlanıb"
+    },
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 200,
+      "transactions": 300,
+      "amount": 140.0,
+      "date": "Mart, 2025",
+      "status": "Tamamlanıb"
+    },
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 270,
+      "transactions": 360,
+      "amount": 140.0,
+      "date": "Mart, 2025",
+      "status": "Tamamlanıb"
+    },
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 280,
+      "transactions": 380,
+      "amount": 140.0,
+      "date": "Mart, 2025",
+      "status": "Tamamlanıb"
+    },
+    {
+      "invoice": "AINV-XXXXXXXXXX",
+      "customers": 280,
+      "transactions": 380,
+      "amount": 140.0,
+      "date": "Mart, 2025",
+      "status": "Tamamlanıb"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

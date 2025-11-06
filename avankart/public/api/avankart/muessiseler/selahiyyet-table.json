@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "groupName": "System_administrator",
+      "permissions": "Full_control",
+      "peopleCount": 12,
+      "date": "02.12.2024_-_09:45"
+    },
+    {
+      "groupName": "Super_admin",
+      "permissions": "View",
+      "peopleCount": 15,
+      "date": "02.12.2024_-_09:45"
+    },
+    {
+      "groupName": "Admin",
+      "permissions": "Full_control",
+      "peopleCount": 18,
+      "date": "02.12.2024_-_09:45"
+    },
+    {
+      "groupName": "Application_account",
+      "permissions": "View",
+      "peopleCount": 30,
+      "date": "02.12.2024_-_09:45"
+    }
+  ],
+  "recordsTotal": 4,
+  "recordsFiltered": 4
+}

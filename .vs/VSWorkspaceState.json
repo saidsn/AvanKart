@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\api",
+    "\\api\\controllers",
+    "\\api\\controllers\\partner",
+    "\\api\\controllers\\partner\\auth",
+    "\\api\\routes",
+    "\\api\\routes\\partner",
+    "\\shared",
+    "\\shared\\model",
+    "\\shared\\model\\partner",
+    "\\shared\\utils"
+  ],
+  "PreviewInSolutionExplorer": false
+}

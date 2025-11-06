@@ -1,0 +1,230 @@
+<div class="flex flex-col gap-3">
+  <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+    <div class="flex items-center gap-2">
+      <a href="/" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+      <div class="icon stratis-slash-01-forward"></div>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Kateqoriyalar</a>
+    </div>
+  </div>
+
+
+  <div class="flex flex-col gap-3">
+    <div class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+      <div id="category-count" class="text-[15px] text-messages font-medium">
+        Kateqoriyalar (3)
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+          <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+          <div class="absolute right-3">
+            <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+          </div>
+        </div>
+
+        <div
+          id="refreshTableBtn"
+          class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+          <span class="font-medium text-[13px]">Səhifəni yenilə</span>
+          <span class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+        </div>
+        <div onclick="openCategoryModal('create')"
+          class="w-[153px] cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+          <span class="icon stratis-plus-02 text-on-primary w-4 h-4"></span>
+          <span>Kateqoriya yarat</span>
+        </div>
+      </div>
+    </div>
+
+    <table id="myTable" class="table-fixed w-full border-collapse">
+      <thead class="border-none pb-0.5">
+        <tr
+          class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+          <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+            Kateqoriya adı
+          </th>
+          <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+            Rozet sayı
+          </th>
+          <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+            Yaradan şəxs
+          </th>
+          <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+            Yaradılma tarixi
+          </th>
+          <th class="w-10 px-4 py-2 rounded-r-lg"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- initialization from JavaScript -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modals -->
+ <!-- Create Category Modal -->
+<div id="categoryModal" class="fixed inset-0 bg-black/40 z-[999] hidden flex items-center justify-center">
+  <div class="rounded-xl shadow-lg bg-white p-6 w-full max-w-sm mx-auto">
+    <div class="flex justify-center mb-4">
+      <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+        <span class="iconex iconex-case-1 w-5 h-5"></span>
+      </div>
+    </div>
+    <h2 id="modalTitle" class="text-center text-[17px] font-semibold text-[#1D222B] mb-1">
+      Yeni kateqoriya
+    </h2>
+    <p class="text-center text-[13px] font-normal text-secondary-text mb-6">
+      Kateqoriya adını aşağıda qeyd edin
+    </p>
+
+    <input id="categoryInput" type="text" placeholder="Kateqoriya adını daxil edin"
+      class="w-[326px] text-center rounded-lg px-4 mb-8 text-[24px] text-[#1D222B] focus:outline-none border-none ring-0 placeholder-[#BFC8CC] placeholder:text-[24px]" />
+
+    <div id="modalConfirmBtn"
+      class="w-full cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+      <span id="modalConfirmText">Yarat</span>
+    </div>
+    <div onclick="closeCategoryModal()"
+      class="w-full mt-2 cursor-pointer bg-surface-bright text-on-surface-variant border-none rounded-full flex items-center justify-center gap-2 text-[13px] font-medium py-[6.5px] px-[18px]">
+      <span>Ləğv et</span>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+  <div
+    class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+    <div class="flex flex-col gap-3 p-3">
+      <div
+        class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+        <div class="icon stratis-trash-01 w-[16px] h-[17px] text-error dark:text-[#FFFFFF]"></div>
+      </div>
+
+      <h2 class="text-messages font-medium text-[15px] dark:text-white">
+        Kateqoriyanı sil
+      </h2>
+      <div
+        class="flex flex-wrap gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+        <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] pr-10">Kateqoriyanı silmək istədiyinizə
+          əminsiniz?</span>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button onclick="toggleDeleteModal()"
+          class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+          Xeyr
+        </button>
+        <button onclick="confirmDeleteCategory()"
+          class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+          Bəli, sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% scripts=` <script src="/js/jquery-ui.js">
+  </script>
+  <script src="/js/datatables/datatables.min.js"></script>
+  <script src="/js/Avankart/rozetler/rozetlerTable.js"></script>
+  `; %>
+  <% styles=` <style>
+    .dt-column-order {
+    display: none !important;
+    }
+
+    table,
+    thead,
+    table.dataTable>thead>tr>th,
+    table.dataTable>thead>tr>td,
+    table.dataTable>tbody>tr:last-child>*,
+    div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+    border: none;
+    font-weight: 400;
+    }
+
+    table.dataTable th.dt-type-numeric,
+    table.dataTable th.dt-type-date,
+    table.dataTable td.dt-type-date {
+    text-align: left;
+    }
+
+    /* Yalnız sidebar scroll üçün */
+    #sidebar .overflow-y-auto::-webkit-scrollbar {
+    width: 0px;
+    /* Scroll barı tam gizlə */
+    }
+
+    #sidebar .overflow-y-auto {
+    scrollbar-width: none;
+    /* Firefox üçün */
+    -ms-overflow-style: none;
+    /* IE 10+ üçün */
+    }
+
+    /* Bu hissəni öz CSS faylında əlavə et */
+    .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+    background-color: transparent;
+    }
+
+    /* Main container styles */
+    .slider-container {
+    width: 100%;
+    max-width: 800px;
+    }
+
+    /* Value display container */
+    .value-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    }
+
+    /* Custom slider styles */
+    #slider-range {
+    height: 6px;
+    border: none;
+    background: #9C78AE;
+    /* Purple background for the entire track */
+    border-radius: 3px;
+    }
+
+    /* Slider range (colored part between handles) */
+    #slider-range .ui-slider-range {
+    background: #e6e6e6;
+    /* Gray color for area between handles */
+    }
+
+    /* Slider handles */
+    #slider-range .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid #745086;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    outline: none;
+    top: -7px;
+    margin-left: -10px;
+    }
+    </style>
+    `; %>

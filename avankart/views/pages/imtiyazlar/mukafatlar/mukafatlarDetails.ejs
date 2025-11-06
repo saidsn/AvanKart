@@ -1,0 +1,395 @@
+
+
+<div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+            <div class="flex items-center gap-2">
+              <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+              <div class="icon stratis-slash-01-forward"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Mükafatlar</a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div
+              class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+              <div class="text-[15px] text-messages font-medium">
+                Mükafatlar
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                  <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                  <div class="absolute right-3">
+                    <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button id="refreshTableBtn" class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                    <span>Səhifəni yenilə</span>
+                    <span class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                  </button>
+
+                  <button id="createRewardBtn" class="ml-2 bg-primary text-white rounded-full py-[6px] px-[16px] text-[13px]">+ Mükafat yarat</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card header (populated by client when viewing a specific card) -->
+            <div id="cardHeader" class="flex items-center gap-4 mb-4">
+              <a href="/imtiyazlar/mukafatlar" class="text-[20px] text-tertiary-text">←</a>
+              <div class="flex items-center gap-3">
+                <div id="cardHeaderIcon" class="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                  <img src="/images/default-icon.svg" alt="icon" id="cardHeaderIconImg" class="w-full h-full p-4 object-cover" />
+                </div>
+                <div>
+                  <div id="cardHeaderName" class="text-[16px] font-medium">Kart</div>
+                  <div id="cardHeaderCount" class="text-[13px] text-tertiary-text">0 mükafat</div>
+                </div>
+              </div>
+            </div>
+
+            <table id="myTable" class="table-fixed w-full border-collapse">
+              <thead class="border-none pb-0.5">
+                <tr
+                  class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                    Mükafat ikonu
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                    Mükafatın adı
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                    Xərcləmə yeri
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                    Mükafatın hədəfi
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                    Xidmət sayı
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+                    Mükafatın növü
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+                    Mükafat
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+                    Qazanan şəxs sayı
+                  </th>
+                  <th class="border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-r-lg filtering">
+                    Yaradılma tarixi
+                  </th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <script>
+              // expose cardId (if provided by controller)
+              window.__CARD_ID__ = "<%= typeof cardId !== 'undefined' ? cardId : '' %>";
+            </script>
+          </div>
+        </div>
+
+        <!-- Create / Edit Modal (redesigned to match screenshot) -->
+        <div id="rewardModal" class="hidden fixed inset-0 z-[100] bg-black/60">
+  <div class="flex items-center justify-center min-h-screen px-4">
+  <div class="bg-body-bg dark:bg-body-bg-dark font-poppins w-full max-w-[600px] rounded-2xl shadow-2xl border-[3px] border-[#0000001A] dark:border-[#ffffff1A]">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-gray-800">
+  <h3 id="rewardModalTitle" class="text-[15px] font-medium text-messages dark:text-white">Yeni mükafat</h3>
+        <button id="closeRewardModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-2xl leading-none w-8 h-8 flex items-center justify-center">✕</button>
+      </div>
+
+      <!-- Content -->
+      <div class="px-6 py-2">
+        <form id="rewardForm">
+          <input type="hidden" id="rewardId" value="" />
+          <!-- required by backend: forCard and description -->
+          <input type="hidden" id="rewardForCard" name="forCard" value="" />
+
+          <div class="flex flex-col gap-6 items-center">
+            <!-- Top: Icon Upload -->
+            <div class="flex items-center gap-4 w-full">
+              <div id="iconDrop" class="w-28 h-28 rounded-full  flex items-center justify-center bg-gray-50 dark:bg-[#0a0f11] cursor-pointer hover:border-gray-400 transition-colors">
+                <div class="flex flex-col items-center text-center">
+                  <div class="text-gray-400 dark:text-gray-500 text-4xl mb-1">+</div>
+                </div>
+              </div>
+              <div class="ml-2 text-left">
+                <div class="text-[14px] font-medium text-messages dark:text-white mb-1">Əlavə et</div>
+                <div class="text-[11px] text-gray-400 dark:text-gray-500">Yalnız JPG, PNG, SVG faylları dəstəklənir, max 2mb.</div>
+              </div>
+            </div>
+
+            <!-- Form Fields (stacked under icon) -->
+            <div class="w-full space-y-2">
+              <!-- Description (required by model) -->
+              <div>
+                <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Təsvir</label>
+                <input id="rewardDescription" rows="3" placeholder="Təsviri daxil edin" class="w-full py-2 px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[10px] opacity-70 dark:border-[#ffffff1A] focus:outline-none"></input>
+              </div>
+              <!-- Mükafatın adı -->
+              <div>
+                <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Mükafatın adı</label>
+                <input id="rewardName" type="text" placeholder="Daxil edin" class="w-full h-[34px] py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] opacity-70 dark:border-[#ffffff1A] focus:outline-none" />
+              </div>
+
+              <!-- Card selector (forCard required) -->
+              <div>
+                <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Kart seçin</label>
+                <select id="rewardCardSelect" class="w-full h-[34px] py-[7.5px] px-3 text-[12px] font-normal rounded-[500px] border-[1px] border-[#0000001A] opacity-70 dark:border-[#ffffff1A] appearance-none pr-10">
+                  <option value="">Kart seçin</option>
+                </select>
+              </div>
+
+              <!-- Xərcləmə yeri -->
+              <div>
+                <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Xərcləmə yeri</label>
+                <select id="rewardPlaces" class="w-full h-[34px] py-[7.5px] px-3 text-[12px] font-normal rounded-[500px] border-[1px] border-[#0000001A] opacity-70 dark:border-[#ffffff1A] appearance-none pr-10" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'#666\' d=\'M6 8L2 4h8z\'/%3E%3C/svg%3E'); background-position: right 12px center;">
+                  <option value="">Seçim edin</option>
+                  <option value="restaurant">Restoran</option>
+                  <option value="coffee">CoffeeShop</option>
+                  <option value="cinema">Kino</option>
+                </select>
+              </div>
+
+              <!-- Hədəf -->
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Hədəf</label>
+                  <div class="target-pill w-full rounded-[50px] border-[1px] border-[#0000001A] overflow-hidden opacity-70">
+                    <button type="button" data-target="muddet" class="target-seg flex-1 px-4 py-2 text-[13px]">Müddət (gün)</button>
+                    <button type="button" data-target="count" class="target-seg flex-1 px-4 py-2 text-[13px] border-l border-[#0000001A]">Yemək sayı</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Hədəfin sayı</label>
+                  <input id="rewardTargetCount" type="text" placeholder="0.00" class="w-full h-[34px] py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] opacity-70 dark:border-[#ffffff1A] focus:outline-none" />
+                </div>
+              </div>
+
+              <!-- Mükafatın növü -->
+              <div>
+                <label class="block text-[12px] font-medium text-messages dark:text-white mb-1">Mükafatın növü</label>
+                <select id="rewardType" class="w-full h-[34px] py-[7.5px] px-3 text-[12px] font-normal rounded-[500px] border-[1px] border-[#0000001A] opacity-70 dark:border-[#ffffff1A] appearance-none pr-10" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'#666\' d=\'M6 8L2 4h8z\'/%3E%3C/svg%3E'); background-position: right 12px center;">
+                  <option value="">Seçim edin</option>
+                  <option value="amount">Məbləğ</option>
+                  <option value="bonus">Bonus</option>
+                  <option value="discount">Endirim</option>
+                </select>
+              </div>
+
+              <!-- Təkrarlanma müddəti -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Təkrarlanma müddəti</label>
+                <div class="flex gap-6">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="recurrence" 
+                      value="weekly" 
+                      class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
+                      checked
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">Həftəlik</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="recurrence" 
+                      value="monthly" 
+                      class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">Aylıq</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="recurrence" 
+                      value="yearly" 
+                      class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">İllik</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Buttons -->
+          <div class="flex items-center justify-end gap-3 mt-8 pt-4">
+            <button type="button" id="cancelRewardBtn" class="text-[13px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] ">Ləğv et</button>
+            <button type="submit" id="saveRewardBtn" class="text-[13px] text-on-primary font-medium bg-primary rounded-[50px] !w-[91px] !h-[34px]">Yarat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/mukafatlar/mukafatlarTable.js"></script>
+    <script>
+      (function(){
+        // segmented control behavior
+        const modal = document.getElementById('rewardModal');
+        const form = document.getElementById('rewardForm');
+        function setupSegment(){
+          const segs = modal.querySelectorAll('.target-seg');
+          if(!segs || segs.length===0) return;
+          let typeInput = form.querySelector('#rewardTargetType');
+          if(!typeInput){
+            typeInput = document.createElement('input');
+            typeInput.type = 'hidden';
+            typeInput.id = 'rewardTargetType';
+            typeInput.name = 'rewardTargetType';
+            form.appendChild(typeInput);
+          }
+          segs.forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+              segs.forEach(b=>b.classList.remove('active'));
+              btn.classList.add('active');
+              typeInput.value = btn.getAttribute('data-target') || 'amount';
+            });
+          });
+          // default
+          const def = modal.querySelector('.target-seg[data-target="muddet"]');
+          if(def) { def.classList.add('active'); form.querySelector('#rewardTargetType').value = 'amount'; }
+        }
+
+        // icon upload preview
+        function setupIconDrop(){
+          const iconDrop = document.getElementById('iconDrop');
+          if(!iconDrop) return;
+          const fileInput = document.createElement('input');
+          fileInput.type = 'file';
+          fileInput.accept = 'image/png,image/jpeg,image/svg+xml';
+          fileInput.className = 'hidden';
+          iconDrop.addEventListener('click', ()=> fileInput.click());
+          fileInput.addEventListener('change', (ev)=>{
+            const f = ev.target.files && ev.target.files[0];
+            if(!f) return;
+            const reader = new FileReader();
+            reader.onload = function(e){
+              iconDrop.innerHTML = '';
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.style.width = '72px'; img.style.height = '72px'; img.style.borderRadius = '9999px'; img.style.objectFit = 'cover';
+              iconDrop.appendChild(img);
+            };
+            reader.readAsDataURL(f);
+            // set hidden rewardIcon filename (server upload should be separate)
+            let urlInput = form.querySelector('#rewardIcon');
+            if(!urlInput){ urlInput = document.createElement('input'); urlInput.type='hidden'; urlInput.id='rewardIcon'; urlInput.name='rewardIcon'; form.appendChild(urlInput); }
+            urlInput.value = f.name;
+          });
+          iconDrop.appendChild(fileInput);
+        }
+
+        // modal open/close hooks
+        const openBtn = document.getElementById('createRewardBtn');
+        const closeBtn = document.getElementById('closeRewardModal');
+        const cancelBtn = document.getElementById('cancelRewardBtn');
+        if(openBtn) openBtn.addEventListener('click', ()=> modal.classList.remove('hidden'));
+        if(closeBtn) closeBtn.addEventListener('click', ()=> modal.classList.add('hidden'));
+        if(cancelBtn) cancelBtn.addEventListener('click', ()=> modal.classList.add('hidden'));
+
+        // init when DOM ready
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', ()=>{ setupSegment(); setupIconDrop(); });
+        else { setupSegment(); setupIconDrop(); }
+        
+        // populate card select for forCard
+        function loadCardOptions(){
+          const select = document.getElementById('rewardCardSelect');
+          if(!select) return;
+          // fetch formatted cards data
+          fetch('/imtiyazlar/kartlar/formatted-data', { headers: { 'Accept': 'application/json' } })
+            .then(r => r.json())
+            .then(data => {
+              const items = data && data.data ? data.data : [];
+              items.forEach(it => {
+                const opt = document.createElement('option');
+                opt.value = it.kartId || it.kartId;
+                opt.textContent = it.kartType || it.kartId;
+                select.appendChild(opt);
+              });
+            }).catch(err => {
+              console.warn('Could not load cards for select', err);
+            });
+          select.addEventListener('change', function(){
+            const hidden = document.getElementById('rewardForCard');
+            if(hidden) hidden.value = this.value || '';
+          });
+        }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', loadCardOptions);
+        else loadCardOptions();
+      })();
+    </script>
+  `; %> 
+
+  <% styles = `
+  <style>
+    /* Details page tweaks for reward list design */
+    #cardHeader { margin-bottom: 18px; }
+    .reward-icon { background: #F7FAFB; }
+    table#myTable tbody tr td { padding-top: 18px; padding-bottom: 18px; }
+    .reward-meta .reward-name { font-size: 14px; }
+    .reward-meta .reward-desc { color: #6B6F71; font-size: 13px; }
+    /* DataTable / shared styles (kept) */
+    .dt-column-order { display: none !important; }
+    table, thead, table.dataTable>thead>tr>th, table.dataTable>thead>tr>td, table.dataTable>tbody>tr:last-child>*, div.dt-container.dt-empty-footer tbody>tr:last-child>* { border: none; font-weight: 400; }
+    table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-date { text-align: left; }
+
+    /* Sidebar scroll */
+    #sidebar .overflow-y-auto::-webkit-scrollbar { width: 0px; }
+    #sidebar .overflow-y-auto { scrollbar-width: none; -ms-overflow-style: none; }
+
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background-color: transparent; }
+
+    /* Slider styles (kept) */
+    .slider-container { width: 100%; max-width: 800px; }
+    .value-container { display:flex; justify-content:space-between; margin-bottom:10px; }
+    #slider-range { height:6px; border:none; background:#9C78AE; border-radius:3px; }
+    #slider-range .ui-slider-range { background:#e6e6e6; }
+    #slider-range .ui-slider-handle { width:20px; height:20px; border-radius:50%; background:white; border:4px solid #745086; box-shadow:0 0 5px rgba(0,0,0,0.2); cursor:pointer; outline:none; top:-7px; margin-left:-10px; }
+
+    /* Modal specific styles to match screenshot */
+    #rewardModal { font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    #rewardModal .rounded-2xl { border-radius: 16px; }
+    #rewardModal .target-seg { background: transparent; border: none; cursor: pointer; color: #6B6F71; font-weight: 600; }
+    /* pill container */
+    #rewardModal .target-pill { display:flex; border-radius:9999px; overflow:hidden; border:1px solid #E9E9EB; }
+    #rewardModal .target-pill .target-seg { flex:1; padding:10px 16px; font-size:14px; }
+    #rewardModal .target-pill .target-seg.active { background:#7A4DA8; color:white; }
+  #rewardModal #iconDrop { width:112px; height:112px; border-radius:9999px; display:flex; align-items:center; justify-content:center; }
+  #rewardModal #iconDrop img { display:block; width:72px; height:72px; border-radius:9999px; object-fit:cover; }
+
+    /* Radios */
+    #rewardModal input[type="radio"] { accent-color:#7A4DA8; width:18px; height:18px; }
+
+    /* Footer buttons: pill style */
+    #rewardModal #cancelRewardBtn { border-radius:9999px; background:#F8F8FA; border:1px solid #ECECEC; padding:10px 22px; }
+    #rewardModal #saveRewardBtn { border-radius:9999px; padding:10px 22px; }
+
+    /* Inputs */
+    #rewardModal input[type="text"], #rewardModal input[type="number"], #rewardModal select { border-radius: 10px; }
+
+    @media (max-width: 768px) {
+      #rewardModal .max-w-\[600px\] { padding: 12px; }
+  #rewardModal #iconDrop { width:88px; height:88px; }
+    }
+  </style>
+  `; %>

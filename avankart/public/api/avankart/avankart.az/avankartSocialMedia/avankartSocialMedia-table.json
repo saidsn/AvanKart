@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "name": "facebook",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/gg_facebook.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Instagram",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/ri_instagram-fill.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Linkedin",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/mdi_linkedin.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Youtube",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/mingcute_youtube-fill.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "TikTok",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/ic_baseline-tiktok.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "X",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/prime_twitter.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Deaktiv"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

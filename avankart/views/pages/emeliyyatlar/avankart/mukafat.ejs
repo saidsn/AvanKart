@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex flex-col gap-3">
+      <div
+        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+        <div class="flex items-center gap-2">
+          <a
+            href="#"
+            class="cursor-pointer hover:text-primary text-[13px] font-medium"
+            >Avankart</a
+          >
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a
+            href="#"
+            class="cursor-pointer hover:text-primary text-[13px] font-medium"
+            >Avankart</a
+          >
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a
+            href="#"
+            class="text-tertiary-text dark:text-tertiary-text-color-dark"
+            >Mükafat</a
+          >
+        </div>
+      </div>
+      <div>
+        <div class="flex gap-3 w-full text-message h-[65px]">
+          <div
+            class="border-[#BFC8CC] pl-[12px] pt-[8px] text-messages bg-sidebar-bg border-l-[3px] rounded-[12px] w-[100%]">
+            <p class="text-[11px] opacity-50 pb-[4px]">Davam edir</p>
+            <p class="text-[17px] font-semibold">23.50 AZN</p>
+          </div>
+          <div
+            class="border-[#32B5AC] pl-[12px] pt-[8px] text-messages bg-sidebar-bg border-l-[3px] rounded-[12px] w-[100%]">
+            <p class="text-[11px] opacity-50 pb-[4px]">Tamamlanıb</p>
+            <p class="text-[17px] font-semibold">1.300.90 AZN</p>
+          </div>
+          <div
+            class="pl-[12px] pt-[8px] text-messages bg-sidebar-bg rounded-[12px] w-[100%]">
+            <p class="text-[11px] opacity-50 pb-[4px]">Toplam məbləğ</p>
+            <p class="text-[17px] font-semibold">1.324.40 AZN</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <div
+          class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+          <div class="text-[15px] text-messages font-medium">Mükafat (60)</div>
+          <div class="flex items-center gap-2">
+            <div
+              class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+              <input
+                id="customSearch"
+                type="text"
+                placeholder="Search..."
+                class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]" />
+              <div class="absolute right-3">
+                <div
+                  class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+              </div>
+            </div>
+
+            <div
+              class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+              <a href="#" class="font-medium text-[13px]">Səhifəni yenilə</a>
+              <a
+                href="#"
+                class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+            </div>
+            <div
+              onclick="openFilterModal()"
+              class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+              <a
+                href="#"
+                class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+              <a href="#" class="">Filterlə</a>
+            </div>
+
+            <!-- Yeni Mükafat Butonu -->
+            <div
+              onclick="openCreateMukafatModal()"
+              class="w-[140px] cursor-pointer bg-primary dark:bg-primary-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-white dark:text-primary-text-color-dark hover:bg-hover-button dark:hover:bg-hover-button-dark font-medium py-[6.5px] px-[18px]">
+              <a
+                href="#"
+                class="icon stratis-plus text-white dark:text-primary-text-color-dark"></a>
+              <a href="#" class="">Yeni Mükafat</a>
+            </div>
+          </div>
+        </div>
+
+        <table id="myTable" class="table-fixed w-full border-collapse">
+          <thead class="border-none pb-0.5">
+            <tr
+              class="bg-container-2 border-none text-[12px] text-secondary-text font-normal">
+              <th class="filtering rounded-l-lg">İnvoys nömrəsi</th>
+              <th class="filtering text-left">İstifadəçi sayı</th>
+              <th class="filtering text-left">Tranzaksiya sayı</th>
+              <th class="filtering text-left">Məbləğ (AZN)</th>
+              <th class="filtering text-left">Hesablaşma tarixi</th>
+              <th class="filtering rounded-r-lg">Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="pt-2">
+        <div
+          class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+          <div class="py-5 flex items-center justify-between">
+            <div class="text-[13px] flex items-center gap-2">
+              <span class="font-normal opacity-65">Səhifə sayı:</span>
+              <span id="pageCount" class="font-medium">1 / 49</span>
+            </div>
+            <div class="flex items-center gap-5">
+              <div>
+                <div id="customPagination" class="flex items-center"></div>
+              </div>
+              <div>
+                <input
+                  class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                  type="text"
+                  placeholder="Səhifə" />
+                <a
+                  href="#"
+                  class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+                  >GO</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- HTML head kısmına ekleyin -->
+
+    <!-- Filtre Modal'ı -->
+    <div
+      id="filterPop"
+      class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+      <div
+        class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+        <form
+          onsubmit="return false;"
+          data-url="/hesablashmalar/datatable"
+          id="filterForm">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="text-[15px] font-medium">Filter</div>
+              <div
+                onclick="openFilterModal()"
+                class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <div class="relative w-1/2">
+                  <span
+                    class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                    >İl</span
+                  >
+                  <button
+                    id="dropdownDefaultButton_years"
+                    class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                    type="button"
+                    onclick="toggleDropdown_years()">
+                    Seçim edin
+                    <div>
+                      <img
+                        src="/public/images/Avankart/Sirket/chevron-down.svg"
+                        alt=""
+                        class="w-[15px] h-[13px] dark:invert" />
+                    </div>
+                  </button>
+                  <div
+                    id="dropdown_years"
+                    class="hidden absolute left-0 w-full mt-2 max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A] visible">
+                    <label
+                      for="year2025"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2025"
+                        type="checkbox"
+                        id="year2025"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2025</span>
+                    </label>
+                    <label
+                      for="year2024"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2024"
+                        type="checkbox"
+                        id="year2024"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2024</span>
+                    </label>
+                    <label
+                      for="year2023"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2023"
+                        type="checkbox"
+                        id="year2023"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2023</span>
+                    </label>
+                    <label
+                      for="year2022"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2022"
+                        type="checkbox"
+                        id="year2022"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2022</span>
+                    </label>
+                    <label
+                      for="year2021"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2021"
+                        type="checkbox"
+                        id="year2021"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2021</span>
+                    </label>
+                    <label
+                      for="year2020"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2020"
+                        type="checkbox"
+                        id="year2020"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2020</span>
+                    </label>
+                    <label
+                      for="year2019"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2019"
+                        type="checkbox"
+                        id="year2019"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2019</span>
+                    </label>
+                    <label
+                      for="year2018"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        value="2018"
+                        type="checkbox"
+                        id="year2018"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">2018</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="relative w-1/2">
+                  <span
+                    class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                    >Ay</span
+                  >
+                  <button
+                    id="dropdownDefaultButton_months"
+                    class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 text-center flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                    type="button"
+                    onclick="toggleDropdown_months()">
+                    Seçim edin
+                    <div>
+                      <img
+                        src="/public/images/Avankart/Sirket/chevron-down.svg"
+                        alt=""
+                        class="w-[15px] h-[13px] dark:invert" />
+                    </div>
+                  </button>
+                  <div
+                    id="dropdown_months"
+                    class="hidden absolute left-0 w-full mt-2 max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A] visible">
+                    <label
+                      for="month01"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month01"
+                        value="month01"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Yanvar</span>
+                    </label>
+                    <label
+                      for="month02"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month02"
+                        value="month02"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Fevral</span>
+                    </label>
+                    <label
+                      for="month03"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month03"
+                        value="month03"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Mart</span>
+                    </label>
+                    <label
+                      for="month04"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month04"
+                        value="month04"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Aprel</span>
+                    </label>
+                    <label
+                      for="month05"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month05"
+                        value="month05"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">May</span>
+                    </label>
+                    <label
+                      for="month06"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month06"
+                        value="month06"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Iyun</span>
+                    </label>
+                    <label
+                      for="month07"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month07"
+                        value="month07"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Iyul</span>
+                    </label>
+                    <label
+                      for="month08"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month08"
+                        value="month08"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Avqust</span>
+                    </label>
+                    <label
+                      for="month09"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month09"
+                        value="month09"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Sentyabr</span>
+                    </label>
+                    <label
+                      for="month10"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month10"
+                        value="month10"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Oktyabr</span>
+                    </label>
+                    <label
+                      for="month11"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month11"
+                        value="month11"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Noyabr</span>
+                    </label>
+                    <label
+                      for="month12"
+                      class="flex items-center px-4 py-1 text-[13px] hover:bg-input-hover cursor-pointer select-none gap-2 dark:hover:bg-input-hover-dark">
+                      <input
+                        type="checkbox"
+                        id="month12"
+                        value="month12"
+                        class="peer hidden" />
+                      <div
+                        class="w-[14px] h-[14px] border border-surface-variant dark:border-surface-variant-dark rounded-[2px] flex items-center justify-center dark:bg-[#161E22] text-on-primary dark:text-side-bar-item-dark peer-checked:bg-primary dark:peer-checked:bg-primary-dark peer-checked:text-on-primary dark:peer-checked:text-on-primary-dark peer-checked:border-primary dark:peer-checked:border-primary-dark transition cursor-pointer">
+                        <div
+                          class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                      </div>
+                      <span class="dark:text-white">Dekabr</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-[12px] font-medium opacity-65">Status</span>
+              <div class="mt-[6px]">
+                <div class="flex items-center flex-wrap gap-4">
+                  <label
+                    for="cbx-continue"
+                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                    <input
+                      type="checkbox"
+                      id="cbx-continue"
+                      class="peer hidden"
+                      name="card_status"
+                      value="continue" />
+                    <div
+                      class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                      <div
+                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                    </div>
+                    <div>Davam edir</div>
+                  </label>
+                  <label
+                    for="cbx-completed"
+                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                    <input
+                      type="checkbox"
+                      id="cbx-completed"
+                      class="peer hidden"
+                      name="card_status"
+                      value="completed" />
+                    <div
+                      class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                      <div
+                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                    </div>
+                    <div>Tamamlanıb</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="text-[12px] font-medium opacity-65"
+                >Məbləğ aralığı</span
+              >
+              <div class="value-container mt-2">
+                <span
+                  id="min-value"
+                  class="value-label text-[13px] text-messages font-medium"></span>
+                <span
+                  id="max-value"
+                  class="value-label text-[13px] text-messages font-medium"></span>
+              </div>
+              <div id="slider-range" class="mt-2"></div>
+              <div
+                class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                <span>Min</span>
+                <span>Max</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-3">
+            <button
+              type="button"
+              class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+              onclick="openFilterModal()">
+              Bağla
+            </button>
+            <button
+              type="reset"
+              onclick="clearFilters()"
+              class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">
+              Filterləri təmizlə
+            </button>
+            <button
+              onclick="applyFilters()"
+              type="button"
+              class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">
+              Filterlə
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Yeni Mükafat Modal'ı -->
+    <div
+      id="createMukafatModal"
+      class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+      <div
+        class="w-[600px] max-h-[90vh] overflow-y-auto font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+        <form
+          onsubmit="return submitMukafatForm(event)"
+          id="createMukafatForm"
+          method="POST"
+          action="/emeliyyatlar/avankart/mukafat/create">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="flex items-center justify-between mb-4">
+            <div class="text-[15px] font-medium">Yeni Mükafat Yarat</div>
+            <div
+              onclick="closeCreateMukafatModal()"
+              class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <!-- Kart Seçimi -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Kart</span
+              >
+              <select
+                name="forCard"
+                required
+                class="w-full h-[34px] border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus">
+                <option value="">Kart seçin</option>
+                <!-- Kart seçenekleri buraya dinamik olarak eklenecek -->
+              </select>
+            </div>
+
+            <!-- Mükafat Adı -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Mükafat Adı</span
+              >
+              <input
+                type="text"
+                name="name"
+                required
+                class="w-full h-[34px] border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Mükafat adını girin" />
+            </div>
+
+            <!-- Açıklama -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Açıklama</span
+              >
+              <textarea
+                name="description"
+                rows="3"
+                class="w-full border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 py-2 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Mükafat açıklamasını girin"></textarea>
+            </div>
+
+            <!-- Hedef -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Hedef</span
+              >
+              <input
+                type="number"
+                name="target"
+                required
+                class="w-full h-[34px] border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Hedef değeri girin" />
+            </div>
+
+            <!-- Koşullar -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Koşullar</span
+              >
+              <textarea
+                name="conditions"
+                rows="2"
+                class="w-full border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 py-2 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Mükafat koşullarını girin"></textarea>
+            </div>
+
+            <!-- Hediye -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Hediye</span
+              >
+              <input
+                type="text"
+                name="gift"
+                required
+                class="w-full h-[34px] border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Hediye türünü girin" />
+            </div>
+
+            <!-- Hediye Koşulları -->
+            <div>
+              <span
+                class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"
+                >Hediye Koşulları</span
+              >
+              <textarea
+                name="gift_conditions"
+                rows="2"
+                class="w-full border border-[#0000001A] dark:border-[#FFFFFF1A] rounded-2xl px-3 py-2 text-[12px] bg-white dark:bg-[#161E22] text-messages dark:text-white focus:outline-none focus:border-focus"
+                placeholder="Hediye koşullarını girin"></textarea>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-3 mt-6">
+            <button
+              type="button"
+              class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+              onclick="closeCreateMukafatModal()">
+              Bağla
+            </button>
+            <button
+              type="submit"
+              class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">
+              Yarat
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/mukafat/mukafatTable.js"></script>
+    `; %> <% styles = `
+    <style>
+      .dt-column-order {
+        display: none !important;
+      }
+
+      table,
+      thead,
+      table.dataTable > thead > tr > th,
+      table.dataTable > thead > tr > td,
+      table.dataTable > tbody > tr:last-child > *,
+      div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+        border: none;
+        font-weight: 400;
+      }
+
+      table.dataTable th.dt-type-numeric,
+      table.dataTable th.dt-type-date,
+      table.dataTable td.dt-type-date {
+        text-align: left;
+      }
+
+      /* Yalnız sidebar scroll üçün */
+      #sidebar .overflow-y-auto::-webkit-scrollbar {
+        width: 0px;
+        /* Scroll barı tam gizlə */
+      }
+
+      #sidebar .overflow-y-auto {
+        scrollbar-width: none;
+        /* Firefox üçün */
+        -ms-overflow-style: none;
+        /* IE 10+ üçün */
+      }
+
+      /* Bu hissəni öz CSS faylında əlavə et */
+      .custom-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .custom-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+      }
+
+      .custom-scroll::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      /* Main container styles */
+      .slider-container {
+        width: 100%;
+        max-width: 800px;
+      }
+
+      /* Value display container */
+      .value-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      /* Custom slider styles */
+      #slider-range {
+        height: 6px;
+        border: none;
+        background: #9c78ae;
+        /* Purple background for the entire track */
+        border-radius: 3px;
+      }
+
+      /* Slider range (colored part between handles) */
+      #slider-range .ui-slider-range {
+        background: #e6e6e6;
+        /* Gray color for area between handles */
+      }
+
+      /* Slider handles */
+      #slider-range .ui-slider-handle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        border: 4px solid #745086;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        outline: none;
+        top: -7px;
+        margin-left: -10px;
+      }
+    </style>
+    `; %>
+    <script>
+      // CSRF Token'i alma - DÜZƏLDİLMİŞ
+      function getCSRFToken() {
+        const metaToken = document
+          .querySelector('meta[name="csrf-token"]')
+          ?.getAttribute("content");
+        if (metaToken && metaToken.trim() !== "") {
+          return metaToken;
+        }
+
+        const inputToken = document.querySelector('input[name="_csrf"]')?.value;
+        if (inputToken && inputToken.trim() !== "") {
+          return inputToken;
+        }
+
+        console.warn("CSRF token tapılmadı");
+        return null;
+      }
+
+      function openCreateMukafatModal() {
+        const modal = document.getElementById("createMukafatModal");
+        modal.classList.remove("hidden");
+        loadCardsForSelect();
+      }
+
+      function closeCreateMukafatModal() {
+        const modal = document.getElementById("createMukafatModal");
+        modal.classList.add("hidden");
+        document.getElementById("createMukafatForm").reset();
+      }
+
+      async function loadCardsForSelect() {
+        try {
+          const csrfToken = getCSRFToken();
+          const response = await fetch(
+            "/emeliyyatlar/avankart/mukafat/api/cards",
+            {
+              headers: {
+                "CSRF-Token": csrfToken,
+              },
+            }
+          );
+
+          const select = document.querySelector('select[name="forCard"]');
+          select.innerHTML = '<option value="">Kart seçin</option>';
+
+          if (!response.ok) {
+            throw new Error("Kartlar yükləniləmədi");
+          }
+
+          const cards = await response.json();
+
+          if (!cards || cards.length === 0) {
+            // Mock kartlar
+            const mockCards = [
+              { _id: "1", name: "Standart Kart" },
+              { _id: "2", name: "Premium Kart" },
+              { _id: "3", name: "Gold Kart" },
+              { _id: "4", name: "Platinum Kart" },
+            ];
+
+            mockCards.forEach((card) => {
+              const option = document.createElement("option");
+              option.value = card._id;
+              option.textContent = card.name;
+              select.appendChild(option);
+            });
+          } else {
+            cards.forEach((card) => {
+              const option = document.createElement("option");
+              option.value = card._id;
+              option.textContent = card.name;
+              select.appendChild(option);
+            });
+          }
+        } catch (error) {
+          console.error("Kartlar yüklənərkən xəta:", error);
+          // Xəta zamanı mock kartlar
+          const select = document.querySelector('select[name="forCard"]');
+          select.innerHTML = '<option value="">Kart seçin</option>';
+
+          const mockCards = [
+            { _id: "1", name: "Standart Kart" },
+            { _id: "2", name: "Premium Kart" },
+            { _id: "3", name: "Gold Kart" },
+            { _id: "4", name: "Platinum Kart" },
+          ];
+
+          mockCards.forEach((card) => {
+            const option = document.createElement("option");
+            option.value = card._id;
+            option.textContent = card.name;
+            select.appendChild(option);
+          });
+        }
+      }
+
+      async function submitMukafatForm(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const csrfToken = getCSRFToken();
+
+        if (!csrfToken) {
+          showNotification(
+            "CSRF token tapılmadı. Səhifəni yeniləyin.",
+            "error"
+          );
+          return;
+        }
+
+        formData.set("_csrf", csrfToken);
+
+        // Loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Yaradılır...";
+        submitBtn.disabled = true;
+
+        try {
+          const endpoint = "api/emeliyyatlar/avankart/mukafat/create";
+
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "x-csrf-token": csrfToken,
+            },
+            body: formData, // FormData olaraq göndər, JSON deyil
+          });
+
+          const responseText = await response.text();
+
+          if (!response.ok) {
+            if (
+              responseText.startsWith("<!DOCTYPE") ||
+              responseText.startsWith("<html")
+            ) {
+              throw new Error(
+                "Server xətası: HTML cavab alındı - Status: " + response.status
+              );
+            }
+
+            try {
+              const errorData = JSON.parse(responseText);
+              throw new Error(
+                errorData.message || `HTTP xətası! status: ${response.status}`
+              );
+            } catch (parseError) {
+              throw new Error(
+                `HTTP xətası! status: ${response.status} - Mesaj: ${responseText}`
+              );
+            }
+          }
+
+          let result;
+          try {
+            result = JSON.parse(responseText);
+          } catch (parseError) {
+            console.error("JSON parse xətası:", parseError);
+            throw new Error("Yanlış JSON cavab: " + responseText);
+          }
+
+          showNotification("Mükafat uğurla yaradıldı!", "success");
+          closeCreateMukafatModal();
+
+          // Mock data formatında tabloya əlavə et
+          if (result.mockData) {
+            addNewMukafatToTable(result.mockData);
+          } else {
+            // Səhifəni yenilə
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          }
+        } catch (error) {
+          console.error("Mükafat yaradılarkən xəta:", error);
+          showNotification(
+            "Mükafat yaradılarkən xəta baş verdi: " + error.message,
+            "error"
+          );
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      }
+
+      function addNewMukafatToTable(mockData) {
+        const table = document.querySelector("#myTable tbody");
+        if (!table) return;
+
+        const newRow = document.createElement("tr");
+        newRow.className =
+          "border-none text-[12px] text-secondary-text hover:bg-container-2 cursor-pointer";
+
+        const statusClass =
+          mockData.status === "Davam edir"
+            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+            : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+
+        newRow.innerHTML = `
+        <td class="py-3 px-4 rounded-l-lg">${mockData.invoice}</td>
+        <td class="py-3 px-4">${mockData.customers}</td>
+        <td class="py-3 px-4">${mockData.transactions}</td>
+        <td class="py-3 px-4">${mockData.amount.toFixed(2)} AZN</td>
+        <td class="py-3 px-4">${mockData.date}</td>
+        <td class="py-3 px-4 rounded-r-lg">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusClass}">
+                ${mockData.status}
+            </span>
+        </td>
+    `;
+
+        table.insertBefore(newRow, table.firstChild);
+        updateMukafatCount();
+      }
+
+      function updateMukafatCount() {
+        const countElement = document.querySelector(
+          ".text-\\[15px\\].text-messages.font-medium"
+        );
+        if (countElement) {
+          const currentText = countElement.textContent;
+          const match = currentText.match(/Mükafat $$(\d+)$$/);
+          if (match) {
+            const currentCount = parseInt(match[1]);
+            countElement.textContent = `Mükafat (${currentCount + 1})`;
+          }
+        }
+      }
+
+      function showNotification(message, type) {
+        const existingNotifications = document.querySelectorAll(
+          ".custom-notification"
+        );
+        existingNotifications.forEach((notification) => notification.remove());
+
+        const notification = document.createElement("div");
+        notification.className = `custom-notification fixed top-4 right-4 p-4 rounded-lg text-white z-[1000] shadow-lg ${
+          type === "success" ? "bg-green-500" : "bg-red-500"
+        }`;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          notification.style.transition = "opacity 0.3s ease-out";
+          setTimeout(() => notification.remove(), 300);
+        }, 5000);
+      }
+
+      document.addEventListener("click", function (event) {
+        const createModal = document.getElementById("createMukafatModal");
+        const filterModal = document.getElementById("filterPop");
+
+        if (createModal && !createModal.classList.contains("hidden")) {
+          if (event.target === createModal) {
+            closeCreateMukafatModal();
+          }
+        }
+
+        if (filterModal && !filterModal.classList.contains("hidden")) {
+          if (event.target === filterModal) {
+            openFilterModal();
+          }
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeCreateMukafatModal();
+          const filterModal = document.getElementById("filterPop");
+          if (filterModal && !filterModal.classList.contains("hidden")) {
+            openFilterModal();
+          }
+        }
+      });
+
+      function openFilterModal() {
+        const modal = document.getElementById("filterPop");
+        modal.classList.toggle("hidden");
+      }
+
+      function toggleDropdown_years() {
+        const dropdown = document.getElementById("dropdown_years");
+        dropdown.classList.toggle("hidden");
+      }
+
+      function toggleDropdown_months() {
+        const dropdown = document.getElementById("dropdown_months");
+        dropdown.classList.toggle("hidden");
+      }
+
+      function clearFilters() {
+        document.getElementById("filterForm").reset();
+        if (typeof jQuery !== "undefined" && $("#slider-range").length) {
+          $("#slider-range").slider("values", [0, 1000]);
+          $("#min-value").text("0 AZN");
+          $("#max-value").text("1000 AZN");
+        }
+      }
+
+      function applyFilters() {
+        openFilterModal();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("CSRF Token:", getCSRFToken());
+
+        if (typeof jQuery !== "undefined" && $("#slider-range").length) {
+          $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [0, 1000],
+            slide: function (event, ui) {
+              $("#min-value").text(ui.values[0] + " AZN");
+              $("#max-value").text(ui.values[1] + " AZN");
+            },
+          });
+          $("#min-value").text($("#slider-range").slider("values", 0) + " AZN");
+          $("#max-value").text($("#slider-range").slider("values", 1) + " AZN");
+        }
+
+        document.addEventListener("click", function (event) {
+          const yearsDropdown = document.getElementById("dropdown_years");
+          const monthsDropdown = document.getElementById("dropdown_months");
+          const yearsButton = document.getElementById(
+            "dropdownDefaultButton_years"
+          );
+          const monthsButton = document.getElementById(
+            "dropdownDefaultButton_months"
+          );
+
+          if (
+            yearsDropdown &&
+            !yearsDropdown.classList.contains("hidden") &&
+            !yearsDropdown.contains(event.target) &&
+            !yearsButton.contains(event.target)
+          ) {
+            yearsDropdown.classList.add("hidden");
+          }
+
+          if (
+            monthsDropdown &&
+            !monthsDropdown.classList.contains("hidden") &&
+            !monthsDropdown.contains(event.target) &&
+            !monthsButton.contains(event.target)
+          ) {
+            monthsDropdown.classList.add("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

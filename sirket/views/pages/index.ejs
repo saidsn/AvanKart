@@ -1,0 +1,483 @@
+<div class="w-full px-4 py-4 rounded-lg bg-container-2 dark:bg-container-2-dark">
+    <div class="flex justify-between mb-5">
+        <!-- Title Section -->
+        <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px] flex-nowrap">
+            <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]">
+            </div>
+            <div class="font-medium text-[15px] whitespace-nowrap text-black dark:text-primary-text-color-dark">
+                Balans hərəkəti
+            </div>
+            <div
+                class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+            </div>
+            <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]">
+            </div>
+        </div>
+        <!-- Dropdowns Section -->
+        <div id="customScroll" class="relative items-center w-full overflow-hidden flex justify-end">
+            <div class="absolute w-full  z-[1] border-b border-secondary !right-[19%]"></div>
+            <div class="flex items-center w-full justify-end relative ">
+                <div class="absolute w-full z-[1] border-b border-secondary"></div>
+                <div
+                    class="flex justify-between min-w-96 py-1 px-1 rounded-full bg-menu dark:bg-menu-dark gap-2 items-center z-[2] border border-stroke dark:border-surface-variant-dark">
+                    <div
+                        class="tab text-[12px] font-medium cursor-pointer text-messages dark:text-primary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark bg-inverse-on-surface dark:bg-inverse-on-surface-dark rounded-full py-[3px] px-3 flex items-center justify-center">
+                        Hamısı</div>
+                    <div
+                        class="tab text-[12px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-3">
+                        Aktiv balans</div>
+                    <div
+                        class="tab text-[12px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-3">
+                        Passiv balans</div>
+                    <div
+                        class="tab text-[12px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-3">
+                        Xərclənən</div>
+                    <div
+                        class="tab text-[12px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-3">
+                        Toplam</div>
+                </div>
+            </div>
+        </div>
+        <div class="relative inline-block ml-3">
+            <!-- Dropdown Toggle -->
+            <div id="yearDropdownToggle"
+                class="z-[2] flex items-center justify-center gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-20 h-[34px] py-1 px-2 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+                <% const currentYear=new Date().getFullYear(); %>
+                    <span>
+                        <%= currentYear %>
+                    </span>
+                    <div class="relative flex items-center justify-center mt-2">
+                        <div class="icon stratis-chevron-right rotate-90"></div>
+                    </div>
+            </div>
+
+            <!-- Dropdown Content -->
+            <div id="yearDropdown"
+                class="absolute hidden overflow-hidden pt-1 pr-1 z-10 mt-1 right-0 w-20 bg-menu dark:bg-menu-dark border-[.5px] border-stroke dark:border-[#FFFFFF1A] rounded-[8px] shadow-lg">
+
+                <!-- Scroll burdadır -->
+                <ul
+                    class="custom-scroll overflow-y-auto max-h-40 flex flex-col text-center text-[13px] text-messages dark:text-primary-text-color-dark font-medium pt-1 px-1 space-y-[2px]">
+                    <!-- JS ilə dinamik illər buraya əlavə olunur -->
+                    <% for (let i=0; i < 7; i++) { const year=currentYear - i; %>
+                        <li data-year="<%= year %>"
+                            class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                            <%= year %>
+                        </li>
+                        <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Qrafiklər -->
+    <div class="flex gap-4 h-[300px] pb-5">
+        <!-- Sol: Xətti qrafik və alt label -->
+        <div class="w-full flex flex-col">
+            <canvas id="balans" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+                id="balanslabels">
+                <!-- Dinamik etiketlər -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-full">
+    <div class="flex w-full gap-3">
+        <div class="min-w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+            <div class="flex justify-between">
+                <div class="relative h-[35px] pl-6 pr-8 flex items-center -mt-[10px]">
+                    <div class="absolute w-[22px] h-[23px] rotate-65 right-[20px] border-r border-secondary mt-[4px]">
+                    </div>
+                    <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+                        Ödənilmiş toplam məbləğ</div>
+                    <div
+                        class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+                    </div>
+                    <div class="absolute bottom-0 w-[calc(100%-60px)] border-b border-secondary mb-[1px]">
+                    </div>
+                </div>
+                <div class="flex items-center w-full overflow-hidden justify-end relative">
+                    <div
+                        class="flex justify-between max-w-96 py-1 px-1 rounded-full bg-menu dark:bg-menu-dark items-center z-[2] border border-stroke dark:border-surface-variant-dark">
+                        <div
+                            class="odenisTab text-[11px] font-medium cursor-pointer text-messages dark:text-primary-text-color-dark bg-inverse-on-surface dark:bg-inverse-on-surface-dark rounded-full py-[3px] px-2 flex items-center justify-center">
+                            Hamısı</div>
+                        <div
+                            class="odenisTab text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-2">
+                            1 ay</div>
+                        <div
+                            class="odenisTab text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-2">
+                            3 ay</div>
+                        <div
+                            class="odenisTab text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-2">
+                            6 ay</div>
+                        <div
+                            class="odenisTab text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-2">
+                            12 ay</div>
+                        <div onclick="openDateModal()"
+                            class="hidden text-[11px] pl-1 font-medium cursor-pointer text-messages dark:text-primary-text-color-dark dark:hover:text-messages hover:bg-[#F6D9FF] rounded-full flex items-center gap-1 py-[3px] px-2">
+                            <div class="icon stratis-calendar-02"></div>
+                            Tarix əlavə et
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="w-1/2">
+                    <canvas id="odenilmisChart" class="w-[400px] h-[300px]"></canvas>
+                </div>
+                <div class="w-1/2" id="odenilmisLegend"></div>
+            </div>
+        </div>
+        <div class="min-w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+            <div class="flex justify-between">
+                <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+                    <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]">
+                    </div>
+                    <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+                        İmtiyaz qrupları üzrə ödənilmiş toplam məbləğ</div>
+                    <div
+                        class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+                    </div>
+                    <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]">
+                    </div>
+                </div>
+                <!-- Trigger Button -->
+                <div id="privilegeModalToggle"
+                    class="flex z-[2] items-center justify-center gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[146px] h-[34px] py-1 px-2 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+                    <span>İmtiyaz qrupları</span>
+                    <div class="relative flex items-center justify-center mt-2">
+                        <div class="icon stratis-chevron-right rotate-90"></div>
+                    </div>
+                </div>
+
+                <!-- Modal Background -->
+                <div id="privilegeModal" class="fixed inset-0 z-100 hidden items-center justify-center bg-[#0000002A]">
+                    <!-- Modal Content -->
+                    <div
+                        class="border-3 border-stroke dark:border-stroke-color-dark bg-white dark:bg-side-bar-item-dark rounded-xl w-[509px] max-w-full shadow-lg relative">
+                        <!-- Modal Header -->
+                        <div
+                            class="flex justify-between items-center border-b border-stroke dark:border-surface-variant-dark px-[18px] py-3">
+                            <h2 class="text-[16px] font-semibold text-black dark:text-white">İmtiyaz
+                                qrupları</h2>
+                            <button onclick="closePrivilegeModal()"
+                                class="text-[24px] cursor-pointer text-gray-600 dark:text-white">&times;</button>
+                        </div>
+                        <div
+                            class="relative my-3 mx-3 flex items-center  border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                            <input id="customSearch" type="text" placeholder="Search..."
+                                class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]" />
+                            <div class="absolute right-3">
+                                <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                            </div>
+                        </div>
+
+                        <!-- List -->
+                        <ul class="divide-y divide-stroke dark:divide-surface-variant-dark text-sm my-3 mx-3">
+                            <% imtiyazlar.forEach(imtiyaz=> { %>
+                                <label for="rb-grp1" class="block py-2 flex items-center gap-2 cursor-pointer">
+                                    <input id="rb-grp1" type="radio" name="imtiyaz" value="<%= imtiyaz._id %>"
+                                        class="w-4 h-4 text-[#745086] bg-menu border-surface-variant focus:ring-[#745086] dark:focus:ring-[#745086] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <span class="text-messages dark:text-primary-text-color-dark">
+                                        <%= imtiyaz.name %>
+                                    </span>
+                                </label>
+                                <% }) %>
+                        </ul>
+
+                        <!-- Footer buttons -->
+                        <div
+                            class="flex justify-end gap-2  border-t border-stroke dark:border-surface-variant-dark px-6 py-5">
+                            <button onclick="closePrivilegeModal()"
+                                class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">Bağla</button>
+                            <button onclick="clearFilter()"
+                                class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">Filterləri
+                                təmizlə</button>
+                            <button onclick="applyPrivilegeFilter()"
+                                class="cursor-pointer bg-primary dark:bg-primary-dark text-on-primary dark:text-on-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark text-[13px] font-medium py-2 px-4 rounded-full">Filterlə</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="w-1/2">
+                    <canvas id="imtiyazChart" class="w-[400px] h-[300px]"></canvas>
+                </div>
+                <div class="w-1/2" id="imtiyazLegend"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-full">
+    <div class="flex w-full gap-3">
+        <div class="min-w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+            <div class="flex justify-between">
+                <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+                    <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]">
+                    </div>
+                    <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+                        Məbləğ</div>
+                    <div
+                        class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+                    </div>
+                    <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]">
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative ">
+                    <div class="absolute w-full z-[1] border-b border-secondary"></div>
+                </div>
+                <div class="relative inline-block ml-3 z-[5]">
+                    <!-- Mebleg Card Type Dropdown Toggle -->
+                    <div id="meblegCardTypeDropdownToggle"
+                        class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal min-w-27 h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+                        <span id="selectedMeblegCardType">Hamısı</span>
+                        <div class="relative flex items-center justify-center mt-2">
+                            <div class="icon stratis-chevron-right rotate-90"></div>
+                        </div>
+                    </div>
+
+                    <!-- Mebleg Card Type Dropdown Content -->
+                    <div id="meblegCardTypeDropdown"
+                        class="absolute hidden overflow-hidden pt-1 z-10 mt-1 right-0 min-w-27 bg-menu dark:bg-menu-dark border-[.5px] border-stroke dark:border-[#FFFFFF1A] rounded-[8px] shadow-lg">
+
+                        <!-- Scroll burdadır -->
+                        <ul
+                            class="custom-scroll overflow-y-auto max-h-40 flex flex-col text-left text-[13px] text-messages dark:text-primary-text-color-dark font-medium pt-1 px-1 space-y-[2px]">
+                            <li data-card-value="all"
+                                class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                Hamısı</li>
+                            <% cards.forEach(card=> { %>
+                                <li data-card-value="<%= card._id %>"
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    <%= card.name %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative inline-block ml-1 z-[5]">
+                    <!-- Mebleg Year Dropdown Toggle -->
+                    <div id="meblegYearDropdownToggle"
+                        class="z-[2] flex items-center justify-center gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-20 h-[34px] py-1 px-2 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+
+                        <span id="selectedMeblegYear">
+                            <%= currentYear %>
+                        </span>
+                        <div class="relative flex items-center justify-center mt-2">
+                            <div class="icon stratis-chevron-right rotate-90"></div>
+                        </div>
+                    </div>
+
+                    <!-- Mebleg Year Dropdown Content -->
+                    <div id="meblegYearDropdown"
+                        class="absolute hidden overflow-hidden pt-1 pr-1 z-10 mt-1 right-0 w-20 bg-menu dark:bg-menu-dark border-[.5px] border-stroke dark:border-[#FFFFFF1A] rounded-[8px] shadow-lg">
+
+                        <!-- Scroll burdadır -->
+                        <ul
+                            class="custom-scroll overflow-y-auto max-h-40 flex flex-col text-center text-[13px] text-messages dark:text-primary-text-color-dark font-medium pt-1 px-1 space-y-[2px]">
+                            <% for (let i=0; i < 7; i++) { const year=currentYear - i; %>
+                                <li data-year="<%= year %>"
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    <%= year %>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <canvas id="meblegChart" class="pb-17"></canvas>
+            <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+                <div
+                    class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+                    <div
+                        class="relative overflow-hidden w-4 h-4 rounded-full bg-[#00504BA1] flex items-center justify-center ">
+                        <div
+                            class="border-[1px] border-menu dark:border-menu-dark bg-[#00504B] w-2 h-2 rounded-full z-1">
+                        </div>
+                        <div class="w-full h-[2px] bg-[#00504B] absolute top-1/2 -translate-y-1/2"></div>
+                    </div>
+                    <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Bütün
+                        kartlar üzrə ümumi məbləğ:</span>
+                    <span id="totalAmountDisplay" class="text-messages dark:text-primary-text-color-dark">000.000.00
+                        AZN</span>
+                </div>
+            </div>
+        </div>
+        <div class="min-w-[50%] px-4 py-4 rounded-lg bg-container-2 dark:bg-container-2-dark hidden">
+            <div class="flex justify-between mb-5">
+                <!-- Title Section -->
+                <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px] flex-nowrap">
+                    <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]">
+                    </div>
+                    <div class="font-medium text-[15px] whitespace-nowrap text-black dark:text-primary-text-color-dark">
+                        İşçilərin statistikası
+                    </div>
+                    <div
+                        class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+                    </div>
+                    <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]">
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div
+                        class="flex justify-between py-1 px-1 rounded-full bg-menu dark:bg-menu-dark items-center z-[2] border border-stroke dark:border-surface-variant-dark">
+                        <div
+                            class="iscilerTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-messages dark:text-primary-text-color-dark bg-inverse-on-surface dark:bg-inverse-on-surface-dark rounded-full py-[3px] px-1 flex items-center justify-center">
+                            Hamısı (1259)</div>
+                        <div
+                            class="iscilerTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-1">
+                            Aktiv işçilər (980)</div>
+                        <div
+                            class="iscilerTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark rounded-full py-[3px] px-1">
+                            İşdən çıxarılanlar (279)</div>
+                    </div>
+                    <div class="relative inline-block ml-1 z-[5]">
+                        <!-- Dropdown Toggle -->
+                        <div id="yearDropdownToggle4"
+                            class="z-[2] flex items-center justify-center gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-20 h-[34px] py-1 px-2 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+                            <span>2024</span>
+                            <div class="relative flex items-center justify-center mt-2">
+                                <div class="icon stratis-chevron-right rotate-90"></div>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown Content -->
+                        <div id="yearDropdown4"
+                            class="absolute hidden overflow-hidden pt-1 pr-1 z-10 mt-1 right-0 w-20 bg-menu dark:bg-menu-dark border-[.5px] border-stroke dark:border-[#FFFFFF1A] rounded-[8px] shadow-lg">
+
+                            <!-- Scroll burdadır -->
+                            <ul
+                                class="custom-scroll overflow-y-auto max-h-40 flex flex-col text-center text-[13px] text-messages dark:text-primary-text-color-dark font-medium pt-1 px-1 space-y-[2px]">
+                                <!-- JS ilə dinamik illər buraya əlavə olunur -->
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2024</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2023</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2022</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2021</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2020</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2019</li>
+                                <li
+                                    class="cursor-pointer text-[13px] font-medium text-messages dark:text-primary-text-color-dark px-3 py-[3.5px] rounded hover:bg-item-hover dark:hover:bg-item-hover-dark">
+                                    2018</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Qrafiklər -->
+            <div class="flex gap-4 h-[300px] pb-5">
+                <!-- Sol: Xətti qrafik və alt label -->
+                <div class="w-full flex flex-col">
+                    <canvas id="kartlar" class="w-full h-full"></canvas>
+                    <!-- Etiketlər buraya daxil edildi -->
+                    <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+                        id="kartlarlabels">
+                        <!-- Dinamik etiketlər -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="min-w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+            <div class="flex justify-between">
+                <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+                    <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]">
+                    </div>
+                    <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+                        Kəşbek</div>
+                    <div
+                        class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+                    </div>
+                    <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]">
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="w-1/2">
+                    <canvas id="kesbekChart" class="w-[400px] h-[300px]"></canvas>
+                </div>
+                <div class="w-1/2" id="kesbekLegend"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% scripts=` <script>
+    window.csrfToken = "${csrfToken}";
+    </script>
+    <script src="/js/chart.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/uzv-sirket/dashboard/dashboard.js"></script>
+    <script src="/js/uzv-sirket/dashboard/chart.js"></script>
+    `; %>
+    <% styles=` <style>
+        #sidebar .overflow-y-auto::-webkit-scrollbar {
+        width: 0px;
+        /* Scroll barı tam gizlə */
+        }
+
+        #sidebar .overflow-y-auto {
+        scrollbar-width: none;
+        /* Firefox üçün */
+        -ms-overflow-style: none;
+        /* IE 10+ üçün */
+        }
+
+        /* Bu hissəni öz CSS faylında əlavə et */
+        .custom-scroll::-webkit-scrollbar {
+        width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+        background-color: transparent;
+        }
+
+        .custom-date::-webkit-calendar-picker-indicator {
+        display: none !important;
+        -webkit-appearance: none;
+        }
+
+        .custom-scroll {
+        --sb-track-color: #ffffff;
+        --sb-thumb-color: #b9b9b9;
+        --sb-size: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+        width: var(--sb-size);
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 39px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border-radius: 39px;
+        }
+
+        @supports not selector(::-webkit-scrollbar) {
+        .custom-scroll {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+        }
+        }
+        </style>
+        `;%>

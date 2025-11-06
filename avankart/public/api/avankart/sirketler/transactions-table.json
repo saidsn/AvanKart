@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "name": "Ramin Orucov",
+      "id": "AP-XXXXXXXXXX",
+      "trasactionID": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": "-100",
+      "location": "Veysəloğlu MMC",
+      "date": "12.04.2024 - 12:43:06"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "AP-XXXXXXXXXX",
+      "trasactionID": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": "-140",
+      "location": "Veysəloğlu MMC",
+      "date": "12.04.2024 - 12:43:06"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "AP-XXXXXXXXXX",
+      "trasactionID": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": "-140",
+      "location": "Veysəloğlu MMC",
+      "date": "12.04.2024 - 12:43:06"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "AP-XXXXXXXXXX",
+      "trasactionID": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": "-140",
+      "location": "Veysəloğlu MMC",
+      "date": "12.04.2024 - 12:43:06"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "AP-XXXXXXXXXX",
+      "trasactionID": "TRX-XXXXXXXXXXXXXX",
+      "cardCategory": "Yemək",
+      "amount": "-140",
+      "location": "Veysəloğlu MMC",
+      "date": "12.04.2024 - 12:43:06"
+    }
+  ],
+  "recordsTotal": 5,
+  "recordsFiltered": 5
+}

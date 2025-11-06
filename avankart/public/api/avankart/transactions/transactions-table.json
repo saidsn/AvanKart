@@ -1,0 +1,83 @@
+{
+  "data": [
+    {
+      "user": "Ramin Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Mədaxil",
+      "cardCategory": "Yemək",
+      "amount": "+220.00",
+      "subject": "Mükafat",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "user": "Ramin Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Mədaxil",
+      "cardCategory": "Yemək",
+      "amount": "+220.00",
+      "subject": "Şəxsi",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "user": "Ramin Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Mədaxil",
+      "cardCategory": "Yemək",
+      "amount": "+220.00",
+      "subject": "Veysəloğlu MMC",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "user": "İbrahim Feyzullazadə",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Məxaric",
+      "cardCategory": "Yemək",
+      "amount": "300.00",
+      "subject": "Borani restoran",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğursuz"
+    },
+    {
+      "user": "Aqşin Babayev",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Mədaxil",
+      "cardCategory": "Hədiyyə",
+      "amount": "+2.20",
+      "subject": "Keşbek",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    },
+    {
+      "user": "Ramin Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Məxaric",
+      "cardCategory": "Premium",
+      "amount": "-75.00",
+      "subject": "CinemaPlus",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğursuz"
+    },
+    {
+      "user": "Marif Əliyev",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "TRX-XXXXXXXXXXXXXX",
+      "destination": "Mədaxil",
+      "cardCategory": "Yanacaq",
+      "amount": "+400.00",
+      "subject": "Kapital Bank",
+      "date": "12.04.2024 – 12:43:06",
+      "status": "Uğurlu"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

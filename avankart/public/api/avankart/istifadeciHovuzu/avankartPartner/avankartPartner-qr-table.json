@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 1000,
+      "startDate": "01.12.2023",
+      "endDate": "Davam edir"
+    },
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 3200,
+      "startDate": "01.12.2023",
+      "endDate": "16.08.2023"
+    },
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 3200,
+      "startDate": "01.12.2023",
+      "endDate": "16.08.2023"
+    },
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 3200,
+      "startDate": "01.12.2023",
+      "endDate": "16.08.2023"
+    },
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 3000,
+      "startDate": "01.12.2023",
+      "endDate": "16.08.2023"
+    },
+    {
+      "logo": "/public/images/Avankart/istifadeciHovuzu/gooryLogo.svg",
+      "companyName": "Özsüt Restoran",
+      "transactionId": "MM-XXXXXXXX",
+      "qrCount": "4352",
+      "amount": 1000,
+      "startDate": "01.12.2023",
+      "endDate": "16.08.2023"
+    }
+  ],
+  "recordsTotal": 6,
+  "recordsFiltered": 6
+}

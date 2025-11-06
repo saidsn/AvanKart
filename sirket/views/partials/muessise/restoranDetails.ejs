@@ -1,0 +1,348 @@
+<div id="restaurantDetailPopup"
+  class="fixed inset-0 bg-[rgba(0,0,0,0.4)] z-[9999] hidden flex items-center justify-center">
+  <div class="bg-sidebar-item dark:bg-side-bar-item-dark w-[866px] rounded-xl shadow-xl overflow-y-auto max-h-[90vh] relative">
+    <div
+      class="bg-sidebar-item dark:bg-side-bar-item-dark flex items-center justify-between border-b border-stroke px-6 dark:border-[#FFFFFF1A] pt-[18px] pb-[18px] sticky top-0 z-100">
+      <div class="text-[15px] font-medium text-messages dark:text-primary-text-color-dark">
+        <%= muessise.muessise_name %>
+      </div>
+      <img onclick="closeRestaurantDetailPopup()" src="/images/Sorgular Pages Images/Close.svg" alt="Close"
+        class="cursor-pointer dark:hidden" />
+      <img onclick="closeRestaurantDetailPopup()" src="/images/avankart-partner-pages-images/Close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+    <div class="flex overflow-y-auto custom-scroll">
+      <div class="w-[50%] ">
+        <div class="pb-5 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+          <div class="px-[20px] bg-sidebar-bg dark:bg-side-bar-bg-dark">
+            <div class="w-full py-3 flex justify-between text-white">
+              <img class="block w-25 h-25" src="<%= muessise.profile_image_path %>" />
+
+              <!--"Cari" -->
+              <div class="flex items-start justify-start space-x-2">
+                <span class="w-[6px] h-[6px] bg-teal-400 rounded-full mt-[3px] "></span>
+                <% 
+                const name = muessise.authorized_person.name || ''
+                const surname = muessise.authorized_person.surname || ''
+                const fullName =  name + (surname ? '' + surname : '')
+                const date = new Date().toLocaleString('az-AZ', { 
+                day: '2-digit', month: '2-digit', year: 'numeric', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit' 
+                }).replace(',', ' -')
+                 %>
+                <span class="text-[13px] text-messages dark:text-primary-text-color-dark leading-none"><%= fullName%> / <%= date %></span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center">
+                <p class="text-[22px] font-semibold text-messages dark:text-[#FFFFFF]">
+                  <%= muessise.sirket_name %>
+                </p>
+              </div>
+            </div>
+
+            <p
+              class="pt-2 font-normal text-[12px] text-messages opacity-65 pb-[20px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] dark:text-[#FFFFFF]">
+              <%= muessise.description %>
+            </p>
+
+            <div class="flex gap-4 flex-col pb-[20px] border-b-[0.5px] pt-4 border-[#0000001A] dark:border-[#FFFFFF1A]">
+              <div class="flex gap-[11px] items-center text-messages">
+                <span class="mt-[6px] icon iconex-bookmark-1 text-lg dark:text-[#FFFFFF]"></span>
+                <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]">
+                  <%=muessise.description %>
+                </span>
+              </div>
+              <div class="flex gap-[11px] items-center text-messages">
+                <span class="icon iconex-location-1 text-lg dark:text-[#FFFFFF]"></span>
+                <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]">
+                  <%= muessise.address %>
+                </span>
+              </div>
+              <% if(muessise.phone.length> 0 ){ %>
+                <div class="">
+                  <% muessise.phone.forEach(function(p) { %>
+                    <div class="flex gap-[11px] items-center text-messages">
+                      <span class="icon iconex-calling-1 text-lg dark:text-[#FFFFFF]"></span>
+                      <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]">
+                        <%= p.prefix %>
+                          <%= p.number %>
+                      </span>
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+                  <% muessise.email.forEach(function(mail) { %>
+                    <div class="flex gap-[11px] items-center text-messages">
+                      <span class="icon iconex-case-1 text-lg dark:text-[#FFFFFF]"></span>
+                      <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF]">
+                        <%= mail %>
+                      </span>
+                    </div>
+                    <% }) %>
+            </div>
+            <div class="pt-4 pb-[20px] border-b-[0.5px] border-[#0000001A]">
+              <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50">
+                Kartlar
+              </p>
+              <div class="muessise-cards flex flex-wrap gap-3">
+                <% muessise.cards?.forEach(function(card) { %>
+                  <div class="w-[84px] h-[27px] flex gap-1 items-center justify-center rounded-full"
+                    style="background-color: <%= card.background_color %>">
+                    <img class="w-[16px] h-[16px]" src="https://api.avankart.com/v1/icon/<%= card.icon || "test" %>" alt="<%= card.name %>" />
+                    <span class="font-normal text-[12px] text-messages">
+                      <%= card.name %>
+                    </span>
+                  </div>
+                  <% }) %>
+              </div>
+            </div>
+
+            <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A]">
+              <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50">
+                İş günləri
+              </p>
+              <div class="flex gap-1 flex-wrap">
+                <div class="flex gap-2 flex-wrap">
+                  <% Object.entries(muessise.schedule).forEach(([day, info])=> {
+                    const shortDay = day.slice(0, 2).toUpperCase();
+                    %>
+                    <div class="relative group">
+                      <div
+                        class="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs <%= info.isOpen ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>">
+                        <%= shortDay %>
+                      </div>
+                      <div
+                        class="<%= info.isOpen ? '' : 'hidden' %> absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-max px-2 py-1 text-xs text-on-primary bg-messages rounded opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                        <%= info.isOpen ? `${info.open} - ${info.close}` : 'Bağlıdır' %>
+                          <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-[8px] border-t-messages border-transparent z-15">
+                          </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="pt-4 pb-4 border-b-[0.5px] border-[#0000001A]">
+              <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50">
+                Xidmətlər
+              </p>
+              <div class="muessise-services flex gap-3">
+    
+                <div
+                  class="px-2 py-1 text-[12px]  flex items-center justify-center rounded-full <%= muessise.services.includes('lunch') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>">
+                  Nahar
+                </div>
+                <div
+                  class="px-2 py-1 text-[12px]  flex items-center justify-center rounded-full <%= muessise.services.includes('takeaway') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>">
+                  Al apar
+                </div>
+                <div
+                  class="px-2 py-1 text-[12px]  flex items-center justify-center rounded-full <%= muessise.services.includes('delivery') ? 'bg-focus text-on-primary' : 'bg-stroke text-tertiary-text' %>">
+                  Çatdırılma
+                </div>
+              </div>
+            </div>
+            <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A]">
+              <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF] opacity-50">
+                Sosial media
+              </p>
+              <div class="flex flex-col muessise-social">
+                <% 
+                  const socialIcons = {
+                    instagram: "skill-icons_instagram",
+                    facebook: "devicon_facebook",
+                    whatsapp: "skill-icons_whatsapp",
+                    telegram: "skill-icons_telegram",
+                    linkedin: "devicon_linkedin"
+                  };
+                %>
+                <% muessise.social.forEach((value,key)=> {%>
+                  <div
+                  class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer">
+                  <img src="/images/muessise melumatlari images/<%= socialIcons[key] || 'deafult-icon.svg' %>.svg" alt="<%= key%>" />
+                  <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65"><%= key%></span>
+                </div>
+                <% })%>
+                
+                <!-- <div
+                  class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer">
+                  <img src="/images/muessise melumatlari images/skill-icons_instagram.svg" alt="linkedin" />
+                  <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">İnstagram</span>
+                </div>
+                <div
+                  class="p-3 flex gap-2 border-b-[0.5px] border-[#0000001A] hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer">
+                  <img src="/images/muessise melumatlari images/devicon_facebook.svg" alt="linkedin" />
+                  <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">Facebook</span>
+                </div> -->
+              </div>
+            </div>
+
+            <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A] mb-[17px]">
+              <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]">
+                Web sayt
+              </p>
+              <div class="muessise-websites py-3flex flex-col gap-2">
+                <% muessise.website.forEach(function(site) { %>
+                  <a href="<%= site %>" target="_blank" rel="noopener noreferrer"
+                    class="flex gap-2 items-center hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer py-2 px-2 rounded">
+                    <div class="icon iconex-link-1 text-xl dark:text-[#FFFFFF]"></div>
+                    <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">
+                      <%= site.replace(/^https?:\/\//, '' ) %>
+                    </span>
+                  </a>
+                  <% }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- TempData -->
+      <div class="w-[50%] dark:bg-side-bar-item-dark px-[20px] border-r border-stroke dark:border-[#FFFFFF1A]">
+        <div class="w-full py-3 flex justify-between text-white">
+          <img class="block w-25 h-25 dark:hidden" src="/images/muessise melumatlari images/OzsutLightMode.svg" />
+          <img class="hidden dark:block w-25 h-25" src="/images/muessise melumatlari images/OzsutDarkMode.svg" />
+          <div class="flex items-start justify-start space-x-2">
+            <span class="w-[6px] h-[6px] bg-[#BFC8CC] hover:bg-[#636B6F] rounded-full mt-[3px]"></span>
+            <span class="text-[13px] text-messages dark:text-primary-text-color-dark leading-none date-and-name">İsa
+              Sadiqli /
+              12.0.2024 - 09:23:12</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center">
+            <p class="text-[22px] font-semibold text-messages dark:text-[#FFFFFF] restaurant-name">
+
+            </p>
+          </div>
+        </div>
+
+        <p
+          class="pt-2 font-normal text-[12px] text-messages opacity-65 pb-[20px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] dark:text-[#FFFFFF] restaurant-description">
+          ÖzSüt-ün hekayəsi İzmir Kemeraltında 16 kv. metrlik bir məkanda
+          başlayıb. Daha sonra Səfər ustanın yolu Osmanlı sarayından çıxan
+          bir usta ilə kəsişir. Bu 1938-ci ilə təsadüf edir. Səfər usta bu
+          torpaqlarla yoğrulmuş ənənəvi qənnadı sirrlərini ÖzSüt-ün
+          yaddaşına bir-bir həkk etməyi bacarır. O gün açılan qapı bir
+          daha heç vaxt bağlanmır.
+        </p>
+
+        <div class="flex gap-4 flex-col pb-[20px] border-b-[0.5px] pt-4 border-[#0000001A] dark:border-[#FFFFFF1A]">
+          <div class="flex gap-[11px] items-center text-messages">
+            <span class="mt-[6px] icon iconex-bookmark-1 !w-[13px] !h-[17px] dark:text-[#FFFFFF]"></span>
+            <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF] restaurant-category">Restoran</span>
+          </div>
+          <div class="flex gap-[11px] items-center text-messages">
+            <span class="icon iconex-location-1 !w-[15px] !h-[17px] dark:text-[#FFFFFF]"></span>
+            <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF] restaurant-address">Azərbaycan, Bakı
+              şəhəri, Nərimanov rayonu</span>
+          </div>
+          <div class="phone-wrapper">
+            <div class="flex gap-[11px] items-center text-messages">
+              <span class="icon iconex-calling-1 !w-[16px] !h-[16px] dark:text-[#FFFFFF]"></span>
+              <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF] restaurant-phones">+994 012 370 16
+                92</span>
+            </div>
+            <div class="flex gap-[11px] items-center text-messages">
+              <span class="icon iconex-calling-1 !w-[16px] !h-[16px] dark:text-[#FFFFFF]"></span>
+              <span class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF] restaurant-phones">+994 050 770 35
+                22</span>
+            </div>
+          </div>
+          <div class="restaurant-email-wrapper">
+            <div class="flex gap-[11px] items-center text-messages ">
+              <span class="icon iconex-case-1 !w-[17px] !h-[16px] dark:text-[#FFFFFF]"></span>
+              <span
+                class="opacity-65 text-[13px] font-normal dark:text-[#FFFFFF] restaurant-emails">info.ozsut@ozsut.com.tr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 pb-[20px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+          <div class="flex flex-wrap gap-3 resturant-cards text-[11px]">
+            
+          </div>
+        </div>
+
+        <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+          <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]">
+            İş günləri
+          </p>
+          <div class="restaurant-schedule-wrapper flex gap-2 flex-wrap">
+            
+          </div>
+        </div>
+
+        <div class="pt-4 pb-5 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+          <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]">
+            Xidmətlər
+          </p>
+          <div class="flex gap-3 restaurant-services">
+            <div
+              class="w-[53px] h-[27px] bg-focus text-[12px] text-on-primary flex items-center justify-center rounded-full">
+              Nahar
+            </div>
+            <div
+              class="w-[60px] h-[27px] bg-focus text-[12px] text-on-primary flex items-center justify-center rounded-full">
+              Al apar
+            </div>
+            <div
+              class="w-[80px] h-[27px] bg-focus text-[12px] text-on-primary flex items-center justify-center rounded-full">
+              Çatdırılma
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 pb-5">
+          <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]">
+            Sosial media
+          </p>
+          <div class="flex flex-col restaurant-social">
+            <div
+              class="flex item-center justify-between p-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+              <div class="flex gap-2 items-center">
+                <img src="/images/muessise melumatlari images/devicon_linkedin.svg" alt="linkedin" />
+                <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">Linkedin</span>
+              </div>
+            </div>
+            <div
+              class="flex item-center justify-between p-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+              <div class="flex gap-2 items-center">
+                <img src="/images/muessise melumatlari images/skill-icons_instagram.svg" alt="instagram" />
+                <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">Instagram</span>
+              </div>
+            </div>
+            <div
+              class="flex item-center justify-between p-3 border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]">
+              <div class="flex gap-2 items-center">
+                <img src="/images/muessise melumatlari images/devicon_facebook.svg" alt="facebook" />
+                <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">Facebook</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 pb-5 mb-[17px]">
+          <p class="text-[11px] font-medium opacity-50 text-messages pb-2 dark:text-[#FFFFFF]">
+            Web sayt
+          </p>
+          <div
+            class="flex flex-col hover:bg-table-hover dark:hover:bg-[#242C30] cursor-pointer restaurant-websites">
+            <div class="icon iconex-link-1 w-[9px] h-[17px] dark:text-[#FFFFFF]"></div>
+            <span class="text-[13px] font-medium text-messages dark:text-[#FFFFFF] opacity-65">ozsut.com.tr</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>

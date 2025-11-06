@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="csrf-token"
+      content="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>"
+    />
+    <title>Main</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style_t.css" />
+    <link rel="stylesheet" href="/icons.css" />
+    <link rel="stylesheet" href="/iconex.css" />
+    <link rel="stylesheet" href="/dashboard.css" />
+    <link rel="stylesheet" href="/css/jquery-ui.css" />
+    <script src="/js/chart.js"></script>
+    <link rel="stylesheet" href="/css/datatables/datatables.min.css" />
+    <%- typeof styles !== 'undefined' ? styles : '' %>
+  </head>
+  <body
+    class="font-medium bg-body-bg dark:bg-body-bg-dark flex overflow-x-hidden"
+  >
+    <%- include("../partials/sidebar") %>
+    <section class="flex-1 min-w-0">
+      <div
+        id="alertModalContainer"
+        class="fixed left-1/2 -translate-x-1/2 top-3 flex justify-center items-center pointer-events-none z-[10000]"
+      >
+        <div
+          id="alertModalBox"
+          class="overflow-hidden rounded-full w-[262px] flex items-center justify-between px-5 py-3 opacity-0 -translate-y-10 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] pointer-events-auto"
+        >
+          <div class="flex items-center h-6">
+            <div
+              id="alertModalIcon"
+              class="iconex iconex-shield-1-1 w-4 h-5 px-3"
+            ></div>
+            <span id="alertModalMessage" class="text-[12px] font-medium"
+              >Mesaj</span
+            >
+          </div>
+          <div
+            id="alertModalCloseContainer"
+            class="flex justify-center items-center rounded-full"
+          >
+            <div
+              id="alertModalClose"
+              class="w-[14px] h-[14px] p-[4.67px] flex justify-center items-center cursor-pointer"
+            >
+              <div
+                class="icon stratis-x-03 !w-[4.67px] !h-[4.67px] text-white"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include("../partials/header") %>
+      <main
+        id="mainContent"
+        class="text-messages <%= currentPath === '/muessise-info' ? '' : 'px-5 pt-3' %> pb-[19px] ml-[242px] mt-[70px] flex flex-col gap-3"
+      >
+        <%- body %>
+      </main>
+    </section>
+    <%- typeof footerPart !== 'undefined' ? footerPart : '' %>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/notifications/notifications.js"></script>
+    <script src="/js/notifications/popup.js"></script>
+    <script src="/js/toggleSidebar.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/faq/faq.js"></script>
+    <script src="/js/Avankart%20Profili/Popup.js"></script>
+    <script src="/js/submitForm.js"></script>
+    <script src="/js/mode.js"></script>
+    <script src="/js/alert.js"></script>
+    <script src="/js/faq/faq.js"></script>
+    <script src="/js/findDuty.js"></script>
+    <script src="/js/isciler/popUp.js"></script>
+
+    <%- typeof scripts !== 'undefined' ? scripts : '' %> <%-
+    include("../partials/footer") %>
+  </body>
+</html>

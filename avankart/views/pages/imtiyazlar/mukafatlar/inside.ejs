@@ -1,0 +1,478 @@
+<div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+            <div class="flex items-center gap-2">
+              <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+              <div class="icon stratis-slash-01-forward"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Mükafatlar</a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div
+              class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+              <div onclick="window.location.href='./mukafatlar.html'"
+                class="flex gap-[14px] items-center cursor-pointer">
+                <div class="icon stratis-arrow-left-sm !w-[11px] !h-[11px] text-messages"></div>
+                <div id="prize-name" class="text-[15px] font-medium">
+                  Yemək
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                  <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                  <div class="absolute right-3">
+                    <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                  </div>
+                </div>
+
+                <div
+                  class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                  <a href="#" class="font-medium text-[13px]">Səhifəni yenilə</a>
+                  <a href="#" class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+                </div>
+                <div onclick="openRewardModal()"
+                  class="w-[153px] cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                  <span class="icon stratis-plus-02 text-on-primary w-4 h-4"></span>
+                  <span>Mükafat yarat</span>
+                </div>
+              </div>
+            </div>
+
+            <table id="myTable" class="table-fixed w-full border-collapse">
+              <thead class="border-none pb-0.5">
+                <tr data-name="Kinoteatr bileti" data-spending="Restoran • Kinoteatr" data-target-type="count"
+                  data-target-value="3" data-reward-type="Bonus" data-reward-value="20"
+                  class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                  <th class="rounded-l-lg filtering">
+                    Mükafat ikonu
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Mükafatın adı
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Xərcləmə yeri
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Mükafatın hədəfi
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Xidmət sayı
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Mükafatın növü
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Mükafat
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Qazanan şəxs sayı
+                  </th>
+                  <th class=" whitespace-nowrap filtering">
+                    Yaradılma tarixi
+                  </th>
+                  <th class="w-10 whitespace-nowrap  rounded-r-lg"></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="rewardModal" class="fixed inset-0 bg-black/40 z-[999] hidden flex items-center justify-center">
+    <div
+      class="w-[570px] flex flex-col gap-3 bg-sidebar-item border-3 border-stroke dark:bg-table-hover-dark rounded-2xl pt-6 relative shadow-xl">
+      <div class="relative flex flex-col gap-1 pb-3 border-b-[.5px] border-stroke">
+        <h2 class="text-base font-medium text-messages dark:text-primary-text-color-dark px-6">
+          Yeni mükafat
+        </h2>
+        <img src="/public/images/Avankart/prize/close.svg" alt="Close Modal" onclick="closeRewardModal()"
+          class="px-6 absolute top-0 right-0 cursor-pointer text-sm" />
+      </div>
+
+      <div class="flex gap-3 mx-6 ">
+        <!-- Profil şəkli -->
+        <div
+          class="group relative w-[100px] h-[100px] rounded-full bg-image dark:bg-image-dark flex justify-center items-center transition-transform duration-300 ease-in-out hover:scale-100 cursor-pointer"
+          onclick="document.getElementById('profileInput').click()">
+
+          <input type="file" id="profileInput" class="hidden" accept="image/*"
+            onchange="previewImage(this, 'profilePreview')" />
+
+          <img id="profilePreview" class="absolute inset-0 w-full h-full object-cover rounded-full hidden z-50" />
+
+          <!-- Hover overlay for profile -->
+          <div id="profileHoverOverlay"
+            class="absolute inset-0 bg-[rgb(0,0,0,0.2)] rounded-full transition-all duration-500 ease-in-out z-60 flex items-center justify-center hidden">
+            <!-- Edit and Delete buttons -->
+            <div class="flex gap-2 transform translate-y-2 transition-all duration-700 ease-out delay-100">
+              <!-- Edit Profile Image Button -->
+              <button onclick="editImage(event, 'profileInput')"
+                class="flex items-center justify-center bg-white backdrop-blur-sm hover:bg-opacity-30 p-1.5 rounded-full transition-all duration-300 w-7 h-7">
+                <div class="icon stratis-edit-02 w-4 h-4 text-black z-10"></div>
+              </button>
+
+              <!-- Delete Profile Image Button -->
+              <button onclick="deleteImage(event, 'profilePreview', 'profileHoverOverlay')"
+                class="flex items-center justify-center bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 p-1.5 rounded-full transition-all duration-300 w-7 h-7">
+                <div class="icon stratis-trash-02 w-4 h-4 text-black z-10"></div>
+              </button>
+
+              </button>
+            </div>
+          </div>
+
+          <div class="iconex iconex-rocket-1 dark:text-primary-text-color-dark w-8 h-8 z-10 relative">
+          </div>
+
+          <img
+            class="absolute top-[27px] left-[61px] w-[10px] h-[10px] transition-transform duration-300 ease-in-out group-hover:scale-125 z-10"
+            src="../../../public/images/muessise melumatlari images/Subtract.svg" alt="plus">
+        </div>
+
+        <!-- Mətn hissəsi -->
+        <div class="flex flex-col mt-[27px]">
+          <p class="text-[15px] font-medium text-messages dark:text-primary-text-color-dark mb-1">
+            Əlavə et</p>
+          <p class="text-[12px] font-normal text-tertiary-text">
+            Yalnız JPG, PNG, SVG faylları dəstəklənir, max 2mb.</p>
+        </div>
+      </div>
+
+      <form id="rewardForm" data-url="/api/mukafatlar/create" method="POST" enctype="multipart/form-data"
+        onsubmit="return false;" class="flex flex-col gap-3 px-6">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <!-- Mukafatin adi -->
+        <label class="flex flex-col gap-[6px]">
+          <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Mükafatın
+            adı</span>
+          <input type="input" placeholder="Daxil edin" class="cursor-pointer w-full px-3 py-[6.5px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+            hover:bg-input-hover dark:hover:bg-input-hover-dark
+            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+            transition-all ease-out duration-300">
+        </label>
+        <!-- Xərcləmə yeri -->
+        <label class="flex flex-col gap-[6px] relative">
+          <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Xərcləmə
+            yeri</span>
+          <div id="spendingTrigger" onclick="openSpendingModal()"
+            class="cursor-pointer w-full h-[36px] px-3 rounded-full border border-[#E5E7EB] bg-white text-xs font-normal text-[#1D222B] flex items-center justify-between">
+            <span id="selectedSpending">Seçim edin</span>
+            <span class="icon stratis-chevron-up rotate-180 mb-1 text-messages"></span>
+          </div>
+        </label>
+
+        <!-- Spending Modal -->
+        <div id="spendingModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/40">
+          <div id="spendingModalContent"
+            class="w-[515px] bg-white rounded-2xl shadow-xl overflow-hidden border-3 border-stroke">
+            <!-- Header -->
+            <div class="relative flex flex-col gap-1 py-3 border-b-[.5px] border-stroke">
+              <h2 class="text-base font-medium text-messages dark:text-primary-text-color-dark px-6">
+                Xərcləmə yeri
+              </h2>
+              <img onclick="closeSpendingModal()" src="/public/images/Avankart/prize/close.svg" alt="Close Modal"
+                class="px-6 py-3 absolute top-0 right-0 cursor-pointer text-sm" />
+            </div>
+
+            <!-- Search -->
+            <div class="px-3 py-3">
+              <div class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                <input id="spendingSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                <div class="absolute right-3">
+                  <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Checkbox list -->
+            <div class="max-h-[200px] text-[13px] font-normal overflow-y-auto px-3 divide-y divide-gray-100">
+              <!-- Restoran -->
+              <label for="checkbox2" class="flex items-center gap-2 cursor-pointer select-none py-3">
+                <input type="checkbox" id="checkbox2" value="Restoran" class="peer hidden spendingOption" />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                  <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                </div>
+                <div>Restoran</div>
+              </label>
+
+              <!-- CoffeShop -->
+              <label for="checkbox3" class="flex items-center gap-2 cursor-pointer select-none py-3">
+                <input type="checkbox" id="checkbox3" value="CoffeShop" class="peer hidden spendingOption" />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                  <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                </div>
+                <div>CoffeShop</div>
+              </label>
+
+              <!-- Fast food -->
+              <label for="checkbox4" class="flex items-center gap-2 cursor-pointer select-none py-3">
+                <input type="checkbox" id="checkbox4" value="Fast food" class="peer hidden spendingOption" />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                  <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                </div>
+                <div>Fast food</div>
+              </label>
+
+              <!-- Kinoteatr -->
+              <label for="checkbox5" class="flex items-center gap-2 cursor-pointer select-none py-3">
+                <input type="checkbox" id="checkbox5" value="Kinoteatr" class="peer hidden spendingOption" />
+                <div
+                  class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                  <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+                </div>
+                <div>Kinoteatr</div>
+              </label>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-end gap-3 px-6 py-4 border-t border-stroke">
+              <button type="button" onclick="closeSpendingModal()"
+                class="px-4 py-2 rounded-full text-sm bg-[#F4F4F6] text-[#1D222B]">
+                Bağla
+              </button>
+              <button type="button" onclick="submitSpendingSelection()"
+                class="px-4 py-2 rounded-full text-sm bg-[#745086] text-white">
+                Əlavə et
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Hədəf -->
+        <div class="flex flex-col gap-[6px]">
+          <label class="text-[12px] font-medium text-tertiary-text dark:text-tertiary-text-color-dark">Hədəf</label>
+          <div
+            class="flex w-full border border-[#E5E7EB] dark:border-[#FFFFFF1A] rounded-full overflow-hidden text-[13px] font-normal">
+            <!-- Sol düymə -->
+            <button type="button" data-target="amount" onclick="selectTargetType(this)"
+              class="target-button cursor-pointer hover:bg-input-hover flex-1 py-2 text-center transition-colors duration-200 bg-white text-secondary-text dark:bg-transparent dark:text-white rounded-l-full">
+              Xərcləmə məbləği
+            </button>
+
+            <!-- Orta border -->
+            <div class="w-[1px] bg-[#E5E7EB] dark:bg-[#FFFFFF1A]"></div>
+
+            <!-- Sağ düymə -->
+            <button type="button" data-target="count" onclick="selectTargetType(this)"
+              class="target-button cursor-pointer hover:bg-input-hover flex-1 py-2 text-center transition-colors duration-200 bg-white text-secondary-text dark:bg-transparent dark:text-white rounded-r-full">
+              Yemək sayı
+            </button>
+          </div>
+        </div>
+        <!-- Hədəfin sayı -->
+        <label class="flex flex-col gap-[6px]">
+          <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Hədəfin
+            sayı</span>
+          <input type="input" placeholder="0.00" class="cursor-pointer w-full px-3 py-[6.5px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+            hover:bg-input-hover dark:hover:bg-input-hover-dark
+            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+            transition-all ease-out duration-300">
+        </label>
+        <!-- Mükafatın növü -->
+        <div class="flex flex-col gap-[6px] relative">
+          <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Mükafatın
+            növü</span>
+
+          <div id="rewardTypeDropdown"
+            class="cursor-pointer hover:bg-container-2 w-full h-[36px] px-3 rounded-full border border-[#E5E7EB] bg-white text-xs font-normal text-[#1D222B] flex items-center justify-between">
+            <span id="selectedRewardText">Seçim edin</span>
+            <span class="icon stratis-chevron-up rotate-180 flex items-center justify-center mb-1"></span>
+          </div>
+
+          <ul id="rewardOptions"
+            class="text-[13px] absolute top-full left-0 w-full bg-white rounded-md shadow-md border border-[#E5E7EB] hidden mt-1 z-10">
+            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+              Endirim
+            </li>
+            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">Bonus</li>
+            <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">Məbləğ</li>
+          </ul>
+        </div>
+
+        <div id="additionalInputWrapper" class="hidden">
+          <label class="flex flex-col gap-[6px] relative">
+            <span class="text-[12px] text-tertiary-text font-medium">Mükafat</span>
+            <div class="relative">
+              <input  id="rewardValueInput" type="input" placeholder="" class="cursor-pointer w-full px-3 py-[6.5px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+            hover:bg-input-hover dark:hover:bg-input-hover-dark
+            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+            transition-all ease-out duration-300">
+              <span id="manatIcon" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#1D222B]">₼</span>
+            </div>
+          </label>
+        </div>
+        <!-- Təkrarlanma müddəti -->
+        <div>
+          <div class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">
+            Təkrarlanma müddəti
+          </div>
+          <div
+            class="flex items-center gap-3 py-3 text-[13px] text-messages dark:text-primary-text-color-dark font-normal">
+            <label class="flex gap-2 items-center cursor-pointer" for="week">
+              <input id="week" type="radio" name="date" value="week" class="hidden peer radio-input" checked />
+              <div
+                class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+                <div
+                  class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full hidden inner-circle">
+                </div>
+              </div>
+              Həftəlik
+            </label>
+            <label class="flex gap-2 items-center cursor-pointer" for="month">
+              <input id="month" type="radio" name="date" value="month" class="hidden peer radio-input" />
+              <div
+                class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+                <div
+                  class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full hidden inner-circle">
+                </div>
+              </div>
+              Aylıq
+            </label>
+            <label class="flex gap-2 items-center cursor-pointer" for="year">
+              <input id="year" type="radio" name="date" value="year" class="hidden peer radio-input" />
+              <div
+                class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+                <div
+                  class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full hidden inner-circle">
+                </div>
+              </div>
+              İllik
+            </label>
+          </div>
+        </div>
+      </form>
+      <div class="flex justify-end gap-3 px-6 py-5 border-t-[.5px] border-stroke">
+        <button onclick="closeRewardModal()"
+          class="px-4 py-2 rounded-full bg-surface dark:bg-surface-bright-dark text-sm cursor-pointer">
+          Ləğv et
+        </button>
+        <button class="px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-hover-button cursor-pointer">
+          Yarat
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+  <% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/mukafatlar/mukafatlarDetailsTable.js"></script>
+    <script src="/js/Avankart/mukafatlar/mukafatlar.js"></script>
+    <script src="/js/Avankart/mukafatlar/uploadPhoto.js"></script>
+  `; %> 
+  <% styles = `
+  <style>
+    .dt-column-order {
+      display: none !important;
+    }
+
+    table,
+    thead,
+    table.dataTable>thead>tr>th,
+    table.dataTable>thead>tr>td,
+    table.dataTable>tbody>tr:last-child>*,
+    div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+      border: none;
+      font-weight: 400;
+    }
+
+    table.dataTable th.dt-type-numeric,
+    table.dataTable th.dt-type-date,
+    table.dataTable td.dt-type-date {
+      text-align: left;
+    }
+
+    /* Yalnız sidebar scroll üçün */
+    #sidebar .overflow-y-auto::-webkit-scrollbar {
+      width: 0px;
+      /* Scroll barı tam gizlə */
+    }
+
+    #sidebar .overflow-y-auto {
+      scrollbar-width: none;
+      /* Firefox üçün */
+      -ms-overflow-style: none;
+      /* IE 10+ üçün */
+    }
+
+    /* Bu hissəni öz CSS faylında əlavə et */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    /* Main container styles */
+    .slider-container {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* Value display container */
+    .value-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    /* Custom slider styles */
+    #slider-range {
+      height: 6px;
+      border: none;
+      background: #9C78AE;
+      /* Purple background for the entire track */
+      border-radius: 3px;
+    }
+
+    /* Slider range (colored part between handles) */
+    #slider-range .ui-slider-range {
+      background: #e6e6e6;
+      /* Gray color for area between handles */
+    }
+
+    /* Slider handles */
+    #slider-range .ui-slider-handle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid #745086;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      outline: none;
+      top: -7px;
+      margin-left: -10px;
+    }
+  </style>
+  `; %>

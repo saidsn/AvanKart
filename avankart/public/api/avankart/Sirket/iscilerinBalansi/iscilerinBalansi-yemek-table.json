@@ -1,0 +1,102 @@
+{
+  "data": [
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Ramin Orucov",
+      "specialty": "Designer",
+      "taskgroup": "Marketing",
+      "amount": 150.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Fuad Bayramov",
+      "specialty": "Mühasib",
+      "taskgroup": "Mühasiblər",
+      "amount": 18000,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Elvin Hüseynov",
+      "specialty": "Layihə Rəhbəri",
+      "taskgroup": "Layihə Rəhbərləri",
+      "amount": 220.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Etibar Quliyev",
+      "specialty": "Baş Mühasib",
+      "taskgroup": "Mühasiblər",
+      "amount": 150.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Kamran Əliyev",
+      "specialty": "Layihə Rəhbəri",
+      "taskgroup": "Layihə Rəhbərləri",
+      "amount": 110.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Fatimə Ağayeva",
+      "specialty": "Designer",
+      "taskgroup": "Marketing",
+      "amount": 270.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Mənsur İsmayilov",
+      "specialty": "Developer",
+      "taskgroup": "Information Technology",
+      "amount": 90.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Zaur Ağayev",
+      "specialty": "Cyber Security",
+      "taskgroup": "Information Technology",
+      "amount": 85.50,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "İbrahim Feyzullazadə",
+      "specialty": "IT Biznes Analitik",
+      "taskgroup": "Information Technology",
+      "amount": 210.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "İlkin Məmmədov",
+      "specialty": "SQL Developer",
+      "taskgroup": "Information Technology",
+      "amount": 350.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Nihad Məmmədov",
+      "specialty": "Developer",
+      "taskgroup": "Information Technology",
+      "amount": 110.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "ID": "AP-XXXXXXXXXX",
+      "namesurname": "Heydər Şxiyev",
+      "specialty": "IT Biznes Analitik",
+      "taskgroup": "Information Technology",
+      "amount": 190.00,
+      "date": "01.12.2023 08:20"
+    }
+  ],
+  "recordsTotal": 12,
+  "recordsFiltered": 12
+}

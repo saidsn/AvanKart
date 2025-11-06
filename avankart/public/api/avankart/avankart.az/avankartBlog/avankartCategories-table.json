@@ -1,0 +1,16 @@
+{
+  "data": [
+    { "category": "Restoranlar", "createDate": "12.12.2024" },
+    { "category": "PUB", "createDate": "12.12.2024" },
+    { "category": "Kinoteatrlar", "createDate": "12.12.2024" },
+    { "category": "CoffeShop", "createDate": "12.12.2024" },
+    { "category": "Şirkət", "createDate": "12.12.2024" },
+    { "category": "Yanacaq Doldurma Məntəqəsi", "createDate": "12.12.2024" },
+    { "category": "Kinoteatrlar", "createDate": "12.12.2024" },
+    { "category": "CoffeShop", "createDate": "12.12.2024" },
+    { "category": "Yanacaq Doldurma Məntəqəsi", "createDate": "12.12.2024" },
+    { "category": "Restoranlar", "createDate": "12.12.2024" }
+  ],
+  "recordsTotal": 10,
+  "recordsFiltered": 10
+}

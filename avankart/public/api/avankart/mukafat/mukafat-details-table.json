@@ -1,0 +1,78 @@
+{
+  "data": [
+    {
+      "user": "Ramin Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Yemək",
+      "amount": 110.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "İbrahim Feyzullazadə",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Yanacaq",
+      "amount": 100.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Pərviz Nəzərov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Hədiyyə",
+      "amount": 140.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Əli İsa-zadə",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Yemək",
+      "amount": 140.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Əsəd Əsədov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Premium",
+      "amount": 190.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Faiq Baxışov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Avto Yuma",
+      "amount": 140.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Murad Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Biznes",
+      "amount": 140.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Nicat Orucov",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Premium",
+      "amount": 90.0,
+      "settlementDate": "01.03.2025"
+    },
+    {
+      "user": "Mehman Babayev",
+      "userId": "AP-XXXXXXXXXX",
+      "transactionId": "AG-2314",
+      "cardCategory": "Avto Yuma",
+      "amount": 140.0,
+      "settlementDate": "01.03.2025"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

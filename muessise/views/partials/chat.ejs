@@ -1,0 +1,62 @@
+
+
+<script>
+  const chatContainer = document.getElementById("chat-container");
+  const messageInput = document.getElementById("messageInput");
+  const sendBtn = document.getElementById("sendMessageBtn");
+
+  function sendMessage() {
+    const message = messageInput.value.trim();
+    if (!message) return;
+    socket.emit("sendMessage", { message, ticket_id: '<%= sorgu ? sorgu._id : "" %>' });
+    addMessageToChat(message, true);
+    messageInput.value = "";
+
+    sendBtn.classList.add('opacity-50', 'pointer-events-none');
+    setTimeout(() => {
+      sendBtn.classList.remove('opacity-50', 'pointer-events-none');
+    }, 2000);
+  }
+
+  messageInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+
+  socket.on("getMessage", (data) => {
+    const isMyMessage = data.userId === currentUserId;
+    addMessageToChat(data.message, isMyMessage);
+  });
+
+  function addMessageToChat(message, isMyMessage) {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("my-5", "px-6", "w-[70%]");
+    if (isMyMessage) wrapper.classList.add("ml-auto"); 
+
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add(
+      "py-4",
+      isMyMessage ? "bg-focus dark:bg-focus-color-dark text-body-bg" : "bg-container-2 dark:bg-container-2-dark",
+      "rounded-tl-4xl",
+      "rounded-tr-4xl",
+      isMyMessage ? "!rounded-bl-4xl" : "!rounded-br-4xl",
+      "pl-6",
+      "flex",
+      "justify-center",
+      "flex-col"
+    );
+
+    const msgText = document.createElement("span");
+    msgText.classList.add("text-[12px]", "font-normal");
+    msgText.textContent = message;
+
+    msgDiv.appendChild(msgText);
+    wrapper.appendChild(msgDiv);
+    chatContainer.appendChild(wrapper);
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+</script>

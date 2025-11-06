@@ -1,0 +1,78 @@
+{
+  "data": [
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "101.500",
+      "commission": "3.400",
+      "finalAmount": "104.900",
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "150.300",
+      "commission": "7.385",
+      "finalAmount": "157.685",
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "101.500",
+      "commission": "3.400",
+      "finalAmount": "104.900",
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "150.300",
+      "commission": "7.385",
+      "finalAmount": "157.685",
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "101.500",
+      "commission": "3.400",
+      "finalAmount": "104.900",
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "150.300",
+      "commission": "7.385",
+      "finalAmount": "157.685",
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "101.500",
+      "commission": "3.400",
+      "finalAmount": "104.900",
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "150.300",
+      "commission": "7.385",
+      "finalAmount": "157.685",
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": "150.300",
+      "commission": "7.385",
+      "finalAmount": "157.685",
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

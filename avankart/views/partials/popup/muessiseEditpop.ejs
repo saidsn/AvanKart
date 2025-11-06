@@ -1,0 +1,251 @@
+<div id="RedakteEtPopUp"
+  class="w-[600px] hidden bg-body-bg dark:bg-menu-dark z-101 text-messages border-[3px] border-[#0000001A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-2xl fixed left-[50%] top-[50%] transform -translate-1/2">
+  <div class="flex items-center justify-between border-b-[0.5px] border-[#0000001A] px-6 pt-[18px] pb-[18px]">
+    <div class="text-[15px] font-medium text-messages dark:text-white">
+      <!-- Yeni hesab -->
+      <%= __("yeni_hesab") %>
+    </div>
+    <div onclick="clickRedakteEt()">
+      <img src="/images/Sorgular Pages Images/Close.svg" alt="Close" class="cursor-pointer block dark:hidden" />
+      <img src="/images/avankart-partner-pages-images/Close-dark.svg" alt="Close"
+        class="cursor-pointer hidden dark:block" />
+    </div>
+  </div>
+  <div class="px-6 pt-[18px] pb-[18px]">
+    <div>
+      <form id="redakteEtForm" onsubmit="return false;" data-url="/muessise-info/edit-user">
+        <input type="hidden" name="user_id" id="editUserId">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <div>
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Ad və Soyad -->
+              <%= __("ad_ve_soyad") %>
+            </span>
+          </div>
+          <div
+            class="flex items-center w-full mt-1.5 border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark">
+            <input id="customSearch" name="fullName" type="text" placeholder="Ad və Soyad" value="Ramin Orucov" required
+              class="w-full h-full bg-transparent border-none focus:outline-none ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:text-primary-text-color-dark placeholder:text-[12px] placeholder:font-normal" />
+          </div>
+        </div>
+        <div>
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Cinsiyyət -->
+              <%= __("cinsiyyet") %>
+            </span>
+          </div>
+          <div class="flex items-center gap-3 mt-2.5">
+            <div class="flex items-center gap-2">
+              <input id="link-radio" type="radio" name="gender" value="male" checked
+                class="w-4 h-4 text-[#745086] bg-gray-100 border-surface-variant focus:ring-[#745086] dark:focus:ring-[#745086] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="link-radio" class="text-[13px] font-medium text-messages cursor-pointer dark:text-white">
+                <!-- Kişi -->
+                <%= __("cinsiyet_kisi") %>
+              </label>
+            </div>
+            <div class="flex items-center gap-2">
+              <input id="link-radio2" type="radio" name="gender" value="female"
+                class="w-4 h-4 text-[#745086] bg-gray-100 border-surface-variant focus:ring-[#745086] dark:focus:ring-[#745086] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="link-radio2" class="text-[13px] font-medium text-messages cursor-pointer dark:text-white">
+                <!-- Qadin -->
+                <%= __("cinsiyet_qadin") %>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Email -->
+              <%= __("email") %>
+            </span>
+          </div>
+          <div
+            class="flex items-center w-full mt-3 border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark">
+            <input type="email" name="email" placeholder="Email" value="ramin.orucovv@gmail.com" required
+              class="w-full h-full bg-transparent border-none focus:outline-none ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:text-primary-text-color-dark placeholder:text-[12px] placeholder:font-normal" />
+          </div>
+        </div>
+        <div>
+          <div class="mt-3">
+            <div>
+              <span class="text-error text-[12px]">*</span>
+              <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+                <!-- Telefon nömrəniz -->
+                <%= __("telefon_nomreniz") %>
+              </span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <div>
+                <button id="dropdownDefaultButton9" data-dropdown-toggle="dropdown9" type="button"
+                  class="w-[80px] h-[34px] cursor-pointer border-surface-variant dark:border-surface-variant-dark dark:text-white flex items-center justify-between rounded-full border px-3 text-[12px] font-normal">
+                  <span id="selectedValue9">+994</span>
+                  <svg class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m1 1 4 4 4-4" />
+                  </svg>
+                </button>
+
+                <div id="dropdown9" class="z-10 hidden bg-white rounded-lg w-[80px] border shadow">
+                  <ul class="py-1 px-1" aria-labelledby="dropdownDefaultButton9">
+                    <li>
+                      <a href="#" class="block px-4 py-2 text-sm" data-value="+01">+01</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 text-sm" data-value="+010">+010</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 text-sm" data-value="+994">+994</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 text-sm" data-value="+600">+600</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <select id="realSelect9" name="phonePrefix" class="hidden">
+                  <option value="+01">+01</option>
+                  <option value="+010">+010</option>
+                  <option value="+994" selected>+994</option>
+                  <option value="+600">+600</option>
+                </select>
+              </div>
+              <div
+                class="flex items-center w-full mt-1.5 border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                <input id="phoneNumber" name="phoneNumber" value="070 770 35 22" type="text" required
+                  placeholder="<%= __(' custom_search_input_placeholder') %>"
+                class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                text-[13px] placeholder:text-on-surface-variant-dark dark:placeholder:text-on-surface-variant-dark
+                dark:text-primary-text-color-dark placeholder:text-[12px] placeholder:font-normal"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Vəzifə -->
+              <%= __("vezife") %>
+            </span>
+          </div>
+          <div>
+              <button id="dropdownDefaultButtone" data-dropdown-toggle="dropdown7"
+                  type="button"
+                  class="w-full h-[34px] dark:text-white flex items-center justify-between cursor-pointer rounded-full border dark:border-[#FFFFFF1A] px-3 text-[12px] font-normal">
+                  <span id="selectedValue7">Seçim edin</span>
+                  <svg class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  </svg>
+              </button>
+
+              <div id="dropdown7"
+                  class="z-10 hidden bg-white dark:bg-menu-dark dark:text-white rounded-lg w-[552px] border dark:border-[#FFFFFF1A] shadow">
+                  <ul class="py-1 px-1" aria-labelledby="dropdownDefaultButtone">
+                      <% duties.forEach(d=> { %>
+                          <li>
+                              <a href="#"
+                                  class="block px-4 py-2 text-[13px] font-medium" data-name="<%= d.name %>"
+                                  data-value="<%= d._id %>">
+                                  <%= d.name %>
+                              </a>
+                          </li>
+                          <% }) %>
+                  </ul>
+              </div>
+              <select id="realSelect7" class="hidden" name="dutyId">
+                  <% duties.forEach(d=> { %>
+                      <option value="<%= d._id %>">
+                          <%= d.name %>
+                      </option>
+                      <% }) %>
+              </select>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Müəssisə adı -->
+              <%= __("muessise_adi") %>
+            </span>
+          </div>
+          <div
+            class="flex items-center w-full mt-1.5 border dark:bg-da border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark">
+            <input id="companyName" name="companyName" type="text" disabled
+              class="w-full h-full bg-[#EBEBEB] border-none text-[13px] placeholder:text-messages placeholder:opacity-65 dark:placeholder:text-on-surface-variant-dark dark:text-primary-text-color-dark placeholder:text-[12px] placeholder:font-normal dark:bg-[#161E22]"
+              placeholder="<%= muessise.muessise_name %>"
+            />
+          </div>
+        </div>
+        <div class="mt-3">
+          <div>
+            <span class="text-error text-[12px]">*</span>
+            <span class="text-messages text-[12px] font-medium opacity-65 dark:text-white">
+              <!-- Səlahiyyət qrupu -->
+              <%= __("selahiyyet_qrupu") %>
+            </span>
+          </div>
+
+          <div>
+            <!-- Dropdown Menu -->
+            <div>
+              <button id="dropdownDefaultButtonm" data-dropdown-toggle="dropdown8"
+                  type="button"
+                  class="w-full h-[34px] dark:text-white flex items-center justify-between cursor-pointer rounded-full border px-3 text-[12px] font-normal dark:border-[#FFFFFF1A]">
+                  <span id="selectedValue8">Seçim edin</span>
+                  <svg class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  </svg>
+              </button>
+
+              <div id="dropdown8"
+                  class="z-10 hidden bg-white dark:bg-menu-dark dark:text-white rounded-lg w-[552px] border-[1px] border-[#0000001A] dark:border-[#FFFFFF1A] shadow">
+                  <ul class="py-1 px-1" aria-labelledby="dropdownDefaultButtonm">
+                      <% permissions.forEach(p=> { %>
+                          <li>
+                              <a href="#"
+                                  class="block px-4 py-2 text-[13px] font-medium" data-name="<%= p.name %>"
+                                  data-value="<%= p._id %>">
+                                  <%= p.name %>
+                              </a>
+                          </li>
+                          <% }) %>
+                  </ul>
+              </div>
+              <select id="realSelect8" class="hidden" name="authId">
+                  <% permissions.forEach(p=> { %>
+                      <option value="<%= p._id %>">
+                          <%= p.name %>
+                      </option>
+                      <% }) %>
+              </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="px-6 py-5 border-t-[0.5px] border-[#0000001A]">
+    <div class="flex items-center justify-end gap-3">
+      <button type="button"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-white"
+        onclick="clickRedakteEt()">
+        <!-- Ləğv et -->
+        <%= __("legv_et_button") %>
+      </button>
+      <button type="submit" id="redakteEtButton" onclick="submitForm('redakteEt')"
+        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">
+        <!-- Yarat -->
+        <%= __("yarat_button") %>
+      </button>
+    </div>
+  </div>
+</div>

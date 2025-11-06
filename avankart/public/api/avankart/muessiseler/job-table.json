@@ -1,0 +1,36 @@
+{
+  "data": [
+  {
+    "jobTitle": "Baş Mühasib",
+    "employees": 24,
+    "createdBy": "Ramin Orucov",
+    "createdAt": "02.12.2024"
+  },
+  {
+    "jobTitle": "Mühasib",
+    "employees": 24,
+    "createdBy": "Ramin Orucov",
+    "createdAt": "02.12.2024"
+  },
+  {
+    "jobTitle": "Direktor",
+    "employees": 24,
+    "createdBy": "Fuad Bayramov",
+    "createdAt": "02.12.2024"
+  },
+  {
+    "jobTitle": "Sürücü",
+    "employees": 24,
+    "createdBy": "Ramin Orucov",
+    "createdAt": "02.12.2024"
+  },
+  {
+    "jobTitle": "İnsan Resursları mütəxəssisi",
+    "employees": 24,
+    "createdBy": "Fuad Bayramov",
+    "createdAt": "02.12.2024"
+  }
+],
+  "recordsTotal": 5,
+  "recordsFiltered": 5
+}

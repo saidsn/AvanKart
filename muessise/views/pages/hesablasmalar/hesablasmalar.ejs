@@ -1,0 +1,584 @@
+<% styles = `
+<link rel="stylesheet" href="/css/jquery-ui.css">
+    <style>
+        .dt-column-order {
+            display: none !important;
+        }
+
+        table,
+        thead,
+        table.dataTable>thead>tr>th,
+        table.dataTable>thead>tr>td,
+        table.dataTable>tbody>tr:last-child>*,
+        div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+            border: none;
+            font-weight: 400;
+        }
+
+        td {
+            padding: 20px;
+        }
+
+        .custom-date::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+
+        .value-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .value-label {
+            font-weight: 600;
+            color: #4B5563;
+            background: #F3F4F6;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .dark .value-label {
+            background: #374151;
+            color: #D1D5DB;
+        }
+
+        #slider-range {
+            height: 6px;
+            border: none;
+            background: #9C78AE;
+            border-radius: 3px;
+        }
+
+        #slider-range .ui-slider-range {
+            background: #e6e6e6;
+        }
+
+        #slider-range .ui-slider-handle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #745086;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            outline: none;
+            top: -7px;
+            margin-left: -10px;
+        }
+
+        #myTable tbody tr {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #myTable tbody tr:hover {
+            background-color: rgba(116, 80, 134, 0.05);
+        }
+
+        .dark #myTable tbody tr:hover {
+            background-color: rgba(116, 80, 134, 0.1);
+        }
+    </style>`; %>
+
+<div >
+                    <div
+                        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+                        <div class="flex items-center gap-2">
+                            <a href="/"
+                                class="cursor-pointer hover:text-primary dark:hover:text-primary-dark"><%= __('hesablasmalar.first_breadcrumb')%></a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark"><%= __('hesablasmalar.second_breadcrumb')%></a>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex  py-3 rounded-lg  h-[69px]">
+                        <div class="flex gap-3 w-full text-message pb-2 h-[65px]">
+                            <div
+                                class=" border-surface-container-highest dark:border-surface-container-highest-dark pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.status_list.qaralama') %></p>
+                                <p class="text-[17px]  font-semibold">  <%= counts.qaralama %></p>
+                               
+
+                            </div>
+                            <div
+                                class=" border-[#00A3FF] pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.status_list.active') %>
+</p>
+                                <p class="text-[17px]  font-semibold"><%= counts.aktiv %></p>
+                            </div>
+                            <div
+                                class=" border-[#FFA100] pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.status_list.wait') %>
+</p>
+                                <p class="text-[17px]  font-semibold"><%= (Number(counts.waiting_aktiv) + Number(counts.waiting_tamamlandi)) ?? 0 %></p>
+                            </div>
+                            <div
+                                class=" border-[#32B5AC] pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.status_list.done') %>
+</p>
+                                <p class="text-[17px]  font-semibold"><%= counts.tamamlandi %></p>
+                            </div>
+                            <div
+                                class=" border-error pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.status_list.reported') %>
+</p>
+                                <p class="text-[17px]  font-semibold"><%= counts.reported %></p>
+                            </div>
+                            <div
+                                class=" border-surface-container-highest pl-[12px] pt-[8px] text-messages dark:text-primary-text-color-dark bg-sidebar-bg dark:bg-side-bar-bg-dark border-l-[3px] max-w-[263px]  rounded-[12px]  w-[100%]">
+                                <p class="text-[11px] opacity-50 pb-[4px]"><%= __('hesablasmalar.total')%></p>
+                                <p class="text-[17px]  font-semibold"><%= counts.total %> AZN</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <div
+                            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+                            <div
+                                class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium pt-[5px]">
+                                <%= __('hesablasmalar.hesablasmalar_count')%></div>
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus dark:focus-within:border-focus-color-dark hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                    <input id="customSearch" type="text"  placeholder="<%= __('hesablasmalar.search_placeholder') %>"  
+                                        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-on-surface-variant-dark px-3 py-2">
+                                    <div class="absolute right-3">
+                                        <div class="icon stratis-search-02"></div>
+                                    </div>
+                                </div>
+
+                                <div onclick="refreshTable()"
+                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <a href="#"><%= __('hesablasmalar.reload')%></a>
+                                    <a href="#"
+                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+                                </div>
+                                <div onclick="openFilterModal()"
+                                    class="w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <a href="#"
+                                        class="icon stratis-filter  text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+                                    <a href="#" class=""><%= __('hesablasmalar.filter')%></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="overlay" class="hidden w-full h-full fixed top-0 left-0 bg-[#0000002A] z-100"></div>
+
+                        <div id="filterPop"
+                            class="w-[450px] hidden font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+                            <form id="filterForm">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="text-[15px] font-medium">
+                                            <%= __('hesablasmalar.filter')%>
+                                        </div>
+                                        <img src="/images/Sorgular Pages Images/Close.svg" alt="Close"
+                                            onclick="openFilterModal()" class="cursor-pointer dark:hidden">
+                                        <img src="/images/avankart-partner-pages-images/Close-dark.svg" alt="Close"
+                                            onclick="openFilterModal()" class="cursor-pointer hidden dark:block">
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="text-[12px] font-medium opacity-65"><%= __('hesablasmalar.date')%></span>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div
+                                                    class="relative w-[195px]">
+                                                    <input id="startDate" name="start_date" class="custom-date cursor-pointer text-[13px] font-normal placeholder:text-[#636B6F] dark:placeholder:text-[#BFC8CC] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark focus:border-focus dark:focus:border-focus-color-dark focus:ring-0 focus:shadow focus:shadow-[#7450864D] w-full rounded-full border border-stroke dark:border-[#FFFFFF1A] px-3 py-[6.5px] group appearance-none" type="date" placeholder="dd/mm/yyyy">
+                                                    <div onclick="openDatePicker('startDate')" id="startCalendar" class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"></div>
+                                                </div>
+                                                <div class="flex items-center gap-2 mt-1.5 hover:bg-container-2">
+                                                    <div
+                                                        class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                                    </div>
+                                                    <div class="text-[11px] font-normal opacity-50"><%= __('hesablasmalar.start_date')%></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="relative w-[195px]">
+                                                    <input id="endDate" name="end_date" class="custom-date cursor-pointer text-[13px] font-normal placeholder:text-[#636B6F] dark:placeholder:text-[#BFC8CC] bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark focus:border-focus dark:focus:border-focus-color-dark focus:ring-0 focus:shadow focus:shadow-[#7450864D] w-full rounded-full border border-stroke dark:border-[#FFFFFF1A] px-3 py-[6.5px] group appearance-none" type="date" placeholder="dd/mm/yyyy">
+                                                    <div onclick="openDatePicker('endDate')" id="endCalendar" class="cursor-pointer text-messages dark:text-primary-text-color-dark icon stratis-calendar-02 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 group-focus:text-focus dark:group-focus:text-focus-color-dark"></div>
+                                                </div>
+                                                <div class="flex items-center gap-2 mt-1.5">
+                                                    <div
+                                                        class="icon stratis-information-circle-contained w-3 h-3 opacity-50">
+                                                    </div>
+                                                    <div class="text-[11px] font-normal opacity-50"><%= __('hesablasmalar.end_date')%></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="my-4">
+                                    <span class="text-[12px] font-medium opacity-65"><%= __('hesablasmalar.status')%></span>
+                                    <div class="mt-[6px]">
+                                        <div class="flex items-center flex-wrap gap-4">
+                                            <label for="newCheckbox1"
+                                                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                                <input type="checkbox" id="newCheckbox1" class="peer hidden" name="status" value="aktiv">
+                                                <div
+                                                    class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                                    <div
+                                                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                                    </div>
+                                                </div>
+                                                <div><%= __('hesablasmalar.status_list.active') %></div>
+                                            </label>
+                                            <label for="newCheckbox2"
+                                                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                                <input type="checkbox" id="newCheckbox2" class="peer hidden" name="status" value="waiting_tamamlandi">
+                                                <div
+                                                    class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                                    <div
+                                                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                                    </div>
+                                                </div>
+                                                <div><%= __('hesablasmalar.status_list.wait') %></div>
+                                            </label>
+                                            <label for="newCheckbox3"
+                                                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                                <input type="checkbox" id="newCheckbox3" class="peer hidden" name="status" value="tamamlandi">
+                                                <div
+                                                    class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                                    <div
+                                                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                                    </div>
+                                                </div>
+                                                <div><%= __('hesablasmalar.status_list.done') %></div>
+                                            </label>
+                                            <label for="newCheckbox4"
+                                                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                                <input type="checkbox" id="newCheckbox4" class="peer hidden" name="status" value="qaralama">
+                                                <div
+                                                    class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                                    <div
+                                                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                                    </div>
+                                                </div>
+                                                <div><%= __('hesablasmalar.status_list.qaralama') %></div>
+                                            </label>
+                                            <label for="newCheckbox5"
+                                                class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                                <input type="checkbox" id="newCheckbox5" class="peer hidden" name="status" value="reported">
+                                                <div
+                                                    class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                                    <div
+                                                        class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                                    </div>
+                                                </div>
+                                                <!-- duzeldildi -->
+                                                <div><%= __('hesablasmalar.status_list.reported') %> </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="my-4">
+                                        <span class="text-[12px] font-medium opacity-65"><%= __('hesablasmalar.amount_range')%></span>
+                                        <div class="value-container mt-2">
+                                            <span id="min-value"
+                                                class="value-label text-[13px] text-messages font-medium"></span>
+                                            <span id="max-value"
+                                                class="value-label text-[13px] text-messages font-medium"></span>
+                                        </div>
+                                        <div id="slider-range" class="mt-2"></div>
+                                        <div class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                                            <span><%= __('hesablasmalar.amount_min')%></span>
+                                            <span><%= __('hesablasmalar.amount_max')%></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-end gap-3">
+                                        <button type="button"
+                                            class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                                            onclick="openFilterModal()"><%= __('hesablasmalar.close_btn')%></button>
+                                        <button type="reset" onclick="clearFilters()"
+                                            class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri
+                                            <%= __('hesablasmalar.clear_btn')%></button>
+                                        <button type="button" onclick="filterTable()"
+                                            class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"><%= __('hesablasmalar.filter_btn')%></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <table id="myTable" class="table-fixed border-collapse ">
+                        <thead class="border-none pb-0.5">
+                            <tr
+                                class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                                <th
+                                    class="w-[160px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 rounded-l-lg filtering">
+                                   <%= __('hesablasmalar.invoys_num')%></th>
+                                <th
+                                    class="w-[170px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering text-left">
+                                    <%= __('hesablasmalar.transaction_count')%></th>
+                                <th
+                                    class="w-[110px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                                    <%= __('hesablasmalar.amount')%></th>
+                                <th
+                                    class="w-[130px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                                    <%= __('hesablasmalar.commission')%></th>
+                                <th
+                                    class="w-[150px] border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                                  <%= __('hesablasmalar.final_amount')%>  </th>
+                                <th
+                                    class="w-1/3 border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                                    <%= __('hesablasmalar.hesablasma_date')%></th>
+                                <th
+                                    class="w-1/3 border-r-[.5px] border-r-stroke dark:border-[#FFFFFF1A] px-4 py-2 filtering">
+                                    <%= __('hesablasmalar.status')%></th>
+                                <th class="w-10 px-4 py-2 rounded-r-lg"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pt-2">
+                    <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+                        <div class="py-5 flex items-center justify-between">
+                            <div class="text-[13px] flex items-center gap-2">
+                                <span class="font-normal opacity-65"><%= __('hesablasmalar.page_count')%></span>
+                                <span id="pageCount" class="font-medium">1 / 49</span>
+                            </div>
+                            <div class="flex items-center gap-5">
+                                <div>
+                                    <div id="customPagination" class="flex items-center"></div>
+                                </div>
+                                <div>
+                                    <input
+                                        class="page-input w-[63px] h-[32px] text-[12px] text-center text-on-surface-variant-dark dark:text-on-surface-variant-dark font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]"
+                                     placeholder="<%= __('hesablasmalar.page_placeholder')%>"
+                                        type="text">
+                                    <a href="#"
+                                        class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"><%= __('hesablasmalar.go_button')%></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    
+<% scripts = `
+    <script >
+        var globalMinAmount = 0;
+        var globalMaxAmount = 300000;
+        window.testAvankartModal = function() {
+            console.log("=== Test Avankart Modal Function Called ===");
+            const overlay = document.getElementById("avankartaModalOverlay");
+            const modal = document.getElementById("avankartaModal");
+            console.log("Modal elements:", { overlay, modal });
+            
+            if (overlay && modal) {
+                overlay.classList.remove("hidden");
+                modal.classList.remove("hidden");
+                console.log("Modal should be visible now");
+            } else {
+                console.error("Modal elements not found!");
+            }
+        };
+        
+        // Test function for Report modal
+        window.testReportModal = function() {
+            console.log("=== Test Report Modal Function Called ===");
+            const overlay = document.getElementById("reportModalOverlay");
+            const modal = document.getElementById("reportModal");
+            const popup = document.getElementById("reportPopup");
+            console.log("Report modal elements:", { overlay, modal, popup });
+            
+            if (overlay && modal) {
+                overlay.classList.remove("hidden");
+                modal.classList.remove("hidden");
+                console.log("Report modal should be visible now");
+            } else if (popup) {
+                popup.style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+                console.log("Report popup should be visible now");
+            } else {
+                console.error("Report modal elements not found!");
+            }
+        };
+    </script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/flowbite.min.js"></script>
+    <script src="/js/datepicker.min.js"></script>
+    <script src="/js/Avankart/Sirket-E-qaime-JS/range.js"></script>
+    <script src="/js/hesablasmalar/hesablasmalarTable.js"></script>
+    <script src="/js/hesablasmalar/Pop-up.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>    `; 
+    
+    
+    footerPart = `
+        <div id="avankartaModalOverlay" class="fixed inset-0 z-100 bg-[#00000033] hidden"></div>
+
+    <div id="avankartaModal" class="fixed inset-0 z-200 flex items-center justify-center hidden">
+        <div
+            class="relative w-[306px] h-[208px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-table-hover-dark dark:border-[#ffffff1A] z-50">
+            <div
+                class="flex items-center justify-center mt-[12px] ml-[12px] w-[40px] h-[40px] bg-inverse-on-surface rounded-full dark:bg-[#2E3135]">
+                <div class="icon iconex-danger-1 w-[20px] h-[20px] dark:text-[#FFFFFF]"></div>
+            </div>
+            <h2 class="ml-3 mt-3 text-messages font-medium text-[15px]
+            dark:text-[#FFFFFF]">${__('hesablasmalar.send_to_ava')}</h2>
+            <div
+                class="mt-[12px] ml-[12px] gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                <span id="avankartInvoice"  class="text-[13px] font-medium dark:text-[#FFFFFF]">AA-210</span>
+                <span class="font-medium dark:text-[#FFFFFF] opacity-65">${__('hesablasmalar.modal_message_one')} ${__('hesablasmalar.modal_message_two')}</span>
+            </div>
+            <div class="absolute bottom-[12px] right-[12px] flex gap-[12px]">
+                <button
+                    class="text-[12px] cursor-pointer text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] dark:bg-[#36393E] dark:text-white"
+                    onclick="closeAvankartaModal()">${__('hesablasmalar.no_btn')}</button>
+                <button
+                    class="text-[12px] cursor-pointer text-on-primary font-medium bg-success rounded-[50px] !w-[112px] !h-[25px]"
+                    onclick="confirmAvankarta()">${__('hesablasmalar.yes_btn')}</button>
+            </div>
+        </div>
+    </div>
+    <!-- Report modal overlay -->
+    <div id="reportModalOverlay" class="fixed inset-0 z-100 bg-[#00000033] hidden"></div>
+
+    <!-- Report modal -->
+    <div id="reportModal" class="fixed inset-0 z-200 flex items-center justify-center hidden">
+        <div class="relative w-[403px] min-h-[500px] border-[#0000001A] border-[2px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px] bg-white dark:bg-[#161E22] p-6">
+            <!-- Modal Header -->
+            <div class="mb-6">
+                <div class="text-[15px] font-medium mb-2 dark:text-white">${__('hesablasmalar.report')}</div>
+                <div class="text-[11px] font-normal opacity-50 dark:text-[#FFFFFF]">${__('hesablasmalar.answer')}</div>
+            </div>
+            
+            <!-- Report Form -->
+            <form id="reportForm" method="POST" action="/hesablashmalar/add-report" onsubmit="return false;" data-url="/hesablashmalar/add-report">
+                <input type="hidden" name="hesablasma_id" id="reportInvoiceId">
+                <input type="hidden" name="_csrf" value="${csrfToken}">
+                
+                <!-- Invoice Details -->
+                <div class="space-y-3 text-[12px] text-messages dark:text-white mb-6">
+                    <div class="flex justify-between border-b pb-3 dark:border-gray-600">
+                        <span class="font-normal opacity-50">${__('hesablasmalar.invoys_num')}:</span>
+                        <span class="font-medium" id="reportInvoice">AA-210</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-3 dark:border-gray-600">
+                        <span class="font-normal opacity-50">${__('hesablasmalar.transaction_count')}:</span>
+                        <span class="font-medium" id="reportTransactions">80</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-3 dark:border-gray-600">
+                        <span class="font-normal opacity-50">${__('hesablasmalar.hesablasma_amount')}:</span>
+                        <span class="font-medium" id="reportAmount">3500.00 AZN</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-3 dark:border-gray-600">
+                        <span class="font-normal opacity-50">${__('hesablasmalar.hesablasma_date')}:</span>
+                        <span class="font-medium" id="reportDate">01.12.2023 - 16.12.2023</span>
+                    </div>
+                </div>
+                
+                <!-- Message Input -->
+                <div class="mb-6">
+                    <label for="reportMessage" class="block mb-2 text-[12px] font-medium dark:text-white">
+                        ${__('hesablasmalar.message')}
+                    </label>
+                    <div class="relative">
+                        <textarea id="reportMessage" name="report" 
+                            class="w-full h-[80px] border border-gray-300 dark:border-gray-600 rounded-lg p-3 text-[12px] text-gray-700 dark:text-gray-300 dark:bg-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="${__('hesablasmalar.message_placeholder')}" maxlength="150"></textarea>
+                        <span class="absolute bottom-2 right-3 text-[10px] text-gray-400">max: 150</span>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col gap-3">
+                    <button type="submit" onclick="submitForm('report')" 
+                        class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-medium rounded-lg transition-colors">
+                        ${__('hesablasmalar.send')}
+                    </button>
+                    <button type="button" onclick="closeReportModal()"
+                        class="w-full py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-[13px] font-medium rounded-lg transition-colors">
+                        ${__('hesablasmalar.cancel')}
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Close Button -->
+            <button onclick="closeReportModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            </div>
+        </div>
+    </div>
+    <!-- Faktura əlavə et popup -->
+    <div id="fakturaModalOverlay" class="fixed inset-0 z-100 bg-[#00000033] hidden"></div>
+    <div id="fakturaModal"
+        class="faktura-div hidden px-6 w-[550px] mx-auto text-messages rounded-2xl !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-101">
+        <div class="bg-body-bg dark:bg-[#161E22] rounded-xl">
+            <div class="w-full flex items-center justify-between">
+                <div class="mt-6 mb-4 ml-4">
+                    <h1 class="text-[17px] font-semibold dark:text-white">${__('hesablasmalar.add_factura')}</h1>
+                    <span class="text-[13px] font-normal opacity-50 dark:text-white dark:opacity-65 ">${__('hesablasmalar.add_doc')}</span>
+                </div>
+                <img src="/images/Sorgular Pages Images/Close.svg" alt="Close" class="py-[21px] mr-4 cursor-pointer block dark:hidden"
+                    onclick="fakturaClick()">
+                <img src="/images/avankart-partner-pages-images/Close-dark.svg" alt="Close"
+                    onclick="fakturaClick()" class="py-[21px] mr-4 cursor-pointer hidden dark:block">
+            </div>
+            <div>
+                <div
+                    class="w-full h-[191px] border-2 border-dashed border-[#0000001A] rounded-[8px] flex items-center flex-col">
+                    <div class="py-6">
+                        <div class="">
+                            <img src="/images/Sorgular Pages Images/upload.svg" alt="Upload"
+                                class="m-auto dark:bg-[#0C1418] w-[42px] h-[42px]">
+                        </div>
+                        <div class="py-3">
+                            <span class="text-[13px] font-normal dark:text-white">${__('hesablasmalar.download')}</span>
+                            <div class="flex items-center justify-center gap-3">
+                                <hr class="w-[73px] h-[1px] text-[#0000001A]">
+                                <div
+                                    class="text-messages  font-normal text-sm dark:text-[#FFFFFF] opacity-50">
+                                    ${__('hesablasmalar.or')}</div>
+                                <hr class="w-[73px] h-[1px] text-[#0000001A]">
+                            </div>
+                            <label
+                                class="flex flex-col items-center gap-2 justify-center px-4 py-2 border border-surface-variant rounded-full cursor-pointer">
+                                <div class="flex items-center justify-center m-auto gap-2 dark:text-white">
+                                    <div class="icon stratis-upload-01 w-3 h-[9px] mt-[5px]"></div>
+                                    <span class="text-[13px] font-medium ">${__('hesablasmalar.upload')}</span>
+                                </div>
+                                <input type="file" id="fileInput" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="file-list" class="mt-3 pt-[11.5px] px-4"></div>
+                <div class="pt-2">
+                    <span
+                        class="text-start text-[12px] opacity-50 font-normal ml-4 dark:text-[#FFFFFF]">${__('hesablasmalar.allowed_file_formats')}</span>
+                </div>
+            </div>
+            <div class="mt-2 border-t-[0.5px] border-[#0000001A]">
+                <div class="flex items-center justify-end py-5 mr-4 gap-3">
+                    <a href="#"
+                        class="py-[6.5px] px-[18px] bg-surface text-[13px] font-medium text-on-surface-variant rounded-[50px] dark:bg-[#36393E] dark:text-[#BFC8CC]"
+                        onclick="fakturaClick()">${__('hesablasmalar.cancel')}</a>
+                    <a href="#"
+                        class="py-[6.5px] px-[18px] text-[13px] text-body-bg font-medium bg-primary rounded-[50px]">${__('hesablasmalar.upload_btn')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;  %>

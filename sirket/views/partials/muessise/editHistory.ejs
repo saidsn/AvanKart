@@ -1,0 +1,91 @@
+<div
+  id="popupOverlay"
+  class="fixed inset-0 bg-[#0000002A] flex items-center justify-center z-[100] hidden"
+>
+  <div
+    id="popupContent"
+    class="bg-sidebar-item dark:bg-side-bar-item-dark rounded-lg shadow-lg w-[740px] max-h-[90vh] overflow-hidden flex flex-col"
+  >
+    <!-- Header -->
+    <div id="closePopupBtn">
+      <div
+        class="flex items-center justify-between border-b dark:border-[#FFFFFF1A] px-6 pt-[18px] pb-[18px] bg-sidebar-item dark:bg-side-bar-item-dark"
+      >
+        <div class="text-[15px] font-medium dark:text-white">
+          Müəssisə versiyaları
+        </div>
+        <img
+          src="/images/Sorgular Pages Images/Close.svg"
+          alt="Close"
+          class="cursor-pointer dark:hidden"
+        />
+        <img
+          src="/images/avankart-partner-pages-images/Close-dark.svg"
+          alt="Close"
+          class="cursor-pointer hidden dark:block"
+        />
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="p-4 flex flex-col gap-4 overflow-y-auto custom-scroll">
+      <!-- Search Bar -->
+      <div
+        class="relative flex items-center w-full min-h-[42px] px-4 border border-surface-variant dark:border-surface-variant-dark rounded-full focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+      >
+        <input
+          id="customSearchMuessise"
+          type="text"
+          placeholder="Search..."
+          class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+        />
+        <div class="absolute right-3">
+          <div
+            class="icon stratis-search-02 dark:text-primary-text-color-dark"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <table id="myTableMuessise" class="table-auto border-collapse min-w-full">
+        <thead class="border-none pb-0.5">
+          <tr
+            class="bg-container-2 border-none text-xs text-tertiary-text font-base dark:bg-[#161E22]"
+          >
+            <th
+              class="border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF]"
+            >
+              Düzəliş edən şəxs
+            </th>
+            <th
+              class="border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFF]"
+            >
+              Düzəliş tarixi
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div
+      class="flex justify-end p-4 border-t border-stroke dark:border-stroke-color-dark gap-3"
+    >
+      <button
+        id="cancelPopupBtn"
+        type="button"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-white"
+      >
+        Ləğv et
+      </button>
+      <button
+        type="button"
+        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button show-history-btn"
+        
+      >
+        Göstər
+      </button>
+    </div>
+  </div>
+</div>

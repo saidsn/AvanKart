@@ -1,0 +1,375 @@
+<aside id="sidebar"
+    class="fixed transition-all duration-300 w-[242px] collapsed-sidebarfixed z-100 min-h-screen bg-sidebar-bg dark:bg-side-bar-bg-dark border-r-[0.5px] border-stroke dark:border-[#FFFFFF1A] text-secondary-text dark:text-secondary-text-color-dark">
+    <div class="flex flex-col justify-between h-full min-h-screen">
+        <div>
+            <div
+                class="h-[70px] py-[25px] flex items-center justify-center border-b-[0.5px] border-stroke dark:border-[#FFFFFF1A] relative">
+                <a href="/" id="logoContainer" class="transition-all duration-300 h-auto flex items-center justify-center">
+                    <img id="logoLight" src="/images/error/avankartLogo.svg" alt="avankartLogo"
+                        class="block dark:hidden transition-all duration-300" />
+
+                    <img id="logoDark" src="/images/error/avankartLogoDarkMode.svg" alt="avankartLogo"
+                        class="hidden dark:block transition-all duration-300" />
+                </a>
+                <div id="sidebarToggle"
+                    class="curve-left-div bg-[#fff] hover:text-primary dark:hover:text-primary-dark text-messages dark:text-primary-text-color-dark cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-[4px] dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark w-[25px] h-[25px] flex items-center justify-center">
+                    <div id="sidebarIcon" class="icon stratis-arrow-curve-left-up text-xs"></div>
+                </div>
+            </div>
+            <div class="flex flex-col px-3 pt-5 text-[13px] overflow-y-auto max-h-[800px]">
+                <div class="flex flex-col border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]">
+                    <ul class="flex flex-col gap-2 pb-2">
+                        <!-- Dashboard -->
+                        <li>
+                            <a href="/"
+                                class="<%= currentPath === '/' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div
+                                    class="iconex iconex-category-2-1 w-5 h-5 text-messages dark:text-primary-text-color-dark">
+                                </div>
+                                <span class="menu-text">
+                                    <!-- Dashboard -->
+                                    <%= __("partials.sidebar.dashboard") %>
+                                </span>
+                            </a>
+                        </li>
+
+                        <!-- Əməliyyatlar -->
+                        <li>
+                            <button id="emeliyyatlarBtn"
+                                class="cursor-pointer flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-document-2-1 w-5 h-5"></div>
+                                <span class="menu-text" id="emeliyyatlarText">Əməliyyatlar</span>
+                                <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                    <span id="emeliyyatlarIcon"
+                                        class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                </div>
+                            </button>
+
+                            <!-- Əməliyyatlar Submenu -->
+                            <ul id="emeliyyatlarSubmenu"
+                                class="ml-[21px] mt-2 pl-3 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+
+                                <!-- Şirkət -->
+                                <li>
+                                    <a href="#" id="sirketBtn"
+                                        class="flex items-center gap-2 w-full py-[6.5px] rounded-[8px] text-[#1D222BA6] dark:text-primary-text-color-dark hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        <span class="pl-[9px]">Şirkət</span>
+                                        <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                            <span id="sirketIcon"
+                                                class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                        </div>
+                                    </a>
+
+                                    <!-- Şirkət Submenu -->
+                                    <ul id="sirketSubmenu"
+                                        class="ml-[33px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/sirket/hesablasma"
+                                                class="<%= currentPath === '/emeliyyatlar/sirket/hesablasma' ? 'active' : '' %> block py-[6.5px] pl-[18px] pr-3 rounded-[8px] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                Hesablaşma
+                                            </a>
+                                        </li>
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/sirket/isciler"
+                                                class="block py-[6.5px] pl-[18px] pr-3 rounded-[8px] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                İşçilərin balansı
+                                            </a>
+                                        </li>
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/sirket/eqaime"
+                                                class="block py-[6.5px] pl-[18px] pr-3 rounded-[8px] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                E-qaimə
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+
+                                <!-- Müəssisə -->
+                                <li>
+                                    <a href="#" id="muessiseBtn"
+                                        class="flex items-center gap-2 w-full py-[6.5px] rounded-[8px] text-[#1D222BA6] dark:text-primary-text-color-dark hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        <span class="pl-[9px]">Müəssisə</span>
+                                        <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                            <span id="muessiseIcon"
+                                                class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                        </div>
+                                    </a>
+
+                                    <ul id="muessiseSubmenu"
+                                        class="ml-[33px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/muessise/hesablasma"
+                                                class="<%= currentPath === '/emeliyyatlar/sirket/hesablasma' ? 'active' : '' %> block py-[6.5px] pl-[18px] pr-3 rounded-[8px] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                Hesablaşma
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!-- Avankart -->
+                                <li>
+                                    <a href="#" id="avankartBtn"
+                                        class="flex items-center gap-2 w-full py-[6.5px] rounded-[8px] text-[#1D222BA6] dark:text-primary-text-color-dark hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        <span class="pl-[9px]">Avankart</span>
+                                        <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                            <span id="avankartIcon"
+                                                class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                        </div>
+                                    </a>
+
+                                    <ul id="avankartSubmenu"
+                                        class="ml-[33px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/avankart/mukafat"
+                                                class="<%= currentPath === '/emeliyyatlar/avankart/mukafat' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                Mükafat
+                                            </a>
+                                        </li>
+                                        <li class="ml-3">
+                                            <a href="/emeliyyatlar/avankart/cashback"
+                                                class="<%= currentPath === '/emeliyyatlar/avankart/cashback' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                                Keşbek
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- Tranzaksiyalar -->
+                        <li>
+                            <a href="/transactions"
+                                class="<%= currentPath === '/transactions' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-document-2-1 w-5 h-5"></div>
+                                <span class="menu-text">Tranzaksiyalar</span>
+                            </a>
+                        </li>
+
+                        <!-- İmtiyazlar -->
+                        <li>
+                            <button id="imtiyazlarBtn"
+                                class="cursor-pointer flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-rocket-1 w-5 h-5"></div>
+                                <span class="menu-text" id="imtiyazlarText">İmtiyazlar</span>
+                                <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                    <span id="imtiyazlarIcon"
+                                        class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                </div>
+                            </button>
+
+                <ul id="imtiyazlarSubmenu"
+                    class="ml-[21px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                    <li class="ml-3">
+                        <a href="/imtiyazlar/kartlar"
+                            class="block <%= currentPath === '/imtiyazlar/kartlar' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                            Kartlar
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="/imtiyazlar/mukafatlar"
+                            class="<%= currentPath === '/imtiyazlar/mukafatlar' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                            Mükafatlar
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="/imtiyazlar/rozetler"
+                            class="<%= currentPath === '/imtiyazlar/rozetler' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                            Rozetlər
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+                        <!-- İstifadəçi hovuzu -->
+                        <li>
+                            <button id="istifadeciBtn"
+                                class="cursor-pointer flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-users-1 w-5 h-5"></div>
+                                <span class="menu-text" id="istifadeciText">İstifadəçi hovuzu</span>
+                                <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                    <span id="istifadeciIcon"
+                                        class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                </div>
+                            </button>
+
+                            <ul id="istifadeciSubmenu"
+                                class="ml-[21px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                <li class="ml-3">
+                                    <a href="/hovuz/people"
+                                        class="<%= currentPath === '/hovuz/people' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Avankart people
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/hovuz/partner"
+                                        class="<%= currentPath === '/hovuz/partner' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Avankart partner
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/hovuz/admin"
+                                        class="<%= currentPath === '/hovuz/admin' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Admin panel
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Müəssisələr -->
+                        <li>
+                            <a href="/muessiseler"
+                                class="<%= currentPath === '/muessiseler' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-bag-3-1 w-5 h-5"></div>
+                                <span class="menu-text">Müəssisələr</span>
+                            </a>
+                        </li>
+
+                        <!-- Şirkətlər -->
+                        <li>
+                            <a href="/sirketler"
+                                class="<%= currentPath === '/sirketler' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-case-1 w-5 h-5"></div>
+                                <span class="menu-text">Şirkətlər</span>
+                            </a>
+                        </li>
+
+                        <!-- Avankart Profili -->
+                        <li>
+                            <a href="/avankart-profile"
+                                class="<%= currentPath === '/avankart-profile' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-user-1 w-5 h-5"></div>
+                                <span class="menu-text">Avankart profili</span>
+                            </a>
+                        </li>
+
+                        <!-- Avankart.az -->
+                        <li>
+                            <a href="#" id="avankartazBtn"
+                                class=" <%= currentPath.startsWith('/avankartaz') ? 'active bg-sidebar-item dark:bg-side-bar-item-dark text-messages dark:text-primary-text-color-dark' : '' %>    flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-share-1 w-5 h-5"></div>
+                                <span class="menu-text" id="avankartazText">Avankart.az</span>
+                                <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                    <span id="avankartazIcon"
+                                        class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px] "></span>
+                                </div>
+                            </a>
+
+                            <ul id="avankartazSubmenu"
+                                class="ml-[21px] mt-2 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                <li class="ml-3">
+                                    <a href="/avankartaz/blog"
+                                        class="<%= currentPath === '/avankartaz/blog' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Bloq
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/faq"
+                                        class="<%= currentPath === '/avankartaz/faq' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        FAQ
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/muracietler"
+                                        class="<%= currentPath === '/avankartaz/muracietler' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Müraciətlər
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/abunelikler"
+                                        class="<%= currentPath === '/avankartaz/abunelikler' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Abunəliklər
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/sosial"
+                                        class="<%= currentPath === '/avankartaz/sosial' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Sosial media linkləri
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/elaqe"
+                                        class="<%= currentPath === '/avankartaz/elaqe' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Əlaqə vasitələrimiz
+                                    </a>
+                                </li>
+                                <li class="ml-3">
+                                    <a href="/avankartaz/mobiltetbiq"
+                                        class="<%= currentPath === '/avankartaz/mobiltetbiq' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 [&.active]:bg-sidebar-item dark:[&.active]:bg-side-bar-item-dark [&.active]:text-messages dark:[&.active]:text-primary-text-color-dark [&.active]:border-[.5px] [&.active]:border-stroke dark:[&.active]:border-[#FFFFFF1A] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Mobil tətbiq linkləri
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="flex flex-col gap-2 pt-2">
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-bell-1 w-5 h-5 text-messages dark:text-primary-text-color-dark">
+                                </div>
+                                <span class="menu-text">Bildirişlər</span>
+                                <span
+                                    class="notfCount menu-count bg-sidebar-bg dark:bg-side-bar-bg-dark ml-auto flex items-center justify-center w-[19px] h-[19px] mr-3 text-[10px] border-[.5px] border-stroke text-messages dark:border-[#FFFFFF1A] rounded-[2px]">4</span>
+                            </a>
+                        </li>
+
+                        <!-- Dəstək Menu -->
+                        <li>
+                            <a href="#" id="destekBtn"
+                                class="flex items-center gap-2 w-full rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div
+                                    class="iconex iconex-headphones-1 w-5 h-5 text-messages dark:text-primary-text-color-dark">
+                                </div>
+                                <span class="menu-text" id="destekText">Dəstək</span>
+                                <div class="ml-auto mr-4 sidebar-arrow flex items-center menu-chevron">
+                                    <span id="destekIcon"
+                                        class="icon stratis-chevron-right transform rotate-90 text-messages !w-[6px] !h-[15px]"></span>
+                                </div>
+                            </a>
+
+                            <!-- Dəstək Submenu -->
+                            <ul id="destekSubmenu"
+                                class="ml-[21px] mt-2 pl-3 flex gap-2 flex-col hidden border-l-[1px] border-[#0000001A]">
+                                <li class="ml-3">
+                                    <a href="#"
+                                        class="block py-[6.5px] pl-[18px] pr-3 rounded-[8px] hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                        Sorğu
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="/settings"
+                                class="<%= currentPath === '/settings' ? 'active' : '' %> flex items-center gap-2 rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-messages dark:hover:bg-side-bar-item-dark dark:hover:text-primary-text-color-dark">
+                                <div class="iconex iconex-filter-1 w-5 h-5 text-messages dark:text-primary-text-color-dark">
+                                </div>
+                                <span class="menu-text">Tənzimləmələr</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 rounded-lg py-[6.5px] pl-3 hover:bg-sidebar-item hover:text-error group dark:hover:bg-side-bar-item-dark dark:hover:text-error-dark">
+                                <div
+                                    class="iconex iconex-logout-1 w-5 h-5 text-messages mt-[2.5px] dark:text-primary-text-color-dark group-hover:text-error dark:group-hover:text-error-dark">
+                                </div>
+                                <span class="menu-text group-hover:text-error">Çıxış et</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col justify-between px-3 pt-5 text-[13px]">
+            <div class="text-center pb-3 space-y-2">
+                <div class="text-tertiary-text dark:text-tertiary-text-color-dark text-xs">
+                    <p id="versionText">Version 1.0.0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

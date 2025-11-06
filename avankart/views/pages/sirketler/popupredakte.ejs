@@ -1,0 +1,1408 @@
+<div id="mainEditOverlay" class=" fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <!-- Modal Content -->
+        <div id="mainEditModal"
+            class="w-[822px] h-[95vh] bg-menu dark:bg-side-bar-item-dark rounded-[16px] flex flex-col border border-[#0000001A] shadow-lg relative overflow-hidden">
+            <!-- Header -->
+            <div
+                class="border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] flex justify-between items-center shrink-0">
+                <h1 class="text-[15px] font-medium text-gray-800 dark:text-primary-text-color-dark py-[18px] pl-[24px]">
+                    <%= poptitle %></h1>
+                <div onclick="closeMainEditPopup()"
+                    class="icon stratis-x-02 mr-[30px] cursor-pointer w-4 h-4 dark:text-primary-text-color-dark"></div>
+            </div>
+
+            <form onclick="return false;" data-url="<%= dataUrl  %>" id="saveMuessiseForm" class="flex flex-grow overflow-hidden">
+                <!-- Tabs & Content -->
+                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                 <input type="hidden" name="sirket_id" value="<%= sirket_id %>">
+                <div class="flex flex-grow overflow-y-auto custom-scroll">
+                    <!-- Sol Tablar -->
+                    <div
+                        class="w-[22%] border-r border-[#0000001A] dark:border-[#FFFFFF1A] shrink-0 overflow-y-auto custom-scroll">
+                        <ul
+                            class="flex flex-col text-[11px] font-medium text-gray-800 dark:text-primary-text-color-dark">
+                            <li data-tab="tab-info"
+                                class="tab-item active bg-selected dark:bg-selected-color-dark flex items-center !text-start py-[15px] border-b border-[#0000001A] dark:border-[#FFFFFF1A] pl-6 cursor-pointer opacity-100 hover:opacity-100 relative">
+                                İlkin məlumatlar
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                            <li data-tab="tab-cards"
+                                class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative">
+                                Kartlar
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                            <!-- Biz eyni anda hem sirketin edit ve new ucun, hemde muessise ucun eyni popup istifade edirik deye conditional rendering ve backe duzgun field oturulmeleri ucun entitiy tagi elave etdim, burda da onun esasinda render edirik -->
+                            <li data-tab="tab-rekvizit"
+    class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative
+    <%= (entity === 'sirket' && type === 'edit') ? 'hidden' : '' %>">
+    Rekvizitlər
+    <span class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+</li>
+
+                            <li data-tab="tab-selahiyyetli-sexs"
+    class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative
+    <%= (entity === 'sirket' && type === 'edit') ? 'hidden' : '' %>">
+    Səlahiyyətli şəxs
+    <span class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+</li>
+
+
+                            <li data-tab="tab-schedule"
+                                class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative">
+                                İş qrafiki
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                            <li data-tab="tab-contact"
+                                class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative">
+                                Əlaqə məlumatları
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                            <li data-tab="tab-social"
+                                class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative">
+                                Sosial media
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                            <li data-tab="tab-muqavile"
+                                class="tab-item flex items-center !text-start opacity-50 py-[15px] pl-6 border-b border-[#0000001A] dark:border-[#FFFFFF1A] hover:opacity-100 cursor-pointer relative">
+                                Müqavilə
+                                <span
+                                    class="tab-arrow icon stratis-chevron-right absolute right-[17px] w-[6px] h-[11px] hidden"></span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!-- Sağ Kontent -->
+                    <div class="w-[88%] overflow-y-auto custom-scroll pr-3">
+                        <!-- İlkin məlumatlar -->
+                        <div id="tab-info" class="tab-content">
+                            <div class="w-full h-[646px]">
+                                <div class="mt-4 flex gap-3 ml-3 w-[277px] h-[100px]">
+                                <!-- WRAPPER: label açar kliklə fayl seçsin -->
+                                <div id="profileWrapper" class="relative w-[100px] h-[100px]">
+                                  <!-- Label bütün sahəni kliklənə bilən edir -->
+                                <label for="profileInput" class="group block w-full h-full rounded-full bg-image dark:bg-image-dark flex justify-center items-center transition-transform duration-300 ease-in-out cursor-pointer">
+                                    <input type="file" id="profileInput" class="hidden" accept="image/*" />
+
+                                    <img id="profilePreview" class="absolute inset-0 w-full h-full object-cover rounded-full hidden z-10" alt="Profil Önizleme" />
+
+                                    <div class="icon iconex-camera-1 dark:text-primary-text-color-dark !w-[40px] !h-[35px] transition-transform duration-300 ease-in-out group-hover:scale-125 z-0 relative"></div>
+
+                                    <img class="absolute top-[27px] left-[61px] w-[10px] h-[10px] transition-transform duration-300 ease-in-out group-hover:scale-125 z-0" src="/images/muessise melumatlari images/Subtract.svg" alt="plus" />
+                                </label>
+
+                              
+                                  <!-- Hover overlay (düğmeler buradadır; wrapper içinde amma label-in üzərində absolute olmalıdır) -->
+                                  <div id="profileHoverOverlay" class="absolute inset-0 bg-[rgba(0,0,0,0.2)] rounded-full transition-all duration-300 ease-in-out z-20 flex items-center justify-center hidden">
+                                    <div class="flex gap-2 transform translate-y-2 transition-all duration-300">
+                                      <button id="editProfileBtn" type="button" class="flex items-center justify-center bg-white backdrop-blur-sm hover:bg-opacity-30 p-1.5 rounded-full w-7 h-7">
+                                        <div class="icon stratis-edit-02 w-4 h-4 text-black"></div>
+                                      </button>
+                                  
+                                      <button id="deleteProfileBtn" type="button" class="flex items-center justify-center bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 p-1.5 rounded-full w-7 h-7">
+                                        <div class="icon stratis-trash-02 w-4 h-4 text-black"></div>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                                <!-- Mətn hissəsi -->
+                                <div class="mt-[27px] cursor-pointer" onclick="document.getElementById('profileInput').click()">
+                                  <p class="text-[15px] font-medium text-messages dark:text-primary-text-color-dark mb-1">Profil şəkli (logo)</p>
+                                  <p class="text-[12px] text-messages dark:text-secondary-text-color-dark opacity-65">120x120 ölçüsündə olmalıdır</p>
+                                </div>
+                              </div>
+
+
+                                <div class="mt-4 ml-3">
+                                    <div>
+                                        <label
+                                            class="block font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark opacity-65">
+                                            <span class="text-error font-bold">*</span> Məkanın adı</label>
+                                        <input type="input" 
+       name="<%= entity === 'sirket' ? 'sirket_name' : 'muessise_name' %>" 
+       value="<%= (type === 'edit' && editData) ? (entity === 'sirket' ? editData.sirket_name || '' : editData.muessise_name || '') : '' %>"
+       placeholder="<%= entity === 'sirket' ? 'Şirkət adını daxil edin' : 'Məkanın adını daxil edin' %>" 
+       class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark dark:text-primary-text-color-dark
+       hover:bg-input-hover dark:hover:bg-input-hover-dark
+       focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+       active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+       transition-all ease-out duration-300">
+
+                                    </div>
+                                    
+                                </div>
+                                                                <div class="flex flex-col items-center gap-4 mt-4 ml-3">
+                                    <% if (entity === 'sirket') { %>
+<div class="w-full">
+    <label class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages dark:text-secondary-text-color-dark opacity-65">
+         Komissiya faizi
+    </label>
+    <input type="input"
+           name="commission_percentage"
+           value="<%= (type === 'edit' && editData && editData.commission_percentage) ? editData.commission_percentage : '' %>"
+           placeholder="Şirkətdən alınan komissiya faizini daxil edin" 
+           class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+           hover:bg-input-hover dark:hover:bg-input-hover-dark
+           focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+           transition-all ease-out duration-300">
+
+</div>
+<div class="w-full">
+    <label class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages dark:text-secondary-text-color-dark opacity-65">
+         Kəşbek faizi
+    </label>
+    <input type="input"
+           name="cashback_percentage"
+           placeholder="Şirkət əməkdaşlarına veriləcək kəşbek faizini daxil edin" 
+           class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+           hover:bg-input-hover dark:hover:bg-input-hover-dark
+           focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+           active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+           transition-all ease-out duration-300">
+           
+</div>
+<% } %>
+
+                                    <% if (entity === 'muessise') { %>
+<div class="w-1/2">
+    <label class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages dark:text-secondary-text-color-dark opacity-65">
+        Göstərilən xidmətləri seç
+    </label>
+    <div class="flex gap-2">
+        <div class="flex gap-2">
+            <label data-service="Nahar"
+                   class="service-btn bg-menu flex items-center justify-center cursor-pointer dark:bg-menu-dark border border-[#0000001A] dark:border-[#FFFFFF1A] w-[61px] h-[34px] text-[12px] text-messages dark:text-primary-text-color-dark rounded-full hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                Nahar
+            </label>
+            <label data-service="Al apar"
+                   class="service-btn bg-menu flex items-center justify-center cursor-pointer dark:bg-menu-dark border border-[#0000001A] dark:border-[#FFFFFF1A] w-[68px] h-[34px] text-[12px] text-messages dark:text-primary-text-color-dark rounded-full hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                Al apar
+            </label>
+            <label data-service="Çatdırılma"
+                   class="service-btn bg-menu flex items-center justify-center cursor-pointer dark:bg-menu-dark border border-[#0000001A] dark:border-[#FFFFFF1A] w-[88px] h-[34px] text-[12px] text-messages dark:text-primary-text-color-dark rounded-full hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                Çatdırılma
+            </label>
+            <div id="servicesInputs"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+                                </div>
+
+                                <div class="mt-4 ml-3">
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">
+                                        <span class="text-error font-bold">*</span> Məkanın adresi</label>
+
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input
+                                            id="latlng"
+                                            type="hidden"
+                                            placeholder="Koordinat"
+                                            name="coordinates"
+                                            value="<%= (type === 'edit' && editData && editData.coordinates) ? editData.coordinates : '' %>"
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Məkanın adresini daxil edin"
+                                            id="address"
+                                            name="address"
+                                            value="<%= (type === 'edit' && editData && editData.address) ? editData.address : '' %>"
+                                            class="cursor-pointer w-[489px] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark hover:bg-input-hover dark:hover:bg-input-hover-dark focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                                        />
+                                        <input type="hidden" id="location" placeholder="location" name="location"/>
+                                        <div onclick="openMapModal('address','latlng')"
+                                            class="text-[12px] font-medium text-messages dark:text-primary-text-color-dark py-[3px] px-3 hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] focus:bg-[#F6D9FF] rounded-[50px]">
+                                            Xəritədən seç</div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="space-y-[6px] w-[608px] ml-3">
+                                    <label
+                                        class="block text-messages dark:text-secondary-text-color-dark opacity-65 text-[12px] mt-[12px] font-medium">Məkan
+                                        haqqında</label>
+
+                                    <div class="relative">
+                                        <textarea id="wordLimitedTextarea" class="dark:bg-menu-dark w-full h-[68px]  border pt-[3px] pl-[12px] text-gray-700 dark:text-primary-text-color-dark  resize-none focus:outline-none  focus:ring-gray-300 border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-[8px] text-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                hover:bg-input-hover dark:hover:bg-input-hover-dark
+                focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0
+                active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                transition-all ease-out duration-300" placeholder="Məkan haqqında"
+                                            maxlength="150 !text-[10px] !text-messages !dark:text-primary-text-color-dark !opacity-50"></textarea>
+
+                                        <span id="wordCount"
+                                            class="absolute bottom-2 right-4 text-sm text-gray-400 dark:text-tertiary-text-color-dark">max:
+                                            150</span>
+                                    </div>
+                                </div>
+                                <p
+                                    class="ml-3 text-messages dark:text-tertiary-text-color-dark opacity-50 text-[11px] flex items-center">
+                                    <span
+                                        class="icon stratis-information-circle-contained mr-1 !w-[14px] !h-[14px]"></span>Max:
+                                    120 simvol
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <!-- Kartlar -->
+                        <div id="tab-cards" class="tab-content hidden">
+                            <div class="w-full h-[646px]">
+                                <p
+                                    class="text-[13px ] font-medium text-messages dark:text-primary-text-color-dark pt-3 pl-3">
+                                    İstifadə edəcəyiniz kartlar
+                                </p>
+                                <div class="flex flex-col mt-2 ml-3 mr-3 gap-1">
+                                    <% if (allCards && allCards.length> 0) { %> <%
+                                        allCards.forEach(function(card) { %>
+                                        <div
+                                        class="border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] flex justify-between py-2 pl-4"
+                                        >
+                                        <div class="flex gap-2">
+                                            <div
+                                            class="w-[32px] h-[32px] flex justify-center items-center rounded-[8px]"
+                                            style="
+                                                background-color: <%= card.background_color || '#64D2FF'
+                                                %>;
+                                            "
+                                            >
+                                            <% if (card.icon) { %>
+                                            <!-- Icon based on card.icon if available -->
+                                            <img
+                                                class="w-[16px] h-[16px]"
+                                                src="/images/muessise melumatlari images/<%= card.icon %>.svg"
+                                                alt="<%= card.icon %>"
+                                            />
+                                            <% } else { %>
+                                            <!-- Default icon -->
+                                            <div class="w-4 h-4 bg-white rounded"></div>
+                                            <% } %>
+                                            </div>
+                                            <div class="flex flex-col w-[248px]">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-primary-text-color-dark"
+                                            >
+                                                <%= card.name %>
+                                            </p>
+                                            <p
+                                                class="text-[11px] text-messages dark:text-secondary-text-color-dark opacity-65"
+                                            >
+                                                <%= card.description || 'Kart haqqında təsvir yoxdur' %>
+                                            </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="inline-flex items-center mb-5 cursor-pointer">
+                                            <input type="checkbox" name="cards[]" value="<%= card._id
+                                            %>" class="sr-only peer">
+                                            <div
+                                                class="mr-[18px] relative w-11 h-6 bg-[#E0E0E0] peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-focus dark:peer-checked:bg-focus"
+                                            ></div>
+                                            </label>
+                                        </div>
+                                        </div>
+                                        <% }); %> <% } else { %>
+                                        <div class="flex flex-col items-center justify-center py-8">
+                                        <div
+                                            class="icon stratis-credit-card w-12 h-12 text-gray-400 mb-3"
+                                        ></div>
+                                        <p
+                                            class="text-messages dark:text-secondary-text-color-dark opacity-65 text-[13px] mb-2"
+                                        >
+                                            Heç bir kart tapılmadı
+                                        </p>
+                                        <p
+                                            class="text-messages dark:text-tertiary-text-color-dark opacity-50 text-[11px] text-center px-4"
+                                        >
+                                            Kartlar əlavə etmək üçün administrator ilə əlaqə saxlayın
+                                        </p>
+                                        </div>
+                                    <% } %>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="tab-rekvizit" class="tab-content hidden">
+                            <div class="flex flex-col gap-3 py-3 pl-3">
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Şirkətin
+                                        adı</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input type="input" placeholder="Şirkət adını daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                        transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Bankın
+                                        adı</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input name="bank_name" type="input" placeholder="Bank adını daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark opacity-65">SWIFT</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input name="swift" type="input" placeholder="Bankın SWIFT kodunu daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Hesablaşma
+                                        hesabı</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input
+                                        name="settlement_account"
+                                         type="input" placeholder="İBAN daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">
+                                        Hüquqi ünvan</label>
+
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input
+                                            id="huquqilatlng"
+                                            type="hidden"
+                                            placeholder="Koordinat"
+                                            name="huquqicoordinates"
+                                        />
+                                        <input
+
+                                            type="text"
+                                            placeholder="Məkanın adresini daxil edin"
+                                            id="huquqiaddress"
+                                            name="huquqiaddress"
+                                            class="cursor-pointer w-[489px] h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark hover:bg-input-hover dark:hover:bg-input-hover-dark focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                                        />
+                                        <p  onclick="openMapModal('huquqiaddress','huquqilatlng')"
+                                            class="text-[12px] font-medium text-messages dark:text-primary-text-color-dark py-[3px] px-3 hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] focus:bg-[#F6D9FF] rounded-[50px]">
+                                            Xəritədən seç</p>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Bankın
+                                        kodu</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input  name="bank_code"
+                                        type="input" placeholder="Bankın SWIFT kodunu daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Müxbir
+                                        hesabı</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input name="muxbir_hesabi" type="input" placeholder="Müxbir hesabını daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">VÖEN</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input 
+                                               name="voen"
+                                        type="input" placeholder="Bankın Vöenini daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                            transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-selahiyyetli-sexs" class="tab-content hidden">
+                            <div class="flex flex-col gap-3 py-3 pl-3">
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Ad
+                                        və Soyad</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input type="input" 
+                                        name="authorized_person_name"
+                                        value="<%= (type === 'edit' && editData && editData.authorized_person && editData.authorized_person.name) ? editData.authorized_person.name : '' %>"
+                                        placeholder="Ad və soyadınızı daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                        transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark opacity-65">Cinsiyyət</label>
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex items-center gap-2">
+                                            <input id="link-radio11" type="radio" name="authorized_person_gender" value="male" checked
+                                                class="w-4 h-4 text-[#745086] bg-gray-100 border-surface-variant focus:ring-[#745086] dark:focus:ring-[#745086] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                            <label for="link-radio11"
+                                                class="text-[13px] font-normal text-messages dark:text-white cursor-pointer">
+                                                Kişi
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <input id="link-radio22" type="radio" name="authorized_person_gender" value="female"
+                                                class="w-4 h-4 text-[#745086] bg-gray-100 border-surface-variant focus:ring-[#745086] dark:focus:ring-[#745086] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                            <label for="link-radio22"
+                                                class="text-[13px] font-normal text-messages dark:text-white cursor-pointer">
+                                                Qadın
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-wrapper relative" id="positionDropdown">
+                                    <label for="activityButtonPositionDropdown"
+                                        class="block font-medium text-[12px] pb-[6px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                        Vəzifə
+                                    </label>
+
+                                    <!-- Toggle button -->
+                                    <button id="activityButtonPositionDropdown"
+                                        class="dropdown-button w-full h-[34px] rounded-full border border-[#0000001A] dark:border-[#FFFFFF1A] text-[12px] text-messages dark:text-primary-text-color-dark px-3 flex items-center justify-between cursor-pointer hover:bg-container-2 dark:hover:bg-input-hover-dark"
+                                        type="button">
+                                        <span id="activityButtonTextPositionDropdown">Seçim edin</span>
+                                        <div
+                                            class="dropdown-icon icon stratis-chevron-up rotate-180 w-2.5 h-2.5 ms-3 dark:text-primary-text-color-dark mb-1">
+                                        </div>
+                                    </button>
+
+                                    <!-- Dropdown -->
+                                    <div id="activityListPositionDropdown"
+                                        class="position-dropdown-list absolute z-10 mt-2 w-full rounded-[10px] shadow-md bg-white dark:bg-menu-dark border border-stroke dark:border-[#FFFFFF1A] hidden">
+                                        <ul class="position-dropdown-options text-[13px] text-gray-800 py-2 space-y-1">
+                                            <li class="position-dropdown-option px-4 py-1 hover:bg-gray-100 cursor-pointer"
+                                                data-value="muhasib">Mühasib</li>
+                                            <li class="position-dropdown-option px-4 py-1 hover:bg-gray-100 cursor-pointer"
+                                                data-value="designer">UX dizayner</li>
+                                            <li class="position-dropdown-option px-4 py-1 hover:bg-gray-100 cursor-pointer"
+                                                data-value="head-muhasib">Baş mühasib</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="block font-medium text-[12px] leading-[160%] pb-[6px] text-messages dark:text-secondary-text-color-dark opacity-65">Telefon
+                                        nömrəsi</label>
+                                    <div class="phone-input-group flex items-center gap-2 mb-2">
+                                        <div class="relative inline-block w-20 phone-code-dropdown-container">
+                                            <button type="button"
+                                                class="w-full border border-stroke dark:border-[#FFFFFF1A] text-xs rounded-full px-3 py-[7.5px] text-left flex justify-between items-center phone-code-button">
+                                                <span
+                                                    class="dark:text-primary-text-color-dark phone-code-selected-value">+994</span>
+                                                <div class="dark:text-primary-text-color-dark">
+                                                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                            </button>
+
+                                            <div
+                                                class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-20 max-h-[168px] overflow-y-scroll bg-menu dark:bg-menu-dark rounded-[8px] shadow-lg custom-scroll touch-auto hidden z-10 phone-code-menu">
+                                                <div
+                                                    class="py-2 text-start space-y-2 text-[13px] text-messages dark:text-primary-text-color-dark font-medium ml-1 mr-2">
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+01">+01</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+010">+010</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+099">+099</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+994">+994</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+600">+600</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+100">+100</div>
+                                                    <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark phone-code-item"
+                                                        data-value="+899">+899</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="text" placeholder="Telefon nömrənizi daxil edin"
+                                            name="authorized_person_phone"
+                                            class="focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 flex-1 dark:bg-menu-dark border border-stroke dark:border-[#FFFFFF1A] placeholder:text-[#BFC8CC] dark:placeholder:text-[#636B6F] text-messages dark:text-primary-text-color-dark font-normal rounded-full px-3 py-[7.5px] text-xs">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block  font-medium text-[12px] leading-[160%] pb-[6px]  text-messages dark:text-secondary-text-color-dark  opacity-65">Mail
+                                        adresi</label>
+                                    <div class="flex flex-row items-center gap-3">
+                                        <input 
+                                        name="email"
+                                        type="input" placeholder="Mail adresini daxil edin" class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-stroke dark:border-[#FFFFFF1A] border-opacity-[10%] rounded-full pl-[12px] placeholder-on-surface-variant-dark dark:placeholder-outline-dark
+                                            hover:bg-input-hover dark:hover:bg-input-hover-dark
+                                            focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                                            active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                        transition-all ease-out duration-300">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .time-input {
+                                background: transparent;
+                                border: none;
+                                outline: none;
+                                cursor: pointer;
+                                width: 100%;
+                              }
+                          
+                              .time-input:focus {
+                                cursor: text;
+                                outline: none;
+                                box-shadow: none;
+                              }
+                        </style>
+                        <!-- İş qrafiki -->
+                        <div id="tab-schedule" class="tab-content">
+                            <div class="w-full h-[646px]">
+                                <p class="text-[13px] font-medium text-messages dark:text-primary-text-color-dark pt-3 pl-3">
+                                    Həftənin günlərinə uyğun olaraq iş saatlarını təyin edin
+                                </p>
+
+                                <% 
+                                const days = [
+                                    { name: 'monday', label: 'Bazar ertəsi' },
+                                    { name: 'tuesday', label: 'Çərşənbə axşamı' },
+                                    { name: 'wednesday', label: 'Çərşənbə' },
+                                    { name: 'thursday', label: 'Cümə axşamı' },
+                                    { name: 'friday', label: 'Cümə' },
+                                    { name: 'saturday', label: 'Şənbə' },
+                                    { name: 'sunday', label: 'Bazar' }
+                                ];
+                            
+                                function getTimeValue(day, type) {
+                                    return (type === 'edit' && editData?.schedule?.[day]?.[type]) ? editData.schedule[day][type] : '';
+                                }
+                            
+                                function isDayEnabled(day) {
+                                    if (type === 'edit' && editData && editData.schedule && editData.schedule[day]) {
+                                        return editData.schedule[day].enabled;
+                                    }
+                                    return false;
+                                }
+                            
+                                const boxClass = "w-[195px] h-[130px] rounded-[8px] border-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A]";
+                                const dayLabelClass = "text-[12px] text-messages dark:text-tertiary-text-color-dark opacity-50";
+                                const timeInputClass = "time-input text-[12px] p-0 m-0 appearance-none rounded-none text-on-surface-variant-dark dark:text-primary-text-color-dark";
+                                const toggleClass = "mr-[18px] relative w-11 h-6 bg-[#E0E0E0] peer-focus:outline-none peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-focus dark:peer-checked:bg-focus";
+                                %>
+
+                                <div class="flex flex-wrap gap-3 ml-3 mt-4">
+                                    <% days.forEach(function(day, index) { %>
+                                        <div class="<%= boxClass %> <%= day.name === 'sunday' ? 'w-full' : '' %>">
+                                            <div class="flex flex-col gap-8 pl-3 pt-3">
+                                                <div class="flex justify-between h-[22px]">
+                                                    <p class="<%= dayLabelClass %>" data-day-label="<%= day.name %>">
+                                                        <%= day.label %>
+                                                    </p>
+                                                    <div>
+                                                        <label class="inline-flex items-center mb-5 cursor-pointer">
+                                                            <input
+                                                                type="checkbox"
+                                                                name="<%= day.name %>_enabled"
+                                                                data-day="<%= day.name %>"
+                                                                class="sr-only peer day-toggle"
+                                                                <%= isDayEnabled(day.name) ? 'checked' : '' %>
+                                                            />
+                                                            <div class="<%= toggleClass %> toggle-switch" data-day="<%= day.name %>"></div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <input
+                                                            type="text"
+                                                            name="<%= day.name %>_start"
+                                                            value="<%= getTimeValue(day.name, 'start') %>"
+                                                            class="<%= timeInputClass %>"
+                                                            placeholder="Açılış saatı"
+                                                            data-day="<%= day.name %>"
+                                                            data-type="open"
+                                                            maxlength="5"
+                                                            <%= !isDayEnabled(day.name) ? 'disabled' : '' %>
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            type="text"
+                                                            name="<%= day.name %>_end"
+                                                            value="<%= getTimeValue(day.name, 'end') %>"
+                                                            class="<%= timeInputClass %>"
+                                                            placeholder="Bağlanış saatı"
+                                                            data-day="<%= day.name %>"
+                                                            data-type="close"
+                                                            maxlength="5"
+                                                            <%= !isDayEnabled(day.name) ? 'disabled' : '' %>
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Əlaqə məlumatları -->
+                        <div id="tab-contact" class="tab-content hidden">
+                            <div class="w-full p-3">
+                                <!-- Telefon nömrəsi -->
+                                <label
+                                    class="block text-xs font-medium text-secondary-text dark:text-secondary-text-color-dark mb-[6px]">Telefon
+                                    nömrəsi</label>
+                                <div class="removable-item flex items-center gap-2 mb-2">
+                                    <div class="relative inline-block w-20">
+                                        <!-- Yeni düymə -->
+                                        <button id="phonePrefixButton" type="button"
+                                            class="w-full border border-stroke dark:border-[#FFFFFF1A] text-xs rounded-full px-3 py-[7.5px] text-left flex justify-between items-center">
+                                            <span id="phonePrefixSelected"
+                                                class="dark:text-primary-text-color-dark">+994</span>
+                                            <div class="dark:text-primary-text-color-dark">
+                                                <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </div>
+                                        </button>
+
+                                        <!-- Form üçün gizli input -->
+                                        <input type="hidden" id="authorized_person_phone_suffix" name="phonePrefix" value="+994" />
+
+                                        <!-- Yeni dropdown -->
+                                        <div id="phonePrefixDropdown"
+                                            class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-20 max-h-[168px] overflow-y-scroll bg-menu dark:bg-menu-dark rounded-[8px] shadow-lg custom-scroll touch-auto hidden z-10">
+                                            <div
+                                                class="py-2 text-start space-y-2 text-[13px] text-messages dark:text-primary-text-color-dark font-medium ml-1 mr-2">
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+01">
+                                                    +01</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+010">+010</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+099">+099</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+994">+994</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+600">+600</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+100">+100</div>
+                                                <div class="text-center cursor-pointer hover:bg-[#F6D9FF] dark:hover:bg-input-hover-dark"
+                                                    data-value="+899">+899</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="text" placeholder="Telefon nömrənizi daxil edin"
+                                        class="focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0
+                                        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                        transition-all ease-out duration-300 flex-1 dark:bg-menu-dark border border-stroke dark:border-[#FFFFFF1A] placeholder:text-[#BFC8CC] dark:placeholder:text-[#636B6F] text-messages dark:text-primary-text-color-dark font-normal rounded-full px-3 py-[7.5px] text-xs" />
+                                    <button type="button" class="remove-btn hidden">
+                                        <div class="icon stratis-trash-01 w-[14px] h-[14px] text-red-500"></div>
+                                    </button>
+                                </div>
+                                <div id="phoneContainer" class="space-y-2 my-2"></div>
+                                <button type="button" data-type="phone"
+                                    class="add-button text-messages dark:text-primary-text-color-dark rounded-[50px] text-xs hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] cursor-pointer py-[3px] px-3 font-medium mb-2 flex items-center gap-2">
+                                    <div
+                                        class="icon stratis-plus-02 leading-none w-1 h-1 text-[10px] dark:text-primary-text-color-dark">
+                                    </div>
+                                    Əlavə et
+                                </button>
+
+                                <!-- Mail adresi -->
+                                <label
+                                    class="block text-xs font-medium text-secondary-text dark:text-secondary-text-color-dark mb-[6px]">Mail
+                                    adresi</label>
+                                <div class="removable-item flex items-center gap-2 mb-2">
+                                    <input type="email"
+                                    
+                                    placeholder="Mail adresini daxil edin"
+                                        class=" focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    w-full border border-stroke dark:border-[#FFFFFF1A] dark:bg-menu-dark placeholder:text-[#BFC8CC] dark:placeholder:text-[#636B6F] text-messages dark:text-primary-text-color-dark font-normal rounded-full px-3 py-[7.5px] text-xs" />
+                                    <button type="button" class="remove-btn hidden">
+                                        <div class="icon stratis-trash-01 w-[14px] h-[14px] text-red-500"></div>
+                                    </button>
+                                </div>
+                                <div id="emailContainer" class="space-y-2 mt-2"></div>
+
+
+                                <button type="button" data-type="email"
+                                    class="add-button text-messages dark:text-primary-text-color-dark rounded-[50px] text-xs hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] cursor-pointer py-[3px] px-3 font-medium mb-2 flex items-center gap-2">
+                                    <div
+                                        class="icon stratis-plus-02 leading-none w-1 h-1 text-[10px] dark:text-primary-text-color-dark">
+                                    </div>
+                                    Əlavə et
+                                </button>
+
+                                <label
+                                    class="block text-xs font-medium text-secondary-text dark:text-secondary-text-color-dark mb-[6px]">Web
+                                    sayt</label>
+
+                                <div class="removable-item flex items-center gap-2 mb-2">
+                                    <div
+                                        class="focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0
+                                    transition-all ease-out duration-300 flex items-center w-full border border-stroke dark:border-[#FFFFFF1A] dark:bg-menu-dark rounded-full overflow-hidden">
+
+                                        <!-- Solda https:// -->
+                                        <div
+                                            class="flex items-center pl-4 pr-3 bg-white dark:bg-menu-dark border-r-[.5px] border-stroke dark:border-[#FFFFFF1A]">
+                                            <span
+                                                class="text-gray-700 dark:text-primary-text-color-dark text-sm">https://</span>
+                                        </div>
+
+                                        <!-- Input -->
+                                        <input type="text" placeholder="Linki əlavə edin"
+                                            class="flex-1 py-[9px] pr-4 text-xs font-normal dark:bg-menu-dark placeholder:text-secondary-text dark:placeholder:text-[#636B6F] text-messages dark:text-primary-text-color-dark border-none outline-none focus:ring-0" />
+                                    </div>
+                                    <button type="button" class="remove-btn hidden">
+                                        <div class="icon stratis-trash-01 w-[14px] h-[14px] text-red-500"></div>
+                                    </button>
+                                </div>
+
+                                <div id="webContainer" class="space-y-2 my-2"></div>
+                                <button type="button" data-type="web"
+                                    class="add-button text-messages dark:text-primary-text-color-dark rounded-[50px] text-xs hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] cursor-pointer py-[3px] px-3 font-medium mb-2 flex items-center gap-2">
+                                    <div
+                                        class="icon stratis-plus-02 leading-none w-1 h-1 text-[10px] dark:text-primary-text-color-dark">
+                                    </div>
+                                    Əlavə et
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sosial media -->
+                        <div id="tab-social" class="tab-content hidden">
+                            <div class="w-full h-[646px]">
+                                <div class="flex flex-col pt-3 pl-3 pr-3">
+                                    <div class="platform flex justify-between items-center py-4 border-b border-gray-200 dark:border-[#FFFFFF1A] hover:bg-gray-50 dark:hover:bg-input-hover-dark transition"
+                                        data-platform="instagram">
+                                        <!-- SOL -->
+                                        <div class="flex items-center gap-2 pl-3 dark:text-secondary-text-color-dark">
+                                            <img src="/images/muessise melumatlari images/Component 1.svg"
+                                                alt="Instagram Light" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/instagramDark.svg"
+                                                alt="Instagram Dark" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="text-sm text-gray-700 dark:text-secondary-text-color-dark font-medium">
+                                                Instagram</p>
+                                        </div>
+
+                                        <!-- SAĞ -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- Add button -->
+                                            <button data-role="addBtn" type="button"
+                                                class="w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages dark:text-primary-text-color-dark hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input group -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="threads">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (2).svg"
+                                                alt="Threads" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/threadsDark.svg"
+                                                alt="Threads" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                Threads</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="facebook">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (3).svg"
+                                                alt="Facebook" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/fbDark.svg"
+                                                alt="Facebook" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                Facebook</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="linkedin">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (4).svg"
+                                                alt="Linkedin" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/linkDark.svg"
+                                                alt="Linkedin" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                Linkedin</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="x">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Frame 427321454.svg"
+                                                alt="X" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/xDark.svg"
+                                                alt="X" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                X</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="youtube">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (5).svg"
+                                                alt="Youtube" class="w-6 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/ytDark.svg"
+                                                alt="Youtube" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                Youtube</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="tiktok">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (6).svg"
+                                                alt="TikTok" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/ttDark.svg"
+                                                alt="TikTok" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                TikTok</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="whatsapp">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/Vector (7).svg"
+                                                alt="WhatsApp" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/wpDark.svg"
+                                                alt="WhatsApp" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                WhatsApp</p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="platform flex justify-between items-center py-[18px] border-b-[0.5px] border-[#0000001A] dark:border-[#FFFFFF1A] hover:bg-input-hover dark:hover:bg-input-hover-dark transition-all duration-300 ease-out"
+                                        data-platform="telegram">
+
+                                        <!-- SOL TƏRƏF -->
+                                        <div class="flex items-center gap-2 pl-3">
+                                            <img src="/images/muessise melumatlari images/fa6-brands_telegram.svg"
+                                                alt="Telegram" class="w-5 h-5 dark:hidden">
+                                            <img src="/images/muessise melumatlari images/tDark.svg"
+                                                alt="Telegram" class="w-5 h-5 hidden dark:block">
+                                            <p
+                                                class="font-medium text-[13px] text-messages dark:text-secondary-text-color-dark opacity-65">
+                                                Telegram
+                                            </p>
+                                        </div>
+
+                                        <!-- SAĞ TƏRƏF -->
+                                        <div class="flex items-center gap-2 pr-3">
+                                            <!-- "Hesab linkini əlavə et" düyməsi -->
+                                            <button data-role="addBtn" type="button"
+                                                class="dark:text-primary-text-color-dark w-[156px] h-[25px] cursor-pointer border border-surface-variant dark:border-[#FFFFFF1A] rounded-[100px] text-[12px] font-medium text-messages hover:text-primary">
+                                                Hesab linkini əlavə et
+                                            </button>
+
+                                            <!-- Input və Əlavə et / X -->
+                                            <div data-role="inputGroup" class="hidden items-center gap-2">
+                                                <div
+                                                    class="dark:border-[#FFFFFF1A] flex items-center border overflow-hidden bg-white dark:bg-menu-dark focus-within:border-focus rounded-full focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300">
+                                                    <div
+                                                        class="bg-white dark:bg-menu-dark px-2 border-r dark:border-[#FFFFFF1A] text-sm text-gray-600 dark:text-primary-text-color-dark">
+                                                        https://
+                                                    </div>
+                                                    <input data-role="linkInput" type="text"
+                                                        placeholder="Linki əlavə edin"
+                                                        class="dark:text-primary-text-color-dark dark:bg-menu-dark text-sm px-2 py-1 border-none outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-normal w-48" />
+                                                </div>
+                                                <button data-role="submitBtn" type="button"
+                                                    class="text-sm text-messages dark:text-primary-text-color-dark hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] rounded-full px-3">Əlavə
+                                                    et</button>
+                                                <button data-role="cancelBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+
+                                            <!-- Göstərilən link və sil düyməsi -->
+                                            <div data-role="linkDisplay" class="hidden items-center gap-3">
+                                                <a data-role="linkHref" href="#" target="_blank"
+                                                    class="text-sm text-gray-700 hover:underline dark:text-primary-text-color-dark"></a>
+                                                <button data-role="removeBtn" type="button"
+                                                    class="icon stratis-x-02 cursor-pointer w-1 h-1 text-[10px] dark:text-primary-text-color-dark"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-muqavile" class="tab-content hidden">
+                            <div class="p-3">
+                                <div class="flex flex-col items-center justify-center py-[21px] gap-2 w-full rounded-lg bg-container cursor-pointer border border-dashed border-gray-300 hover:border-focus transition-colors duration-200">
+                                    <div class="flex flex-col justify-center items-center text-[13px] text-messages font-medium hover:text-primary">
+                                        <div class="w-[38px] h-[38px] bg-table-hover flex items-center justify-center rounded-full">
+                                            <div class="iconex iconex-document-add-1 w-5 h-5"></div>
+                                        </div>
+                                        Müqavilə sənədi
+                                    </div>
+                                    <div class="text-[11px] text-secondary-text font-normal">Sənədi yükləyin və ya sürükləyib buraxın</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Footer düymələri -->
+            <div class="px-6 py-4 flex justify-end gap-3 border-t border-[#0000001A] shrink-0">
+                <button onclick="closeMainEditPopup()" href="#"
+                    class="cursor-pointer text-[13px] text-on-surface-variant dark:text-[#BFC8CC] font-medium bg-surface-bright dark:bg-surface-bright-dark rounded-[50px] !w-[83px] !h-[34px]">Ləvğ
+                    et</button>
+                <button onclick="submitForm('saveMuessise')"
+                    class="cursor-pointer text-[13px] text-on-primary font-medium bg-primary rounded-[50px] !w-[117px] !h-[34px]">Yadda
+                    saxla</button>
+            </div>
+        </div>
+    </div>
+    <div id="mapModal" class="hidden">
+      <div
+        onclick="closeMapModal()"
+        class="fixed inset-0"
+        style="z-index: 999"></div>
+      <div
+        style="z-index: 9999"
+        class="border-3 border-stroke dark:border-[#FFFFFF1A] w-[450px] h-[450px] overflow-hidden bg-sidebar-item dark:bg-side-bar-item-dark fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-xl rounded-[12px] max-h-[100vh]">
+        <div class="w-full h-full" id="map"></div>
+      </div>
+    </div>
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggle = document.getElementById('dropdownToggle');
+    const dropdownList = document.getElementById('dropdownList');
+    const dropdownSelected = document.getElementById('dropdownSelected');
+    const categoryInput = document.getElementById('categoryInput');
+    const activityInput = document.getElementById('activityTypeInput'); // Bu şirkət üçün null ola bilər
+
+    // Toggle dropdown
+    if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownList.classList.toggle('hidden');
+        });
+    }
+
+    // Handle selection
+    const dropdownOptions = document.querySelectorAll('#dropdownList li');
+    dropdownOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            
+            // Update display
+            dropdownSelected.textContent = value;
+            
+            // Update category input
+            if (categoryInput) {
+                categoryInput.value = value;
+            }
+            
+            // Update activity type input (yalnız şirkət üçün)
+            if (activityInput) {
+                activityInput.value = value;
+            }
+            
+            // Close dropdown
+            dropdownList.classList.add('hidden');
+            
+            console.log('Selected value:', value);
+            console.log('Category input value:', categoryInput ? categoryInput.value : 'N/A');
+            console.log('Activity input value:', activityInput ? activityInput.value : 'N/A');
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (dropdownToggle && dropdownList && 
+            !dropdownToggle.contains(e.target) && 
+            !dropdownList.contains(e.target)) {
+            dropdownList.classList.add('hidden');
+        }
+    });
+});
+
+
+    const mapModal = document.getElementById("mapModal");
+      function openMapModal(id = null, hiddenid = null) {
+        window.forHidden = id;
+        window.forAddress = hiddenid;
+        mapModal.classList.toggle("hidden");
+      }
+
+      function closeMapModal() {
+        mapModal.classList.toggle("hidden");
+      }
+    </script>
+
+    <script src="/js/Avankart/sirketler/edit.js"></script>

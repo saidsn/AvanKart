@@ -1,0 +1,21 @@
+{
+  "yeni_hesab": "Yeni hesab",
+  "ad_ve_soyad": "Ad və Soyad",
+  "cinsiyyət": "Cinsiyyət",
+  "cinsiyet_kisi": "Kişi",
+  "cinsiyet_qadin": "Qadın",
+  "email": "Email",
+  "telefon_nomreniz": "Telefon nömrəsi",
+  "custom_search_input_placeholder": "Telefon nömrənizi daxil edin",
+  "vezife": "Vəzifə",
+  "muhasib": "Mühasib",
+  "ux_dizayner": "UX dizayner",
+  "bas_muhasib": "Baş Mühasib",
+  "muessise_adi": "Müəssisə adı",
+  "muessise_adi_input_placeholder": "Özsüt Restoran",
+  "selahiyyet_qrupu": "Səlahiyyət qrupu",
+  "muhasibler": "Mühasiblər",
+  "sistem_inzibatcisi": "Sistem inzibatçısı",
+  "legv_et_button": "Ləğv et",
+  "yarat_button": "Yarat"
+}

@@ -1,0 +1,332 @@
+<div class="pt-3 px-5">
+  <div class="flex flex-col gap-6 pb-[101px]">
+    <div class="flex items-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+      <a href="../dashboard/dashboard.htm" class="cursor-pointer hover:text-primary"><%= __('settings.first_breadcrumb')%></a>
+      <div class="icon stratis-slash-01-forward"></div>
+      <span class="text-tertiary-text dark:text-tertiary-text-color-dark"><%= __('settings.second_breadcrumb')%></span>
+    </div>
+    <div class="border-b-[.5px] border-b-stroke dark:border-[#FFFFFF1A]">
+      <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"><%= __('settings.personal_Info')%></div>
+      <div class="flex flex-wrap items-center justify-between py-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="text-base text-primary dark:text-primary-dark font-semibold bg-button-disabled dark:bg-button-disabled-color-dark flex items-center justify-center w-[45px] h-[45px] rounded-full">
+            <%= getInitials(user?.name, user?.surname) %>
+          </div>
+          <div class="flex flex-col gap-1">
+            <div class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium">
+              <%= user?.name + ' ' + user?.surname %>
+            </div>
+            <div class="text-[13px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+              <%= user?.email %>
+            </div>
+          </div>
+        </div>
+        <div onclick="toggleRedakte()">
+          <button
+            class="cursor-pointer text-[13px] text-messages dark:text-primary-text-color-dark hover:text-primary dark:hover:text-primary-dark font-medium bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark text-center rounded-[100px] py-[6.5px] px-[18px]">
+            <%= __('settings.edit')%>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="overlay" class="hidden fixed top-0 left-0 w-full h-full bg-[#0000002A] z-50 "></div>
+    <!-- Redakte et div -->
+    <div
+      class="redakte-div font-poppins w-[450px] bg-body-bg dark:bg-body-bg-dark hidden border-[3px] border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50 dark:border-[#ffffff1A]">
+      <div class="flex items-center justify-between py-0.5 mb-5">
+        <span class="text-[15px] font-medium text-messages dark:text-white"><%= __('settings.personal_Info')%></span>
+        <img onclick="toggleRedakte()" src="/images/settings/Close.svg" alt="Close"
+          class="cursor-pointer block dark:hidden" />
+        <img onclick="toggleRedakte()" src="/images/settings/close-dark.svg" alt="Close"
+          class="cursor-pointer hidden dark:block" />
+      </div>
+      <div class="mt-5">
+        <form onclick="return false;" data-url="/settings/change-private" id="privateForm">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="w-full">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 text-messages dark:text-[#fff] dark:opacity-65"><%= __('settings?.name_surname')%></p>
+            <input type="text" name="name" id="nameInput" placeholder="<%= user?.name + ' ' + user?.surname %>"
+              value="<%= user?.name + ' ' + user?.surname %>"
+              class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] hover:bg-input-hover
+                    focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:text-white" />
+          </div>
+          <div class="w-full my-3">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 text-messages dark:text-[#fff] dark:opacity-65"><%= __('settings.email')%>
+            </p>
+            <input type="email" value="<%= user?.email %>" name="email" id="emailInput"
+              placeholder=<%= __('settings.email_placeholder')%>
+              class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] hover:bg-input-hover
+                    focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:text-white" />
+          </div>
+          <p class="text-[12px] font-medium opacity-65 text-messages dark:text-[#fff] dark:opacity-65"><%= __('settings.phone')%>
+          </p>
+          <div class="flex items-center justify-between gap-2">
+            <div class="w-max px-3 my-3 rounded-[500px] border-[1px] border-[#0000001A]">
+              <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                class="operator text-center flex items-center justify-center gap-[9px] text-[12px] font-normal !h-[34px] cursor-pointer px-3"
+                type="button">
+                <span id="operatorText" class="text-messages dark:text-white">+<%= user.phone_suffix ?? '994' %></span>
+                <img src="/images/settings/chevron-down.svg" alt="Down" class="!w-[15px] !h-[15px]">
+              </button>
+
+              <!-- Dropdown menu -->
+              <div id="dropdown"
+                class="z-10 w-[80px] hidden dark:bg-table-hover-dark dark:text-white bg-body-bg rounded-lg border-[0.5px] border-[#0000001A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
+                <ul class="py-2 text-[13px] font-medium" aria-labelledby="dropdownDefaultButton">
+                  <li onclick="clickOperator(this)" data-value="+01">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+01</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+010">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+010</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+099">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+099</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+994">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+994</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+600">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+600</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+100">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+100</a>
+                  </li>
+                  <li onclick="clickOperator(this)" data-value="+899">
+                    <a href="#"
+                      class="number block pl-3 py-[5.5px] hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">+899</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-full rounded-[500px] border-[1px] border-[#0000001A]">
+              <input type="tel" value="<%= user.phone %>" name="phone_number" id="phone_numberInput"
+                class="rounded-full border-0 w-full outline-none text-[12px] font-normal hover:bg-input-hover
+                        focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:text-white" placeholder="Telefon nömrənizi daxil edin">
+            </div>
+
+            <select id="realSelect" name="phone_suffix" class="hidden">
+              <option value=""><%= __('settings.select')%></option>
+              <option value="01" <%=user.phone_suffix=='+01' ? 'selected' : '' %>>+01</option>
+              <option value="010" <%=user.phone_suffix=='+010' ? 'selected' : '' %>>+010</option>
+              <option value="099" <%=user.phone_suffix=='+099' ? 'selected' : '' %>>+099</option>
+              <option value="994" <%=user.phone_suffix=='+994' ? 'selected' : '' %>>+994</option>
+              <option value="600" <%=user.phone_suffix=='+600' ? 'selected' : '' %>>+600</option>
+              <option value="100" <%=user.phone_suffix=='+100' ? 'selected' : '' %>>+100</option>
+              <option value="899" <%=user.phone_suffix=='+899' ? 'selected' : '' %>>+899</option>
+            </select>
+          </div>
+          <div class="w-full my-3">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 text-messages dark:text-[#fff] dark:opacity-65"><%= __('settings.müəssisə_adı')%></p>
+            <input type="text" placeholder="Özsüt"  readonly class="dark:bg-table-hover-dark w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] bg-[#EBEBEB]
+                    focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]" />
+          </div>
+          <div class="w-full mb-6">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 text-messages dark:text-[#fff] dark:opacity-65">
+              <%= __('settings.position')%></p>
+            <input type="text" placeholder="UX Designer" readonly class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] dark:bg-table-hover-dark bg-[#EBEBEB] hover:bg-input-hover
+                    focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]" />
+          </div>
+          <div>
+            <div class="flex items-center gap-3 justify-end">
+              <button type="button"
+                class="bg-surface py-[6.5px] px-3 text-[13px] text-on-surface-variant font-medium rounded-[50px] cursor-pointer hover:bg-surface dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+                onclick="toggleRedakte()"><%= __('settings.cancel')%></button>
+              <button type="submit" onclick="submitForm('private')"
+                class="bg-primary text-body-bg py-[6.5px] px-3 rounded-[100px] text-[13px] font-medium cursor-pointer hover:bg-hover-button"><%= __('settings.save')%></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="border-b-[.5px] border-b-stroke dark:border-[#FFFFFF1A]">
+      <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"><%= __('settings.password')%></div>
+      <div class="flex flex-wrap items-center justify-between py-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="text-messages font-semibold bg-container dark:bg-container-color-dark flex items-center justify-center w-[45px] h-[45px] rounded-full">
+            <div class="iconex iconex-lock-open-1 w-[23px] h-[23px] dark:text-primary-text-color-dark"></div>
+          </div>
+          <div>
+            <div class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium">***************</div>
+          </div>
+        </div>
+        <div>
+          <button onclick="togglePassword()"
+            class="cursor-pointer text-[13px] text-messages dark:text-primary-text-color-dark hover:text-primary dark:hover:text-primary-dark font-medium bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark text-center rounded-[100px] py-[6.5px] px-[18px]">
+           <%= __('settings.new_password_btn')%>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="dark:bg-table-hover-dark password-div w-[450px] hidden border-[3px] bg-body-bg border-[#0000001A] !shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl p-6 fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50 dark:border-[#ffffff1A]">
+      <div class="flex items-center justify-between py-0.5 mb-5">
+        <span class="text-[15px] font-medium dark:text-white"><%= __('settings.change_password')%></span>
+        <img onclick="togglePassword()" src="/images/settings/Close.svg" alt="Close"
+          class="cursor-pointer block dark:hidden" />
+        <img onclick="togglePassword()" src="/images/settings/close-dark.svg" alt="Close"
+          class="cursor-pointer hidden dark:block" />
+      </div>
+      <div class="mt-5">
+        <form onclick="return false;" data-url="/settings/change-password" id="passwordForm">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <input type="text" name="username" autocomplete="username" class="hidden" />
+          <div class="w-full">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 dark:text-white dark:opacity-65"><%= __('settings.old_password')%></p>
+            <div>
+              <input type="password" name="old_password" autocomplete="current-password"
+                placeholder=<%= __('settings.old_password_placeholder')%>
+                class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] hover:bg-input-hover
+                              focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                              active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" />
+            </div>
+          </div>
+          <div class="w-full my-3">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 dark:text-white dark:opacity-65"><%= __('settings.new_password')%></p>
+            <div>
+              <input type="password" name="new_password" autocomplete="new-password" placeholder=<%= __('settings.new_password_placeholder')%>
+                class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] hover:bg-input-hover
+                              focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                              active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" />
+            </div>
+          </div>
+          <div class="w-full mb-[30px]">
+            <p class="text-[12px] font-medium opacity-65 mb-1.5 dark:text-white dark:opacity-65"><%= __('settings.confirm_password')%></p>
+            <div>
+              <input type="password" name="password_again" autocomplete="new-password"
+                placeholder=<%= __('settings.confirm_password_placeholder')%>
+                class="w-full py-[7.5px] px-3 text-[12px] font-normal border-[1px] border-[#0000001A] rounded-[500px] hover:bg-input-hover
+                              focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                              active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] dark:bg-table-hover-dark dark:border-[#ffffff1A] dark:text-white" />
+            </div>
+            <div class="flex items-center gap-2 mt-1.5">
+              <div
+                class="icon stratis-information-circle-contained w-4 h-4 opacity-50 py-[1px] dark:text-white dark:opacity-65">
+              </div>
+              <span class="text-[11px] font-normal opacity-50 dark:text-white dark:opacity-50"><%= __('settings.message_one')%></span>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <div
+                class="icon stratis-information-circle-contained w-4 h-4 opacity-50 py-[1px] dark:text-white dark:opacity-65">
+              </div>
+              <span class="text-[11px] font-normal opacity-50 dark:text-white dark:opacity-50"><%= __('settings.message_two')%></span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 justify-end">
+            <button type="button"
+              class="bg-surface py-[6.5px] px-3 text-[13px] text-on-surface-variant font-medium rounded-[50px] cursor-pointer dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+              onclick="togglePassword()"><%= __('settings.cancel')%></button>
+            <button type="submit" onclick="submitForm('password')"
+              class="bg-primary text-body-bg py-[6.5px] px-3 rounded-[100px] text-[13px] font-medium cursor-pointer hover:bg-hover-button"><%= __('settings.save_password')%></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="border-b-[.5px] border-b-stroke dark:border-[#FFFFFF1A]">
+      <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"><%= __('settings.2Fa')%>
+      </div>
+      <div class="flex flex-wrap items-center justify-between py-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="text-messages font-semibold bg-container dark:bg-container-color-dark flex items-center justify-center w-[45px] h-[45px] rounded-full">
+            <div class="iconex iconex-shield-1-1 w-[23px] h-[23px] dark:text-primary-text-color-dark"></div>
+          </div>
+          <div>
+            <div class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium"><%= __('settings.2Fa_message')%></div>
+          </div>
+        </div>
+        <div>
+          <a href="/settings/2fa"
+            class="cursor-pointer text-messages dark:text-primary-text-color-dark hover:text-primary dark:hover:text-primary-dark flex items-center gap-2 bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[100px] py-[6.5px] px-[18px]">
+            <span class="text-[13px] font-medium"><%= __('settings.add_btn')%></span>
+            <div class="iconex iconex-right-1 w-4 h-4 dark:text-primary-text-color-dark"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-b-[.5px] border-b-stroke dark:border-[#FFFFFF1A]">
+      <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"><%= __('settings.sessions')%></div>
+      <div class="flex flex-wrap items-center justify-between py-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="text-messages font-semibold bg-container dark:bg-container-color-dark flex items-center justify-center w-[45px] h-[45px] rounded-full">
+            <div class="iconex iconex-settings-1 w-[23px] h-[23px] dark:text-primary-text-color-dark"></div>
+          </div>
+          <div>
+            <div class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium"><%= __('settings.active_sessions')%></div>
+          </div>
+        </div>
+        <div>
+          <a href="/settings/active-sessions"
+            class="cursor-pointer flex items-center text-messages dark:text-primary-text-color-dark hover:text-primary dark:hover:text-primary-dark gap-2 bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[100px] py-[6.5px] px-[18px]">
+            <span class="text-[13px] font-medium"><%= __('settings.show')%></span>
+            <div class="iconex iconex-right-1 w-4 h-4"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="border-b-[.5px] border-b-stroke dark:border-[#FFFFFF1A]">
+      <div class="text-[11px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium"><%= __('settings.lang')%></div>
+      <form class="flex items-center gap-3 py-3 text-[13px] text-messages dark:text-primary-text-color-dark font-normal" method="get" id="languageForm" onchange="submitForm('language')" data-url="/lang/:lang">
+        <label class="flex gap-2 items-center cursor-pointer" for="az">
+          <input id="az" type="radio" name="lang" value="az" class="hidden peer radio-input" <%= activeLang == 'az' ? 'checked' : '' %>/>
+          <div
+            class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+            <div class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full <%= activeLang == 'az' ? '' : 'hidden' %> inner-circle">
+            </div>
+          </div>
+          <%= __('settings.az')%>
+        </label>
+        <label class="flex gap-2 items-center cursor-pointer" for="en">
+          <input id="en" type="radio" name="lang" value="en" class="hidden peer radio-input" <%= activeLang == 'en' ? 'checked' : '' %>/>
+          <div
+            class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+            <div class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full <%= activeLang == 'en' ? '' : 'hidden' %> inner-circle">
+            </div>
+          </div>
+          <%= __('settings.en')%>
+        </label>
+
+
+        <label class="flex gap-2 items-center cursor-pointer" for="ru">
+          <input id="ru" type="radio" name="lang" value="ru" class="hidden peer radio-input" <%= activeLang == 'ru' ? 'checked' : '' %>/>
+          <div
+            class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+            <div class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full <%= activeLang == 'ru' ? '' : 'hidden' %> inner-circle">
+            </div>
+          </div>
+          <%= __('settings.ru')%>
+        </label>
+
+        <label class="flex gap-2 items-center cursor-pointer" for="tr">
+          <input id="tr" type="radio" name="lang" value="tr" class="hidden peer radio-input" <%= activeLang == 'tr' ? 'checked' : '' %>/>
+          <div
+            class="w-[18px] h-[18px] border border-surface-variant dark:border-surface-variant-dark peer-checked:border-hover-button dark:peer-checked:border-hover-button-dark flex items-center justify-center rounded-full">
+            <div class="w-[10px] h-[10px] bg-hover-button dark:bg-hover-button-dark rounded-full <%= activeLang == 'tr' ? '' : 'hidden' %> inner-circle">
+            </div>
+          </div>
+          <%= __('settings.tr')%>
+        </label>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/js/settings/settings.js"></script>
+<!-- <script src="/js/settings/settings-2.js"></script> -->
+<script src=" /js/flowbite.min.js"></script>

@@ -1,0 +1,347 @@
+{
+  "info": {
+    "_postman_id": "people-support-api-collection-id",
+    "name": "Messages",
+    "description": "API endpoints for people support functionality including messages and reasons",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{people_auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/v1/people",
+      "type": "string"
+    },
+    {
+      "key": "people_auth_token",
+      "value": "your-jwt-token-here",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get Ticket Messages",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success property\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('success');",
+              "    pm.expect(jsonData.success).to.be.true;",
+              "});",
+              "",
+              "pm.test(\"Response has data array\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{people_auth_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/messages/:ticket_id?page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["messages", ":ticket_id"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Page number for pagination"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "description": "Number of messages per page"
+            }
+          ],
+          "variable": [
+            {
+              "key": "ticket_id",
+              "value": "672a1b2c3d4e5f6789012345",
+              "description": "MongoDB ObjectId of the ticket"
+            }
+          ]
+        },
+        "description": "Get all messages for a specific ticket with pagination support"
+      },
+      "response": [
+        {
+          "name": "Successful Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/messages/672a1b2c3d4e5f6789012345?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["messages", "672a1b2c3d4e5f6789012345"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"672a1b2c3d4e5f6789012346\",\n            \"from\": \"672a1b2c3d4e5f6789012347\",\n            \"fromModel\": \"PeopleUser\",\n            \"to\": null,\n            \"toModel\": \"AdminUser\",\n            \"message\": \"Salam, bu mənim sualımdır\",\n            \"status\": \"read\",\n            \"ticket_id\": \"672a1b2c3d4e5f6789012345\",\n            \"createdAt\": \"2025-10-03T10:30:00.000Z\",\n            \"updatedAt\": \"2025-10-03T10:30:00.000Z\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Send Message",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has success property\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('success');",
+              "    pm.expect(jsonData.success).to.be.true;",
+              "});",
+              "",
+              "pm.test(\"Response has message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('message');",
+              "    pm.expect(jsonData.message).to.equal('Message sent successfully');",
+              "});",
+              "",
+              "pm.test(\"Response has data with ticket message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('_id');",
+              "    pm.expect(jsonData.data).to.have.property('message');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{people_auth_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"message\": \"Salam, mən bu ticket haqqında sual vermək istəyirəm. Zəhmət olmasa kömək edin.\",\n    \"ticket_id\": \"672a1b2c3d4e5f6789012345\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/messages/send",
+          "host": ["{{base_url}}"],
+          "path": ["messages", "send"]
+        },
+        "description": "Send a new message to a ticket"
+      },
+      "response": [
+        {
+          "name": "Successful Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"Salam, mən bu ticket haqqında sual vermək istəyirəm\",\n    \"ticket_id\": \"672a1b2c3d4e5f6789012345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/messages/send",
+              "host": ["{{base_url}}"],
+              "path": ["messages", "send"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Message sent successfully\",\n    \"data\": {\n        \"_id\": \"672a1b2c3d4e5f6789012348\",\n        \"from\": \"672a1b2c3d4e5f6789012347\",\n        \"fromModel\": \"PeopleUser\",\n        \"to\": null,\n        \"toModel\": \"AdminUser\",\n        \"message\": \"Salam, mən bu ticket haqqında sual vermək istəyirəm\",\n        \"status\": \"unread\",\n        \"ticket_id\": \"672a1b2c3d4e5f6789012345\",\n        \"createdAt\": \"2025-10-03T11:15:00.000Z\",\n        \"updatedAt\": \"2025-10-03T11:15:00.000Z\"\n    }\n}"
+        },
+        {
+          "name": "Validation Error - Missing Fields",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/messages/send",
+              "host": ["{{base_url}}"],
+              "path": ["messages", "send"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Message content and ticket_id are required\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Reasons",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success property\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('success');",
+              "    pm.expect(jsonData.success).to.be.true;",
+              "});",
+              "",
+              "pm.test(\"Response has data object with categories\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('data');",
+              "    pm.expect(jsonData.data).to.have.property('general');",
+              "    pm.expect(jsonData.data).to.have.property('account');",
+              "    pm.expect(jsonData.data).to.have.property('pay');",
+              "});",
+              "",
+              "pm.test(\"Each category contains arrays\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data.general).to.be.an('array');",
+              "    pm.expect(jsonData.data.account).to.be.an('array');",
+              "    pm.expect(jsonData.data.pay).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{people_auth_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/sorgu/reasons",
+          "host": ["{{base_url}}"],
+          "path": ["sorgu", "reasons"]
+        },
+        "description": "Get all available reasons grouped by category (general, account, pay) for creating support tickets"
+      },
+      "response": [
+        {
+          "name": "Successful Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sorgu/reasons",
+              "host": ["{{base_url}}"],
+              "path": ["sorgu", "reasons"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Reasons retrieved successfully\",\n    \"data\": {\n        \"general\": [\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012350\",\n                \"name\": \"Ümumi sual\",\n                \"text\": \"Ümumi məsələlər və suallar haqqında\"\n            },\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012351\",\n                \"name\": \"Şikayət\",\n                \"text\": \"Xidmət keyfiyyəti ilə bağlı şikayət\"\n            }\n        ],\n        \"account\": [\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012352\",\n                \"name\": \"Hesaba daxil ola bilmirəm\",\n                \"text\": \"Login və ya parol problemi\"\n            },\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012353\",\n                \"name\": \"Hesab bloklanıb\",\n                \"text\": \"Hesabım bloklanıb, açılmasını istəyirəm\"\n            }\n        ],\n        \"pay\": [\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012354\",\n                \"name\": \"Ödəniş edə bilmirəm\",\n                \"text\": \"Ödəniş zamanı xəta baş verir\"\n            },\n            {\n                \"_id\": \"672a1b2c3d4e5f6789012355\",\n                \"name\": \"Pul geri qaytarılması\",\n                \"text\": \"Səhv ödənişin geri qaytarılması\"\n            }\n        ]\n    }\n}"
+        },
+        {
+          "name": "No Reasons Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sorgu/reasons",
+              "host": ["{{base_url}}"],
+              "path": ["sorgu", "reasons"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"No reasons found\"\n}"
+        }
+      ]
+    }
+  ]
+}

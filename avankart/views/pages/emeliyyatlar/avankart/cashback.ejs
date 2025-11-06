@@ -1,0 +1,225 @@
+<div class="flex flex-col gap-3">
+    <div
+        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+        <div class="flex items-center gap-2">
+            <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+            <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Avankart</a>
+            <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Kəşbek</a>
+        </div>
+    </div>
+    <div>
+        <div class="flex gap-3 w-full text-message h-[65px]">
+            <div
+                class="border-[#BFC8CC] pl-[12px] pt-[8px] text-messages bg-sidebar-bg border-l-[3px] rounded-[12px] w-[100%]">
+                <p class="text-[11px] opacity-50 pb-[4px]">Davam edir</p>
+                <p class="text-[17px] font-semibold" id="totalOngoing">23.50 AZN</p>
+            </div>
+            <div
+                class="border-[#32B5AC] pl-[12px] pt-[8px] text-messages bg-sidebar-bg border-l-[3px] rounded-[12px] w-[100%]">
+                <p class="text-[11px] opacity-50 pb-[4px]">Tamamlanıb</p>
+                <p class="text-[17px] font-semibold" id="totalCompleted">1.300.90 AZN</p>
+            </div>
+            <div class="pl-[12px] pt-[8px] text-messages bg-sidebar-bg rounded-[12px] w-[100%]">
+                <p class="text-[11px] opacity-50 pb-[4px]">Toplam məbləğ</p>
+                <p class="text-[17px] font-semibold" id="totalAmount">1.324.40 AZN</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+        <div
+            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+            <div class="text-[15px] text-messages font-medium" id="cashbackCount">
+                Kəşbek ()
+            </div>
+            <div class="flex items-center gap-2">
+                <div
+                    class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                    <input id="customSearch" type="text" placeholder="Search..."
+                        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                    <div class="absolute right-3">
+                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                    </div>
+                </div>
+
+                <div id="refreshButton"
+                    class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                    <a href="#" class="font-medium text-[13px]">Səhifəni yenilə</a>
+                    <a href="#"
+                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+                </div>
+                <div onclick="openFilterModal()"
+                    class="w-[103px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                    <a href="#"
+                        class="icon stratis-filter text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+                    <a href="#" class="">Filterlə</a>
+                </div>
+            </div>
+        </div>
+
+        <table id="myTable" class="table-fixed w-full border-collapse">
+            <thead class="border-none pb-0.5">
+                <tr class="bg-container-2 border-none text-[12px] text-secondary-text font-normal">
+                    <th class="filtering rounded-l-lg">
+                        İnvoys nömrəsi
+                    </th>
+                    <th class="filtering text-left">
+                        İstifadəçi sayı
+                    </th>
+                    <th class="filtering text-left">
+                        Tranzaksiya sayı
+                    </th>
+                    <th class="filtering text-left">
+                        Məbləğ (AZN)
+                    </th>
+                    <th class="filtering text-left">
+                        Hesablaşma tarixi
+                    </th>
+                    <th class="filtering rounded-r-lg">
+                        Status
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="pt-2">
+        <div class="bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] px-6 flex flex-col gap-3">
+            <div class="py-5 flex items-center justify-between">
+                <div class="text-[13px] flex items-center gap-2">
+                    <span class="font-normal opacity-65">Səhifə sayı:</span>
+                    <span id="pageCount" class="font-medium">1 / 49</span>
+                </div>
+                <div class="flex items-center gap-5">
+                    <div>
+                        <div id="customPagination" class="flex items-center"></div>
+                    </div>
+                    <div>
+                        <input class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+        focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+        active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+        transition-all ease-out duration-300" type="text" placeholder="Səhifə" />
+                        <a href="#"
+                            class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="filterPop" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+    <div
+        class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+        <form onsubmit="return false;" data-url="/hesablashmalar/datatable" id="filterForm">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!-- Başlıq -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-[15px] font-medium">Filter</div>
+                <div onclick="openFilterModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+            </div>
+
+            <!-- Dropdown-lar -->
+            <div class="flex flex-col gap-4 mb-4">
+                <div class="flex gap-2">
+                    <!-- İl Dropdown -->
+                    <div class="relative w-1/2">
+                        <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">İl</span>
+                        <button id="dropdownDefaultButton_years" type="button"
+                            class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                            onclick="toggleDropdown_years()">Seçim edin
+                            <img src="/public/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                class="w-[15px] h-[13px] dark:invert">
+                        </button>
+                        <div id="dropdown_years"
+                            class="hidden absolute left-0 w-full mt-2 max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+                            <!-- Checkbox-lar -->
+                        </div>
+                    </div>
+
+                    <!-- Ay Dropdown -->
+                    <div class="relative w-1/2">
+                        <span class="text-[12px] text-tertiary-text dark:text-tertiary-text-color-dark font-medium">Ay</span>
+                        <button id="dropdownDefaultButton_months" type="button"
+                            class="cursor-pointer font-normal font-poppins rounded-2xl text-[12px] px-5 py-2.5 flex items-center justify-between border border-[#0000001A] w-full h-[34px] hover:bg-container-2 dark:bg-[#161E22] dark:text-white dark:border-[#FFFFFF1A] dark:hover:bg-[#1F282C]"
+                            onclick="toggleDropdown_months()">Seçim edin
+                            <img src="/public/images/Avankart/Sirket/chevron-down.svg" alt=""
+                                class="w-[15px] h-[13px] dark:invert">
+                        </button>
+                        <div id="dropdown_months"
+                            class="hidden absolute left-0 w-full mt-2 max-h-[200px] overflow-y-auto overflow-x-hidden custom-scroll bg-white border-[.5px] border-stroke rounded-lg shadow z-50 dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+                            <!-- Checkbox-lar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status -->
+             <div>
+                        <span class="text-[12px] font-medium opacity-65">Status</span>
+                        <div class="mt-[6px]">
+                            <div class="flex items-center flex-wrap gap-4">
+                                <label for="cbx-continue"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-continue" class="peer hidden" name="card_status"
+                                        value="continue">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Davam edir</div>
+                                </label>
+                                <label for="cbx-completed"
+                                    class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+                                    <input type="checkbox" id="cbx-completed" class="peer hidden" name="card_status"
+                                        value="completed">
+                                    <div
+                                        class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary 
+                                                            peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition">
+                                        <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center">
+                                        </div>
+                                    </div>
+                                    <div>Tamamlanıb</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+            <!-- Məbləğ Slider -->
+            <div class="mb-4">
+                <span class="text-[12px] font-medium opacity-65">Məbləğ aralığı</span>
+                <div class="value-container mt-2 flex justify-between">
+                    <span id="min-value" class="value-label text-[13px] font-medium"></span>
+                    <span id="max-value" class="value-label text-[13px] font-medium"></span>
+                </div>
+                <div id="slider-range" class="mt-2"></div>
+                <div class="flex items-center justify-between text-[11px] opacity-50 font-medium mt-2">
+                    <span>Min</span>
+                    <span>Max</span>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex items-center justify-end gap-3">
+                <button type="button"
+                    class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                    onclick="openFilterModal()">Bağla</button>
+                <button type="reset" onclick="clearFilters()"
+                    class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages">Filterləri təmizlə</button>
+                <button type="button" onclick="applyFilters()"
+                    class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button">Filterlə</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <% scripts = `<script src="/js/datatables/datatables.min.js"></script><script src="/js/Avankart/kesbek/kesbekTable.js"></script>`; %>

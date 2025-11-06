@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "img": "/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "MM-XXXXXXXX",
+      "transactionCount": 22,
+      "amount": 450
+    },
+    {
+      "img": "/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "MM-XXXXXXXX",
+      "transactionCount": 22,
+      "amount": 450
+    },
+    {
+      "img": "/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "MM-XXXXXXXX",
+      "transactionCount": 22,
+      "amount": 450
+    },
+    {
+      "img": "/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "MM-XXXXXXXX",
+      "transactionCount": 22,
+      "amount": 450
+    },
+    {
+      "img": "/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "MM-XXXXXXXX",
+      "transactionCount": 22,
+      "amount": 200
+    }
+  ],
+  "recordsTotal": 5,
+  "recordsFiltered": 5
+}

@@ -1,0 +1,670 @@
+<form id="BasMuhasibler" onsubmit="return false;"
+  class="BasMuhasibler w-[995px] hidden z-101 bg-body-bg text-messages border-[3px] border-[#0000001A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-2xl fixed left-[50%] top-[50%] transform -translate-1/2 dark:bg-[#161E22] dark:border-[#FFFFFF1A]">
+  <div class="flex items-center justify-between px-3 py-[18px] border-b-[0.5px] border-[#0000001A]">
+    <div class="text-[15px] font-medium dark:text-white new-permission-name">Baş mühasiblər</div>
+    <img src="/images/Sorgular Pages Images/Close.svg" alt="Close"
+      class="cursor-pointer block dark:hidden cursor-pointer" onclick="clickBasMuhasiblerPop()" />
+    <img src="/images/avankart-partner-pages-images/Close-dark.svg" alt="Close"
+      class="cursor-pointer hidden dark:block cursor-pointer" onclick="clickBasMuhasiblerPop()" />
+  </div>
+  <div class="flex">
+    <div class="px-3 flex items-center w-[242px] border-r-[0.5px] border-[#0000001A]  users-list">
+      <div class="flex items-center justify-center my-[230px] m-auto  ">
+
+        <div class="flex items-center justify-center flex-col">
+          <img src="/images/muessise melumatlari images/Group.svg" alt="IstifadeciElaveEt" />
+          <button onclick="CreatePermopenUsersPopup()"
+            class="flex items-center justify-center duration-150 gap-2.5 mt-[32px] cursor-pointer rounded-full w-[176px] h-[34px] hover:bg-[#F6D9FF] dark:hover:bg-[#5B396D4D] dark:text-white">
+            <div class="icon stratis-plus-02"></div>
+            <div class="text-[13px] font-medium text-messages dark:text-white">
+              İstifadəçi əlavə et
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mx-3 w-full">
+      <div class="py-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="hidden" name="name" id="hiddenPermissionNameInput" />
+
+        <div id="rbacPermissionFormErrors"
+          class="hidden text-red-500 text-sm mb-3 p-2 bg-red-50 border border-red-200 rounded"></div>
+
+        <!-- Dashboard -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckbox1" class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckbox1" name="dashboard_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium dark:text-white opacity-65">
+              Dashboard
+            </div>
+          </label>
+
+          <select name="permissions[dashboard]" id="dashboardSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('dashboard')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="dashboardText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="dashboardDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-50 min-w-[120px]">
+              <div class="py-1">
+                <div
+                  class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('dashboard', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('dashboard', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('dashboard', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Əməliyyatlar -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckboxEmeliyyatlar"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckboxEmeliyyatlar" name="emeliyyatlar_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              Əməliyyatlar
+            </div>
+          </label>
+
+          <select name="permissions[emeliyyatlar]" id="emeliyyatlarSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('emeliyyatlar')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="emeliyyatlarText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="emeliyyatlarDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('emeliyyatlar', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('emeliyyatlar', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('emeliyyatlar', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hesablaşma -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckbox2" class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckbox2" name="hesablasma_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              Hesablaşma
+            </div>
+          </label>
+
+          <select name="permissions[hesablasma]" id="hesablasmaSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('hesablasma')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="hesablasmaText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="hesablasmaDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('hesablasma', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('hesablasma', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('hesablasma', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- İşçilərin balansı -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckboxIscilerinBalansi"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckboxIscilerinBalansi" name="iscilerin_balansi_checkbox"
+              class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              İşçilərin balansı
+            </div>
+          </label>
+
+          <select name="permissions[iscilerin_balansi]" id="iscilerinBalansiSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('iscilerinBalansi')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="iscilerinBalansiText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="iscilerinBalansiDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('iscilerinBalansi', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('iscilerinBalansi', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('iscilerinBalansi', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-qaimə -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckboxEQaime"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckboxEQaime" name="e_qaime_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              E-qaimə
+            </div>
+          </label>
+
+          <select name="permissions[e_qaime]" id="eQaimeSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('eQaime')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="eQaimeText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="eQaimeDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('eQaime', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('eQaime', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('eQaime', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- İşçilər -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckboxIsciler"
+            class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckboxIsciler" name="isciler_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              İşçilər
+            </div>
+          </label>
+
+          <select name="permissions[isciler]" id="iscilerSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('isciler')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="iscilerText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="iscilerDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('isciler', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('isciler', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('isciler', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avankart Partner -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckbox3" class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckbox3" name="avankart_partner_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              Avankart Partner
+            </div>
+          </label>
+
+          <select name="permissions[avankart_partner]" id="avankartPartnerSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+
+          <div class="relative">
+            <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+              onclick="toggleRBACPermissionDropdown('avankartPartner')">
+              <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="avankartPartnerText">
+                İcazə
+              </div>
+              <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+            </div>
+
+            <div id="avankartPartnerDropdown"
+              class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+              <div class="py-1">
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('avankartPartner', 'none', 'İcazə')">
+                  İcazə yox
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('avankartPartner', 'read', 'Oxu')">
+                  Oxu
+                </div>
+                <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                  onclick="selectRBACPermission('avankartPartner', 'full', 'Yaz')">
+                  Yaz
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Şirkət məlumatları -->
+        <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+          <label for="newCheckbox4" class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+            <input type="checkbox" id="newCheckbox4" name="sirket_melumatlari_checkbox" class="peer hidden" />
+            <div
+              class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+              <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+            </div>
+            <div class="text-[13px] font-medium opacity-65 dark:text-white">
+              Şirkət məlumatları
+            </div>
+          </label>
+
+          <select name="permissions[sirket_melumatlari]" id="sirketMelumatlariSelect" class="hidden">
+            <option value="none" selected>İcazə yox</option>
+            <option value="read">Oxu</option>
+            <option value="full">Yaz</option>
+          </select>
+          <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2 ml-2"
+            onclick="muessiseMelumatlariElave()">
+            <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down" class="dark:invert" />
+          </div>
+        </div>
+
+        <div id="muessiseMelumatlari" class="mt-5 h-0 overflow-hidden duration-600">
+          <!-- Profil -->
+          <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+            <label for="newCheckbox5"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+              <input type="checkbox" id="newCheckbox5" name="profil_checkbox" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Profil
+              </div>
+            </label>
+            <div class="relative">
+              <select name="permissions[profil]" id="profilSelect" class="hidden">
+                <option value="none" selected>İcazə yox</option>
+                <option value="read">Oxu</option>
+                <option value="full">Yaz</option>
+              </select>
+
+              <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+                onclick="toggleRBACPermissionDropdown('profil')">
+                <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="profilText">
+                  İcazə
+                </div>
+                <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down"
+                  class="dark:invert" />
+              </div>
+
+              <div id="profilDropdown"
+                class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+                <div class="py-1">
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('profil', 'none', 'İcazə')">
+                    İcazə yox
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('profil', 'read', 'Oxu')">
+                    Oxu
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('profil', 'full', 'Yaz')">
+                    Yaz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- İstifadəçilər -->
+          <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+            <label for="newCheckbox6"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+              <input type="checkbox" id="newCheckbox6" name="istifadeciler_checkbox" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                İstifadəçilər
+              </div>
+            </label>
+            <div class="relative">
+              <select name="permissions[istifadeciler]" id="istifadecilarSelect" class="hidden">
+                <option value="none" selected>İcazə yox</option>
+                <option value="read">Oxu</option>
+                <option value="full">Yaz</option>
+              </select>
+
+              <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+                onclick="toggleRBACPermissionDropdown('istifadeciler')">
+                <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="istifadecilarText">
+                  İcazə
+                </div>
+                <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down"
+                  class="dark:invert" />
+              </div>
+
+              <div id="istifadecilarDropdown"
+                class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+                <div class="py-1">
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('istifadeciler', 'none', 'İcazə')">
+                    İcazə yox
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('istifadeciler', 'read', 'Oxu')">
+                    Oxu
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('istifadeciler', 'full', 'Yaz')">
+                    Yaz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Səlahiyyət qrupları -->
+          <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+            <label for="newCheckbox7"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+              <input type="checkbox" id="newCheckbox7" name="salahiyyet_qruplari_checkbox" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Səlahiyyət qrupları
+              </div>
+            </label>
+            <div class="relative">
+              <select name="permissions[salahiyyet_qruplari]" id="salahiyyetQruplariSelect" class="hidden">
+                <option value="none" selected>İcazə yox</option>
+                <option value="read">Oxu</option>
+                <option value="full">Yaz</option>
+              </select>
+
+              <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+                onclick="toggleRBACPermissionDropdown('salahiyyetQruplari')">
+                <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="salahiyyetQruplariText">
+                  İcazə
+                </div>
+                <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down"
+                  class="dark:invert" />
+              </div>
+
+              <div id="salahiyyetQruplariDropdown"
+                class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+                <div class="py-1">
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('salahiyyetQruplari', 'none', 'İcazə')">
+                    İcazə yox
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('salahiyyetQruplari', 'read', 'Oxu')">
+                    Oxu
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('salahiyyetQruplari', 'full', 'Yaz')">
+                    Yaz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rekvizitlər -->
+          <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+            <label for="newCheckbox8"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+              <input type="checkbox" id="newCheckbox8" name="rekvizitler_checkbox" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Rekvizitlər
+              </div>
+            </label>
+            <div class="relative">
+              <select name="permissions[rekvizitler]" id="rekvizitlerSelect" class="hidden">
+                <option value="none" selected>İcazə yox</option>
+                <option value="read">Oxu</option>
+                <option value="full">Yaz</option>
+              </select>
+
+              <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+                onclick="toggleRBACPermissionDropdown('rekvizitler')">
+                <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="rekvizitlerText">
+                  İcazə
+                </div>
+                <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down"
+                  class="dark:invert" />
+              </div>
+
+              <div id="rekvizitlerDropdown"
+                class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+                <div class="py-1">
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('rekvizitler', 'none', 'İcazə')">
+                    İcazə yox
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('rekvizitler', 'read', 'Oxu')">
+                    Oxu
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('rekvizitler', 'full', 'Yaz')">
+                    Yaz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Müqavilələr -->
+          <div class="flex items-center !justify-between w-full py-[14.5px] border-b-[0.5px] border-[#0000001A]">
+            <label for="newCheckbox9"
+              class="flex items-center gap-2 cursor-pointer select-none text-[13px] font-normal">
+              <input type="checkbox" id="newCheckbox9" name="muqavileler_checkbox" class="peer hidden" />
+              <div
+                class="bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]">
+                <div class="icon stratis-check-01 scale-60 h-[18px] w-[18px] text-center"></div>
+              </div>
+              <div class="text-[13px] font-medium opacity-65 dark:text-white">
+                Müqavilələr
+              </div>
+            </label>
+            <div class="relative">
+              <select name="permissions[muqavileler]" id="muqavilelerSelect" class="hidden">
+                <option value="none" selected>İcazə yox</option>
+                <option value="read">Oxu</option>
+                <option value="full">Yaz</option>
+              </select>
+
+              <div class="text-messages opacity-50 cursor-pointer flex items-center gap-2"
+                onclick="toggleRBACPermissionDropdown('muqavileler')">
+                <div class="text-[12px] font-medium dark:text-[#FFFFFF80]" id="muqavilelerText">
+                  İcazə
+                </div>
+                <img src="/images/muessise melumatlari images/chevron-down.svg" alt="chevron-down"
+                  class="dark:invert" />
+              </div>
+
+              <div id="muqavilelerDropdown"
+                class="hidden absolute top-full right-0 bg-white dark:bg-[#161E22] border border-surface-variant dark:border-surface-variant-dark rounded-md shadow-lg z-10 min-w-[120px]">
+                <div class="py-1">
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('muqavileler', 'none', 'İcazə')">
+                    İcazə yox
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('muqavileler', 'read', 'Oxu')">
+                    Oxu
+                  </div>
+                  <div class="px-3 py-2 text-[12px] text-black dark:text-white hover:bg-surface dark:hover:bg-surface-bright-dark cursor-pointer"
+                    onclick="selectRBACPermission('muqavileler', 'full', 'Yaz')">
+                    Yaz
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- İstifadəçi seçimi üçün gizli div -->
+  <div id="userHiddenInputsForPermission" class="hidden">
+    <!-- Buraya seçilmiş user-lərin hidden input-ları əlavə olunacaq -->
+  </div>
+
+  <div class="mt-0.5 py-5 px-6 flex items-center justify-end border-t-[0.5px] border-[#0000001A]">
+    <div class="flex items-center justify-end gap-3">
+      <button type="button"
+        class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+        onclick="clickBasMuhasiblerPop()">
+        Ləğv et
+      </button>
+      <button type="button" id="BasMuhasiblerButton"
+        class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+        onclick="createNewPermission('BasMuhasibler')">
+        Yadda saxla
+      </button>
+    </div>
+  </div>
+</form>

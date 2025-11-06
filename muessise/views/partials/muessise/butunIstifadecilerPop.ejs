@@ -1,0 +1,92 @@
+<div
+  id="ButunIstifadecilerPopup"
+  class="w-[995px] hidden z-101 bg-body-bg text-messages border-[3px] border-[#0000001A] !shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)] rounded-2xl fixed left-[50%] top-[50%] transform -translate-1/2 dark:bg-[#161E22] dark:border-[#FFFFFF1A]"
+>
+  <div
+    class="flex items-center justify-between px-6 py-[18px] border-b-[0.5px] border-[#0000001A]"
+  >
+    <div class="text-[15px] font-medium dark:text-white">
+      Bütün istifadəçilər
+    </div>
+    <img
+      onclick="closeAddPermUsersPopup()"
+      src="/images/Sorgular Pages Images/Close.svg"
+      alt="Close"
+      class="cursor-pointer block dark:hidden"
+    />
+    <img
+      onclick="closeAddPermUsersPopup()"
+      src="/images/avankart-partner-pages-images/Close-dark.svg"
+      alt="Close"
+      class="cursor-pointe hidden dark:block"
+    />
+  </div>
+  <div class="px-6">
+    <div class="my-4">
+      <div class="relative w-full">
+        <input
+          type="email"
+          id="customSearch"
+          placeholder="Ad, soyad, email, vəzifə"
+          class="cursor-pointer w-full h-[34px] font-poppins font-normal text-[12px] leading-[160%] border-[1px] border-surface-variant rounded-full pl-[12px] placeholder-on-surface-variant-dark hover:bg-input-hover focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 dark:bg-table-hover-dark dark:border-on-surface-variant"
+          autocomplete="off"
+        />
+        <span
+          id="hideeye"
+          class="icon stratis-search-02 !absolute dark:!text-white dark:opacity-100 top-[8px] cursor-pointer text-messages opacity-[30%] right-[12px] !w-[15px] !h-[15px]"
+        ></span>
+      </div>
+    </div>
+    <div>
+      <div class="w-full rounded-[8px] mt-3 flex flex-col gap-3 relative">
+        <table id="AllUsersPop">
+          <thead class="border-none pb-0.5">
+            <tr
+              class="border-none text-xs text-tertiary-text font-base !h-[40px] dark:bg-table-hover-dark dark:text-white"
+            >
+              <th
+                class="w-[58px] border-r-[.5px] border-r-stroke px-4 py-2 rounded-l-lg"
+              >
+                <input type="checkbox" id="newCheckbox" class="peer hidden" />
+                <label
+                  for="newCheckbox"
+                  class="cursor-pointer bg-menu border border-surface-variant rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition dark:border-surface-variant-dark dark:text-side-bar-item-dark dark:peer-checked:bg-primary-dark dark:peer-checked:text-on-primary-dark dark:peer-checked:border-primary-dark dark:bg-[#161E22]"
+                >
+                  <div
+                    class="icon stratis-check-01 scale-60 hidden peer-checked:block"
+                  ></div>
+                </label>
+              </th>
+              <th class="px-4 filtering">Ad və soyad</th>
+              <th class="px-4 py-2 filtering">Cinsi</th>
+              <th class="px-4 py-2 filtering">Vəzifəsi</th>
+              <th class="px-4 py-2 filtering">Telefon nömrəsi</th>
+              <th class="px-4 py-2 filtering">Qrup</th>
+            </tr>
+          </thead>
+          <tbody class="font-base text-xs">
+            <!-- Table rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div
+    class="mt-[30px] px-6 py-5 flex items-center justify-end gap-3 border-t-[0.5px] border-[#0000001A]"
+  >
+    <button
+      type="reset"
+      class="bg-surface rounded-[50px] text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages dark:bg-surface-bright-dark dark:text-on-surface-variant-dark"
+    >
+      Filterləri təmizlə
+    </button>
+    <button
+      onclick="sendSelectedUsersToBackend()"
+      type="button"
+      class="bg-primary flex items-center gap-2 rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+    >
+      <div class="icon stratis-plus-02"></div>
+      <div class="text-[13px] font-medium">Qrupa əlavə et</div>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+{
+  "data": [
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 104,
+      "amount": "50",
+      "commission": "2.70",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/muessise/maltaLogo.svg",
+      "companyName": "Malta",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 73,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 104,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Report edildi"
+    },
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 22,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/muessise/maltaLogo.svg",
+      "companyName": "Malta",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 73,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 104,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 22,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/images/Avankart/muessise/maltaLogo.svg",
+      "companyName": "Malta",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 73,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/images/Avankart/muessise/gooryLogo.svg",
+      "companyName": "Goory Restorant",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "MINV-XXXXXXXXXX",
+      "transactionNumber": 22,
+      "amount": "102.78",
+      "commission": "2.50",
+      "finalAmount": "100.28",
+      "date": "01.12.2023 - 16.12.2023",
+      "status": "Tamamlandı"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

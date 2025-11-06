@@ -1,0 +1,222 @@
+<div class="flex flex-col gap-3">
+                    <div
+                        class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="cursor-pointer hover:text-primary text-[13px] font-medium">Admin
+                                Panel</a>
+                            <div class="icon stratis-slash-01-forward"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="#" class="text-tertiary-text dark:text-tertiary-text-color-dark">Mobil tətbiq
+                                linkləri</a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <div
+                            class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+                            <div id="category-count" class="text-[15px] text-messages font-medium">
+                                Mobil tətbiq linkləri (2)
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                                    focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    focus-within:ring-0 focus-within:outline-none
+                                    active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                                    transition-all ease-out duration-300
+                                    hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                                    <input id="customSearch" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                                    text-[13px] text-messages dark:text-primary-text-color-dark
+                                    placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                                    <div class="absolute right-3">
+                                        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="w-[155px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                                    <span class="font-medium text-[13px]">Səhifəni yenilə</span>
+                                    <span
+                                        class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="myTable" class="table-fixed w-full border-collapse">
+                            <thead class="border-none pb-1">
+                                <tr
+                                    class="bg-container-2 dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                                    <th class="filtering rounded-l-lg">
+                                        Sosial media
+                                    </th>
+                                    <th class="filtering">
+                                        Link
+                                    </th>
+                                    <th class="filtering">
+                                        Status
+                                    </th>
+                                    <th class="w-10 rounded-r-lg"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="deaktivModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex flex-col gap-3 p-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-error-hover rounded-[50%]">
+                    <div class="icon stratis-minus-circle-contained w-5 h-5 text-error dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white">
+                    Deaktiv et
+                </h2>
+                <div
+                    class="flex flex-wrap gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] pr-10">Seçilən hesabı deaktiv etmək
+                        istədiyinizə əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="toggleDeAktivModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+                        Xeyr
+                    </button>
+                    <button
+                            onclick="confirmDeactivate()"
+                        class="text-[12px] text-on-primary font-medium bg-error rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aktivModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div
+            class="bg-body-bg w-[306px] border-[#0000001A] border-[0.5px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-[12px]">
+            <div class="flex flex-col gap-3 p-3">
+                <div
+                    class="flex items-center dark:bg-[#2E3135] justify-center w-[40px] h-[40px] cursor-pointer bg-inverse-on-surface rounded-[50%]">
+                    <div class="icon stratis-file-check-01 w-5 h-5 text-messages dark:text-[#FFFFFF]"></div>
+                </div>
+
+                <h2 class="text-messages font-medium text-[15px] dark:text-white">
+                    Aktiv et
+                </h2>
+                <div
+                    class="flex flex-wrap gap-[3px] font-normal text-[13px] leading-[160%] font-poppins text-messages opacity-100">
+                    <span class="font-medium opacity-65 dark:text-[#FFFFFFA6] pr-10">Seçilən hesabı aktivləşdirmək
+                        istədiyinizə əminsiniz?</span>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="toggleAktivModal()"
+                        class="text-[12px] text-on-surface-variant font-medium bg-surface-bright rounded-[50px] !w-[51px] !h-[25px] cursor-pointer">
+                        Xeyr
+                    </button>
+                    <button
+                            onclick="confirmActivate()"
+                        class="text-[12px] text-on-primary font-medium bg-success rounded-[50px] !w-[64px] !h-[25px] cursor-pointer">
+                        Bəli, sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+        <div class="w-[605px] rounded-xl shadow-lg bg-white p-6 mx-auto">
+            <div class="flex justify-center mb-4">
+                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center modal-icon">
+                    <img src="/images/Avankart/avankartAdminPanel-images/gg_facebook.svg" class="w-5 h-5" />
+                </div>
+            </div>
+            <h2 class="text-center text-[17px] font-semibold text-[#1D222B] mb-1 modal-name">
+                Telefon nömrəsi
+            </h2>
+            <p class="text-center text-[13px] font-normal text-secondary-text mb-6">
+                Tətbiqin yükləmə linkini aşağıdan dəyişə bilərsiniz
+            </p>
+
+            <div class="text-center">
+                <input type="text" placeholder="Tətbiqin yükləmə linkini aşağıdan dəyişə bilərsiniz"
+                    class="w-[326px] text-center rounded-lg px-4 mb-8 text-[24px] text-[#1D222B] focus:outline-none border-none ring-0 placeholder-[#BFC8CC] placeholder:text-[24px] modal-link-input" />
+            </div>
+
+            <div
+                    onclick="saveEdit()"
+                class="w-full cursor-pointer bg-primary text-on-primary border-none rounded-full flex items-center justify-center gap-2 text-[13px] hover:bg-focus dark:hover:bg-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                <span>Dəyişikliyi təsdiqlə</span>
+            </div>
+            <div onclick="toggleEditModal()"
+                class="w-full mt-2 cursor-pointer bg-surface-bright text-on-surface-variant border-none rounded-full flex items-center justify-center gap-2 text-[13px] font-medium py-[6.5px] px-[18px]">
+                <span>Ləğv et</span>
+            </div>
+        </div>
+    </div>
+
+    <% scripts = `
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datatables/datatables.min.js"></script>
+    <script src="/js/Avankart/avankart.az/avankartMobilTetbiq/avankartMobilTetbiqTable.js"></script>
+  `; %> 
+  <% styles = `
+<style>
+        #myTable tbody::before {
+            content: "";
+            display: table-row;
+            height: 8px;
+            /* boşluq hündürlüyü */
+        }
+
+        .dt-column-order {
+            display: none !important;
+        }
+
+        table,
+        thead,
+        table.dataTable>thead>tr>th,
+        table.dataTable>thead>tr>td,
+        table.dataTable>tbody>tr:last-child>*,
+        div.dt-container.dt-empty-footer tbody>tr:last-child>* {
+            border: none;
+            font-weight: 400;
+        }
+
+        /* Yalnız sidebar scroll üçün */
+        #sidebar .overflow-y-auto::-webkit-scrollbar {
+            width: 0px;
+            /* Scroll barı tam gizlə */
+        }
+
+        #sidebar .overflow-y-auto {
+            scrollbar-width: none;
+            /* Firefox üçün */
+            -ms-overflow-style: none;
+            /* IE 10+ üçün */
+        }
+
+        /* Bu hissəni öz CSS faylında əlavə et */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    </style>
+  `; %>

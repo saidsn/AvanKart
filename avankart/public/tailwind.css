@@ -1,0 +1,106 @@
+/* @import 'tailwindcss';
+
+@plugin 'flowbite/plugin';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #745086;
+  --color-hover-button: #88649A;
+  --color-container-2: #FAFAFA;
+  --color-messages: #1D222B;
+  --color-focus: #9C78AE;
+  --color-sidebar-bg: #FAFAFA;
+  --color-body-bg: #FFFFFF;
+  --color-logo-1: #401955;
+  --color-on-primary: #FFFFFF;
+  --color-input-hover: #FAFAFA;
+  --color-switch: #E0E0E0;
+  --color-switch-2: #FFFFFF;
+  --color-stroke: rgba(0, 0, 0, 0.1);
+  --color-image: #FAFAFA;
+  --color-selected: #F4F4F4;
+  --color-item-hover: #F6F6F6;
+  --color-table-hover: #F5F5F5;
+  --color-container: #FAFAFA;
+  --color-sidebar-item: #FFFFFF;
+  --color-text-disabled: rgba(255, 255, 255, 0.5);
+  --color-button-disabled: rgba(116, 80, 134, 0.3);
+  --color-success: #5BBE2D;
+  --color-success-bg: rgba(91, 190, 45, 0.1);
+  --color-error: #DD3838;
+  --color-error-hover: rgba(221, 56, 56, 0.1);
+  --color-secondary-text: rgba(29, 34, 43, 0.65);
+  --color-tertiary-text: rgba(29, 34, 43, 0.5);
+  --color-menu: #FFFFFF;
+  --color-on-surface: #191C20;
+  --color-on-surface-variant: #40484C;
+  --color-outline: #70787C;
+  --color-inverse-surface: #2E3135;
+  --color-inverse-on-surface: #EFF0F7;
+  --color-surface: #F8F9FF;
+  --color-surface-bright: #F8F9FF;
+  --color-surface-variant: #DBE4E8;
+  --color-surface-dim: #D8DAE0;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container-low: #F2F3FA;
+  --color-surface-container: #ECEEF4;
+  --color-surface-container-high: #E6E8EE;
+  --color-surface-container-highest: #E1E2E8;
+  --color-primary-dark: #745086;
+
+  --color-hover-button-dark: #88649A;
+  --color-messages-dark: #1D222B;
+  --color-focus-color-dark: #9C78AE;
+  --color-side-bar-bg-dark: #0C1418;
+  --color-body-bg-dark: #070F13;
+  --color-logo-color-1-dark: #FFFFFF;
+  --color-on-primary-dark: #FFFFFF;
+  --color-input-hover-dark: #242C30;
+  --color-switch-dark: #343C40;
+  --color-switch-2-dark: #FFFFFF;
+  --color-stroke-color-dark: rgba(0, 0, 0, 0.1);
+  --color-image-dark: #242C30;
+  --color-selected-color-dark: #242C30;
+  --color-item-hover-dark: #242C30;
+  --color-table-hover-dark: #161E22;
+  --color-container-2-dark: #161E22;
+  --color-side-bar-item-dark: #161E22;
+  --color-container-color-dark: #101E26;
+  --color-button-disabled-color-dark: rgba(116, 80, 134, 0.3);
+  --color-success-color-dark: #5BBE2D;
+  --color-success-messages-bg-dark: rgba(91, 190, 45, 0.2);
+  --color-text-disabled-color-dark: rgba(255, 255, 255, 0.5);
+  --color-primary-text-color-dark: #FFFFFF;
+  --color-secondary-text-color-dark: rgba(255, 255, 255, 0.65);
+  --color-tertiary-text-color-dark: rgba(255, 255, 255, 0.5);
+  --color-menu-dark: #161E22;
+  --color-error-dark: #E03B3B;
+  --color-error-hover-dark: rgba(240, 98, 98, 0.1);
+  --color-surface-dark: #111418;
+  --color-on-surface-dark: #E1E2EB;
+  --color-surface-variant-dark: #40484C;
+  --color-on-surface-variant-dark: #BFC8CC;
+  --color-outline-dark: #8A9296;
+  --color-inverse-surface-dark: #E1E2E8;
+  --color-inverse-on-surface-dark: #2E3135;
+  --color-surface-dim-dark: #111418;
+  --color-surface-bright-dark: #36393E;
+  --color-surface-container-lowest-dark: #0B0E13;
+  --color-surface-container-low-dark: #191C20;
+  --color-surface-container-dark: #1D2024;
+  --color-surface-container-high-dark: #272A2F;
+  --color-surface-container-highest-dark: #32353A;
+  
+  --font-poppins: Poppins, sans-serif;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+} */

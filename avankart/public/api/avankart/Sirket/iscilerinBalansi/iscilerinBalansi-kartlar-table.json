@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "kateqoriya": "Yemek",
+      "iscisayi": "24",
+      "amount": 125.50,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Hədiyyə",
+      "iscisayi": "12",
+      "amount": 500.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Yanacaq",
+      "iscisayi": "36",
+      "amount": 350.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Market",
+      "iscisayi": "40",
+      "amount": 220.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Biznes",
+      "iscisayi": "10",
+      "amount": 800.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Premium",
+      "iscisayi": "150",
+      "amount": 600.00,
+      "date": "01.12.2023 08:20"
+    },
+    {
+      "kateqoriya": "Avto Yuma",
+      "iscisayi": "56",
+      "amount": 3650.00,
+      "date": "01.12.2023 08:20"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

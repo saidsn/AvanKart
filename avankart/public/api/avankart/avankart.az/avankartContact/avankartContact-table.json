@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "name": "Telefon nömrəsi",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/Calling.svg",
+      "link": "050 770 35 22",
+      "status": "Aktiv"
+    },
+    {
+      "name": "E-poçt adresi",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/Case.svg",
+      "link": "info@avankart.tech",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Whatsapp",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/ri_whatsapp-fill.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Telegram",
+      "icon": "/public/images/Avankart/avankartAdminPanel-images/mingcute_telegram-fill.svg",
+      "link": "www.facebook.com/ramin.orucov.10",
+      "status": "Deaktiv"
+    }
+  ],
+  "recordsTotal": 4,
+  "recordsFiltered": 4
+}

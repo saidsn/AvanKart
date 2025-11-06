@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a01')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78701')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78703')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78901')",
+    "amount": -850.00,
+    "transaction_type": "payment",
+    "transaction_date": "2024-01-05T14:30:00.000Z",
+    "description": "Logistik xidmətləri",
+    "status": "completed",
+    "created_at": "2024-01-05T14:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a02')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78701')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78704')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78901')",
+    "amount": -1200.50,
+    "transaction_type": "payment",
+    "transaction_date": "2024-01-08T10:15:00.000Z",
+    "description": "IT xidmətləri",
+    "status": "completed",
+    "created_at": "2024-01-08T10:15:00.000Z"
+  },
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a03')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78701')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78703')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78901')",
+    "amount": -675.25,
+    "transaction_type": "payment",
+    "transaction_date": "2024-01-12T16:45:00.000Z",
+    "description": "Daşıma xidmətləri",
+    "status": "completed",
+    "created_at": "2024-01-12T16:45:00.000Z"
+  },
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a04')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78701')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78704')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78901')",
+    "amount": -950.75,
+    "transaction_type": "payment",
+    "transaction_date": "2024-01-15T11:20:00.000Z",
+    "description": "Proqram təminatı",
+    "status": "completed",
+    "created_at": "2024-01-15T11:20:00.000Z"
+  },
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a05')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78702')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78703')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78902')",
+    "amount": -1400.00,
+    "transaction_type": "payment",
+    "transaction_date": "2024-02-03T09:30:00.000Z",
+    "description": "Materialların daşınması",
+    "status": "completed",
+    "created_at": "2024-02-03T09:30:00.000Z"
+  },
+  {
+    "_id": "ObjectId('674e5a1c23e8a1b456c78a06')",
+    "from": "ObjectId('674e4f8a23e8a1b456c78702')",
+    "to": "ObjectId('674e4f8a23e8a1b456c78704')",
+    "hesablasma_id": "ObjectId('674e4f9b23e8a1b456c78902')",
+    "amount": -800.25,
+    "transaction_type": "payment",
+    "transaction_date": "2024-02-07T13:15:00.000Z",
+    "description": "Layihə idarəetməsi",
+    "status": "completed",
+    "created_at": "2024-02-07T13:15:00.000Z"
+  }
+]

@@ -1,0 +1,242 @@
+<div class="">
+  <div
+    class="flex items-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark font-medium"
+  >
+    <a
+      href="../dashboard/dashboard.htm"
+      class="hover:text-primary dark:hover:text-primary-dark"
+      >Avankart</a
+    >
+    <div class="icon stratis-slash-01-forward"></div>
+    <span class="text-tertiary-text dark:text-tertiary-text-color-dark"
+      >Bildirişlər</span
+    >
+  </div>
+  <div class="pt-4 pb-1">
+    <div
+      class="inline-flex gap-1 items-center border border-surface-variant dark:border-surface-variant-dark rounded-full p-1"
+    >
+      <button
+        id="corporateNotifications"
+        class="active notification-type text-messages dark:text-primary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium bg-inverse-on-surface dark:bg-surface-variant-dark rounded-full py-[3px] px-3"
+      >
+        Korporativ bildirişlər
+      </button>
+      <button
+        id="personalNotifications"
+        class="notification-type text-tertiary-text dark:text-tertiary-text-color-dark hover:text-messages dark:hover:text-primary-text-color-dark text-[12px] font-medium rounded-full py-[3px] px-3 cursor-pointer"
+      >
+        Fərdi bildirişlər
+      </button>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div
+      class="py-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]"
+    >
+      <div class="border-b border-stroke dark:border-[#FFFFFF1A] inline-block">
+        <menu
+          class="inline-flex flex-wrap gap-5 -mb-px text-[13px] font-medium text-center text-tertiary-text dark:text-tertiary-text-color-dark"
+        >
+          <li>
+            <a
+              href="#"
+              id="total-count"
+              class="active all filter-button inline-flex items-center justify-center py-2 text-messages dark:text-primary-text-color-dark border-b-2 border-messages dark:border-primary-text-color-dark rounded-t-lg"
+              data-filter="all"
+            >
+              Hamısı (<span class="count">0</span>)
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="read-count"
+              class="read filter-button inline-flex items-center justify-center py-2 rounded-t-lg"
+              data-filter="read"
+            >
+              Oxunmuşlar (<span class="count">0</span>)
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="unread-count"
+              class="unread filter-button inline-flex items-center justify-center py-2 rounded-t-lg"
+              data-filter="unread"
+            >
+              Oxunmamışlar (<span class="count">0</span>)
+            </a>
+          </li>
+        </menu>
+      </div>
+      <div class="flex items-center gap-2">
+        <div
+          class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark"
+        >
+          <input
+            id="customSearch"
+            type="text"
+            placeholder="Search..."
+            class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]"
+          />
+          <div class="absolute right-3">
+            <div
+              class="icon stratis-search-02 dark:text-primary-text-color-dark"
+            ></div>
+          </div>
+        </div>
+        <div id="refreshPage"
+            class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+            <a href="#">Səhifəni yenilə</a>
+            <a href="#"
+                class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+        </div>
+        <div onclick="openFilterModal()"
+            class="w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+            <a href="#"
+                class="icon stratis-filter  text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+            <a href="#" class="">Filter</a>
+        </div>
+      </div>
+    </div>
+
+    <table id="myTable" class="table-auto"></table>
+
+    <div class="pt-3">
+      <div
+        class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3"
+      >
+        <div class="py-2.5 flex items-center justify-between">
+          <div class="text-[13px] flex items-center gap-2">
+            <span
+              class="font-normal opacity-65 dark:text-secondary-text-color-dark"
+              >Səhifə sayı:</span
+            >
+            <span
+              id="pageCount"
+              class="font-medium dark:text-primary-text-color-dark"
+              >1 / 1</span
+            >
+          </div>
+          <div class="max-w-[584px] flex items-center gap-5">
+            <div>
+              <div
+                id="customPagination"
+                class="flex items-center text-[13px]"
+              ></div>
+            </div>
+            <div>
+              <input
+                class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px] focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300"
+                type="text"
+                placeholder="Səhifə"
+              />
+
+              <a
+                href="#"
+                class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]"
+                >GO</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 
+    <div id="personalNotifications" class="hidden">
+        <div
+            class="flex items-center justify-between cursor-pointer hover:bg-item-hover px-3 py-2 border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]">
+            <div class="flex items-center gap-3">
+                <img class="w-11 h-11 rounded-full" src="../../../public/images/notifications/notificationLogo.svg"
+                    alt="notificationLogo" />
+                <div class="flex items-center">
+                    <div class="flex flex-col gap-[2px]">
+                        <div class="text-messages dark:text-primary-text-color-dark text-[13px] font-medium">2 addımlı
+                            doğrulama aktivləşdirildi</div>
+                        <div class="text-secondary-text text-[11px] font-normal">E-poçt ilə doğrulamanı aktivləşdirdiniz
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div>
+                    <div class="flex items-center gap-1 justify-end">
+                        <div class="text-[10px] font-normal text-[#7086FD]">Yeni </div>
+                        <div class="w-[6px] h-[6px] bg-[#7086FD] rounded-full"></div>
+                    </div>
+                    <p class="text-[11px] font-normal text-messages dark:text-primary-text-color-dark">01.10.2024 -
+                        09:45</p>
+                </div>
+                <div>
+                    <div class="icon stratis-dot-vertical text-messages dark:text-primary-text-color-dark w-5 h-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="flex items-center justify-between cursor-pointer hover:bg-item-hover px-3 py-2 border-b-[.5px] border-stroke dark:border-[#FFFFFF1A]">
+            <div class="flex items-center gap-3">
+                <img class="w-11 h-11 rounded-full" src="../../../public/images/notifications/notificationLogo.svg"
+                    alt="notificationLogo" />
+                <div class="flex items-center">
+                    <div class="flex flex-col gap-[2px]">
+                        <div class=" dark:text-primary-text-color-dark text-[13px] font-medium">2 addımlı doğrulama
+                            aktivləşdirildi</div>
+                        <div class="text-secondary-text text-[11px] font-normal">E-poçt ilə doğrulamanı aktivləşdirdiniz
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div>
+                    <div class="flex items-center gap-1 justify-end">
+                        <div class="text-[10px] font-normal text-[#7086FD]">Yeni </div>
+                        <div class="w-[6px] h-[6px] bg-[#7086FD] rounded-full"></div>
+                    </div>
+                    <p class="text-[11px] font-normal text-messages dark:text-primary-text-color-dark">01.10.2024 -
+                        09:45</p>
+                </div>
+                <div>
+                    <div class="icon stratis-dot-vertical text-messages dark:text-primary-text-color-dark w-5 h-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<% scripts=`
+<script src="/js/datatables/datatables.min.js"></script>
+<script src="/js/datepicker.min.js"></script>
+
+<script src="/js/notifications/datatables.js"></script>
+
+` %> <% styles=`
+<style>
+  thead {
+    display: none;
+  }
+
+  .dt-column-order {
+    display: none !important;
+  }
+
+  table.dataTable > thead > tr > th,
+  table.dataTable > thead > tr > td,
+  table.dataTable > tbody > tr:last-child > *,
+  div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border: none;
+  }
+
+  td {
+    padding: 0 !important;
+  }
+
+  .custom-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+</style>
+` %>

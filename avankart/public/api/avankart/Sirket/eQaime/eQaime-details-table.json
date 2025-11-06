@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "kateqoriya": "Yemek",
+      "amount": 200.0
+    },
+    {
+      "kateqoriya": "Hədiyyə",
+      "amount": 200.0
+    },
+    {
+      "kateqoriya": "Yanacaq",
+      "amount": 220.0
+    },
+    {
+      "kateqoriya": "Market",
+      "amount": 320.0
+    },
+    {
+      "kateqoriya": "Biznes",
+      "amount": 350.0
+    },
+    {
+      "kateqoriya": "Premium",
+      "amount": 150.0
+    },
+    {
+      "kateqoriya": "Avto Yuma",
+      "amount": 155.0
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

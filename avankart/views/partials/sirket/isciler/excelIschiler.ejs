@@ -1,0 +1,109 @@
+<div
+  id="excelIsciler"
+  class="!w-[1200px] h-[700px] hidden bg-body-bg dark:bg-menu-dark !z-100 border-[1px] border-[#0000001A] rounded-2xl fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2"
+>
+  <div class="px-5">
+    <div class="flex items-center justify-between">
+      <div
+        class="text-[15px] font-medium text-messages py-[18px] dark:text-white"
+      >
+        Exceldən əlavə et
+      </div>
+      <div
+        class="py-[21px] cursor-pointer dark:text-white"
+        onclick="closeExcelPopup()"
+      >
+        <img
+          src="/images/Sorgular Pages Images/Close.svg"
+          alt="Close"
+          class="dark:invert"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-6">
+      <div>
+        <div class="flex flex-col">
+          <div class="pb-4 flex items-center justify-between">
+            <div
+              class="relative flex items-center w-full border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] hover:bg-input-hover dark:bg-menu-dark transition-all ease-out duration-300"
+            >
+              <input
+                id="customSearch2"
+                type="text"
+                placeholder="Işçi axtar"
+                class="dark:text-white w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] placeholder:text-on-surface-variant-dark dark:bg-menu-dark dark:border-[#ffffff1A] hover:bg-input-hover"
+              />
+              <div class="absolute right-3 dark:text-white">
+                <div class="icon stratis-search-02"></div>
+              </div>
+            </div>
+          </div>
+
+          <table
+            id="myTable2"
+            class="table-fixed border-collapse w-full border-b-[.5px] border-b-stroke dark:bg-[#242C30]"
+          >
+            <thead class="border-none pb-0.5">
+              <tr
+                class="bg-container-2 border-none text-xs text-tertiary-text font-base dark:bg-[#242C30]"
+              >
+                <th
+                  class="w-[58px] border-r-[.5px] border-r-stroke px-4 py-2 rounded-l-lg"
+                >
+                  <input
+                    type="checkbox"
+                    id="newCheckboxTable"
+                    class="peer hidden sr-only"
+                  />
+                  <label
+                    for="newCheckboxTable"
+                    class="cursor-pointer bg-menu dark:bg-menu-dark border border-surface-variant dark:border-surface-variant-dark rounded-[2px] w-[18px] h-[18px] flex items-center justify-center text-on-primary dark:text-menu-dark peer-checked:bg-primary dark:peer-checked:bg-primary peer-checked:text-on-primary dark:peer-checked:text-on-primary peer-checked:border-primary dark:peer-checked:border-primary transition"
+                  >
+                    <div class="icon stratis-check-01 scale-60"></div>
+                  </label>
+                </th>
+                <th
+                  class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                >
+                  ID
+                </th>
+                <th
+                  class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                >
+                  Ad və soyad
+                </th>
+                <th
+                  class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                >
+                  Email
+                </th>
+                <th
+                  class="w-1/3 border-r-[.5px] border-r-stroke px-4 py-2 filtering dark:text-[#FFFFFFA6]"
+                >
+                  Telefon nömrəsi
+                </th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="my-5">
+      <div class="flex items-center justify-end gap-x-3">
+        <a
+          href="#"
+          class="bg-surface text-messages py-[6.5px] px-[18px] rounded-[50px] text-[13px] font-medium dark:text-white dark:bg-[#36393E]"
+          onclick="closeExcelPopup()"
+          >Ləğv et</a
+        >
+        <a
+          href="#"
+          id="addSelectedPeople"
+          class="bg-primary text-body-bg py-[6.5px] px-[18px] rounded-[50px] text-[13px] font-medium hover:bg-hover-button"
+          >Əlavə et</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

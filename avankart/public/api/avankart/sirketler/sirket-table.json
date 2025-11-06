@@ -1,0 +1,117 @@
+{
+  "data": [
+    {
+      "img": "/public/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "10%",
+
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Ramin Orucov",
+      "companyname": "Orkhan Icrai",
+      "status": "Aktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/PostEngineer.png",
+      "name": "Post Engineer MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "18%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Ramin Orucov",
+      "companyname": "Orkhan Icrai",
+      "status": "Aktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/Malta.png",
+      "name": "Malta MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "18%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Haqverdi Mustafayev",
+      "companyname": "İlkin Musayev",
+      "status": "Deaktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/PostEngineer.png",
+      "name": "Post Engineer MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "15%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "İsa Sadiqli",
+      "companyname": "Ramin Məmmədov",
+      "status": "Aktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "15%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Ramin Orucov",
+      "companyname": "Orkhan Icrai",
+      "status": "Silinmiş"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/Malta.png",
+      "name": "Malta MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "15%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Haqverdi Mustafayev",
+      "companyname": "İlkin Musayev",
+      "status": "Deaktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "10%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Murad Orucov",
+      "companyname": "Fuad Babayev",
+      "status": "Aktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/CapitalFinance.png",
+      "name": "Capital Finance LLC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "15%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Haqverdi Mustafayev",
+      "companyname": "İlkin Musayev",
+      "status": "Deaktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/Malta.png",
+      "name": "Malta MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "15%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "Haqverdi Mustafayev",
+      "companyname": "İlkin Musayev",
+      "status": "Deaktiv"
+    },
+    {
+      "img": "/public/images/Avankart/Sirketler/PostEngineer.png",
+      "name": "Post Engineer MMC",
+      "id": "ID: MM-XXXXXXXX",
+      "count": "18%",
+      "mail": "capitalfinance@info.com",
+      "lastUpdateDate": "03.11.2024 - 12:45:22",
+      "authorizedPerson": "İsa Sadiqli",
+      "companyname": "Ramin Məmmədov",
+      "status": "Aktiv"
+    }
+  ],
+  "recordsTotal": 10,
+  "recordsFiltered": 10
+}

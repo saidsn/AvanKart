@@ -1,0 +1,76 @@
+{
+  "data": [
+    {
+      "status": "Qaralama",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "High",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Qaralama",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "Low",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Qaralama",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "Low",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Baxılır",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "High",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Baxılır",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "High",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Rədd edildi",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "High",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    },
+    {
+      "status": "Həll olundu",
+      "id": "S-XXXXXXXXX",
+      "title": "İstifadəçinin ödəniş edə bilməməsi",
+      "description": "Tətbiqdə yaranan texniki problemlərdən dolayı bir çox istifadəçilər ödənişlərlə bağlı şikayət müraciətləri ünvanlayıb",
+      "responsible": "Orxan İcrai",
+      "priority": "High",
+      "date": "12.01.2024",
+      "userType": "İstifadəçi"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

@@ -1,0 +1,371 @@
+<%- include('../../../partials/header', { title: title, styles: '' }) %>
+
+<style>
+  .transaction-detail-page {
+    padding: 20px 0;
+  }
+
+  @media (max-width: 768px) {
+    .transaction-detail-page {
+      padding: 10px 0;
+    }
+  }
+</style>
+
+<div class="transaction-detail-page">
+  <div class="container-fluid">
+    
+    <!-- Breadcrumb Navigation + Back Button -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-3 text-[13px] text-messages dark:text-primary-text-color-dark font-medium">
+        <div class="flex items-center gap-2">
+          <a href="/dashboard" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Avankart</a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="#" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Hesablaşmalar</a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/emeliyyatlar/muessise/hesablasma" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">Üzv müəssisələr</a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="javascript:history.back()" class="cursor-pointer hover:text-primary dark:hover:text-primary-dark">
+            <%= hesablasma && hesablasma.company ? hesablasma.company.name : 'Hesablaşma Detalları' %>
+          </a>
+          <div class="icon stratis-slash-01-forward"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-tertiary-text dark:text-tertiary-text-color-dark cursor-default">
+            <%= company && company.name ? company.name : 'Tranzaksiya Detalları' %>
+          </span>
+        </div>
+      </div>
+    </div>
+      <div
+        class="bg-sidebar-bg mt-3 p-3 rounded-lg h-auto flex items-center flex-wrap gap-x-2 gap-y-3 text-message b-2">
+        <div class="pr-8 border-r-[0.5px] border-[#0000001A] flex-grow">
+            <div class="flex items-center gap-2.5">
+                <div class="bg-table-hover w-[40px] h-[40px] rounded-full p-2 overflow-hidden">
+                    <img src="<%= (company && company.logo) ? company.logo : '/images/Avankart/muessise/demo-company-logo.svg' %>" alt="Logo">
+                </div>
+                <div>
+                    <div class="text-[13px] font-medium"><%= company ? company.name : 'Şirkət məlumatları' %></div>
+                    <div class="text-[11px] text-messages opacity-65 font-normal">ID: <span
+                            class="opacity-100"><%= company ? company.company_id : 'N/A' %></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="pr-8 border-r-[0.5px] border-[#0000001A] flex-grow">
+            <p class="text-[11px] text-tertiary-text font-normal pb-1">Tranzaksiya sayı</p>
+            <p class="text-[13px] text-messages font-normal"><%= company ? company.totalTransactions : 0 %></p>
+        </div>
+        <div class="pr-8 flex-grow">
+            <p class="text-[11px] text-tertiary-text font-normal pb-1">Məbləğ</p>
+            <p class="text-[13px] text-messages font-normal"><%= company ? company.totalAmount.toFixed(2) : '0.00' %> ₼</p>
+        </div>
+    </div>
+
+    <!-- Card Expenses Section -->
+    <div class="pb-3">
+      <div class="flex flex-col gap-1">
+        <div class="flex w-full">
+          <!-- Yemək kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Yemək kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Yemək kartı</div>
+            <div class="bg-[#FCD099] rounded-l-full flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-messages pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-messages opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Hadiyyə kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Hadiyyə kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Hadiyyə kartı</div>
+            <div class="bg-[#99DEB4] flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-messages pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-messages opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Yanacaq kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Yanacaq kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Yanacaq kartı</div>
+            <div class="bg-[#879AFC] flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-on-primary pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-on-primary opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Memket kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Memket kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Memket kartı</div>
+            <div class="bg-[#88649A] flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-on-primary pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-on-primary opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Niyaş kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Niyaş kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Niyaş kartı</div>
+            <div class="bg-[#00A3FF] flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-on-primary pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-on-primary opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Premium kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Premium kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Premium kartı</div>
+            <div class="bg-[#32B5AC] flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-on-primary pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-on-primary opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Avto Yuma kartı -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between" data-category="Avto Yuma kartı">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Avto Yuma kartı</div>
+            <div class="bg-[#0076B2] rounded-r-full flex justify-between items-center h-[30px] w-full">
+              <div class="text-[13px] font-medium text-on-primary pl-[16px] amount">0.00 AZN</div>
+              <div class="text-[11px] font-normal text-on-primary opacity-65 pr-[8px] percent">0%</div>
+            </div>
+          </div>
+          
+          <!-- Toplam məbləğ (sağ tərəfdə ayrı) -->
+          <div class="flex flex-col flex-grow whitespace-nowrap justify-between ml-[11px]" data-category="Toplam">
+            <div class="text-[11px] font-normal text-messages opacity-50 mb-[6px]">Toplam məbləğ</div>
+            <div class="bg-sidebar-bg rounded-full h-[30px] w-full flex items-center justify-start">
+              <div class="text-[13px] font-medium text-messages pl-[12px] amount">0.00 AZN</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transactions Section -->
+    <div class="pb-3">
+            <div
+          class="pb-3 flex items-center justify-between border-b-[.5px] border-stroke dark:border-[#FFFFFF1A] mt-[15px]">
+          <div onclick="javascript:history.back()"
+              class="flex items-center gap-2 cursor-pointer" id="mainTitle">
+              <div
+                  class="icon stratis-arrow-left-sm text-[13px] mt-1 text-messages dark:text-primary-text-color-dark cursor-pointer">
+              </div>
+              <span
+                  class="text-[15px] text-messages dark:text-primary-text-color-dark font-medium pt-[5px]">
+                  Tranzaksiya (<%= company && company.totalTransactions ? company.totalTransactions : 0 %>)
+              </span>
+          </div>
+          <div class="flex items-center gap-2">
+              <div class="relative flex items-center w-[237px] border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden
+                  focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                  focus-within:ring-0 focus-within:outline-none
+                  active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                  transition-all ease-out duration-300
+                  hover:bg-input-hover dark:hover:bg-input-hover-dark">
+                  <input id="trx-search" type="text" placeholder="Search..." class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0
+                  text-[13px] text-messages dark:text-primary-text-color-dark
+                  placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]">
+                  <div class="absolute right-3">
+                      <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+                  </div>
+              </div>
+
+              <div id="trx-refresh"
+                  class="w-[155px] border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px] cursor-pointer">
+                  <a href="#">Səhifəni yenilə</a>
+                  <a href="#"
+                      class="icon stratis-arrow-refresh-04 text-messages dark:text-primary-text-color-dark"></a>
+              </div>
+              <div id="trx-filter"
+                  class="w-[92px] cursor-pointer border border-surface-variant dark:border-surface-variant-dark rounded-full flex items-center justify-center gap-2 text-[13px] text-messages dark:text-primary-text-color-dark hover:text-focus dark:hover:text-focus-color-dark font-medium py-[6.5px] px-[18px]">
+                  <a href="#"
+                      class="icon stratis-filter  text-messages dark:text-primary-text-color-dark mt-[2.5px]"></a>
+                  <a href="#" class="">Filter</a>
+              </div>
+              <% if (typeof pdfLink !== 'undefined' && pdfLink) { %>
+              <div id="trx-pdf"
+                  class="w-[130px] cursor-pointer border border-surface-variant rounded-full flex items-center justify-center gap-2 text-[13px] text-messages hover:text-focus font-medium py-[6.5px] px-[10px] transition-all">
+                  <img class="w-5" src="/public/images/Avankart/muessise/pdfIcon.svg" alt="PDF">
+                  <span>özsüt.pdf</span>
+                  <img src="/public/icons/download.svg" alt="">
+              </div>
+              <% } %>
+          </div>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class=" rounded-lg overflow-hidden">
+        <table id="myTable" class="border ">
+            <thead class="border-none pb-0.5">
+                <tr
+                    class="bg-container-2 table-fixed dark:bg-container-2-dark border-none text-[12px] text-secondary-text dark:text-secondary-text-color-dark font-normal">
+                    <th class="rounded-l-lg filtering">
+                        İstifadəçi
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                    <th class="filtering">
+                        Tranzaksiya ID
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                    <th class="filtering">
+                        Kart kateqoriyası
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                    <th class="filtering" style="text-align: left;">
+                        Məbləğ (AZN)
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                    <th class="filtering">
+                        Məkan
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                    <th class="rounded-r-lg filtering">
+                        Tarix
+                        <img src="/public/icons/sort-vertical-02.svg" alt=""
+                            class="inline-block align-middle ml-2 w-[15px] h-[15px]" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+      </div>
+      <div
+          class="w-full bg-sidebar-bg dark:bg-side-bar-bg-dark rounded-t-[8px] py-5 px-6 flex flex-col gap-3">
+          <div class="py-2.5 flex items-center justify-between">
+              <div class="text-[13px] flex items-center gap-2">
+                  <span class="font-normal opacity-65 dark:text-secondary-text-color-dark">Səhifə
+                      sayı:</span>
+                  <span id="pageCount" class="font-medium dark:text-primary-text-color-dark">1 /
+                      2</span>
+              </div>
+              <div class="max-w-[584px] flex items-center gap-5">
+                  <div>
+                      <div id="customPagination" class="flex items-center text-[13px]">
+                          <div class="flex items-center justify-center px-3 h-8 ms-0 leading-tight opacity-50 cursor-not-allowed"
+                              onclick="changePage(0)">
+                              <div class="icon stratis-chevron-left"></div>
+                          </div>
+                          <div class="flex gap-2">
+                              <button class="cursor-pointer w-10 h-10 rounded-[8px] hover:text-messages 
+          bg-[#F6D9FF] text-messages" onclick="changePage(0)">1</button>
+
+                              <button class="cursor-pointer w-10 h-10 rounded-[8px] hover:text-messages 
+          bg-transparent text-tertiary-text" onclick="changePage(1)">2</button>
+                          </div>
+                          <div class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-tertiary-text"
+                              onclick="changePage(1)">
+                              <div class="icon stratis-chevron-right"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div>
+                      <input class="page-input w-[63px] h-[32px] text-[12px] text-center text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-[8px]
+                              focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none
+                              active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)]
+                              transition-all ease-out duration-300" type="text" placeholder="Səhifə">
+                      <a href="#"
+                          class="go-button text-[13px] text-body-bg dark:text-primary-text-color-dark font-medium bg-primary dark:bg-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark rounded-[8px] py-[6.5px] px-[18px]">GO</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </div>
+</div>
+<!-- Transaction Filter Modal -->
+<div id="trx-filter-modal" class="hidden fixed inset-0 bg-[#0000002A] flex items-center justify-center z-100">
+  <div class="w-[450px] font-poppins dark:bg-menu-dark text-messages dark:text-primary-text-color-dark border-[#0000001A] dark:border-[#FFFFFF1A] border-[3px] shadow-[0px_0px_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white z-101 fixed top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 p-6">
+    <form onsubmit="return false;" id="trx-filter-form">
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-[15px] font-medium">Tranzaksiya Filter</div>
+        <div id="trx-filter-close" onclick="closeTrxFilterModal()" class="icon stratis-x-02 text-xs cursor-pointer dark:hidden"></div>
+      </div>
+
+      <!-- Tranzaksiya ID -->
+      <div class="flex flex-col gap-4">
+        <div>
+          <span class="text-[12px] font-medium opacity-65">Tranzaksiya ID</span>
+          <input id="f-trx-id" type="text" placeholder="Tranzaksiya ID daxil edin"
+                 class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+        </div>
+
+        <!-- Category -->
+        <div>
+          <span class="text-[12px] font-medium opacity-65">Kart Kateqoriyası</span>
+          <select id="f-category"
+                  class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+            <option value="">Bütün kateqoriyalar</option>
+            <option value="Yemək">Yemək</option>
+            <option value="Hadiyyə">Hadiyyə</option>
+            <option value="Yanacaq">Yanacaq</option>
+            <option value="Memket">Memket</option>
+            <option value="Niyaş">Niyaş</option>
+            <option value="Premium">Premium</option>
+            <option value="Avto Yuma">Avto Yuma</option>
+          </select>
+        </div>
+
+        <!-- Date Range -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <span class="text-[12px] font-medium opacity-65">Tarix (başlanğıc)</span>
+            <input id="f-date-from" type="date"
+                   class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+          </div>
+          <div>
+            <span class="text-[12px] font-medium opacity-65">Tarix (son)</span>
+            <input id="f-date-to" type="date"
+                   class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+          </div>
+        </div>
+
+        <!-- Amount Range -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <span class="text-[12px] font-medium opacity-65">Min məbləğ (AZN)</span>
+            <input id="f-amount-min" type="number" step="0.01" min="0" placeholder="0.00"
+                   class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+          </div>
+          <div>
+            <span class="text-[12px] font-medium opacity-65">Max məbləğ (AZN)</span>
+            <input id="f-amount-max" type="number" step="0.01" min="0" placeholder="0.00"
+                   class="mt-1 w-full h-[34px] px-3 py-2 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F] font-normal bg-menu dark:bg-menu-dark hover:bg-input-hover dark:hover:bg-input-hover-dark border border-stroke dark:border-[#FFFFFF1A] rounded-lg focus:border-focus focus:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus:ring-0 focus:outline-none transition-all ease-out duration-300">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 mt-6">
+        <button type="button" id="trx-filter-reset"
+                class="bg-surface rounded-[50px] dark:bg-surface-bright-dark dark:text-on-surface-variant-dark text-on-surface-variant text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:text-messages"
+                onclick="resetTrxFilters()">Filterləri təmizlə</button>
+        <button type="button" id="trx-filter-apply"
+                class="bg-primary rounded-[50px] text-white text-[13px] font-medium px-[18px] py-[6.5px] cursor-pointer hover:bg-hover-button"
+                onclick="applyTrxFilters()">Filterlə</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<% scripts = `
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/datatables/datatables.min.js"></script>
+<script>
+  window.trxContext = {
+    hesablasma_id: "${(hesablasma && (hesablasma._id || hesablasma.hesablasma_id))}",
+    company_id:    "${(company && (company._id || company.id))}",
+    csrfToken:     "${csrfToken}"
+  };
+  function exportToPDF(){ window.print(); }
+</script>
+<script src="/js/Avankart/muessise/hesablasmaTransactionsTable.js"></script>
+`; %>

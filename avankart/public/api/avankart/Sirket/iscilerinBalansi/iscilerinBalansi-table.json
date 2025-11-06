@@ -1,0 +1,96 @@
+{
+  "data": [
+    {
+      "logo": "/public/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 6,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 7,
+      "amount": 1.500,
+      "date": "01.12.2023",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 7,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 6,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 6,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 7,
+      "amount": 12.200,
+      "date": "01.12.2023",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Life",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 7,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Tamamlandı"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 6,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Aktiv"
+    },
+    {
+      "logo": "/public/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Lİfe",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "BINV-XXXXXXXXXX",
+      "CardNumber": 7,
+      "amount": 3.500,
+      "date": "01.12.2023",
+      "status": "Tamamlandı"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

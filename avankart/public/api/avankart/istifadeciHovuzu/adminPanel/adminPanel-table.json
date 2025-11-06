@@ -1,0 +1,105 @@
+{
+  "data": [
+    {
+      "name": "Ramin Orucov",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.12.1997",
+      "jobTitle": "UX Designer",
+      "email": "ramin.orucvvv@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Aktiv"
+    },
+    {
+      "name": "İsa Sadiqli",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "06.08.2002",
+      "jobTitle": "UX Designer",
+      "email": "isasadigli@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Borani Restoran",
+      "status": "Deaktiv"
+    },
+    {
+      "name": "İbrahim Feyzullazadə",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.01.1998",
+      "jobTitle": "UX Designer",
+      "email": "ibrahimfeyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Aktiv"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.12.1997",
+      "jobTitle": "UX Designer",
+      "email": "ramin.orucvvv@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Aktiv"
+    },
+    {
+      "name": "İsa Sadiqli",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "06.08.2002",
+      "jobTitle": "UX Designer",
+      "email": "isasadigli@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Borani Restoran",
+      "status": "Deaktiv"
+    },
+    {
+      "name": "İbrahim Feyzullazadə",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.01.1998",
+      "jobTitle": "UX Designer",
+      "email": "ibrahimfeyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Aktiv"
+    },
+    {
+      "name": "İbrahim Feyzullazadə",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.12.1997",
+      "jobTitle": "UX Designer",
+      "email": "ibrahimfeyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Silinmə gözləyir"
+    },
+    {
+      "name": "İbrahim Feyzullazadə",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.12.1997",
+      "jobTitle": "UX Designer",
+      "email": "ibrahimfeyzullazade@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Silinib"
+    },
+    {
+      "name": "Ramin Orucov",
+      "id": "PA-XXXXXX",
+      "gender": "Kişi",
+      "date": "16.12.1997",
+      "jobTitle": "UX Designer",
+      "email": "ramin.orucvvv@gmail.com",
+      "phone": "+994 50 770 35 22",
+      "companyname": "Özsüt Restoran",
+      "status": "Aktiv"
+    }
+  ],
+  "recordsTotal": 9,
+  "recordsFiltered": 9
+}

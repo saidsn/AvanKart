@@ -1,0 +1,83 @@
+{
+  "data": [
+    {
+      "logo": "/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 101.500,
+      "commission": 3.400,
+      "finalAmount": 104.900,
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/sirket/veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 150.300,
+      "commission": 7.38500,
+      "finalAmount": 157.68500,
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "logo": "/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Bank",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 78.300,
+      "commission": 1.800,
+      "finalAmount": 80.100,
+      "date": "12.11.2023 11:45",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/sirket/kapital.svg",
+      "companyName": "Kapital Bank",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 78.300,
+      "commission": 1.800,
+      "finalAmount": 80.100,
+      "date": "12.11.2023 11:45",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 101.500,
+      "commission": 3.400,
+      "finalAmount": 104.900,
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    },
+    {
+      "logo": "/images/Avankart/sirket/veyseloglu.svg",
+      "companyName": "Veysəloğlu",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 150.300,
+      "commission": 7.385,
+      "finalAmount": 157.685,
+      "date": "15.08.2023 11:45",
+      "status": "Təsdiqlənib"
+    },
+    {
+      "logo": "/images/Avankart/sirket/pasha.svg",
+      "companyName": "Pasha Holding",
+      "companyId": "CM-XXXXXXXX",
+      "invoice": "CINV-XXXXXXXXXX",
+      "amount": 101.500,
+      "commission": 3.400,
+      "finalAmount": 104.900,
+      "date": "01.12.2023 09:23",
+      "status": "Gözləyir"
+    }
+  ],
+  "recordsTotal": 7,
+  "recordsFiltered": 7
+}

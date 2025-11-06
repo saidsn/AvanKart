@@ -1,0 +1,3465 @@
+/* Auto-generated icon classes */
+
+.icon { 
+  display: inline-block; 
+  width: 1em; 
+  height: 1em; 
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background-color: currentColor;
+}
+
+.stratis-activity { 
+    -webkit-mask-image: url('/icons/activity.svg'); 
+    mask-image: url('/icons/activity.svg'); 
+  }
+.stratis-add-square-01 { 
+    -webkit-mask-image: url('/icons/add-square-01.svg'); 
+    mask-image: url('/icons/add-square-01.svg'); 
+  }
+.stratis-add-square-02 { 
+    -webkit-mask-image: url('/icons/add-square-02.svg'); 
+    mask-image: url('/icons/add-square-02.svg'); 
+  }
+.stratis-add-square-03 { 
+    -webkit-mask-image: url('/icons/add-square-03.svg'); 
+    mask-image: url('/icons/add-square-03.svg'); 
+  }
+.stratis-add-square-04 { 
+    -webkit-mask-image: url('/icons/add-square-04.svg'); 
+    mask-image: url('/icons/add-square-04.svg'); 
+  }
+.stratis-alarm-01 { 
+    -webkit-mask-image: url('/icons/alarm-01.svg'); 
+    mask-image: url('/icons/alarm-01.svg'); 
+  }
+.stratis-alarm-02 { 
+    -webkit-mask-image: url('/icons/alarm-02.svg'); 
+    mask-image: url('/icons/alarm-02.svg'); 
+  }
+.stratis-alarm-03 { 
+    -webkit-mask-image: url('/icons/alarm-03.svg'); 
+    mask-image: url('/icons/alarm-03.svg'); 
+  }
+.stratis-alarm-04 { 
+    -webkit-mask-image: url('/icons/alarm-04.svg'); 
+    mask-image: url('/icons/alarm-04.svg'); 
+  }
+.stratis-alarm-05 { 
+    -webkit-mask-image: url('/icons/alarm-05.svg'); 
+    mask-image: url('/icons/alarm-05.svg'); 
+  }
+.stratis-alarm-06 { 
+    -webkit-mask-image: url('/icons/alarm-06.svg'); 
+    mask-image: url('/icons/alarm-06.svg'); 
+  }
+.stratis-alarm-check { 
+    -webkit-mask-image: url('/icons/alarm-check.svg'); 
+    mask-image: url('/icons/alarm-check.svg'); 
+  }
+.stratis-alarm-minus { 
+    -webkit-mask-image: url('/icons/alarm-minus.svg'); 
+    mask-image: url('/icons/alarm-minus.svg'); 
+  }
+.stratis-alarm-off { 
+    -webkit-mask-image: url('/icons/alarm-off.svg'); 
+    mask-image: url('/icons/alarm-off.svg'); 
+  }
+.stratis-alarm-plus { 
+    -webkit-mask-image: url('/icons/alarm-plus.svg'); 
+    mask-image: url('/icons/alarm-plus.svg'); 
+  }
+.stratis-alert-circle { 
+    -webkit-mask-image: url('/icons/alert-circle.svg'); 
+    mask-image: url('/icons/alert-circle.svg'); 
+  }
+.stratis-alert-square { 
+    -webkit-mask-image: url('/icons/alert-square.svg'); 
+    mask-image: url('/icons/alert-square.svg'); 
+  }
+.stratis-alert-triangle { 
+    -webkit-mask-image: url('/icons/alert-triangle.svg'); 
+    mask-image: url('/icons/alert-triangle.svg'); 
+  }
+.stratis-align-center { 
+    -webkit-mask-image: url('/icons/align-center.svg'); 
+    mask-image: url('/icons/align-center.svg'); 
+  }
+.stratis-align-down-01 { 
+    -webkit-mask-image: url('/icons/align-down-01.svg'); 
+    mask-image: url('/icons/align-down-01.svg'); 
+  }
+.stratis-align-down-02 { 
+    -webkit-mask-image: url('/icons/align-down-02.svg'); 
+    mask-image: url('/icons/align-down-02.svg'); 
+  }
+.stratis-align-horizontal-center-01 { 
+    -webkit-mask-image: url('/icons/align-horizontal-center-01.svg'); 
+    mask-image: url('/icons/align-horizontal-center-01.svg'); 
+  }
+.stratis-align-horizontal-center-02 { 
+    -webkit-mask-image: url('/icons/align-horizontal-center-02.svg'); 
+    mask-image: url('/icons/align-horizontal-center-02.svg'); 
+  }
+.stratis-align-horizontal-center-03 { 
+    -webkit-mask-image: url('/icons/align-horizontal-center-03.svg'); 
+    mask-image: url('/icons/align-horizontal-center-03.svg'); 
+  }
+.stratis-align-justify { 
+    -webkit-mask-image: url('/icons/align-justify.svg'); 
+    mask-image: url('/icons/align-justify.svg'); 
+  }
+.stratis-align-left-01 { 
+    -webkit-mask-image: url('/icons/align-left-01.svg'); 
+    mask-image: url('/icons/align-left-01.svg'); 
+  }
+.stratis-align-left-02 { 
+    -webkit-mask-image: url('/icons/align-left-02.svg'); 
+    mask-image: url('/icons/align-left-02.svg'); 
+  }
+.stratis-align-left { 
+    -webkit-mask-image: url('/icons/align-left.svg'); 
+    mask-image: url('/icons/align-left.svg'); 
+  }
+.stratis-align-right-01 { 
+    -webkit-mask-image: url('/icons/align-right-01.svg'); 
+    mask-image: url('/icons/align-right-01.svg'); 
+  }
+.stratis-align-right-02 { 
+    -webkit-mask-image: url('/icons/align-right-02.svg'); 
+    mask-image: url('/icons/align-right-02.svg'); 
+  }
+.stratis-align-right { 
+    -webkit-mask-image: url('/icons/align-right.svg'); 
+    mask-image: url('/icons/align-right.svg'); 
+  }
+.stratis-align-up-01 { 
+    -webkit-mask-image: url('/icons/align-up-01.svg'); 
+    mask-image: url('/icons/align-up-01.svg'); 
+  }
+.stratis-align-up-02 { 
+    -webkit-mask-image: url('/icons/align-up-02.svg'); 
+    mask-image: url('/icons/align-up-02.svg'); 
+  }
+.stratis-align-vertical-center-01 { 
+    -webkit-mask-image: url('/icons/align-vertical-center-01.svg'); 
+    mask-image: url('/icons/align-vertical-center-01.svg'); 
+  }
+.stratis-align-vertical-center-02 { 
+    -webkit-mask-image: url('/icons/align-vertical-center-02.svg'); 
+    mask-image: url('/icons/align-vertical-center-02.svg'); 
+  }
+.stratis-align-vertical-center-03 { 
+    -webkit-mask-image: url('/icons/align-vertical-center-03.svg'); 
+    mask-image: url('/icons/align-vertical-center-03.svg'); 
+  }
+.stratis-annotation-alert { 
+    -webkit-mask-image: url('/icons/annotation-alert.svg'); 
+    mask-image: url('/icons/annotation-alert.svg'); 
+  }
+.stratis-annotation-check { 
+    -webkit-mask-image: url('/icons/annotation-check.svg'); 
+    mask-image: url('/icons/annotation-check.svg'); 
+  }
+.stratis-annotation-information { 
+    -webkit-mask-image: url('/icons/annotation-information.svg'); 
+    mask-image: url('/icons/annotation-information.svg'); 
+  }
+.stratis-annotation-plus { 
+    -webkit-mask-image: url('/icons/annotation-plus.svg'); 
+    mask-image: url('/icons/annotation-plus.svg'); 
+  }
+.stratis-annotation-typing { 
+    -webkit-mask-image: url('/icons/annotation-typing.svg'); 
+    mask-image: url('/icons/annotation-typing.svg'); 
+  }
+.stratis-annotation-x { 
+    -webkit-mask-image: url('/icons/annotation-x.svg'); 
+    mask-image: url('/icons/annotation-x.svg'); 
+  }
+.stratis-annotation { 
+    -webkit-mask-image: url('/icons/annotation.svg'); 
+    mask-image: url('/icons/annotation.svg'); 
+  }
+.stratis-arrow-curve-left-down { 
+    -webkit-mask-image: url('/icons/arrow-curve-left-down.svg'); 
+    mask-image: url('/icons/arrow-curve-left-down.svg'); 
+  }
+.stratis-arrow-curve-left-right { 
+    -webkit-mask-image: url('/icons/arrow-curve-left-right.svg'); 
+    mask-image: url('/icons/arrow-curve-left-right.svg'); 
+  }
+.stratis-arrow-curve-left-up { 
+    -webkit-mask-image: url('/icons/arrow-curve-left-up.svg'); 
+    mask-image: url('/icons/arrow-curve-left-up.svg'); 
+  }
+.stratis-arrow-curve-right-up { 
+    -webkit-mask-image: url('/icons/arrow-curve-right-up.svg'); 
+    mask-image: url('/icons/arrow-curve-right-up.svg'); 
+  }
+.stratis-arrow-curve-up-left { 
+    -webkit-mask-image: url('/icons/arrow-curve-up-left.svg'); 
+    mask-image: url('/icons/arrow-curve-up-left.svg'); 
+  }
+.stratis-arrow-curve-up-right { 
+    -webkit-mask-image: url('/icons/arrow-curve-up-right.svg'); 
+    mask-image: url('/icons/arrow-curve-up-right.svg'); 
+  }
+.stratis-arrow-down-contained-01 { 
+    -webkit-mask-image: url('/icons/arrow-down-contained-01.svg'); 
+    mask-image: url('/icons/arrow-down-contained-01.svg'); 
+  }
+.stratis-arrow-down-contained-02 { 
+    -webkit-mask-image: url('/icons/arrow-down-contained-02.svg'); 
+    mask-image: url('/icons/arrow-down-contained-02.svg'); 
+  }
+.stratis-arrow-down-left-contained { 
+    -webkit-mask-image: url('/icons/arrow-down-left-contained.svg'); 
+    mask-image: url('/icons/arrow-down-left-contained.svg'); 
+  }
+.stratis-arrow-down-left-icon-1 { 
+    -webkit-mask-image: url('/icons/arrow-down-left-icon-1.svg'); 
+    mask-image: url('/icons/arrow-down-left-icon-1.svg'); 
+  }
+.stratis-arrow-down-left-sm { 
+    -webkit-mask-image: url('/icons/arrow-down-left-sm.svg'); 
+    mask-image: url('/icons/arrow-down-left-sm.svg'); 
+  }
+.stratis-arrow-down-left-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-down-left-square-contained.svg'); 
+    mask-image: url('/icons/arrow-down-left-square-contained.svg'); 
+  }
+.stratis-arrow-down-left { 
+    -webkit-mask-image: url('/icons/arrow-down-left.svg'); 
+    mask-image: url('/icons/arrow-down-left.svg'); 
+  }
+.stratis-arrow-down-right-contained { 
+    -webkit-mask-image: url('/icons/arrow-down-right-contained.svg'); 
+    mask-image: url('/icons/arrow-down-right-contained.svg'); 
+  }
+.stratis-arrow-down-right-icon-1 { 
+    -webkit-mask-image: url('/icons/arrow-down-right-icon-1.svg'); 
+    mask-image: url('/icons/arrow-down-right-icon-1.svg'); 
+  }
+.stratis-arrow-down-right-sm { 
+    -webkit-mask-image: url('/icons/arrow-down-right-sm.svg'); 
+    mask-image: url('/icons/arrow-down-right-sm.svg'); 
+  }
+.stratis-arrow-down-right-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-down-right-square-contained.svg'); 
+    mask-image: url('/icons/arrow-down-right-square-contained.svg'); 
+  }
+.stratis-arrow-down-right { 
+    -webkit-mask-image: url('/icons/arrow-down-right.svg'); 
+    mask-image: url('/icons/arrow-down-right.svg'); 
+  }
+.stratis-arrow-down-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-down-square-contained.svg'); 
+    mask-image: url('/icons/arrow-down-square-contained.svg'); 
+  }
+.stratis-arrow-expand-01 { 
+    -webkit-mask-image: url('/icons/arrow-expand-01.svg'); 
+    mask-image: url('/icons/arrow-expand-01.svg'); 
+  }
+.stratis-arrow-expand-02 { 
+    -webkit-mask-image: url('/icons/arrow-expand-02.svg'); 
+    mask-image: url('/icons/arrow-expand-02.svg'); 
+  }
+.stratis-arrow-expand-03 { 
+    -webkit-mask-image: url('/icons/arrow-expand-03.svg'); 
+    mask-image: url('/icons/arrow-expand-03.svg'); 
+  }
+.stratis-arrow-expand-04 { 
+    -webkit-mask-image: url('/icons/arrow-expand-04.svg'); 
+    mask-image: url('/icons/arrow-expand-04.svg'); 
+  }
+.stratis-arrow-left-contained-01 { 
+    -webkit-mask-image: url('/icons/arrow-left-contained-01.svg'); 
+    mask-image: url('/icons/arrow-left-contained-01.svg'); 
+  }
+.stratis-arrow-left-contained-02 { 
+    -webkit-mask-image: url('/icons/arrow-left-contained-02.svg'); 
+    mask-image: url('/icons/arrow-left-contained-02.svg'); 
+  }
+.stratis-arrow-left-sm { 
+    -webkit-mask-image: url('/icons/arrow-left-sm.svg'); 
+    mask-image: url('/icons/arrow-left-sm.svg'); 
+  }
+.stratis-arrow-left-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-left-square-contained.svg'); 
+    mask-image: url('/icons/arrow-left-square-contained.svg'); 
+  }
+.stratis-arrow-left { 
+    -webkit-mask-image: url('/icons/arrow-left.svg'); 
+    mask-image: url('/icons/arrow-left.svg'); 
+  }
+.stratis-arrow-refresh-01 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-01.svg'); 
+    mask-image: url('/icons/arrow-refresh-01.svg'); 
+  }
+.stratis-arrow-refresh-02 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-02.svg'); 
+    mask-image: url('/icons/arrow-refresh-02.svg'); 
+  }
+.stratis-arrow-refresh-03 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-03.svg'); 
+    mask-image: url('/icons/arrow-refresh-03.svg'); 
+  }
+.stratis-arrow-refresh-04 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-04.svg'); 
+    mask-image: url('/icons/arrow-refresh-04.svg'); 
+  }
+.stratis-arrow-refresh-05 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-05.svg'); 
+    mask-image: url('/icons/arrow-refresh-05.svg'); 
+  }
+.stratis-arrow-refresh-06 { 
+    -webkit-mask-image: url('/icons/arrow-refresh-06.svg'); 
+    mask-image: url('/icons/arrow-refresh-06.svg'); 
+  }
+.stratis-arrow-right-contained-01 { 
+    -webkit-mask-image: url('/icons/arrow-right-contained-01.svg'); 
+    mask-image: url('/icons/arrow-right-contained-01.svg'); 
+  }
+.stratis-arrow-right-contained-02 { 
+    -webkit-mask-image: url('/icons/arrow-right-contained-02.svg'); 
+    mask-image: url('/icons/arrow-right-contained-02.svg'); 
+  }
+.stratis-arrow-right-sm { 
+    -webkit-mask-image: url('/icons/arrow-right-sm.svg'); 
+    mask-image: url('/icons/arrow-right-sm.svg'); 
+  }
+.stratis-arrow-right-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-right-square-contained.svg'); 
+    mask-image: url('/icons/arrow-right-square-contained.svg'); 
+  }
+.stratis-arrow-right { 
+    -webkit-mask-image: url('/icons/arrow-right.svg'); 
+    mask-image: url('/icons/arrow-right.svg'); 
+  }
+.stratis-arrow-rotate-left-01 { 
+    -webkit-mask-image: url('/icons/arrow-rotate-left-01.svg'); 
+    mask-image: url('/icons/arrow-rotate-left-01.svg'); 
+  }
+.stratis-arrow-rotate-left-02 { 
+    -webkit-mask-image: url('/icons/arrow-rotate-left-02.svg'); 
+    mask-image: url('/icons/arrow-rotate-left-02.svg'); 
+  }
+.stratis-arrow-rotate-right-01 { 
+    -webkit-mask-image: url('/icons/arrow-rotate-right-01.svg'); 
+    mask-image: url('/icons/arrow-rotate-right-01.svg'); 
+  }
+.stratis-arrow-rotate-right-02 { 
+    -webkit-mask-image: url('/icons/arrow-rotate-right-02.svg'); 
+    mask-image: url('/icons/arrow-rotate-right-02.svg'); 
+  }
+.stratis-arrow-switch-horizontal-icon-1 { 
+    -webkit-mask-image: url('/icons/arrow-switch-horizontal-icon-1.svg'); 
+    mask-image: url('/icons/arrow-switch-horizontal-icon-1.svg'); 
+  }
+.stratis-arrow-switch-horizontal { 
+    -webkit-mask-image: url('/icons/arrow-switch-horizontal.svg'); 
+    mask-image: url('/icons/arrow-switch-horizontal.svg'); 
+  }
+.stratis-arrow-up-contained-01 { 
+    -webkit-mask-image: url('/icons/arrow-up-contained-01.svg'); 
+    mask-image: url('/icons/arrow-up-contained-01.svg'); 
+  }
+.stratis-arrow-up-contained-02 { 
+    -webkit-mask-image: url('/icons/arrow-up-contained-02.svg'); 
+    mask-image: url('/icons/arrow-up-contained-02.svg'); 
+  }
+.stratis-arrow-up-left-contained { 
+    -webkit-mask-image: url('/icons/arrow-up-left-contained.svg'); 
+    mask-image: url('/icons/arrow-up-left-contained.svg'); 
+  }
+.stratis-arrow-up-left-sm { 
+    -webkit-mask-image: url('/icons/arrow-up-left-sm.svg'); 
+    mask-image: url('/icons/arrow-up-left-sm.svg'); 
+  }
+.stratis-arrow-up-left-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-up-left-square-contained.svg'); 
+    mask-image: url('/icons/arrow-up-left-square-contained.svg'); 
+  }
+.stratis-arrow-up-left { 
+    -webkit-mask-image: url('/icons/arrow-up-left.svg'); 
+    mask-image: url('/icons/arrow-up-left.svg'); 
+  }
+.stratis-arrow-up-right-contained { 
+    -webkit-mask-image: url('/icons/arrow-up-right-contained.svg'); 
+    mask-image: url('/icons/arrow-up-right-contained.svg'); 
+  }
+.stratis-arrow-up-right-sm { 
+    -webkit-mask-image: url('/icons/arrow-up-right-sm.svg'); 
+    mask-image: url('/icons/arrow-up-right-sm.svg'); 
+  }
+.stratis-arrow-up-right-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-up-right-square-contained.svg'); 
+    mask-image: url('/icons/arrow-up-right-square-contained.svg'); 
+  }
+.stratis-arrow-up-right { 
+    -webkit-mask-image: url('/icons/arrow-up-right.svg'); 
+    mask-image: url('/icons/arrow-up-right.svg'); 
+  }
+.stratis-arrow-up-sm { 
+    -webkit-mask-image: url('/icons/arrow-up-sm.svg'); 
+    mask-image: url('/icons/arrow-up-sm.svg'); 
+  }
+.stratis-arrow-up-square-contained { 
+    -webkit-mask-image: url('/icons/arrow-up-square-contained.svg'); 
+    mask-image: url('/icons/arrow-up-square-contained.svg'); 
+  }
+.stratis-arrow-up { 
+    -webkit-mask-image: url('/icons/arrow-up.svg'); 
+    mask-image: url('/icons/arrow-up.svg'); 
+  }
+.stratis-atom { 
+    -webkit-mask-image: url('/icons/atom.svg'); 
+    mask-image: url('/icons/atom.svg'); 
+  }
+.stratis-attatchment-01 { 
+    -webkit-mask-image: url('/icons/attatchment-01.svg'); 
+    mask-image: url('/icons/attatchment-01.svg'); 
+  }
+.stratis-attatchment-02 { 
+    -webkit-mask-image: url('/icons/attatchment-02.svg'); 
+    mask-image: url('/icons/attatchment-02.svg'); 
+  }
+.stratis-audio-settings-01 { 
+    -webkit-mask-image: url('/icons/audio-settings-01.svg'); 
+    mask-image: url('/icons/audio-settings-01.svg'); 
+  }
+.stratis-audio-settings-02 { 
+    -webkit-mask-image: url('/icons/audio-settings-02.svg'); 
+    mask-image: url('/icons/audio-settings-02.svg'); 
+  }
+.stratis-bag-01 { 
+    -webkit-mask-image: url('/icons/bag-01.svg'); 
+    mask-image: url('/icons/bag-01.svg'); 
+  }
+.stratis-bag-02 { 
+    -webkit-mask-image: url('/icons/bag-02.svg'); 
+    mask-image: url('/icons/bag-02.svg'); 
+  }
+.stratis-bag-03 { 
+    -webkit-mask-image: url('/icons/bag-03.svg'); 
+    mask-image: url('/icons/bag-03.svg'); 
+  }
+.stratis-bag-04 { 
+    -webkit-mask-image: url('/icons/bag-04.svg'); 
+    mask-image: url('/icons/bag-04.svg'); 
+  }
+.stratis-bag-05 { 
+    -webkit-mask-image: url('/icons/bag-05.svg'); 
+    mask-image: url('/icons/bag-05.svg'); 
+  }
+.stratis-bank-note-01 { 
+    -webkit-mask-image: url('/icons/bank-note-01.svg'); 
+    mask-image: url('/icons/bank-note-01.svg'); 
+  }
+.stratis-bank-note-02 { 
+    -webkit-mask-image: url('/icons/bank-note-02.svg'); 
+    mask-image: url('/icons/bank-note-02.svg'); 
+  }
+.stratis-bank-note-03 { 
+    -webkit-mask-image: url('/icons/bank-note-03.svg'); 
+    mask-image: url('/icons/bank-note-03.svg'); 
+  }
+.stratis-bank-note-04 { 
+    -webkit-mask-image: url('/icons/bank-note-04.svg'); 
+    mask-image: url('/icons/bank-note-04.svg'); 
+  }
+.stratis-bank-note-05 { 
+    -webkit-mask-image: url('/icons/bank-note-05.svg'); 
+    mask-image: url('/icons/bank-note-05.svg'); 
+  }
+.stratis-bank-note-06 { 
+    -webkit-mask-image: url('/icons/bank-note-06.svg'); 
+    mask-image: url('/icons/bank-note-06.svg'); 
+  }
+.stratis-bank { 
+    -webkit-mask-image: url('/icons/bank.svg'); 
+    mask-image: url('/icons/bank.svg'); 
+  }
+.stratis-bar-chart-01 { 
+    -webkit-mask-image: url('/icons/bar-chart-01.svg'); 
+    mask-image: url('/icons/bar-chart-01.svg'); 
+  }
+.stratis-bar-chart-02 { 
+    -webkit-mask-image: url('/icons/bar-chart-02.svg'); 
+    mask-image: url('/icons/bar-chart-02.svg'); 
+  }
+.stratis-bar-chart-03 { 
+    -webkit-mask-image: url('/icons/bar-chart-03.svg'); 
+    mask-image: url('/icons/bar-chart-03.svg'); 
+  }
+.stratis-bar-chart-04 { 
+    -webkit-mask-image: url('/icons/bar-chart-04.svg'); 
+    mask-image: url('/icons/bar-chart-04.svg'); 
+  }
+.stratis-bar-chart-05 { 
+    -webkit-mask-image: url('/icons/bar-chart-05.svg'); 
+    mask-image: url('/icons/bar-chart-05.svg'); 
+  }
+.stratis-bar-chart-square-01 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-01.svg'); 
+    mask-image: url('/icons/bar-chart-square-01.svg'); 
+  }
+.stratis-bar-chart-square-02 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-02.svg'); 
+    mask-image: url('/icons/bar-chart-square-02.svg'); 
+  }
+.stratis-bar-chart-square-03 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-03.svg'); 
+    mask-image: url('/icons/bar-chart-square-03.svg'); 
+  }
+.stratis-bar-chart-square-down-01 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-down-01.svg'); 
+    mask-image: url('/icons/bar-chart-square-down-01.svg'); 
+  }
+.stratis-bar-chart-square-down-02 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-down-02.svg'); 
+    mask-image: url('/icons/bar-chart-square-down-02.svg'); 
+  }
+.stratis-bar-chart-square-up-01-icon-1 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-up-01-icon-1.svg'); 
+    mask-image: url('/icons/bar-chart-square-up-01-icon-1.svg'); 
+  }
+.stratis-bar-chart-square-up-01 { 
+    -webkit-mask-image: url('/icons/bar-chart-square-up-01.svg'); 
+    mask-image: url('/icons/bar-chart-square-up-01.svg'); 
+  }
+.stratis-bar-group-01 { 
+    -webkit-mask-image: url('/icons/bar-group-01.svg'); 
+    mask-image: url('/icons/bar-group-01.svg'); 
+  }
+.stratis-bar-group-02 { 
+    -webkit-mask-image: url('/icons/bar-group-02.svg'); 
+    mask-image: url('/icons/bar-group-02.svg'); 
+  }
+.stratis-bar-group-03 { 
+    -webkit-mask-image: url('/icons/bar-group-03.svg'); 
+    mask-image: url('/icons/bar-group-03.svg'); 
+  }
+.stratis-battery-01 { 
+    -webkit-mask-image: url('/icons/battery-01.svg'); 
+    mask-image: url('/icons/battery-01.svg'); 
+  }
+.stratis-battery-02 { 
+    -webkit-mask-image: url('/icons/battery-02.svg'); 
+    mask-image: url('/icons/battery-02.svg'); 
+  }
+.stratis-battery-03 { 
+    -webkit-mask-image: url('/icons/battery-03.svg'); 
+    mask-image: url('/icons/battery-03.svg'); 
+  }
+.stratis-battery-04 { 
+    -webkit-mask-image: url('/icons/battery-04.svg'); 
+    mask-image: url('/icons/battery-04.svg'); 
+  }
+.stratis-battery-empty { 
+    -webkit-mask-image: url('/icons/battery-empty.svg'); 
+    mask-image: url('/icons/battery-empty.svg'); 
+  }
+.stratis-battery-fill-01 { 
+    -webkit-mask-image: url('/icons/battery-fill-01.svg'); 
+    mask-image: url('/icons/battery-fill-01.svg'); 
+  }
+.stratis-battery-fill-02 { 
+    -webkit-mask-image: url('/icons/battery-fill-02.svg'); 
+    mask-image: url('/icons/battery-fill-02.svg'); 
+  }
+.stratis-battery-fill-04 { 
+    -webkit-mask-image: url('/icons/battery-fill-04.svg'); 
+    mask-image: url('/icons/battery-fill-04.svg'); 
+  }
+.stratis-bell-01 { 
+    -webkit-mask-image: url('/icons/bell-01.svg'); 
+    mask-image: url('/icons/bell-01.svg'); 
+  }
+.stratis-bell-02 { 
+    -webkit-mask-image: url('/icons/bell-02.svg'); 
+    mask-image: url('/icons/bell-02.svg'); 
+  }
+.stratis-bell-03 { 
+    -webkit-mask-image: url('/icons/bell-03.svg'); 
+    mask-image: url('/icons/bell-03.svg'); 
+  }
+.stratis-bell-04 { 
+    -webkit-mask-image: url('/icons/bell-04.svg'); 
+    mask-image: url('/icons/bell-04.svg'); 
+  }
+.stratis-bell-off-01 { 
+    -webkit-mask-image: url('/icons/bell-off-01.svg'); 
+    mask-image: url('/icons/bell-off-01.svg'); 
+  }
+.stratis-bell-off-02 { 
+    -webkit-mask-image: url('/icons/bell-off-02.svg'); 
+    mask-image: url('/icons/bell-off-02.svg'); 
+  }
+.stratis-bell-ringing-01 { 
+    -webkit-mask-image: url('/icons/bell-ringing-01.svg'); 
+    mask-image: url('/icons/bell-ringing-01.svg'); 
+  }
+.stratis-bell-ringing-02 { 
+    -webkit-mask-image: url('/icons/bell-ringing-02.svg'); 
+    mask-image: url('/icons/bell-ringing-02.svg'); 
+  }
+.stratis-bell-ringing-03 { 
+    -webkit-mask-image: url('/icons/bell-ringing-03.svg'); 
+    mask-image: url('/icons/bell-ringing-03.svg'); 
+  }
+.stratis-bell-ringing-04 { 
+    -webkit-mask-image: url('/icons/bell-ringing-04.svg'); 
+    mask-image: url('/icons/bell-ringing-04.svg'); 
+  }
+.stratis-bezier-01 { 
+    -webkit-mask-image: url('/icons/bezier-01.svg'); 
+    mask-image: url('/icons/bezier-01.svg'); 
+  }
+.stratis-bezier-02 { 
+    -webkit-mask-image: url('/icons/bezier-02.svg'); 
+    mask-image: url('/icons/bezier-02.svg'); 
+  }
+.stratis-bluetooth-01 { 
+    -webkit-mask-image: url('/icons/bluetooth-01.svg'); 
+    mask-image: url('/icons/bluetooth-01.svg'); 
+  }
+.stratis-bluetooth-02 { 
+    -webkit-mask-image: url('/icons/bluetooth-02.svg'); 
+    mask-image: url('/icons/bluetooth-02.svg'); 
+  }
+.stratis-bold-01 { 
+    -webkit-mask-image: url('/icons/bold-01.svg'); 
+    mask-image: url('/icons/bold-01.svg'); 
+  }
+.stratis-bold-02 { 
+    -webkit-mask-image: url('/icons/bold-02.svg'); 
+    mask-image: url('/icons/bold-02.svg'); 
+  }
+.stratis-book-01 { 
+    -webkit-mask-image: url('/icons/book-01.svg'); 
+    mask-image: url('/icons/book-01.svg'); 
+  }
+.stratis-book-02 { 
+    -webkit-mask-image: url('/icons/book-02.svg'); 
+    mask-image: url('/icons/book-02.svg'); 
+  }
+.stratis-book-03 { 
+    -webkit-mask-image: url('/icons/book-03.svg'); 
+    mask-image: url('/icons/book-03.svg'); 
+  }
+.stratis-book-04 { 
+    -webkit-mask-image: url('/icons/book-04.svg'); 
+    mask-image: url('/icons/book-04.svg'); 
+  }
+.stratis-book-05 { 
+    -webkit-mask-image: url('/icons/book-05.svg'); 
+    mask-image: url('/icons/book-05.svg'); 
+  }
+.stratis-book-06 { 
+    -webkit-mask-image: url('/icons/book-06.svg'); 
+    mask-image: url('/icons/book-06.svg'); 
+  }
+.stratis-box { 
+    -webkit-mask-image: url('/icons/box.svg'); 
+    mask-image: url('/icons/box.svg'); 
+  }
+.stratis-brackets-check { 
+    -webkit-mask-image: url('/icons/brackets-check.svg'); 
+    mask-image: url('/icons/brackets-check.svg'); 
+  }
+.stratis-brackets-minus { 
+    -webkit-mask-image: url('/icons/brackets-minus.svg'); 
+    mask-image: url('/icons/brackets-minus.svg'); 
+  }
+.stratis-brackets-plus { 
+    -webkit-mask-image: url('/icons/brackets-plus.svg'); 
+    mask-image: url('/icons/brackets-plus.svg'); 
+  }
+.stratis-brackets-slash { 
+    -webkit-mask-image: url('/icons/brackets-slash.svg'); 
+    mask-image: url('/icons/brackets-slash.svg'); 
+  }
+.stratis-brackets-typing { 
+    -webkit-mask-image: url('/icons/brackets-typing.svg'); 
+    mask-image: url('/icons/brackets-typing.svg'); 
+  }
+.stratis-brackets-X { 
+    -webkit-mask-image: url('/icons/brackets-X.svg'); 
+    mask-image: url('/icons/brackets-X.svg'); 
+  }
+.stratis-brackets { 
+    -webkit-mask-image: url('/icons/brackets.svg'); 
+    mask-image: url('/icons/brackets.svg'); 
+  }
+.stratis-browser-code { 
+    -webkit-mask-image: url('/icons/browser-code.svg'); 
+    mask-image: url('/icons/browser-code.svg'); 
+  }
+.stratis-browser { 
+    -webkit-mask-image: url('/icons/browser.svg'); 
+    mask-image: url('/icons/browser.svg'); 
+  }
+.stratis-calculator-01 { 
+    -webkit-mask-image: url('/icons/calculator-01.svg'); 
+    mask-image: url('/icons/calculator-01.svg'); 
+  }
+.stratis-calculator-02-icon-1 { 
+    -webkit-mask-image: url('/icons/calculator-02-icon-1.svg'); 
+    mask-image: url('/icons/calculator-02-icon-1.svg'); 
+  }
+.stratis-calculator-02 { 
+    -webkit-mask-image: url('/icons/calculator-02.svg'); 
+    mask-image: url('/icons/calculator-02.svg'); 
+  }
+.stratis-calendar-01 { 
+    -webkit-mask-image: url('/icons/calendar-01.svg'); 
+    mask-image: url('/icons/calendar-01.svg'); 
+  }
+.stratis-calendar-02 { 
+    -webkit-mask-image: url('/icons/calendar-02.svg'); 
+    mask-image: url('/icons/calendar-02.svg'); 
+  }
+.stratis-calendar-03 { 
+    -webkit-mask-image: url('/icons/calendar-03.svg'); 
+    mask-image: url('/icons/calendar-03.svg'); 
+  }
+.stratis-calendar-04 { 
+    -webkit-mask-image: url('/icons/calendar-04.svg'); 
+    mask-image: url('/icons/calendar-04.svg'); 
+  }
+.stratis-calendar-05 { 
+    -webkit-mask-image: url('/icons/calendar-05.svg'); 
+    mask-image: url('/icons/calendar-05.svg'); 
+  }
+.stratis-calendar-06 { 
+    -webkit-mask-image: url('/icons/calendar-06.svg'); 
+    mask-image: url('/icons/calendar-06.svg'); 
+  }
+.stratis-calendar-07 { 
+    -webkit-mask-image: url('/icons/calendar-07.svg'); 
+    mask-image: url('/icons/calendar-07.svg'); 
+  }
+.stratis-calendar-check { 
+    -webkit-mask-image: url('/icons/calendar-check.svg'); 
+    mask-image: url('/icons/calendar-check.svg'); 
+  }
+.stratis-calendar-minus { 
+    -webkit-mask-image: url('/icons/calendar-minus.svg'); 
+    mask-image: url('/icons/calendar-minus.svg'); 
+  }
+.stratis-calendar-number { 
+    -webkit-mask-image: url('/icons/calendar-number.svg'); 
+    mask-image: url('/icons/calendar-number.svg'); 
+  }
+.stratis-calendar-plus { 
+    -webkit-mask-image: url('/icons/calendar-plus.svg'); 
+    mask-image: url('/icons/calendar-plus.svg'); 
+  }
+.stratis-camera-01 { 
+    -webkit-mask-image: url('/icons/camera-01.svg'); 
+    mask-image: url('/icons/camera-01.svg'); 
+  }
+.stratis-camera-02 { 
+    -webkit-mask-image: url('/icons/camera-02.svg'); 
+    mask-image: url('/icons/camera-02.svg'); 
+  }
+.stratis-camera-lens { 
+    -webkit-mask-image: url('/icons/camera-lens.svg'); 
+    mask-image: url('/icons/camera-lens.svg'); 
+  }
+.stratis-camera-off { 
+    -webkit-mask-image: url('/icons/camera-off.svg'); 
+    mask-image: url('/icons/camera-off.svg'); 
+  }
+.stratis-cancel-left { 
+    -webkit-mask-image: url('/icons/cancel-left.svg'); 
+    mask-image: url('/icons/cancel-left.svg'); 
+  }
+.stratis-cancel-right { 
+    -webkit-mask-image: url('/icons/cancel-right.svg'); 
+    mask-image: url('/icons/cancel-right.svg'); 
+  }
+.stratis-car { 
+    -webkit-mask-image: url('/icons/car.svg'); 
+    mask-image: url('/icons/car.svg'); 
+  }
+.stratis-card-01 { 
+    -webkit-mask-image: url('/icons/card-01.svg'); 
+    mask-image: url('/icons/card-01.svg'); 
+  }
+.stratis-card-02 { 
+    -webkit-mask-image: url('/icons/card-02.svg'); 
+    mask-image: url('/icons/card-02.svg'); 
+  }
+.stratis-card-add { 
+    -webkit-mask-image: url('/icons/card-add.svg'); 
+    mask-image: url('/icons/card-add.svg'); 
+  }
+.stratis-card-check { 
+    -webkit-mask-image: url('/icons/card-check.svg'); 
+    mask-image: url('/icons/card-check.svg'); 
+  }
+.stratis-card-down { 
+    -webkit-mask-image: url('/icons/card-down.svg'); 
+    mask-image: url('/icons/card-down.svg'); 
+  }
+.stratis-card-edit { 
+    -webkit-mask-image: url('/icons/card-edit.svg'); 
+    mask-image: url('/icons/card-edit.svg'); 
+  }
+.stratis-card-lock { 
+    -webkit-mask-image: url('/icons/card-lock.svg'); 
+    mask-image: url('/icons/card-lock.svg'); 
+  }
+.stratis-card-minus { 
+    -webkit-mask-image: url('/icons/card-minus.svg'); 
+    mask-image: url('/icons/card-minus.svg'); 
+  }
+.stratis-card-number { 
+    -webkit-mask-image: url('/icons/card-number.svg'); 
+    mask-image: url('/icons/card-number.svg'); 
+  }
+.stratis-card-shield { 
+    -webkit-mask-image: url('/icons/card-shield.svg'); 
+    mask-image: url('/icons/card-shield.svg'); 
+  }
+.stratis-card-up { 
+    -webkit-mask-image: url('/icons/card-up.svg'); 
+    mask-image: url('/icons/card-up.svg'); 
+  }
+.stratis-card-x { 
+    -webkit-mask-image: url('/icons/card-x.svg'); 
+    mask-image: url('/icons/card-x.svg'); 
+  }
+.stratis-cart { 
+    -webkit-mask-image: url('/icons/cart.svg'); 
+    mask-image: url('/icons/cart.svg'); 
+  }
+.stratis-center { 
+    -webkit-mask-image: url('/icons/center.svg'); 
+    mask-image: url('/icons/center.svg'); 
+  }
+.stratis-chart-breakout-circle { 
+    -webkit-mask-image: url('/icons/chart-breakout-circle.svg'); 
+    mask-image: url('/icons/chart-breakout-circle.svg'); 
+  }
+.stratis-chart-breakout-square { 
+    -webkit-mask-image: url('/icons/chart-breakout-square.svg'); 
+    mask-image: url('/icons/chart-breakout-square.svg'); 
+  }
+.stratis-check-01 { 
+    -webkit-mask-image: url('/icons/check-01.svg'); 
+    mask-image: url('/icons/check-01.svg'); 
+  }
+.stratis-check-02 { 
+    -webkit-mask-image: url('/icons/check-02.svg'); 
+    mask-image: url('/icons/check-02.svg'); 
+  }
+.stratis-check-broken { 
+    -webkit-mask-image: url('/icons/check-broken.svg'); 
+    mask-image: url('/icons/check-broken.svg'); 
+  }
+.stratis-check-contained { 
+    -webkit-mask-image: url('/icons/check-contained.svg'); 
+    mask-image: url('/icons/check-contained.svg'); 
+  }
+.stratis-check-square-broken { 
+    -webkit-mask-image: url('/icons/check-square-broken.svg'); 
+    mask-image: url('/icons/check-square-broken.svg'); 
+  }
+.stratis-check-square-contained { 
+    -webkit-mask-image: url('/icons/check-square-contained.svg'); 
+    mask-image: url('/icons/check-square-contained.svg'); 
+  }
+.stratis-chevron-double-down { 
+    -webkit-mask-image: url('/icons/chevron-double-down.svg'); 
+    mask-image: url('/icons/chevron-double-down.svg'); 
+  }
+.stratis-chevron-double-left { 
+    -webkit-mask-image: url('/icons/chevron-double-left.svg'); 
+    mask-image: url('/icons/chevron-double-left.svg'); 
+  }
+.stratis-chevron-double-right { 
+    -webkit-mask-image: url('/icons/chevron-double-right.svg'); 
+    mask-image: url('/icons/chevron-double-right.svg'); 
+  }
+.stratis-chevron-double-up { 
+    -webkit-mask-image: url('/icons/chevron-double-up.svg'); 
+    mask-image: url('/icons/chevron-double-up.svg'); 
+  }
+.stratis-chevron-left {
+    -webkit-mask-image: url('/icons/chevron-left.svg'); 
+    mask-image: url('/icons/chevron-left.svg'); 
+  }
+.stratis-chevron-right {
+    -webkit-mask-image: url('/icons/chevron-right.svg'); 
+    mask-image: url('/icons/chevron-right.svg'); 
+  }
+.stratis-chevron-up { 
+    -webkit-mask-image: url('/icons/chevron-up.svg'); 
+    mask-image: url('/icons/chevron-up.svg'); 
+  }
+.stratis-chromecast { 
+    -webkit-mask-image: url('/icons/chromecast.svg'); 
+    mask-image: url('/icons/chromecast.svg'); 
+  }
+.stratis-circle { 
+    -webkit-mask-image: url('/icons/circle.svg'); 
+    mask-image: url('/icons/circle.svg'); 
+  }
+.stratis-clock-01 { 
+    -webkit-mask-image: url('/icons/clock-01.svg'); 
+    mask-image: url('/icons/clock-01.svg'); 
+  }
+.stratis-clock-backward { 
+    -webkit-mask-image: url('/icons/clock-backward.svg'); 
+    mask-image: url('/icons/clock-backward.svg'); 
+  }
+.stratis-clock-check { 
+    -webkit-mask-image: url('/icons/clock-check.svg'); 
+    mask-image: url('/icons/clock-check.svg'); 
+  }
+.stratis-clock-forward { 
+    -webkit-mask-image: url('/icons/clock-forward.svg'); 
+    mask-image: url('/icons/clock-forward.svg'); 
+  }
+.stratis-clock-plus { 
+    -webkit-mask-image: url('/icons/clock-plus.svg'); 
+    mask-image: url('/icons/clock-plus.svg'); 
+  }
+.stratis-cloud-01 { 
+    -webkit-mask-image: url('/icons/cloud-01.svg'); 
+    mask-image: url('/icons/cloud-01.svg'); 
+  }
+.stratis-cloud-02 { 
+    -webkit-mask-image: url('/icons/cloud-02.svg'); 
+    mask-image: url('/icons/cloud-02.svg'); 
+  }
+.stratis-cloud-03 { 
+    -webkit-mask-image: url('/icons/cloud-03.svg'); 
+    mask-image: url('/icons/cloud-03.svg'); 
+  }
+.stratis-cloud-04 { 
+    -webkit-mask-image: url('/icons/cloud-04.svg'); 
+    mask-image: url('/icons/cloud-04.svg'); 
+  }
+.stratis-cloud-lightning { 
+    -webkit-mask-image: url('/icons/cloud-lightning.svg'); 
+    mask-image: url('/icons/cloud-lightning.svg'); 
+  }
+.stratis-cloud-rain { 
+    -webkit-mask-image: url('/icons/cloud-rain.svg'); 
+    mask-image: url('/icons/cloud-rain.svg'); 
+  }
+.stratis-cloud-snow { 
+    -webkit-mask-image: url('/icons/cloud-snow.svg'); 
+    mask-image: url('/icons/cloud-snow.svg'); 
+  }
+.stratis-cloud-sun { 
+    -webkit-mask-image: url('/icons/cloud-sun.svg'); 
+    mask-image: url('/icons/cloud-sun.svg'); 
+  }
+.stratis-code-01 { 
+    -webkit-mask-image: url('/icons/code-01.svg'); 
+    mask-image: url('/icons/code-01.svg'); 
+  }
+.stratis-code-02 { 
+    -webkit-mask-image: url('/icons/code-02.svg'); 
+    mask-image: url('/icons/code-02.svg'); 
+  }
+.stratis-code-03 { 
+    -webkit-mask-image: url('/icons/code-03.svg'); 
+    mask-image: url('/icons/code-03.svg'); 
+  }
+.stratis-code-04 { 
+    -webkit-mask-image: url('/icons/code-04.svg'); 
+    mask-image: url('/icons/code-04.svg'); 
+  }
+.stratis-coin-broken { 
+    -webkit-mask-image: url('/icons/coin-broken.svg'); 
+    mask-image: url('/icons/coin-broken.svg'); 
+  }
+.stratis-coin-hand { 
+    -webkit-mask-image: url('/icons/coin-hand.svg'); 
+    mask-image: url('/icons/coin-hand.svg'); 
+  }
+.stratis-coin-number { 
+    -webkit-mask-image: url('/icons/coin-number.svg'); 
+    mask-image: url('/icons/coin-number.svg'); 
+  }
+.stratis-coin-unbroken { 
+    -webkit-mask-image: url('/icons/coin-unbroken.svg'); 
+    mask-image: url('/icons/coin-unbroken.svg'); 
+  }
+.stratis-coins-rotate { 
+    -webkit-mask-image: url('/icons/coins-rotate.svg'); 
+    mask-image: url('/icons/coins-rotate.svg'); 
+  }
+.stratis-coins { 
+    -webkit-mask-image: url('/icons/coins.svg'); 
+    mask-image: url('/icons/coins.svg'); 
+  }
+.stratis-color-picker { 
+    -webkit-mask-image: url('/icons/color-picker.svg'); 
+    mask-image: url('/icons/color-picker.svg'); 
+  }
+.stratis-color-swatch-01 { 
+    -webkit-mask-image: url('/icons/color-swatch-01.svg'); 
+    mask-image: url('/icons/color-swatch-01.svg'); 
+  }
+.stratis-color-swatch-02 { 
+    -webkit-mask-image: url('/icons/color-swatch-02.svg'); 
+    mask-image: url('/icons/color-swatch-02.svg'); 
+  }
+.stratis-colors-01 { 
+    -webkit-mask-image: url('/icons/colors-01.svg'); 
+    mask-image: url('/icons/colors-01.svg'); 
+  }
+.stratis-colors-02 { 
+    -webkit-mask-image: url('/icons/colors-02.svg'); 
+    mask-image: url('/icons/colors-02.svg'); 
+  }
+.stratis-column-horizontal-01 { 
+    -webkit-mask-image: url('/icons/column-horizontal-01.svg'); 
+    mask-image: url('/icons/column-horizontal-01.svg'); 
+  }
+.stratis-column-horizontal-02 { 
+    -webkit-mask-image: url('/icons/column-horizontal-02.svg'); 
+    mask-image: url('/icons/column-horizontal-02.svg'); 
+  }
+.stratis-column-horizontal-03 { 
+    -webkit-mask-image: url('/icons/column-horizontal-03.svg'); 
+    mask-image: url('/icons/column-horizontal-03.svg'); 
+  }
+.stratis-column-vertical-01 { 
+    -webkit-mask-image: url('/icons/column-vertical-01.svg'); 
+    mask-image: url('/icons/column-vertical-01.svg'); 
+  }
+.stratis-column-vertical-02 { 
+    -webkit-mask-image: url('/icons/column-vertical-02.svg'); 
+    mask-image: url('/icons/column-vertical-02.svg'); 
+  }
+.stratis-column-vertical-03 { 
+    -webkit-mask-image: url('/icons/column-vertical-03.svg'); 
+    mask-image: url('/icons/column-vertical-03.svg'); 
+  }
+.stratis-compare { 
+    -webkit-mask-image: url('/icons/compare.svg'); 
+    mask-image: url('/icons/compare.svg'); 
+  }
+.stratis-compass-icon-1 { 
+    -webkit-mask-image: url('/icons/compass-icon-1.svg'); 
+    mask-image: url('/icons/compass-icon-1.svg'); 
+  }
+.stratis-compass-icon-2 { 
+    -webkit-mask-image: url('/icons/compass-icon-2.svg'); 
+    mask-image: url('/icons/compass-icon-2.svg'); 
+  }
+.stratis-compass { 
+    -webkit-mask-image: url('/icons/compass.svg'); 
+    mask-image: url('/icons/compass.svg'); 
+  }
+.stratis-component { 
+    -webkit-mask-image: url('/icons/component.svg'); 
+    mask-image: url('/icons/component.svg'); 
+  }
+.stratis-computer { 
+    -webkit-mask-image: url('/icons/computer.svg'); 
+    mask-image: url('/icons/computer.svg'); 
+  }
+.stratis-contrast { 
+    -webkit-mask-image: url('/icons/contrast.svg'); 
+    mask-image: url('/icons/contrast.svg'); 
+  }
+.stratis-crop-01 { 
+    -webkit-mask-image: url('/icons/crop-01.svg'); 
+    mask-image: url('/icons/crop-01.svg'); 
+  }
+.stratis-crop-02 { 
+    -webkit-mask-image: url('/icons/crop-02.svg'); 
+    mask-image: url('/icons/crop-02.svg'); 
+  }
+.stratis-currency-bath { 
+    -webkit-mask-image: url('/icons/currency-bath.svg'); 
+    mask-image: url('/icons/currency-bath.svg'); 
+  }
+.stratis-currency-bitcoin { 
+    -webkit-mask-image: url('/icons/currency-bitcoin.svg'); 
+    mask-image: url('/icons/currency-bitcoin.svg'); 
+  }
+.stratis-currency-cent { 
+    -webkit-mask-image: url('/icons/currency-cent.svg'); 
+    mask-image: url('/icons/currency-cent.svg'); 
+  }
+.stratis-currency-coin-bath { 
+    -webkit-mask-image: url('/icons/currency-coin-bath.svg'); 
+    mask-image: url('/icons/currency-coin-bath.svg'); 
+  }
+.stratis-currency-coin-bitcoin { 
+    -webkit-mask-image: url('/icons/currency-coin-bitcoin.svg'); 
+    mask-image: url('/icons/currency-coin-bitcoin.svg'); 
+  }
+.stratis-currency-coin-cent { 
+    -webkit-mask-image: url('/icons/currency-coin-cent.svg'); 
+    mask-image: url('/icons/currency-coin-cent.svg'); 
+  }
+.stratis-currency-coin-dollar { 
+    -webkit-mask-image: url('/icons/currency-coin-dollar.svg'); 
+    mask-image: url('/icons/currency-coin-dollar.svg'); 
+  }
+.stratis-currency-coin-manat { 
+    -webkit-mask-image: url('/icons/manat.svg'); 
+    mask-image: url('/icons/manat.svg'); 
+  } 
+.stratis-currency-coin-euro { 
+    -webkit-mask-image: url('/icons/currency-coin-euro.svg'); 
+    mask-image: url('/icons/currency-coin-euro.svg'); 
+  }
+.stratis-currency-coin-pound { 
+    -webkit-mask-image: url('/icons/currency-coin-pound.svg'); 
+    mask-image: url('/icons/currency-coin-pound.svg'); 
+  }
+.stratis-currency-coin-rubel { 
+    -webkit-mask-image: url('/icons/currency-coin-rubel.svg'); 
+    mask-image: url('/icons/currency-coin-rubel.svg'); 
+  }
+.stratis-currency-coin-rupee { 
+    -webkit-mask-image: url('/icons/currency-coin-rupee.svg'); 
+    mask-image: url('/icons/currency-coin-rupee.svg'); 
+  }
+.stratis-currency-coin-yen { 
+    -webkit-mask-image: url('/icons/currency-coin-yen.svg'); 
+    mask-image: url('/icons/currency-coin-yen.svg'); 
+  }
+.stratis-currency-dollar { 
+    -webkit-mask-image: url('/icons/currency-dollar.svg'); 
+    mask-image: url('/icons/currency-dollar.svg'); 
+  }
+.stratis-currency-euro { 
+    -webkit-mask-image: url('/icons/currency-euro.svg'); 
+    mask-image: url('/icons/currency-euro.svg'); 
+  }
+.stratis-currency-pound { 
+    -webkit-mask-image: url('/icons/currency-pound.svg'); 
+    mask-image: url('/icons/currency-pound.svg'); 
+  }
+.stratis-currency-rubel { 
+    -webkit-mask-image: url('/icons/currency-rubel.svg'); 
+    mask-image: url('/icons/currency-rubel.svg'); 
+  }
+.stratis-currency-rupee { 
+    -webkit-mask-image: url('/icons/currency-rupee.svg'); 
+    mask-image: url('/icons/currency-rupee.svg'); 
+  }
+.stratis-currency-yen { 
+    -webkit-mask-image: url('/icons/currency-yen.svg'); 
+    mask-image: url('/icons/currency-yen.svg'); 
+  }
+.stratis-cursor-01 { 
+    -webkit-mask-image: url('/icons/cursor-01.svg'); 
+    mask-image: url('/icons/cursor-01.svg'); 
+  }
+.stratis-cursor-02 { 
+    -webkit-mask-image: url('/icons/cursor-02.svg'); 
+    mask-image: url('/icons/cursor-02.svg'); 
+  }
+.stratis-cursor-03 { 
+    -webkit-mask-image: url('/icons/cursor-03.svg'); 
+    mask-image: url('/icons/cursor-03.svg'); 
+  }
+.stratis-cursor-04 { 
+    -webkit-mask-image: url('/icons/cursor-04.svg'); 
+    mask-image: url('/icons/cursor-04.svg'); 
+  }
+.stratis-cursor-05 { 
+    -webkit-mask-image: url('/icons/cursor-05.svg'); 
+    mask-image: url('/icons/cursor-05.svg'); 
+  }
+.stratis-cursor-06 { 
+    -webkit-mask-image: url('/icons/cursor-06.svg'); 
+    mask-image: url('/icons/cursor-06.svg'); 
+  }
+.stratis-dash { 
+    -webkit-mask-image: url('/icons/dash.svg'); 
+    mask-image: url('/icons/dash.svg'); 
+  }
+.stratis-data-01 { 
+    -webkit-mask-image: url('/icons/data-01.svg'); 
+    mask-image: url('/icons/data-01.svg'); 
+  }
+.stratis-data-02 { 
+    -webkit-mask-image: url('/icons/data-02.svg'); 
+    mask-image: url('/icons/data-02.svg'); 
+  }
+.stratis-data-03 { 
+    -webkit-mask-image: url('/icons/data-03.svg'); 
+    mask-image: url('/icons/data-03.svg'); 
+  }
+.stratis-data-04 { 
+    -webkit-mask-image: url('/icons/data-04.svg'); 
+    mask-image: url('/icons/data-04.svg'); 
+  }
+.stratis-delete { 
+    -webkit-mask-image: url('/icons/delete.svg'); 
+    mask-image: url('/icons/delete.svg'); 
+  }
+.stratis-delivery { 
+    -webkit-mask-image: url('/icons/delivery.svg'); 
+    mask-image: url('/icons/delivery.svg'); 
+  }
+.stratis-diamond-icon-1 { 
+    -webkit-mask-image: url('/icons/diamond-icon-1.svg'); 
+    mask-image: url('/icons/diamond-icon-1.svg'); 
+  }
+.stratis-diamond { 
+    -webkit-mask-image: url('/icons/diamond.svg'); 
+    mask-image: url('/icons/diamond.svg'); 
+  }
+.stratis-disc { 
+    -webkit-mask-image: url('/icons/disc.svg'); 
+    mask-image: url('/icons/disc.svg'); 
+  }
+.stratis-discount-circle { 
+    -webkit-mask-image: url('/icons/discount-circle.svg'); 
+    mask-image: url('/icons/discount-circle.svg'); 
+  }
+.stratis-discount-square { 
+    -webkit-mask-image: url('/icons/discount-square.svg'); 
+    mask-image: url('/icons/discount-square.svg'); 
+  }
+.stratis-discount-star-01 { 
+    -webkit-mask-image: url('/icons/discount-star-01.svg'); 
+    mask-image: url('/icons/discount-star-01.svg'); 
+  }
+.stratis-discount-star-02 { 
+    -webkit-mask-image: url('/icons/discount-star-02.svg'); 
+    mask-image: url('/icons/discount-star-02.svg'); 
+  }
+.stratis-discount-star-03 { 
+    -webkit-mask-image: url('/icons/discount-star-03.svg'); 
+    mask-image: url('/icons/discount-star-03.svg'); 
+  }
+.stratis-divider { 
+    -webkit-mask-image: url('/icons/divider.svg'); 
+    mask-image: url('/icons/divider.svg'); 
+  }
+.stratis-dot-horizontal { 
+    -webkit-mask-image: url('/icons/dot-horizontal.svg'); 
+    mask-image: url('/icons/dot-horizontal.svg'); 
+  }
+.stratis-dot-vertical { 
+    -webkit-mask-image: url('/icons/dot-vertical.svg'); 
+    mask-image: url('/icons/dot-vertical.svg'); 
+  }
+.stratis-down-arrow-sm { 
+    -webkit-mask-image: url('/icons/down-arrow-sm.svg'); 
+    mask-image: url('/icons/down-arrow-sm.svg'); 
+  }
+.stratis-down-arrow { 
+    -webkit-mask-image: url('/icons/down-arrow.svg'); 
+    mask-image: url('/icons/down-arrow.svg'); 
+  }
+.stratis-download-01 { 
+    -webkit-mask-image: url('/icons/download-01.svg'); 
+    mask-image: url('/icons/download-01.svg'); 
+  }
+.stratis-download-02 { 
+    -webkit-mask-image: url('/icons/download-02.svg'); 
+    mask-image: url('/icons/download-02.svg'); 
+  }
+.stratis-download { 
+    -webkit-mask-image: url('/icons/download.svg'); 
+    mask-image: url('/icons/download.svg'); 
+  }
+.stratis-drop { 
+    -webkit-mask-image: url('/icons/drop.svg'); 
+    mask-image: url('/icons/drop.svg'); 
+  }
+.stratis-edit-01 { 
+    -webkit-mask-image: url('/icons/edit-01.svg'); 
+    mask-image: url('/icons/edit-01.svg'); 
+  }
+.stratis-edit-02 { 
+    -webkit-mask-image: url('/icons/edit-02.svg'); 
+    mask-image: url('/icons/edit-02.svg'); 
+  }
+.stratis-edit-03 { 
+    -webkit-mask-image: url('/icons/edit-03.svg'); 
+    mask-image: url('/icons/edit-03.svg'); 
+  }
+.stratis-edit-04 { 
+    -webkit-mask-image: url('/icons/edit-04.svg'); 
+    mask-image: url('/icons/edit-04.svg'); 
+  }
+.stratis-edit-contained { 
+    -webkit-mask-image: url('/icons/edit-contained.svg'); 
+    mask-image: url('/icons/edit-contained.svg'); 
+  }
+.stratis-email { 
+    -webkit-mask-image: url('/icons/email.svg'); 
+    mask-image: url('/icons/email.svg'); 
+  }
+.stratis-embed { 
+    -webkit-mask-image: url('/icons/embed.svg'); 
+    mask-image: url('/icons/embed.svg'); 
+  }
+.stratis-equals-not { 
+    -webkit-mask-image: url('/icons/equals-not.svg'); 
+    mask-image: url('/icons/equals-not.svg'); 
+  }
+.stratis-equals { 
+    -webkit-mask-image: url('/icons/equals.svg'); 
+    mask-image: url('/icons/equals.svg'); 
+  }
+.stratis-eraser-01 { 
+    -webkit-mask-image: url('/icons/eraser-01.svg'); 
+    mask-image: url('/icons/eraser-01.svg'); 
+  }
+.stratis-eraser-02 { 
+    -webkit-mask-image: url('/icons/eraser-02.svg'); 
+    mask-image: url('/icons/eraser-02.svg'); 
+  }
+.stratis-expand-02 { 
+    -webkit-mask-image: url('/icons/expand-02.svg'); 
+    mask-image: url('/icons/expand-02.svg'); 
+  }
+.stratis-expand { 
+    -webkit-mask-image: url('/icons/expand.svg'); 
+    mask-image: url('/icons/expand.svg'); 
+  }
+.stratis-eye-closed { 
+    -webkit-mask-image: url('/icons/eye-closed.svg'); 
+    mask-image: url('/icons/eye-closed.svg'); 
+  }
+.stratis-eye-open { 
+    -webkit-mask-image: url('/icons/eye-open.svg'); 
+    mask-image: url('/icons/eye-open.svg'); 
+  }
+.stratis-face-id-01 { 
+    -webkit-mask-image: url('/icons/face-id-01.svg'); 
+    mask-image: url('/icons/face-id-01.svg'); 
+  }
+.stratis-face-id-02 { 
+    -webkit-mask-image: url('/icons/face-id-02.svg'); 
+    mask-image: url('/icons/face-id-02.svg'); 
+  }
+.stratis-fast-backward { 
+    -webkit-mask-image: url('/icons/fast-backward.svg'); 
+    mask-image: url('/icons/fast-backward.svg'); 
+  }
+.stratis-fast-forward { 
+    -webkit-mask-image: url('/icons/fast-forward.svg'); 
+    mask-image: url('/icons/fast-forward.svg'); 
+  }
+.stratis-favourite { 
+    -webkit-mask-image: url('/icons/favourite.svg'); 
+    mask-image: url('/icons/favourite.svg'); 
+  }
+.stratis-feather-01 { 
+    -webkit-mask-image: url('/icons/feather-01.svg'); 
+    mask-image: url('/icons/feather-01.svg'); 
+  }
+.stratis-feather-02 { 
+    -webkit-mask-image: url('/icons/feather-02.svg'); 
+    mask-image: url('/icons/feather-02.svg'); 
+  }
+.stratis-file-01 { 
+    -webkit-mask-image: url('/icons/file-01.svg'); 
+    mask-image: url('/icons/file-01.svg'); 
+  }
+.stratis-file-02 { 
+    -webkit-mask-image: url('/icons/file-02.svg'); 
+    mask-image: url('/icons/file-02.svg'); 
+  }
+.stratis-file-03 { 
+    -webkit-mask-image: url('/icons/file-03.svg'); 
+    mask-image: url('/icons/file-03.svg'); 
+  }
+.stratis-file-04 { 
+    -webkit-mask-image: url('/icons/file-04.svg'); 
+    mask-image: url('/icons/file-04.svg'); 
+  }
+.stratis-file-05 { 
+    -webkit-mask-image: url('/icons/file-05.svg'); 
+    mask-image: url('/icons/file-05.svg'); 
+  }
+.stratis-file-06 { 
+    -webkit-mask-image: url('/icons/file-06.svg'); 
+    mask-image: url('/icons/file-06.svg'); 
+  }
+.stratis-file-attach-01 { 
+    -webkit-mask-image: url('/icons/file-attach-01.svg'); 
+    mask-image: url('/icons/file-attach-01.svg'); 
+  }
+.stratis-file-attach-02 { 
+    -webkit-mask-image: url('/icons/file-attach-02.svg'); 
+    mask-image: url('/icons/file-attach-02.svg'); 
+  }
+.stratis-file-attach-03 { 
+    -webkit-mask-image: url('/icons/file-attach-03.svg'); 
+    mask-image: url('/icons/file-attach-03.svg'); 
+  }
+.stratis-file-branch { 
+    -webkit-mask-image: url('/icons/file-branch.svg'); 
+    mask-image: url('/icons/file-branch.svg'); 
+  }
+.stratis-file-check-01 { 
+    -webkit-mask-image: url('/icons/file-check-01.svg'); 
+    mask-image: url('/icons/file-check-01.svg'); 
+  }
+.stratis-file-check-02 { 
+    -webkit-mask-image: url('/icons/file-check-02.svg'); 
+    mask-image: url('/icons/file-check-02.svg'); 
+  }
+.stratis-file-code { 
+    -webkit-mask-image: url('/icons/file-code.svg'); 
+    mask-image: url('/icons/file-code.svg'); 
+  }
+.stratis-file-down-01 { 
+    -webkit-mask-image: url('/icons/file-down-01.svg'); 
+    mask-image: url('/icons/file-down-01.svg'); 
+  }
+.stratis-file-down-02 { 
+    -webkit-mask-image: url('/icons/file-down-02.svg'); 
+    mask-image: url('/icons/file-down-02.svg'); 
+  }
+.stratis-file-edit-01 { 
+    -webkit-mask-image: url('/icons/file-edit-01.svg'); 
+    mask-image: url('/icons/file-edit-01.svg'); 
+  }
+.stratis-file-edit-02 { 
+    -webkit-mask-image: url('/icons/file-edit-02.svg'); 
+    mask-image: url('/icons/file-edit-02.svg'); 
+  }
+.stratis-file-eye-01 { 
+    -webkit-mask-image: url('/icons/file-eye-01.svg'); 
+    mask-image: url('/icons/file-eye-01.svg'); 
+  }
+.stratis-file-eye-02 { 
+    -webkit-mask-image: url('/icons/file-eye-02.svg'); 
+    mask-image: url('/icons/file-eye-02.svg'); 
+  }
+.stratis-file-lock-01 { 
+    -webkit-mask-image: url('/icons/file-lock-01.svg'); 
+    mask-image: url('/icons/file-lock-01.svg'); 
+  }
+.stratis-file-lock-02 { 
+    -webkit-mask-image: url('/icons/file-lock-02.svg'); 
+    mask-image: url('/icons/file-lock-02.svg'); 
+  }
+.stratis-file-lock-03 { 
+    -webkit-mask-image: url('/icons/file-lock-03.svg'); 
+    mask-image: url('/icons/file-lock-03.svg'); 
+  }
+.stratis-file-minus-01 { 
+    -webkit-mask-image: url('/icons/file-minus-01.svg'); 
+    mask-image: url('/icons/file-minus-01.svg'); 
+  }
+.stratis-file-minus-02 { 
+    -webkit-mask-image: url('/icons/file-minus-02.svg'); 
+    mask-image: url('/icons/file-minus-02.svg'); 
+  }
+.stratis-file-multiple { 
+    -webkit-mask-image: url('/icons/file-multiple.svg'); 
+    mask-image: url('/icons/file-multiple.svg'); 
+  }
+.stratis-file-none { 
+    -webkit-mask-image: url('/icons/file-none.svg'); 
+    mask-image: url('/icons/file-none.svg'); 
+  }
+.stratis-file-plus-01 { 
+    -webkit-mask-image: url('/icons/file-plus-01.svg'); 
+    mask-image: url('/icons/file-plus-01.svg'); 
+  }
+.stratis-file-plus-02 { 
+    -webkit-mask-image: url('/icons/file-plus-02.svg'); 
+    mask-image: url('/icons/file-plus-02.svg'); 
+  }
+.stratis-file-question-01 { 
+    -webkit-mask-image: url('/icons/file-question-01.svg'); 
+    mask-image: url('/icons/file-question-01.svg'); 
+  }
+.stratis-file-question-02 { 
+    -webkit-mask-image: url('/icons/file-question-02.svg'); 
+    mask-image: url('/icons/file-question-02.svg'); 
+  }
+.stratis-file-return-01 { 
+    -webkit-mask-image: url('/icons/file-return-01.svg'); 
+    mask-image: url('/icons/file-return-01.svg'); 
+  }
+.stratis-file-return-02 { 
+    -webkit-mask-image: url('/icons/file-return-02.svg'); 
+    mask-image: url('/icons/file-return-02.svg'); 
+  }
+.stratis-file-search-01 { 
+    -webkit-mask-image: url('/icons/file-search-01.svg'); 
+    mask-image: url('/icons/file-search-01.svg'); 
+  }
+.stratis-file-search-02 { 
+    -webkit-mask-image: url('/icons/file-search-02.svg'); 
+    mask-image: url('/icons/file-search-02.svg'); 
+  }
+.stratis-file-shield-01 { 
+    -webkit-mask-image: url('/icons/file-shield-01.svg'); 
+    mask-image: url('/icons/file-shield-01.svg'); 
+  }
+.stratis-file-shield-02 { 
+    -webkit-mask-image: url('/icons/file-shield-02.svg'); 
+    mask-image: url('/icons/file-shield-02.svg'); 
+  }
+.stratis-file-shield-03 { 
+    -webkit-mask-image: url('/icons/file-shield-03.svg'); 
+    mask-image: url('/icons/file-shield-03.svg'); 
+  }
+.stratis-file-shred { 
+    -webkit-mask-image: url('/icons/file-shred.svg'); 
+    mask-image: url('/icons/file-shred.svg'); 
+  }
+.stratis-file-up-01 { 
+    -webkit-mask-image: url('/icons/file-up-01.svg'); 
+    mask-image: url('/icons/file-up-01.svg'); 
+  }
+.stratis-file-up-02 { 
+    -webkit-mask-image: url('/icons/file-up-02.svg'); 
+    mask-image: url('/icons/file-up-02.svg'); 
+  }
+.stratis-file-x-02 { 
+    -webkit-mask-image: url('/icons/file-x-02.svg'); 
+    mask-image: url('/icons/file-x-02.svg'); 
+  }
+.stratis-file { 
+    -webkit-mask-image: url('/icons/file.svg'); 
+    mask-image: url('/icons/file.svg'); 
+  }
+.stratis-filter { 
+    -webkit-mask-image: url('/icons/filter.svg'); 
+    mask-image: url('/icons/filter.svg'); 
+  }
+.stratis-fingerpint-01 { 
+    -webkit-mask-image: url('/icons/fingerpint-01.svg'); 
+    mask-image: url('/icons/fingerpint-01.svg'); 
+  }
+.stratis-fingerpint-02 { 
+    -webkit-mask-image: url('/icons/fingerpint-02.svg'); 
+    mask-image: url('/icons/fingerpint-02.svg'); 
+  }
+.stratis-flame-01 { 
+    -webkit-mask-image: url('/icons/flame-01.svg'); 
+    mask-image: url('/icons/flame-01.svg'); 
+  }
+.stratis-flash-off { 
+    -webkit-mask-image: url('/icons/flash-off.svg'); 
+    mask-image: url('/icons/flash-off.svg'); 
+  }
+.stratis-flash-on { 
+    -webkit-mask-image: url('/icons/flash-on.svg'); 
+    mask-image: url('/icons/flash-on.svg'); 
+  }
+.stratis-flex-align-bottom-01 { 
+    -webkit-mask-image: url('/icons/flex-align-bottom-01.svg'); 
+    mask-image: url('/icons/flex-align-bottom-01.svg'); 
+  }
+.stratis-flex-align-center-01 { 
+    -webkit-mask-image: url('/icons/flex-align-center-01.svg'); 
+    mask-image: url('/icons/flex-align-center-01.svg'); 
+  }
+.stratis-flex-align-left-01 { 
+    -webkit-mask-image: url('/icons/flex-align-left-01.svg'); 
+    mask-image: url('/icons/flex-align-left-01.svg'); 
+  }
+.stratis-flex-align-right-01 { 
+    -webkit-mask-image: url('/icons/flex-align-right-01.svg'); 
+    mask-image: url('/icons/flex-align-right-01.svg'); 
+  }
+.stratis-flex-align-spaced-01 { 
+    -webkit-mask-image: url('/icons/flex-align-spaced-01.svg'); 
+    mask-image: url('/icons/flex-align-spaced-01.svg'); 
+  }
+.stratis-flex-align-top-01 { 
+    -webkit-mask-image: url('/icons/flex-align-top-01.svg'); 
+    mask-image: url('/icons/flex-align-top-01.svg'); 
+  }
+.stratis-flex-columns { 
+    -webkit-mask-image: url('/icons/flex-columns.svg'); 
+    mask-image: url('/icons/flex-columns.svg'); 
+  }
+.stratis-flex-rows { 
+    -webkit-mask-image: url('/icons/flex-rows.svg'); 
+    mask-image: url('/icons/flex-rows.svg'); 
+  }
+.stratis-flip-01 { 
+    -webkit-mask-image: url('/icons/flip-01.svg'); 
+    mask-image: url('/icons/flip-01.svg'); 
+  }
+.stratis-flip-02 { 
+    -webkit-mask-image: url('/icons/flip-02.svg'); 
+    mask-image: url('/icons/flip-02.svg'); 
+  }
+.stratis-flip-left { 
+    -webkit-mask-image: url('/icons/flip-left.svg'); 
+    mask-image: url('/icons/flip-left.svg'); 
+  }
+.stratis-flip-right { 
+    -webkit-mask-image: url('/icons/flip-right.svg'); 
+    mask-image: url('/icons/flip-right.svg'); 
+  }
+.stratis-folder-code { 
+    -webkit-mask-image: url('/icons/folder-code.svg'); 
+    mask-image: url('/icons/folder-code.svg'); 
+  }
+.stratis-folder-down-01 { 
+    -webkit-mask-image: url('/icons/folder-down-01.svg'); 
+    mask-image: url('/icons/folder-down-01.svg'); 
+  }
+.stratis-folder-down-02 { 
+    -webkit-mask-image: url('/icons/folder-down-02.svg'); 
+    mask-image: url('/icons/folder-down-02.svg'); 
+  }
+.stratis-folder-minus-01-icon-1 { 
+    -webkit-mask-image: url('/icons/folder-minus-01-icon-1.svg'); 
+    mask-image: url('/icons/folder-minus-01-icon-1.svg'); 
+  }
+.stratis-folder-minus-01 { 
+    -webkit-mask-image: url('/icons/folder-minus-01.svg'); 
+    mask-image: url('/icons/folder-minus-01.svg'); 
+  }
+.stratis-folder-open-01 { 
+    -webkit-mask-image: url('/icons/folder-open-01.svg'); 
+    mask-image: url('/icons/folder-open-01.svg'); 
+  }
+.stratis-folder-open-02 { 
+    -webkit-mask-image: url('/icons/folder-open-02.svg'); 
+    mask-image: url('/icons/folder-open-02.svg'); 
+  }
+.stratis-folder-open-03 { 
+    -webkit-mask-image: url('/icons/folder-open-03.svg'); 
+    mask-image: url('/icons/folder-open-03.svg'); 
+  }
+.stratis-folder-plus-01 { 
+    -webkit-mask-image: url('/icons/folder-plus-01.svg'); 
+    mask-image: url('/icons/folder-plus-01.svg'); 
+  }
+.stratis-folder-plus-02 { 
+    -webkit-mask-image: url('/icons/folder-plus-02.svg'); 
+    mask-image: url('/icons/folder-plus-02.svg'); 
+  }
+.stratis-folder-search-01 { 
+    -webkit-mask-image: url('/icons/folder-search-01.svg'); 
+    mask-image: url('/icons/folder-search-01.svg'); 
+  }
+.stratis-folder-search-02 { 
+    -webkit-mask-image: url('/icons/folder-search-02.svg'); 
+    mask-image: url('/icons/folder-search-02.svg'); 
+  }
+.stratis-folder-shield { 
+    -webkit-mask-image: url('/icons/folder-shield.svg'); 
+    mask-image: url('/icons/folder-shield.svg'); 
+  }
+.stratis-folder-up-01 { 
+    -webkit-mask-image: url('/icons/folder-up-01.svg'); 
+    mask-image: url('/icons/folder-up-01.svg'); 
+  }
+.stratis-folder-up-02 { 
+    -webkit-mask-image: url('/icons/folder-up-02.svg'); 
+    mask-image: url('/icons/folder-up-02.svg'); 
+  }
+.stratis-folder-x-01 { 
+    -webkit-mask-image: url('/icons/folder-x-01.svg'); 
+    mask-image: url('/icons/folder-x-01.svg'); 
+  }
+.stratis-folder-x-02 { 
+    -webkit-mask-image: url('/icons/folder-x-02.svg'); 
+    mask-image: url('/icons/folder-x-02.svg'); 
+  }
+.stratis-folder { 
+    -webkit-mask-image: url('/icons/folder.svg'); 
+    mask-image: url('/icons/folder.svg'); 
+  }
+.stratis-gear { 
+    -webkit-mask-image: url('/icons/gear.svg'); 
+    mask-image: url('/icons/gear.svg'); 
+  }
+.stratis-gift-01 { 
+    -webkit-mask-image: url('/icons/gift-01.svg'); 
+    mask-image: url('/icons/gift-01.svg'); 
+  }
+.stratis-gift-02 { 
+    -webkit-mask-image: url('/icons/gift-02.svg'); 
+    mask-image: url('/icons/gift-02.svg'); 
+  }
+.stratis-git-branch-01 { 
+    -webkit-mask-image: url('/icons/git-branch-01.svg'); 
+    mask-image: url('/icons/git-branch-01.svg'); 
+  }
+.stratis-git-branch-02 { 
+    -webkit-mask-image: url('/icons/git-branch-02.svg'); 
+    mask-image: url('/icons/git-branch-02.svg'); 
+  }
+.stratis-git-branch-03 { 
+    -webkit-mask-image: url('/icons/git-branch-03.svg'); 
+    mask-image: url('/icons/git-branch-03.svg'); 
+  }
+.stratis-git-branch-04 { 
+    -webkit-mask-image: url('/icons/git-branch-04.svg'); 
+    mask-image: url('/icons/git-branch-04.svg'); 
+  }
+.stratis-git-branch-05 { 
+    -webkit-mask-image: url('/icons/git-branch-05.svg'); 
+    mask-image: url('/icons/git-branch-05.svg'); 
+  }
+.stratis-glasses-01-icon-1 { 
+    -webkit-mask-image: url('/icons/glasses-01-icon-1.svg'); 
+    mask-image: url('/icons/glasses-01-icon-1.svg'); 
+  }
+.stratis-glasses-01-icon-2 { 
+    -webkit-mask-image: url('/icons/glasses-01-icon-2.svg'); 
+    mask-image: url('/icons/glasses-01-icon-2.svg'); 
+  }
+.stratis-glasses-01 { 
+    -webkit-mask-image: url('/icons/glasses-01.svg'); 
+    mask-image: url('/icons/glasses-01.svg'); 
+  }
+.stratis-glasses-02 { 
+    -webkit-mask-image: url('/icons/glasses-02.svg'); 
+    mask-image: url('/icons/glasses-02.svg'); 
+  }
+.stratis-globe-01-icon-1 { 
+    -webkit-mask-image: url('/icons/globe-01-icon-1.svg'); 
+    mask-image: url('/icons/globe-01-icon-1.svg'); 
+  }
+.stratis-globe-01 { 
+    -webkit-mask-image: url('/icons/globe-01.svg'); 
+    mask-image: url('/icons/globe-01.svg'); 
+  }
+.stratis-globe-02-icon-1 { 
+    -webkit-mask-image: url('/icons/globe-02-icon-1.svg'); 
+    mask-image: url('/icons/globe-02-icon-1.svg'); 
+  }
+.stratis-globe-02 { 
+    -webkit-mask-image: url('/icons/globe-02.svg'); 
+    mask-image: url('/icons/globe-02.svg'); 
+  }
+.stratis-globe-03 { 
+    -webkit-mask-image: url('/icons/globe-03.svg'); 
+    mask-image: url('/icons/globe-03.svg'); 
+  }
+.stratis-globe-04 { 
+    -webkit-mask-image: url('/icons/globe-04.svg'); 
+    mask-image: url('/icons/globe-04.svg'); 
+  }
+.stratis-globe-05 { 
+    -webkit-mask-image: url('/icons/globe-05.svg'); 
+    mask-image: url('/icons/globe-05.svg'); 
+  }
+.stratis-globe { 
+    -webkit-mask-image: url('/icons/globe.svg'); 
+    mask-image: url('/icons/globe.svg'); 
+  }
+.stratis-graduation-cap-01 { 
+    -webkit-mask-image: url('/icons/graduation-cap-01.svg'); 
+    mask-image: url('/icons/graduation-cap-01.svg'); 
+  }
+.stratis-graduation-cap-02 { 
+    -webkit-mask-image: url('/icons/graduation-cap-02.svg'); 
+    mask-image: url('/icons/graduation-cap-02.svg'); 
+  }
+.stratis-grid-01 { 
+    -webkit-mask-image: url('/icons/grid-01.svg'); 
+    mask-image: url('/icons/grid-01.svg'); 
+  }
+.stratis-grid-02 { 
+    -webkit-mask-image: url('/icons/grid-02.svg'); 
+    mask-image: url('/icons/grid-02.svg'); 
+  }
+.stratis-grid-03 { 
+    -webkit-mask-image: url('/icons/grid-03.svg'); 
+    mask-image: url('/icons/grid-03.svg'); 
+  }
+.stratis-grid-04-filled { 
+    -webkit-mask-image: url('/icons/grid-04-filled.svg'); 
+    mask-image: url('/icons/grid-04-filled.svg'); 
+  }
+.stratis-hash-01 { 
+    -webkit-mask-image: url('/icons/hash-01.svg'); 
+    mask-image: url('/icons/hash-01.svg'); 
+  }
+.stratis-hash-02 { 
+    -webkit-mask-image: url('/icons/hash-02.svg'); 
+    mask-image: url('/icons/hash-02.svg'); 
+  }
+.stratis-header-01 { 
+    -webkit-mask-image: url('/icons/header-01.svg'); 
+    mask-image: url('/icons/header-01.svg'); 
+  }
+.stratis-header-02 { 
+    -webkit-mask-image: url('/icons/header-02.svg'); 
+    mask-image: url('/icons/header-02.svg'); 
+  }
+.stratis-headphones { 
+    -webkit-mask-image: url('/icons/headphones.svg'); 
+    mask-image: url('/icons/headphones.svg'); 
+  }
+.stratis-heart { 
+    -webkit-mask-image: url('/icons/heart.svg'); 
+    mask-image: url('/icons/heart.svg'); 
+  }
+.stratis-help-circle-contained { 
+    -webkit-mask-image: url('/icons/help-circle-contained.svg'); 
+    mask-image: url('/icons/help-circle-contained.svg'); 
+  }
+.stratis-help-square-contained { 
+    -webkit-mask-image: url('/icons/help-square-contained.svg'); 
+    mask-image: url('/icons/help-square-contained.svg'); 
+  }
+.stratis-help { 
+    -webkit-mask-image: url('/icons/help.svg'); 
+    mask-image: url('/icons/help.svg'); 
+  }
+.stratis-hexagon { 
+    -webkit-mask-image: url('/icons/hexagon.svg'); 
+    mask-image: url('/icons/hexagon.svg'); 
+  }
+.stratis-home-01 { 
+    -webkit-mask-image: url('/icons/home-01.svg'); 
+    mask-image: url('/icons/home-01.svg'); 
+  }
+.stratis-home-02 { 
+    -webkit-mask-image: url('/icons/home-02.svg'); 
+    mask-image: url('/icons/home-02.svg'); 
+  }
+.stratis-home-03 { 
+    -webkit-mask-image: url('/icons/home-03.svg'); 
+    mask-image: url('/icons/home-03.svg'); 
+  }
+.stratis-home-04 { 
+    -webkit-mask-image: url('/icons/home-04.svg'); 
+    mask-image: url('/icons/home-04.svg'); 
+  }
+.stratis-home-05 { 
+    -webkit-mask-image: url('/icons/home-05.svg'); 
+    mask-image: url('/icons/home-05.svg'); 
+  }
+.stratis-horizontal-chart-01 { 
+    -webkit-mask-image: url('/icons/horizontal-chart-01.svg'); 
+    mask-image: url('/icons/horizontal-chart-01.svg'); 
+  }
+.stratis-horizontal-chart-02 { 
+    -webkit-mask-image: url('/icons/horizontal-chart-02.svg'); 
+    mask-image: url('/icons/horizontal-chart-02.svg'); 
+  }
+.stratis-horizontal-chart-03 { 
+    -webkit-mask-image: url('/icons/horizontal-chart-03.svg'); 
+    mask-image: url('/icons/horizontal-chart-03.svg'); 
+  }
+.stratis-hourglass-01 { 
+    -webkit-mask-image: url('/icons/hourglass-01.svg'); 
+    mask-image: url('/icons/hourglass-01.svg'); 
+  }
+.stratis-hourglass-02 { 
+    -webkit-mask-image: url('/icons/hourglass-02.svg'); 
+    mask-image: url('/icons/hourglass-02.svg'); 
+  }
+.stratis-hourglass-03 { 
+    -webkit-mask-image: url('/icons/hourglass-03.svg'); 
+    mask-image: url('/icons/hourglass-03.svg'); 
+  }
+.stratis-icon { 
+    -webkit-mask-image: url('/icons/icon.svg'); 
+    mask-image: url('/icons/icon.svg'); 
+  }
+.stratis-image-01 { 
+    -webkit-mask-image: url('/icons/image-01.svg'); 
+    mask-image: url('/icons/image-01.svg'); 
+  }
+.stratis-image-02 { 
+    -webkit-mask-image: url('/icons/image-02.svg'); 
+    mask-image: url('/icons/image-02.svg'); 
+  }
+.stratis-image-03 { 
+    -webkit-mask-image: url('/icons/image-03.svg'); 
+    mask-image: url('/icons/image-03.svg'); 
+  }
+.stratis-image-04 { 
+    -webkit-mask-image: url('/icons/image-04.svg'); 
+    mask-image: url('/icons/image-04.svg'); 
+  }
+.stratis-image-add { 
+    -webkit-mask-image: url('/icons/image-add.svg'); 
+    mask-image: url('/icons/image-add.svg'); 
+  }
+.stratis-image-avatar { 
+    -webkit-mask-image: url('/icons/image-avatar.svg'); 
+    mask-image: url('/icons/image-avatar.svg'); 
+  }
+.stratis-image-check { 
+    -webkit-mask-image: url('/icons/image-check.svg'); 
+    mask-image: url('/icons/image-check.svg'); 
+  }
+.stratis-image-down { 
+    -webkit-mask-image: url('/icons/image-down.svg'); 
+    mask-image: url('/icons/image-down.svg'); 
+  }
+.stratis-image-focus { 
+    -webkit-mask-image: url('/icons/image-focus.svg'); 
+    mask-image: url('/icons/image-focus.svg'); 
+  }
+.stratis-image-indent-left { 
+    -webkit-mask-image: url('/icons/image-indent-left.svg'); 
+    mask-image: url('/icons/image-indent-left.svg'); 
+  }
+.stratis-image-indent-right { 
+    -webkit-mask-image: url('/icons/image-indent-right.svg'); 
+    mask-image: url('/icons/image-indent-right.svg'); 
+  }
+.stratis-image-minus { 
+    -webkit-mask-image: url('/icons/image-minus.svg'); 
+    mask-image: url('/icons/image-minus.svg'); 
+  }
+.stratis-image-no-borders { 
+    -webkit-mask-image: url('/icons/image-no-borders.svg'); 
+    mask-image: url('/icons/image-no-borders.svg'); 
+  }
+.stratis-image-question { 
+    -webkit-mask-image: url('/icons/image-question.svg'); 
+    mask-image: url('/icons/image-question.svg'); 
+  }
+.stratis-image-up { 
+    -webkit-mask-image: url('/icons/image-up.svg'); 
+    mask-image: url('/icons/image-up.svg'); 
+  }
+.stratis-image-x { 
+    -webkit-mask-image: url('/icons/image-x.svg'); 
+    mask-image: url('/icons/image-x.svg'); 
+  }
+.stratis-image { 
+    -webkit-mask-image: url('/icons/image.svg'); 
+    mask-image: url('/icons/image.svg'); 
+  }
+.stratis-inbox-01 { 
+    -webkit-mask-image: url('/icons/inbox-01.svg'); 
+    mask-image: url('/icons/inbox-01.svg'); 
+  }
+.stratis-inbox-02 { 
+    -webkit-mask-image: url('/icons/inbox-02.svg'); 
+    mask-image: url('/icons/inbox-02.svg'); 
+  }
+.stratis-indent-decrease { 
+    -webkit-mask-image: url('/icons/indent-decrease.svg'); 
+    mask-image: url('/icons/indent-decrease.svg'); 
+  }
+.stratis-indent-increase { 
+    -webkit-mask-image: url('/icons/indent-increase.svg'); 
+    mask-image: url('/icons/indent-increase.svg'); 
+  }
+.stratis-indent-left { 
+    -webkit-mask-image: url('/icons/indent-left.svg'); 
+    mask-image: url('/icons/indent-left.svg'); 
+  }
+.stratis-indent-right { 
+    -webkit-mask-image: url('/icons/indent-right.svg'); 
+    mask-image: url('/icons/indent-right.svg'); 
+  }
+.stratis-info-square-01-contained { 
+    -webkit-mask-image: url('/icons/info-square-01-contained.svg'); 
+    mask-image: url('/icons/info-square-01-contained.svg'); 
+  }
+.stratis-info-square-02-contained-filled { 
+    -webkit-mask-image: url('/icons/info-square-02-contained-filled.svg'); 
+    mask-image: url('/icons/info-square-02-contained-filled.svg'); 
+  }
+.stratis-information-circle-contained {
+    -webkit-mask-image: url('/icons/information-circle-contained.svg'); 
+    mask-image: url('/icons/information-circle-contained.svg'); 
+  }
+.stratis-intersect { 
+    -webkit-mask-image: url('/icons/intersect.svg'); 
+    mask-image: url('/icons/intersect.svg'); 
+  }
+.stratis-iphone-02 { 
+    -webkit-mask-image: url('/icons/iphone-02.svg'); 
+    mask-image: url('/icons/iphone-02.svg'); 
+  }
+.stratis-italics-01 { 
+    -webkit-mask-image: url('/icons/italics-01.svg'); 
+    mask-image: url('/icons/italics-01.svg'); 
+  }
+.stratis-italics-02 { 
+    -webkit-mask-image: url('/icons/italics-02.svg'); 
+    mask-image: url('/icons/italics-02.svg'); 
+  }
+.stratis-key-01 { 
+    -webkit-mask-image: url('/icons/key-01.svg'); 
+    mask-image: url('/icons/key-01.svg'); 
+  }
+.stratis-key-02 { 
+    -webkit-mask-image: url('/icons/key-02.svg'); 
+    mask-image: url('/icons/key-02.svg'); 
+  }
+.stratis-keyboard { 
+    -webkit-mask-image: url('/icons/keyboard.svg'); 
+    mask-image: url('/icons/keyboard.svg'); 
+  }
+.stratis-laptop-01 { 
+    -webkit-mask-image: url('/icons/laptop-01.svg'); 
+    mask-image: url('/icons/laptop-01.svg'); 
+  }
+.stratis-laptop-02 { 
+    -webkit-mask-image: url('/icons/laptop-02.svg'); 
+    mask-image: url('/icons/laptop-02.svg'); 
+  }
+.stratis-layers-01 { 
+    -webkit-mask-image: url('/icons/layers-01.svg'); 
+    mask-image: url('/icons/layers-01.svg'); 
+  }
+.stratis-layers-02 { 
+    -webkit-mask-image: url('/icons/layers-02.svg'); 
+    mask-image: url('/icons/layers-02.svg'); 
+  }
+.stratis-layers-03 { 
+    -webkit-mask-image: url('/icons/layers-03.svg'); 
+    mask-image: url('/icons/layers-03.svg'); 
+  }
+.stratis-layers-04 { 
+    -webkit-mask-image: url('/icons/layers-04.svg'); 
+    mask-image: url('/icons/layers-04.svg'); 
+  }
+.stratis-layers-05 { 
+    -webkit-mask-image: url('/icons/layers-05.svg'); 
+    mask-image: url('/icons/layers-05.svg'); 
+  }
+.stratis-layout-01 { 
+    -webkit-mask-image: url('/icons/layout-01.svg'); 
+    mask-image: url('/icons/layout-01.svg'); 
+  }
+.stratis-layout-02 { 
+    -webkit-mask-image: url('/icons/layout-02.svg'); 
+    mask-image: url('/icons/layout-02.svg'); 
+  }
+.stratis-layout-03 { 
+    -webkit-mask-image: url('/icons/layout-03.svg'); 
+    mask-image: url('/icons/layout-03.svg'); 
+  }
+.stratis-layout-04 { 
+    -webkit-mask-image: url('/icons/layout-04.svg'); 
+    mask-image: url('/icons/layout-04.svg'); 
+  }
+.stratis-layout-bottom { 
+    -webkit-mask-image: url('/icons/layout-bottom.svg'); 
+    mask-image: url('/icons/layout-bottom.svg'); 
+  }
+.stratis-layout-grid-01 { 
+    -webkit-mask-image: url('/icons/layout-grid-01.svg'); 
+    mask-image: url('/icons/layout-grid-01.svg'); 
+  }
+.stratis-layout-left { 
+    -webkit-mask-image: url('/icons/layout-left.svg'); 
+    mask-image: url('/icons/layout-left.svg'); 
+  }
+.stratis-layout-right { 
+    -webkit-mask-image: url('/icons/layout-right.svg'); 
+    mask-image: url('/icons/layout-right.svg'); 
+  }
+.stratis-layout-scale { 
+    -webkit-mask-image: url('/icons/layout-scale.svg'); 
+    mask-image: url('/icons/layout-scale.svg'); 
+  }
+.stratis-layout-top { 
+    -webkit-mask-image: url('/icons/layout-top.svg'); 
+    mask-image: url('/icons/layout-top.svg'); 
+  }
+.stratis-letter-spacing-01 { 
+    -webkit-mask-image: url('/icons/letter-spacing-01.svg'); 
+    mask-image: url('/icons/letter-spacing-01.svg'); 
+  }
+.stratis-letter-spacing-02 { 
+    -webkit-mask-image: url('/icons/letter-spacing-02.svg'); 
+    mask-image: url('/icons/letter-spacing-02.svg'); 
+  }
+.stratis-letter-spacing-03 { 
+    -webkit-mask-image: url('/icons/letter-spacing-03.svg'); 
+    mask-image: url('/icons/letter-spacing-03.svg'); 
+  }
+.stratis-lightbulb-01 { 
+    -webkit-mask-image: url('/icons/lightbulb-01.svg'); 
+    mask-image: url('/icons/lightbulb-01.svg'); 
+  }
+.stratis-lightbulb-02 { 
+    -webkit-mask-image: url('/icons/lightbulb-02.svg'); 
+    mask-image: url('/icons/lightbulb-02.svg'); 
+  }
+.stratis-lightbulb-03 { 
+    -webkit-mask-image: url('/icons/lightbulb-03.svg'); 
+    mask-image: url('/icons/lightbulb-03.svg'); 
+  }
+.stratis-lightning-01 { 
+    -webkit-mask-image: url('/icons/lightning-01.svg'); 
+    mask-image: url('/icons/lightning-01.svg'); 
+  }
+.stratis-lightning-02 { 
+    -webkit-mask-image: url('/icons/lightning-02.svg'); 
+    mask-image: url('/icons/lightning-02.svg'); 
+  }
+.stratis-lightning-circle-contained { 
+    -webkit-mask-image: url('/icons/lightning-circle-contained.svg'); 
+    mask-image: url('/icons/lightning-circle-contained.svg'); 
+  }
+.stratis-lightning-filled { 
+    -webkit-mask-image: url('/icons/lightning-filled.svg'); 
+    mask-image: url('/icons/lightning-filled.svg'); 
+  }
+.stratis-lightning-square-contained { 
+    -webkit-mask-image: url('/icons/lightning-square-contained.svg'); 
+    mask-image: url('/icons/lightning-square-contained.svg'); 
+  }
+.stratis-line-chart-down-01 { 
+    -webkit-mask-image: url('/icons/line-chart-down-01.svg'); 
+    mask-image: url('/icons/line-chart-down-01.svg'); 
+  }
+.stratis-line-chart-down-02 { 
+    -webkit-mask-image: url('/icons/line-chart-down-02.svg'); 
+    mask-image: url('/icons/line-chart-down-02.svg'); 
+  }
+.stratis-line-chart-up-01 { 
+    -webkit-mask-image: url('/icons/line-chart-up-01.svg'); 
+    mask-image: url('/icons/line-chart-up-01.svg'); 
+  }
+.stratis-line-chart-up-02 { 
+    -webkit-mask-image: url('/icons/line-chart-up-02.svg'); 
+    mask-image: url('/icons/line-chart-up-02.svg'); 
+  }
+.stratis-line-height { 
+    -webkit-mask-image: url('/icons/line-height.svg'); 
+    mask-image: url('/icons/line-height.svg'); 
+  }
+.stratis-link-angled { 
+    -webkit-mask-image: url('/icons/link-angled.svg'); 
+    mask-image: url('/icons/link-angled.svg'); 
+  }
+.stratis-link-broken { 
+    -webkit-mask-image: url('/icons/link-broken.svg'); 
+    mask-image: url('/icons/link-broken.svg'); 
+  }
+.stratis-link-external { 
+    -webkit-mask-image: url('/icons/link-external.svg'); 
+    mask-image: url('/icons/link-external.svg'); 
+  }
+.stratis-link { 
+    -webkit-mask-image: url('/icons/link.svg'); 
+    mask-image: url('/icons/link.svg'); 
+  }
+.stratis-list-numbers { 
+    -webkit-mask-image: url('/icons/list-numbers.svg'); 
+    mask-image: url('/icons/list-numbers.svg'); 
+  }
+.stratis-list { 
+    -webkit-mask-image: url('/icons/list.svg'); 
+    mask-image: url('/icons/list.svg'); 
+  }
+.stratis-loader-01 { 
+    -webkit-mask-image: url('/icons/loader-01.svg'); 
+    mask-image: url('/icons/loader-01.svg'); 
+  }
+.stratis-loader-02 { 
+    -webkit-mask-image: url('/icons/loader-02.svg'); 
+    mask-image: url('/icons/loader-02.svg'); 
+  }
+.stratis-lock-01 { 
+    -webkit-mask-image: url('/icons/lock-01.svg'); 
+    mask-image: url('/icons/lock-01.svg'); 
+  }
+.stratis-lock-02 { 
+    -webkit-mask-image: url('/icons/lock-02.svg'); 
+    mask-image: url('/icons/lock-02.svg'); 
+  }
+.stratis-lock-03 { 
+    -webkit-mask-image: url('/icons/lock-03.svg'); 
+    mask-image: url('/icons/lock-03.svg'); 
+  }
+.stratis-lock-04 { 
+    -webkit-mask-image: url('/icons/lock-04.svg'); 
+    mask-image: url('/icons/lock-04.svg'); 
+  }
+.stratis-lock-open-01 { 
+    -webkit-mask-image: url('/icons/lock-open-01.svg'); 
+    mask-image: url('/icons/lock-open-01.svg'); 
+  }
+.stratis-lock-open-02 { 
+    -webkit-mask-image: url('/icons/lock-open-02.svg'); 
+    mask-image: url('/icons/lock-open-02.svg'); 
+  }
+.stratis-lock-open-03 { 
+    -webkit-mask-image: url('/icons/lock-open-03.svg'); 
+    mask-image: url('/icons/lock-open-03.svg'); 
+  }
+.stratis-lock-open-04 { 
+    -webkit-mask-image: url('/icons/lock-open-04.svg'); 
+    mask-image: url('/icons/lock-open-04.svg'); 
+  }
+.stratis-logout-01 { 
+    -webkit-mask-image: url('/icons/logout-01.svg'); 
+    mask-image: url('/icons/logout-01.svg'); 
+  }
+.stratis-logout-02 { 
+    -webkit-mask-image: url('/icons/logout-02.svg'); 
+    mask-image: url('/icons/logout-02.svg'); 
+  }
+.stratis-logout-03 { 
+    -webkit-mask-image: url('/icons/logout-03.svg'); 
+    mask-image: url('/icons/logout-03.svg'); 
+  }
+.stratis-logout-04 { 
+    -webkit-mask-image: url('/icons/logout-04.svg'); 
+    mask-image: url('/icons/logout-04.svg'); 
+  }
+.stratis-luggage-01 { 
+    -webkit-mask-image: url('/icons/luggage-01.svg'); 
+    mask-image: url('/icons/luggage-01.svg'); 
+  }
+.stratis-luggage-02 { 
+    -webkit-mask-image: url('/icons/luggage-02.svg'); 
+    mask-image: url('/icons/luggage-02.svg'); 
+  }
+.stratis-luggage-03 { 
+    -webkit-mask-image: url('/icons/luggage-03.svg'); 
+    mask-image: url('/icons/luggage-03.svg'); 
+  }
+.stratis-luggage-04 { 
+    -webkit-mask-image: url('/icons/luggage-04.svg'); 
+    mask-image: url('/icons/luggage-04.svg'); 
+  }
+.stratis-mail-01 { 
+    -webkit-mask-image: url('/icons/mail-01.svg'); 
+    mask-image: url('/icons/mail-01.svg'); 
+  }
+.stratis-mail-02 { 
+    -webkit-mask-image: url('/icons/mail-02.svg'); 
+    mask-image: url('/icons/mail-02.svg'); 
+  }
+.stratis-mail-03 { 
+    -webkit-mask-image: url('/icons/mail-03.svg'); 
+    mask-image: url('/icons/mail-03.svg'); 
+  }
+.stratis-mail-04 { 
+    -webkit-mask-image: url('/icons/mail-04.svg'); 
+    mask-image: url('/icons/mail-04.svg'); 
+  }
+.stratis-mail-05 { 
+    -webkit-mask-image: url('/icons/mail-05.svg'); 
+    mask-image: url('/icons/mail-05.svg'); 
+  }
+.stratis-map-01-icon-1 { 
+    -webkit-mask-image: url('/icons/map-01-icon-1.svg'); 
+    mask-image: url('/icons/map-01-icon-1.svg'); 
+  }
+.stratis-map-01 { 
+    -webkit-mask-image: url('/icons/map-01.svg'); 
+    mask-image: url('/icons/map-01.svg'); 
+  }
+.stratis-map-02 { 
+    -webkit-mask-image: url('/icons/map-02.svg'); 
+    mask-image: url('/icons/map-02.svg'); 
+  }
+.stratis-map-03 { 
+    -webkit-mask-image: url('/icons/map-03.svg'); 
+    mask-image: url('/icons/map-03.svg'); 
+  }
+.stratis-map-04 { 
+    -webkit-mask-image: url('/icons/map-04.svg'); 
+    mask-image: url('/icons/map-04.svg'); 
+  }
+.stratis-marker-01 { 
+    -webkit-mask-image: url('/icons/marker-01.svg'); 
+    mask-image: url('/icons/marker-01.svg'); 
+  }
+.stratis-marker-02 { 
+    -webkit-mask-image: url('/icons/marker-02.svg'); 
+    mask-image: url('/icons/marker-02.svg'); 
+  }
+.stratis-marker-03 { 
+    -webkit-mask-image: url('/icons/marker-03.svg'); 
+    mask-image: url('/icons/marker-03.svg'); 
+  }
+.stratis-marker-04 { 
+    -webkit-mask-image: url('/icons/marker-04.svg'); 
+    mask-image: url('/icons/marker-04.svg'); 
+  }
+.stratis-marker-05 { 
+    -webkit-mask-image: url('/icons/marker-05.svg'); 
+    mask-image: url('/icons/marker-05.svg'); 
+  }
+.stratis-marker-06 { 
+    -webkit-mask-image: url('/icons/marker-06.svg'); 
+    mask-image: url('/icons/marker-06.svg'); 
+  }
+.stratis-maximise-01 { 
+    -webkit-mask-image: url('/icons/maximise-01.svg'); 
+    mask-image: url('/icons/maximise-01.svg'); 
+  }
+.stratis-maximise-02 { 
+    -webkit-mask-image: url('/icons/maximise-02.svg'); 
+    mask-image: url('/icons/maximise-02.svg'); 
+  }
+.stratis-media-strip-01 { 
+    -webkit-mask-image: url('/icons/media-strip-01.svg'); 
+    mask-image: url('/icons/media-strip-01.svg'); 
+  }
+.stratis-media-strip-02 { 
+    -webkit-mask-image: url('/icons/media-strip-02.svg'); 
+    mask-image: url('/icons/media-strip-02.svg'); 
+  }
+.stratis-menu-01 { 
+    -webkit-mask-image: url('/icons/menu-01.svg'); 
+    mask-image: url('/icons/menu-01.svg'); 
+  }
+.stratis-menu-02 { 
+    -webkit-mask-image: url('/icons/menu-02.svg'); 
+    mask-image: url('/icons/menu-02.svg'); 
+  }
+.stratis-menu-03 { 
+    -webkit-mask-image: url('/icons/menu-03.svg'); 
+    mask-image: url('/icons/menu-03.svg'); 
+  }
+.stratis-menu-04 { 
+    -webkit-mask-image: url('/icons/menu-04.svg'); 
+    mask-image: url('/icons/menu-04.svg'); 
+  }
+.stratis-menu-05 { 
+    -webkit-mask-image: url('/icons/menu-05.svg'); 
+    mask-image: url('/icons/menu-05.svg'); 
+  }
+.stratis-message-alert-circle { 
+    -webkit-mask-image: url('/icons/message-alert-circle.svg'); 
+    mask-image: url('/icons/message-alert-circle.svg'); 
+  }
+.stratis-message-alert-plus { 
+    -webkit-mask-image: url('/icons/message-alert-plus.svg'); 
+    mask-image: url('/icons/message-alert-plus.svg'); 
+  }
+.stratis-message-chat-01-icon-1 { 
+    -webkit-mask-image: url('/icons/message-chat-01-icon-1.svg'); 
+    mask-image: url('/icons/message-chat-01-icon-1.svg'); 
+  }
+.stratis-message-chat-01 { 
+    -webkit-mask-image: url('/icons/message-chat-01.svg'); 
+    mask-image: url('/icons/message-chat-01.svg'); 
+  }
+.stratis-message-circle { 
+    -webkit-mask-image: url('/icons/message-circle.svg'); 
+    mask-image: url('/icons/message-circle.svg'); 
+  }
+.stratis-message-notify-circle { 
+    -webkit-mask-image: url('/icons/message-notify-circle.svg'); 
+    mask-image: url('/icons/message-notify-circle.svg'); 
+  }
+.stratis-message-notify-square { 
+    -webkit-mask-image: url('/icons/message-notify-square.svg'); 
+    mask-image: url('/icons/message-notify-square.svg'); 
+  }
+.stratis-message-square- alert { 
+    -webkit-mask-image: url('/icons/message-square- alert.svg'); 
+    mask-image: url('/icons/message-square- alert.svg'); 
+  }
+.stratis-message-square-information { 
+    -webkit-mask-image: url('/icons/message-square-information.svg'); 
+    mask-image: url('/icons/message-square-information.svg'); 
+  }
+.stratis-message-square-plus-icon-1 { 
+    -webkit-mask-image: url('/icons/message-square-plus-icon-1.svg'); 
+    mask-image: url('/icons/message-square-plus-icon-1.svg'); 
+  }
+.stratis-message-square-plus { 
+    -webkit-mask-image: url('/icons/message-square-plus.svg'); 
+    mask-image: url('/icons/message-square-plus.svg'); 
+  }
+.stratis-message-square-typing { 
+    -webkit-mask-image: url('/icons/message-square-typing.svg'); 
+    mask-image: url('/icons/message-square-typing.svg'); 
+  }
+.stratis-message-square-x { 
+    -webkit-mask-image: url('/icons/message-square-x.svg'); 
+    mask-image: url('/icons/message-square-x.svg'); 
+  }
+.stratis-message-square { 
+    -webkit-mask-image: url('/icons/message-square.svg'); 
+    mask-image: url('/icons/message-square.svg'); 
+  }
+.stratis-message-text-01 { 
+    -webkit-mask-image: url('/icons/message-text-01.svg'); 
+    mask-image: url('/icons/message-text-01.svg'); 
+  }
+.stratis-message-text-02 { 
+    -webkit-mask-image: url('/icons/message-text-02.svg'); 
+    mask-image: url('/icons/message-text-02.svg'); 
+  }
+.stratis-message-typing { 
+    -webkit-mask-image: url('/icons/message-typing.svg'); 
+    mask-image: url('/icons/message-typing.svg'); 
+  }
+.stratis-message-x { 
+    -webkit-mask-image: url('/icons/message-x.svg'); 
+    mask-image: url('/icons/message-x.svg'); 
+  }
+.stratis-microphone-01 { 
+    -webkit-mask-image: url('/icons/microphone-01.svg'); 
+    mask-image: url('/icons/microphone-01.svg'); 
+  }
+.stratis-microphone-02 { 
+    -webkit-mask-image: url('/icons/microphone-02.svg'); 
+    mask-image: url('/icons/microphone-02.svg'); 
+  }
+.stratis-microphone-off-01 { 
+    -webkit-mask-image: url('/icons/microphone-off-01.svg'); 
+    mask-image: url('/icons/microphone-off-01.svg'); 
+  }
+.stratis-microphone-off-02 { 
+    -webkit-mask-image: url('/icons/microphone-off-02.svg'); 
+    mask-image: url('/icons/microphone-off-02.svg'); 
+  }
+.stratis-minimise-01 { 
+    -webkit-mask-image: url('/icons/minimise-01.svg'); 
+    mask-image: url('/icons/minimise-01.svg'); 
+  }
+.stratis-minimise-02 { 
+    -webkit-mask-image: url('/icons/minimise-02.svg'); 
+    mask-image: url('/icons/minimise-02.svg'); 
+  }
+.stratis-minus-circle-contained { 
+    -webkit-mask-image: url('/icons/minus-circle-contained.svg'); 
+    mask-image: url('/icons/minus-circle-contained.svg'); 
+  }
+.stratis-minus-square-contained { 
+    -webkit-mask-image: url('/icons/minus-square-contained.svg'); 
+    mask-image: url('/icons/minus-square-contained.svg'); 
+  }
+.stratis-moon-01 { 
+    -webkit-mask-image: url('/icons/moon-01.svg'); 
+    mask-image: url('/icons/moon-01.svg'); 
+  }
+.stratis-moon-02 { 
+    -webkit-mask-image: url('/icons/moon-02.svg'); 
+    mask-image: url('/icons/moon-02.svg'); 
+  }
+.stratis-mouse { 
+    -webkit-mask-image: url('/icons/mouse.svg'); 
+    mask-image: url('/icons/mouse.svg'); 
+  }
+.stratis-move { 
+    -webkit-mask-image: url('/icons/move.svg'); 
+    mask-image: url('/icons/move.svg'); 
+  }
+.stratis-note-01 { 
+    -webkit-mask-image: url('/icons/note-01.svg'); 
+    mask-image: url('/icons/note-01.svg'); 
+  }
+.stratis-note-02 { 
+    -webkit-mask-image: url('/icons/note-02.svg'); 
+    mask-image: url('/icons/note-02.svg'); 
+  }
+.stratis-notification-box { 
+    -webkit-mask-image: url('/icons/notification-box.svg'); 
+    mask-image: url('/icons/notification-box.svg'); 
+  }
+.stratis-notification-bubble { 
+    -webkit-mask-image: url('/icons/notification-bubble.svg'); 
+    mask-image: url('/icons/notification-bubble.svg'); 
+  }
+.stratis-notification-square-01 { 
+    -webkit-mask-image: url('/icons/notification-square-01.svg'); 
+    mask-image: url('/icons/notification-square-01.svg'); 
+  }
+.stratis-notification-square-02 { 
+    -webkit-mask-image: url('/icons/notification-square-02.svg'); 
+    mask-image: url('/icons/notification-square-02.svg'); 
+  }
+.stratis-octagon { 
+    -webkit-mask-image: url('/icons/octagon.svg'); 
+    mask-image: url('/icons/octagon.svg'); 
+  }
+.stratis-overlap { 
+    -webkit-mask-image: url('/icons/overlap.svg'); 
+    mask-image: url('/icons/overlap.svg'); 
+  }
+.stratis-package-01 { 
+    -webkit-mask-image: url('/icons/package-01.svg'); 
+    mask-image: url('/icons/package-01.svg'); 
+  }
+.stratis-package-02 { 
+    -webkit-mask-image: url('/icons/package-02.svg'); 
+    mask-image: url('/icons/package-02.svg'); 
+  }
+.stratis-package-check { 
+    -webkit-mask-image: url('/icons/package-check.svg'); 
+    mask-image: url('/icons/package-check.svg'); 
+  }
+.stratis-package-minus { 
+    -webkit-mask-image: url('/icons/package-minus.svg'); 
+    mask-image: url('/icons/package-minus.svg'); 
+  }
+.stratis-package-plus { 
+    -webkit-mask-image: url('/icons/package-plus.svg'); 
+    mask-image: url('/icons/package-plus.svg'); 
+  }
+.stratis-package-x { 
+    -webkit-mask-image: url('/icons/package-x.svg'); 
+    mask-image: url('/icons/package-x.svg'); 
+  }
+.stratis-paint-bucket-01 { 
+    -webkit-mask-image: url('/icons/paint-bucket-01.svg'); 
+    mask-image: url('/icons/paint-bucket-01.svg'); 
+  }
+.stratis-paint-bucket-02 { 
+    -webkit-mask-image: url('/icons/paint-bucket-02.svg'); 
+    mask-image: url('/icons/paint-bucket-02.svg'); 
+  }
+.stratis-palette { 
+    -webkit-mask-image: url('/icons/palette.svg'); 
+    mask-image: url('/icons/palette.svg'); 
+  }
+.stratis-paperclip-01 { 
+    -webkit-mask-image: url('/icons/paperclip-01.svg'); 
+    mask-image: url('/icons/paperclip-01.svg'); 
+  }
+.stratis-paperclip-02 { 
+    -webkit-mask-image: url('/icons/paperclip-02.svg'); 
+    mask-image: url('/icons/paperclip-02.svg'); 
+  }
+.stratis-paperclip { 
+    -webkit-mask-image: url('/icons/paperclip.svg'); 
+    mask-image: url('/icons/paperclip.svg'); 
+  }
+.stratis-passport { 
+    -webkit-mask-image: url('/icons/passport.svg'); 
+    mask-image: url('/icons/passport.svg'); 
+  }
+.stratis-password-01 { 
+    -webkit-mask-image: url('/icons/password-01.svg'); 
+    mask-image: url('/icons/password-01.svg'); 
+  }
+.stratis-password-02 { 
+    -webkit-mask-image: url('/icons/password-02.svg'); 
+    mask-image: url('/icons/password-02.svg'); 
+  }
+.stratis-pause-01 { 
+    -webkit-mask-image: url('/icons/pause-01.svg'); 
+    mask-image: url('/icons/pause-01.svg'); 
+  }
+.stratis-pause-02 { 
+    -webkit-mask-image: url('/icons/pause-02.svg'); 
+    mask-image: url('/icons/pause-02.svg'); 
+  }
+.stratis-pause-03 { 
+    -webkit-mask-image: url('/icons/pause-03.svg'); 
+    mask-image: url('/icons/pause-03.svg'); 
+  }
+.stratis-pen-tool-01 { 
+    -webkit-mask-image: url('/icons/pen-tool-01.svg'); 
+    mask-image: url('/icons/pen-tool-01.svg'); 
+  }
+.stratis-pen-tool-02 { 
+    -webkit-mask-image: url('/icons/pen-tool-02.svg'); 
+    mask-image: url('/icons/pen-tool-02.svg'); 
+  }
+.stratis-pen-tool-03 { 
+    -webkit-mask-image: url('/icons/pen-tool-03.svg'); 
+    mask-image: url('/icons/pen-tool-03.svg'); 
+  }
+.stratis-pen-tool-04 { 
+    -webkit-mask-image: url('/icons/pen-tool-04.svg'); 
+    mask-image: url('/icons/pen-tool-04.svg'); 
+  }
+.stratis-pencil-01 { 
+    -webkit-mask-image: url('/icons/pencil-01.svg'); 
+    mask-image: url('/icons/pencil-01.svg'); 
+  }
+.stratis-pencil-02 { 
+    -webkit-mask-image: url('/icons/pencil-02.svg'); 
+    mask-image: url('/icons/pencil-02.svg'); 
+  }
+.stratis-pencil-03 { 
+    -webkit-mask-image: url('/icons/pencil-03.svg'); 
+    mask-image: url('/icons/pencil-03.svg'); 
+  }
+.stratis-pentagon { 
+    -webkit-mask-image: url('/icons/pentagon.svg'); 
+    mask-image: url('/icons/pentagon.svg'); 
+  }
+.stratis-percent-01 { 
+    -webkit-mask-image: url('/icons/percent-01.svg'); 
+    mask-image: url('/icons/percent-01.svg'); 
+  }
+.stratis-percent-02 { 
+    -webkit-mask-image: url('/icons/percent-02.svg'); 
+    mask-image: url('/icons/percent-02.svg'); 
+  }
+.stratis-percent-03 { 
+    -webkit-mask-image: url('/icons/percent-03.svg'); 
+    mask-image: url('/icons/percent-03.svg'); 
+  }
+.stratis-perspective { 
+    -webkit-mask-image: url('/icons/perspective.svg'); 
+    mask-image: url('/icons/perspective.svg'); 
+  }
+.stratis-phone-call-01 { 
+    -webkit-mask-image: url('/icons/phone-call-01.svg'); 
+    mask-image: url('/icons/phone-call-01.svg'); 
+  }
+.stratis-phone-call-02 { 
+    -webkit-mask-image: url('/icons/phone-call-02.svg'); 
+    mask-image: url('/icons/phone-call-02.svg'); 
+  }
+.stratis-phone-down { 
+    -webkit-mask-image: url('/icons/phone-down.svg'); 
+    mask-image: url('/icons/phone-down.svg'); 
+  }
+.stratis-phone-incoming-01 { 
+    -webkit-mask-image: url('/icons/phone-incoming-01.svg'); 
+    mask-image: url('/icons/phone-incoming-01.svg'); 
+  }
+.stratis-phone-incoming-02 { 
+    -webkit-mask-image: url('/icons/phone-incoming-02.svg'); 
+    mask-image: url('/icons/phone-incoming-02.svg'); 
+  }
+.stratis-phone-off { 
+    -webkit-mask-image: url('/icons/phone-off.svg'); 
+    mask-image: url('/icons/phone-off.svg'); 
+  }
+.stratis-phone-outgoing-01 { 
+    -webkit-mask-image: url('/icons/phone-outgoing-01.svg'); 
+    mask-image: url('/icons/phone-outgoing-01.svg'); 
+  }
+.stratis-phone-outgoing-02 { 
+    -webkit-mask-image: url('/icons/phone-outgoing-02.svg'); 
+    mask-image: url('/icons/phone-outgoing-02.svg'); 
+  }
+.stratis-phone-up { 
+    -webkit-mask-image: url('/icons/phone-up.svg'); 
+    mask-image: url('/icons/phone-up.svg'); 
+  }
+.stratis-phone-x { 
+    -webkit-mask-image: url('/icons/phone-x.svg'); 
+    mask-image: url('/icons/phone-x.svg'); 
+  }
+.stratis-phone { 
+    -webkit-mask-image: url('/icons/phone.svg'); 
+    mask-image: url('/icons/phone.svg'); 
+  }
+.stratis-pie-chart-01 { 
+    -webkit-mask-image: url('/icons/pie-chart-01.svg'); 
+    mask-image: url('/icons/pie-chart-01.svg'); 
+  }
+.stratis-pie-chart-02 { 
+    -webkit-mask-image: url('/icons/pie-chart-02.svg'); 
+    mask-image: url('/icons/pie-chart-02.svg'); 
+  }
+.stratis-pie-chart-03 { 
+    -webkit-mask-image: url('/icons/pie-chart-03.svg'); 
+    mask-image: url('/icons/pie-chart-03.svg'); 
+  }
+.stratis-plane { 
+    -webkit-mask-image: url('/icons/plane.svg'); 
+    mask-image: url('/icons/plane.svg'); 
+  }
+.stratis-play-01 { 
+    -webkit-mask-image: url('/icons/play-01.svg'); 
+    mask-image: url('/icons/play-01.svg'); 
+  }
+.stratis-play-02 { 
+    -webkit-mask-image: url('/icons/play-02.svg'); 
+    mask-image: url('/icons/play-02.svg'); 
+  }
+.stratis-play-03 { 
+    -webkit-mask-image: url('/icons/play-03.svg'); 
+    mask-image: url('/icons/play-03.svg'); 
+  }
+.stratis-plug-01 { 
+    -webkit-mask-image: url('/icons/plug-01.svg'); 
+    mask-image: url('/icons/plug-01.svg'); 
+  }
+.stratis-plus-01 { 
+    -webkit-mask-image: url('/icons/plus-01.svg'); 
+    mask-image: url('/icons/plus-01.svg'); 
+  }
+.stratis-plus-02 { 
+    -webkit-mask-image: url('/icons/plus-02.svg'); 
+    mask-image: url('/icons/plus-02.svg'); 
+  }
+.stratis-plus-03 { 
+    -webkit-mask-image: url('/icons/plus-03.svg'); 
+    mask-image: url('/icons/plus-03.svg'); 
+  }
+.stratis-pointer-01 { 
+    -webkit-mask-image: url('/icons/pointer-01.svg'); 
+    mask-image: url('/icons/pointer-01.svg'); 
+  }
+.stratis-pointer-02 { 
+    -webkit-mask-image: url('/icons/pointer-02.svg'); 
+    mask-image: url('/icons/pointer-02.svg'); 
+  }
+.stratis-power { 
+    -webkit-mask-image: url('/icons/power.svg'); 
+    mask-image: url('/icons/power.svg'); 
+  }
+.stratis-presentation-01 { 
+    -webkit-mask-image: url('/icons/presentation-01.svg'); 
+    mask-image: url('/icons/presentation-01.svg'); 
+  }
+.stratis-presentation-02 { 
+    -webkit-mask-image: url('/icons/presentation-02.svg'); 
+    mask-image: url('/icons/presentation-02.svg'); 
+  }
+.stratis-presentation-03 { 
+    -webkit-mask-image: url('/icons/presentation-03.svg'); 
+    mask-image: url('/icons/presentation-03.svg'); 
+  }
+.stratis-progress { 
+    -webkit-mask-image: url('/icons/progress.svg'); 
+    mask-image: url('/icons/progress.svg'); 
+  }
+.stratis-quote { 
+    -webkit-mask-image: url('/icons/quote.svg'); 
+    mask-image: url('/icons/quote.svg'); 
+  }
+.stratis-receipt-lines { 
+    -webkit-mask-image: url('/icons/receipt-lines.svg'); 
+    mask-image: url('/icons/receipt-lines.svg'); 
+  }
+.stratis-receipt { 
+    -webkit-mask-image: url('/icons/receipt.svg'); 
+    mask-image: url('/icons/receipt.svg'); 
+  }
+.stratis-refresh-01-icon-1 { 
+    -webkit-mask-image: url('/icons/refresh-01-icon-1.svg'); 
+    mask-image: url('/icons/refresh-01-icon-1.svg'); 
+  }
+.stratis-refresh-01 { 
+    -webkit-mask-image: url('/icons/refresh-01.svg'); 
+    mask-image: url('/icons/refresh-01.svg'); 
+  }
+.stratis-rss { 
+    -webkit-mask-image: url('/icons/rss.svg'); 
+    mask-image: url('/icons/rss.svg'); 
+  }
+.stratis-ruler { 
+    -webkit-mask-image: url('/icons/ruler.svg'); 
+    mask-image: url('/icons/ruler.svg'); 
+  }
+.stratis-save-01 { 
+    -webkit-mask-image: url('/icons/save-01.svg'); 
+    mask-image: url('/icons/save-01.svg'); 
+  }
+.stratis-save-02 { 
+    -webkit-mask-image: url('/icons/save-02.svg'); 
+    mask-image: url('/icons/save-02.svg'); 
+  }
+.stratis-scale-01 { 
+    -webkit-mask-image: url('/icons/scale-01.svg'); 
+    mask-image: url('/icons/scale-01.svg'); 
+  }
+.stratis-scale-02 { 
+    -webkit-mask-image: url('/icons/scale-02.svg'); 
+    mask-image: url('/icons/scale-02.svg'); 
+  }
+.stratis-scale-03 { 
+    -webkit-mask-image: url('/icons/scale-03.svg'); 
+    mask-image: url('/icons/scale-03.svg'); 
+  }
+.stratis-scan { 
+    -webkit-mask-image: url('/icons/scan.svg'); 
+    mask-image: url('/icons/scan.svg'); 
+  }
+.stratis-scissors-01 { 
+    -webkit-mask-image: url('/icons/scissors-01.svg'); 
+    mask-image: url('/icons/scissors-01.svg'); 
+  }
+.stratis-scissors-02 { 
+    -webkit-mask-image: url('/icons/scissors-02.svg'); 
+    mask-image: url('/icons/scissors-02.svg'); 
+  }
+.stratis-scissors-03 { 
+    -webkit-mask-image: url('/icons/scissors-03.svg'); 
+    mask-image: url('/icons/scissors-03.svg'); 
+  }
+.stratis-scissors-04 { 
+    -webkit-mask-image: url('/icons/scissors-04.svg'); 
+    mask-image: url('/icons/scissors-04.svg'); 
+  }
+.stratis-search-01 { 
+    -webkit-mask-image: url('/icons/search-01.svg'); 
+    mask-image: url('/icons/search-01.svg'); 
+  }
+.stratis-search-02 { 
+    -webkit-mask-image: url('/icons/search-02.svg'); 
+    mask-image: url('/icons/search-02.svg'); 
+  }
+.stratis-send-01 { 
+    -webkit-mask-image: url('/icons/send-01.svg'); 
+    mask-image: url('/icons/send-01.svg'); 
+  }
+.stratis-send-02 { 
+    -webkit-mask-image: url('/icons/send-02.svg'); 
+    mask-image: url('/icons/send-02.svg'); 
+  }
+.stratis-send-03 { 
+    -webkit-mask-image: url('/icons/send-03.svg'); 
+    mask-image: url('/icons/send-03.svg'); 
+  }
+.stratis-server-01 { 
+    -webkit-mask-image: url('/icons/server-01.svg'); 
+    mask-image: url('/icons/server-01.svg'); 
+  }
+.stratis-server-02 { 
+    -webkit-mask-image: url('/icons/server-02.svg'); 
+    mask-image: url('/icons/server-02.svg'); 
+  }
+.stratis-server-03 { 
+    -webkit-mask-image: url('/icons/server-03.svg'); 
+    mask-image: url('/icons/server-03.svg'); 
+  }
+.stratis-server-04 { 
+    -webkit-mask-image: url('/icons/server-04.svg'); 
+    mask-image: url('/icons/server-04.svg'); 
+  }
+.stratis-server-05 { 
+    -webkit-mask-image: url('/icons/server-05.svg'); 
+    mask-image: url('/icons/server-05.svg'); 
+  }
+.stratis-server-06 { 
+    -webkit-mask-image: url('/icons/server-06.svg'); 
+    mask-image: url('/icons/server-06.svg'); 
+  }
+.stratis-server-down { 
+    -webkit-mask-image: url('/icons/server-down.svg'); 
+    mask-image: url('/icons/server-down.svg'); 
+  }
+.stratis-server-up { 
+    -webkit-mask-image: url('/icons/server-up.svg'); 
+    mask-image: url('/icons/server-up.svg'); 
+  }
+.stratis-settings { 
+    -webkit-mask-image: url('/icons/settings.svg'); 
+    mask-image: url('/icons/settings.svg'); 
+  }
+.stratis-share-icon-1 { 
+    -webkit-mask-image: url('/icons/share-icon-1.svg'); 
+    mask-image: url('/icons/share-icon-1.svg'); 
+  }
+.stratis-share { 
+    -webkit-mask-image: url('/icons/share.svg'); 
+    mask-image: url('/icons/share.svg'); 
+  }
+.stratis-shield-01 { 
+    -webkit-mask-image: url('/icons/shield-01.svg'); 
+    mask-image: url('/icons/shield-01.svg'); 
+  }
+.stratis-shield-02 { 
+    -webkit-mask-image: url('/icons/shield-02.svg'); 
+    mask-image: url('/icons/shield-02.svg'); 
+  }
+.stratis-shield-check { 
+    -webkit-mask-image: url('/icons/shield-check.svg'); 
+    mask-image: url('/icons/shield-check.svg'); 
+  }
+.stratis-shield-plus { 
+    -webkit-mask-image: url('/icons/shield-plus.svg'); 
+    mask-image: url('/icons/shield-plus.svg'); 
+  }
+.stratis-shuffle { 
+    -webkit-mask-image: url('/icons/shuffle.svg'); 
+    mask-image: url('/icons/shuffle.svg'); 
+  }
+.stratis-signal { 
+    -webkit-mask-image: url('/icons/signal.svg'); 
+    mask-image: url('/icons/signal.svg'); 
+  }
+.stratis-skew { 
+    -webkit-mask-image: url('/icons/skew.svg'); 
+    mask-image: url('/icons/skew.svg'); 
+  }
+.stratis-skip-back { 
+    -webkit-mask-image: url('/icons/skip-back.svg'); 
+    mask-image: url('/icons/skip-back.svg'); 
+  }
+.stratis-skip-forward { 
+    -webkit-mask-image: url('/icons/skip-forward.svg'); 
+    mask-image: url('/icons/skip-forward.svg'); 
+  }
+.stratis-slash-01-backward { 
+    -webkit-mask-image: url('/icons/slash-01-backward.svg'); 
+    mask-image: url('/icons/slash-01-backward.svg'); 
+  }
+.stratis-slash-01-forward { 
+    -webkit-mask-image: url('/icons/slash-01-forward.svg'); 
+    mask-image: url('/icons/slash-01-forward.svg'); 
+  }
+.stratis-slash-02-forward-icon-1 { 
+    -webkit-mask-image: url('/icons/slash-02-forward-icon-1.svg'); 
+    mask-image: url('/icons/slash-02-forward-icon-1.svg'); 
+  }
+.stratis-slash-02-forward { 
+    -webkit-mask-image: url('/icons/slash-02-forward.svg'); 
+    mask-image: url('/icons/slash-02-forward.svg'); 
+  }
+.stratis-smiley-happy-plus { 
+    -webkit-mask-image: url('/icons/smiley-happy-plus.svg'); 
+    mask-image: url('/icons/smiley-happy-plus.svg'); 
+  }
+.stratis-smiley-happy { 
+    -webkit-mask-image: url('/icons/smiley-happy.svg'); 
+    mask-image: url('/icons/smiley-happy.svg'); 
+  }
+.stratis-smiley-neutral { 
+    -webkit-mask-image: url('/icons/smiley-neutral.svg'); 
+    mask-image: url('/icons/smiley-neutral.svg'); 
+  }
+.stratis-smiley-sad { 
+    -webkit-mask-image: url('/icons/smiley-sad.svg'); 
+    mask-image: url('/icons/smiley-sad.svg'); 
+  }
+.stratis-smiley-wink { 
+    -webkit-mask-image: url('/icons/smiley-wink.svg'); 
+    mask-image: url('/icons/smiley-wink.svg'); 
+  }
+.stratis-snowflake { 
+    -webkit-mask-image: url('/icons/snowflake.svg'); 
+    mask-image: url('/icons/snowflake.svg'); 
+  }
+.stratis-sort-horizontal { 
+    -webkit-mask-image: url('/icons/sort-horizontal.svg'); 
+    mask-image: url('/icons/sort-horizontal.svg'); 
+  }
+.stratis-sort-vertical-01 { 
+    -webkit-mask-image: url('/icons/sort-vertical-01.svg'); 
+    mask-image: url('/icons/sort-vertical-01.svg'); 
+  }
+.stratis-sort-vertical-02 { 
+    -webkit-mask-image: url('/icons/sort-vertical-02.svg'); 
+    mask-image: url('/icons/sort-vertical-02.svg'); 
+  }
+.stratis-space-height { 
+    -webkit-mask-image: url('/icons/space-height.svg'); 
+    mask-image: url('/icons/space-height.svg'); 
+  }
+.stratis-space-horizontal { 
+    -webkit-mask-image: url('/icons/space-horizontal.svg'); 
+    mask-image: url('/icons/space-horizontal.svg'); 
+  }
+.stratis-space-vertical { 
+    -webkit-mask-image: url('/icons/space-vertical.svg'); 
+    mask-image: url('/icons/space-vertical.svg'); 
+  }
+.stratis-space-width { 
+    -webkit-mask-image: url('/icons/space-width.svg'); 
+    mask-image: url('/icons/space-width.svg'); 
+  }
+.stratis-speaker { 
+    -webkit-mask-image: url('/icons/speaker.svg'); 
+    mask-image: url('/icons/speaker.svg'); 
+  }
+.stratis-square { 
+    -webkit-mask-image: url('/icons/square.svg'); 
+    mask-image: url('/icons/square.svg'); 
+  }
+.stratis-star-01 { 
+    -webkit-mask-image: url('/icons/star-01.svg'); 
+    mask-image: url('/icons/star-01.svg'); 
+  }
+.stratis-star-02 { 
+    -webkit-mask-image: url('/icons/star-02.svg'); 
+    mask-image: url('/icons/star-02.svg'); 
+  }
+.stratis-stars { 
+    -webkit-mask-image: url('/icons/stars.svg'); 
+    mask-image: url('/icons/stars.svg'); 
+  }
+.stratis-Stop circle contained { 
+    -webkit-mask-image: url('/icons/Stop circle contained.svg'); 
+    mask-image: url('/icons/Stop circle contained.svg'); 
+  }
+.stratis-stop-01 { 
+    -webkit-mask-image: url('/icons/stop-01.svg'); 
+    mask-image: url('/icons/stop-01.svg'); 
+  }
+.stratis-stop-02 { 
+    -webkit-mask-image: url('/icons/stop-02.svg'); 
+    mask-image: url('/icons/stop-02.svg'); 
+  }
+.stratis-stopwatch-01 { 
+    -webkit-mask-image: url('/icons/stopwatch-01.svg'); 
+    mask-image: url('/icons/stopwatch-01.svg'); 
+  }
+.stratis-stopwatch-02 { 
+    -webkit-mask-image: url('/icons/stopwatch-02.svg'); 
+    mask-image: url('/icons/stopwatch-02.svg'); 
+  }
+.stratis-stopwatch-03 { 
+    -webkit-mask-image: url('/icons/stopwatch-03.svg'); 
+    mask-image: url('/icons/stopwatch-03.svg'); 
+  }
+.stratis-stopwatch-04 { 
+    -webkit-mask-image: url('/icons/stopwatch-04.svg'); 
+    mask-image: url('/icons/stopwatch-04.svg'); 
+  }
+.stratis-stopwatch-05 { 
+    -webkit-mask-image: url('/icons/stopwatch-05.svg'); 
+    mask-image: url('/icons/stopwatch-05.svg'); 
+  }
+.stratis-stopwatch-off { 
+    -webkit-mask-image: url('/icons/stopwatch-off.svg'); 
+    mask-image: url('/icons/stopwatch-off.svg'); 
+  }
+.stratis-stopwatch-snooze { 
+    -webkit-mask-image: url('/icons/stopwatch-snooze.svg'); 
+    mask-image: url('/icons/stopwatch-snooze.svg'); 
+  }
+.stratis-sun-01 { 
+    -webkit-mask-image: url('/icons/sun-01.svg'); 
+    mask-image: url('/icons/sun-01.svg'); 
+  }
+.stratis-sun-02 { 
+    -webkit-mask-image: url('/icons/sun-02.svg'); 
+    mask-image: url('/icons/sun-02.svg'); 
+  }
+.stratis-sun-03 { 
+    -webkit-mask-image: url('/icons/sun-03.svg'); 
+    mask-image: url('/icons/sun-03.svg'); 
+  }
+.stratis-sun-down { 
+    -webkit-mask-image: url('/icons/sun-down.svg'); 
+    mask-image: url('/icons/sun-down.svg'); 
+  }
+.stratis-sun-up { 
+    -webkit-mask-image: url('/icons/sun-up.svg'); 
+    mask-image: url('/icons/sun-up.svg'); 
+  }
+.stratis-superscript { 
+    -webkit-mask-image: url('/icons/superscript.svg'); 
+    mask-image: url('/icons/superscript.svg'); 
+  }
+.stratis-table { 
+    -webkit-mask-image: url('/icons/table.svg'); 
+    mask-image: url('/icons/table.svg'); 
+  }
+.stratis-tag { 
+    -webkit-mask-image: url('/icons/tag.svg'); 
+    mask-image: url('/icons/tag.svg'); 
+  }
+.stratis-target-01-icon-1 { 
+    -webkit-mask-image: url('/icons/target-01-icon-1.svg'); 
+    mask-image: url('/icons/target-01-icon-1.svg'); 
+  }
+.stratis-target-01 { 
+    -webkit-mask-image: url('/icons/target-01.svg'); 
+    mask-image: url('/icons/target-01.svg'); 
+  }
+.stratis-target-02-icon-1 { 
+    -webkit-mask-image: url('/icons/target-02-icon-1.svg'); 
+    mask-image: url('/icons/target-02-icon-1.svg'); 
+  }
+.stratis-target-02 { 
+    -webkit-mask-image: url('/icons/target-02.svg'); 
+    mask-image: url('/icons/target-02.svg'); 
+  }
+.stratis-target-03 { 
+    -webkit-mask-image: url('/icons/target-03.svg'); 
+    mask-image: url('/icons/target-03.svg'); 
+  }
+.stratis-target-04 { 
+    -webkit-mask-image: url('/icons/target-04.svg'); 
+    mask-image: url('/icons/target-04.svg'); 
+  }
+.stratis-temperature-01 { 
+    -webkit-mask-image: url('/icons/temperature-01.svg'); 
+    mask-image: url('/icons/temperature-01.svg'); 
+  }
+.stratis-temperature-02 { 
+    -webkit-mask-image: url('/icons/temperature-02.svg'); 
+    mask-image: url('/icons/temperature-02.svg'); 
+  }
+.stratis-temperature-03 { 
+    -webkit-mask-image: url('/icons/temperature-03.svg'); 
+    mask-image: url('/icons/temperature-03.svg'); 
+  }
+.stratis-temperature-04 { 
+    -webkit-mask-image: url('/icons/temperature-04.svg'); 
+    mask-image: url('/icons/temperature-04.svg'); 
+  }
+.stratis-terminal { 
+    -webkit-mask-image: url('/icons/terminal.svg'); 
+    mask-image: url('/icons/terminal.svg'); 
+  }
+.stratis-text-input-01-icon-1 { 
+    -webkit-mask-image: url('/icons/text-input-01-icon-1.svg'); 
+    mask-image: url('/icons/text-input-01-icon-1.svg'); 
+  }
+.stratis-text-input-01 { 
+    -webkit-mask-image: url('/icons/text-input-01.svg'); 
+    mask-image: url('/icons/text-input-01.svg'); 
+  }
+.stratis-text-input-02 { 
+    -webkit-mask-image: url('/icons/text-input-02.svg'); 
+    mask-image: url('/icons/text-input-02.svg'); 
+  }
+.stratis-ticket-01 { 
+    -webkit-mask-image: url('/icons/ticket-01.svg'); 
+    mask-image: url('/icons/ticket-01.svg'); 
+  }
+.stratis-ticket-02 { 
+    -webkit-mask-image: url('/icons/ticket-02.svg'); 
+    mask-image: url('/icons/ticket-02.svg'); 
+  }
+.stratis-toggle-right { 
+    -webkit-mask-image: url('/icons/toggle-right.svg'); 
+    mask-image: url('/icons/toggle-right.svg'); 
+  }
+.stratis-toogle-left { 
+    -webkit-mask-image: url('/icons/toogle-left.svg'); 
+    mask-image: url('/icons/toogle-left.svg'); 
+  }
+.stratis-train { 
+    -webkit-mask-image: url('/icons/train.svg'); 
+    mask-image: url('/icons/train.svg'); 
+  }
+.stratis-transform { 
+    -webkit-mask-image: url('/icons/transform.svg'); 
+    mask-image: url('/icons/transform.svg'); 
+  }
+.stratis-trash-01 { 
+    -webkit-mask-image: url('/icons/trash-01.svg'); 
+    mask-image: url('/icons/trash-01.svg'); 
+  }
+.stratis-trash-02 { 
+    -webkit-mask-image: url('/icons/trash-02.svg'); 
+    mask-image: url('/icons/trash-02.svg'); 
+  }
+.stratis-trash-03 { 
+    -webkit-mask-image: url('/icons/trash-03.svg'); 
+    mask-image: url('/icons/trash-03.svg'); 
+  }
+.stratis-trash-04 { 
+    -webkit-mask-image: url('/icons/trash-04.svg'); 
+    mask-image: url('/icons/trash-04.svg'); 
+  }
+.stratis-trend-down-01 { 
+    -webkit-mask-image: url('/icons/trend-down-01.svg'); 
+    mask-image: url('/icons/trend-down-01.svg'); 
+  }
+.stratis-trend-down-02 { 
+    -webkit-mask-image: url('/icons/trend-down-02.svg'); 
+    mask-image: url('/icons/trend-down-02.svg'); 
+  }
+.stratis-trend-up-01 { 
+    -webkit-mask-image: url('/icons/trend-up-01.svg'); 
+    mask-image: url('/icons/trend-up-01.svg'); 
+  }
+.stratis-trend-up-02 { 
+    -webkit-mask-image: url('/icons/trend-up-02.svg'); 
+    mask-image: url('/icons/trend-up-02.svg'); 
+  }
+.stratis-triangle { 
+    -webkit-mask-image: url('/icons/triangle.svg'); 
+    mask-image: url('/icons/triangle.svg'); 
+  }
+.stratis-truck { 
+    -webkit-mask-image: url('/icons/truck.svg'); 
+    mask-image: url('/icons/truck.svg'); 
+  }
+.stratis-tv { 
+    -webkit-mask-image: url('/icons/tv.svg'); 
+    mask-image: url('/icons/tv.svg'); 
+  }
+.stratis-type-01 { 
+    -webkit-mask-image: url('/icons/type-01.svg'); 
+    mask-image: url('/icons/type-01.svg'); 
+  }
+.stratis-type-02 { 
+    -webkit-mask-image: url('/icons/type-02.svg'); 
+    mask-image: url('/icons/type-02.svg'); 
+  }
+.stratis-type-03 { 
+    -webkit-mask-image: url('/icons/type-03.svg'); 
+    mask-image: url('/icons/type-03.svg'); 
+  }
+.stratis-type-strike-01 { 
+    -webkit-mask-image: url('/icons/type-strike-01.svg'); 
+    mask-image: url('/icons/type-strike-01.svg'); 
+  }
+.stratis-type-strike-02 { 
+    -webkit-mask-image: url('/icons/type-strike-02.svg'); 
+    mask-image: url('/icons/type-strike-02.svg'); 
+  }
+.stratis-umbrella-01 { 
+    -webkit-mask-image: url('/icons/umbrella-01.svg'); 
+    mask-image: url('/icons/umbrella-01.svg'); 
+  }
+.stratis-umbrella-02 { 
+    -webkit-mask-image: url('/icons/umbrella-02.svg'); 
+    mask-image: url('/icons/umbrella-02.svg'); 
+  }
+.stratis-umbrella { 
+    -webkit-mask-image: url('/icons/umbrella.svg'); 
+    mask-image: url('/icons/umbrella.svg'); 
+  }
+.stratis-underline-01 { 
+    -webkit-mask-image: url('/icons/underline-01.svg'); 
+    mask-image: url('/icons/underline-01.svg'); 
+  }
+.stratis-underline-02 { 
+    -webkit-mask-image: url('/icons/underline-02.svg'); 
+    mask-image: url('/icons/underline-02.svg'); 
+  }
+.stratis-union { 
+    -webkit-mask-image: url('/icons/union.svg'); 
+    mask-image: url('/icons/union.svg'); 
+  }
+.stratis-upload-01 { 
+    -webkit-mask-image: url('/icons/upload-01.svg'); 
+    mask-image: url('/icons/upload-01.svg'); 
+  }
+.stratis-upload-02 { 
+    -webkit-mask-image: url('/icons/upload-02.svg'); 
+    mask-image: url('/icons/upload-02.svg'); 
+  }
+.stratis-upload-03 { 
+    -webkit-mask-image: url('/icons/upload-03.svg'); 
+    mask-image: url('/icons/upload-03.svg'); 
+  }
+.stratis-upload-04 { 
+    -webkit-mask-image: url('/icons/upload-04.svg'); 
+    mask-image: url('/icons/upload-04.svg'); 
+  }
+.stratis-user-profile-01 { 
+    -webkit-mask-image: url('/icons/user-profile-01.svg'); 
+    mask-image: url('/icons/user-profile-01.svg'); 
+  }
+.stratis-user-profile-02 { 
+    -webkit-mask-image: url('/icons/user-profile-02.svg'); 
+    mask-image: url('/icons/user-profile-02.svg'); 
+  }
+.stratis-user-profile-03-icon-1 { 
+    -webkit-mask-image: url('/icons/user-profile-03-icon-1.svg'); 
+    mask-image: url('/icons/user-profile-03-icon-1.svg'); 
+  }
+.stratis-user-profile-03 { 
+    -webkit-mask-image: url('/icons/user-profile-03.svg'); 
+    mask-image: url('/icons/user-profile-03.svg'); 
+  }
+.stratis-user-profile-add-01 { 
+    -webkit-mask-image: url('/icons/user-profile-add-01.svg'); 
+    mask-image: url('/icons/user-profile-add-01.svg'); 
+  }
+.stratis-user-profile-add-02 { 
+    -webkit-mask-image: url('/icons/user-profile-add-02.svg'); 
+    mask-image: url('/icons/user-profile-add-02.svg'); 
+  }
+.stratis-user-profile-check { 
+    -webkit-mask-image: url('/icons/user-profile-check.svg'); 
+    mask-image: url('/icons/user-profile-check.svg'); 
+  }
+.stratis-user-profile-circle { 
+    -webkit-mask-image: url('/icons/user-profile-circle.svg'); 
+    mask-image: url('/icons/user-profile-circle.svg'); 
+  }
+.stratis-user-profile-down { 
+    -webkit-mask-image: url('/icons/user-profile-down.svg'); 
+    mask-image: url('/icons/user-profile-down.svg'); 
+  }
+.stratis-user-profile-left { 
+    -webkit-mask-image: url('/icons/user-profile-left.svg'); 
+    mask-image: url('/icons/user-profile-left.svg'); 
+  }
+.stratis-user-profile-minus { 
+    -webkit-mask-image: url('/icons/user-profile-minus.svg'); 
+    mask-image: url('/icons/user-profile-minus.svg'); 
+  }
+.stratis-user-profile-right { 
+    -webkit-mask-image: url('/icons/user-profile-right.svg'); 
+    mask-image: url('/icons/user-profile-right.svg'); 
+  }
+.stratis-user-profile-square { 
+    -webkit-mask-image: url('/icons/user-profile-square.svg'); 
+    mask-image: url('/icons/user-profile-square.svg'); 
+  }
+.stratis-user-profile-star { 
+    -webkit-mask-image: url('/icons/user-profile-star.svg'); 
+    mask-image: url('/icons/user-profile-star.svg'); 
+  }
+.stratis-user-profile-up { 
+    -webkit-mask-image: url('/icons/user-profile-up.svg'); 
+    mask-image: url('/icons/user-profile-up.svg'); 
+  }
+.stratis-user-profile-x { 
+    -webkit-mask-image: url('/icons/user-profile-x.svg'); 
+    mask-image: url('/icons/user-profile-x.svg'); 
+  }
+.stratis-users-profiles-01 { 
+    -webkit-mask-image: url('/icons/users-profiles-01.svg'); 
+    mask-image: url('/icons/users-profiles-01.svg'); 
+  }
+.stratis-users-profiles-02 { 
+    -webkit-mask-image: url('/icons/users-profiles-02.svg'); 
+    mask-image: url('/icons/users-profiles-02.svg'); 
+  }
+.stratis-users-profiles-03 { 
+    -webkit-mask-image: url('/icons/users-profiles-03.svg'); 
+    mask-image: url('/icons/users-profiles-03.svg'); 
+  }
+.stratis-users-profiles-check { 
+    -webkit-mask-image: url('/icons/users-profiles-check.svg'); 
+    mask-image: url('/icons/users-profiles-check.svg'); 
+  }
+.stratis-users-profiles-down { 
+    -webkit-mask-image: url('/icons/users-profiles-down.svg'); 
+    mask-image: url('/icons/users-profiles-down.svg'); 
+  }
+.stratis-users-profiles-left { 
+    -webkit-mask-image: url('/icons/users-profiles-left.svg'); 
+    mask-image: url('/icons/users-profiles-left.svg'); 
+  }
+.stratis-users-profiles-minus { 
+    -webkit-mask-image: url('/icons/users-profiles-minus.svg'); 
+    mask-image: url('/icons/users-profiles-minus.svg'); 
+  }
+.stratis-users-profiles-plus { 
+    -webkit-mask-image: url('/icons/users-profiles-plus.svg'); 
+    mask-image: url('/icons/users-profiles-plus.svg'); 
+  }
+.stratis-users-profiles-right { 
+    -webkit-mask-image: url('/icons/users-profiles-right.svg'); 
+    mask-image: url('/icons/users-profiles-right.svg'); 
+  }
+.stratis-users-profiles-up { 
+    -webkit-mask-image: url('/icons/users-profiles-up.svg'); 
+    mask-image: url('/icons/users-profiles-up.svg'); 
+  }
+.stratis-users-profiles-x { 
+    -webkit-mask-image: url('/icons/users-profiles-x.svg'); 
+    mask-image: url('/icons/users-profiles-x.svg'); 
+  }
+.stratis-variant { 
+    -webkit-mask-image: url('/icons/variant.svg'); 
+    mask-image: url('/icons/variant.svg'); 
+  }
+.stratis-video-off { 
+    -webkit-mask-image: url('/icons/video-off.svg'); 
+    mask-image: url('/icons/video-off.svg'); 
+  }
+.stratis-video-on { 
+    -webkit-mask-image: url('/icons/video-on.svg'); 
+    mask-image: url('/icons/video-on.svg'); 
+  }
+.stratis-volume-01 { 
+    -webkit-mask-image: url('/icons/volume-01.svg'); 
+    mask-image: url('/icons/volume-01.svg'); 
+  }
+.stratis-volume-02 { 
+    -webkit-mask-image: url('/icons/volume-02.svg'); 
+    mask-image: url('/icons/volume-02.svg'); 
+  }
+.stratis-volume-03 { 
+    -webkit-mask-image: url('/icons/volume-03.svg'); 
+    mask-image: url('/icons/volume-03.svg'); 
+  }
+.stratis-volume-04 { 
+    -webkit-mask-image: url('/icons/volume-04.svg'); 
+    mask-image: url('/icons/volume-04.svg'); 
+  }
+.stratis-volume-05 { 
+    -webkit-mask-image: url('/icons/volume-05.svg'); 
+    mask-image: url('/icons/volume-05.svg'); 
+  }
+.stratis-volume-06 { 
+    -webkit-mask-image: url('/icons/volume-06.svg'); 
+    mask-image: url('/icons/volume-06.svg'); 
+  }
+.stratis-volume-07 { 
+    -webkit-mask-image: url('/icons/volume-07.svg'); 
+    mask-image: url('/icons/volume-07.svg'); 
+  }
+.stratis-wallert-04 { 
+    -webkit-mask-image: url('/icons/wallert-04.svg'); 
+    mask-image: url('/icons/wallert-04.svg'); 
+  }
+.stratis-wallet-01 { 
+    -webkit-mask-image: url('/icons/wallet-01.svg'); 
+    mask-image: url('/icons/wallet-01.svg'); 
+  }
+.stratis-wallet-02 { 
+    -webkit-mask-image: url('/icons/wallet-02.svg'); 
+    mask-image: url('/icons/wallet-02.svg'); 
+  }
+.stratis-wallet-03 { 
+    -webkit-mask-image: url('/icons/wallet-03.svg'); 
+    mask-image: url('/icons/wallet-03.svg'); 
+  }
+.stratis-watch-01 { 
+    -webkit-mask-image: url('/icons/watch-01.svg'); 
+    mask-image: url('/icons/watch-01.svg'); 
+  }
+.stratis-watch-02 { 
+    -webkit-mask-image: url('/icons/watch-02.svg'); 
+    mask-image: url('/icons/watch-02.svg'); 
+  }
+.stratis-waveform { 
+    -webkit-mask-image: url('/icons/waveform.svg'); 
+    mask-image: url('/icons/waveform.svg'); 
+  }
+.stratis-webcam { 
+    -webkit-mask-image: url('/icons/webcam.svg'); 
+    mask-image: url('/icons/webcam.svg'); 
+  }
+.stratis-wifi-off { 
+    -webkit-mask-image: url('/icons/wifi-off.svg'); 
+    mask-image: url('/icons/wifi-off.svg'); 
+  }
+.stratis-wifi-on { 
+    -webkit-mask-image: url('/icons/wifi-on.svg'); 
+    mask-image: url('/icons/wifi-on.svg'); 
+  }
+.stratis-wind-01 { 
+    -webkit-mask-image: url('/icons/wind-01.svg'); 
+    mask-image: url('/icons/wind-01.svg'); 
+  }
+.stratis-wind-02 { 
+    -webkit-mask-image: url('/icons/wind-02.svg'); 
+    mask-image: url('/icons/wind-02.svg'); 
+  }
+.stratis-wind-03 { 
+    -webkit-mask-image: url('/icons/wind-03.svg'); 
+    mask-image: url('/icons/wind-03.svg'); 
+  }
+.stratis-x-01 { 
+    -webkit-mask-image: url('/icons/x-01.svg'); 
+    mask-image: url('/icons/x-01.svg'); 
+  }
+.stratis-x-02 { 
+    -webkit-mask-image: url('/icons/x-02.svg'); 
+    mask-image: url('/icons/x-02.svg'); 
+  }
+.stratis-x-03 { 
+    -webkit-mask-image: url('/icons/x-03.svg'); 
+    mask-image: url('/icons/x-03.svg'); 
+  }
+.stratis-x-circle-contained { 
+    -webkit-mask-image: url('/icons/x-circle-contained.svg'); 
+    mask-image: url('/icons/x-circle-contained.svg'); 
+  }
+.stratis-x-square-contained { 
+    -webkit-mask-image: url('/icons/x-square-contained.svg'); 
+    mask-image: url('/icons/x-square-contained.svg'); 
+  }
+.stratis-youtube { 
+    -webkit-mask-image: url('/icons/youtube.svg'); 
+    mask-image: url('/icons/youtube.svg'); 
+  }
+.stratis-zoom-in { 
+    -webkit-mask-image: url('/icons/zoom-in.svg'); 
+    mask-image: url('/icons/zoom-in.svg'); 
+  }
+.stratis-zoom-out { 
+    -webkit-mask-image: url('/icons/zoom-out.svg'); 
+    mask-image: url('/icons/zoom-out.svg'); 
+  }

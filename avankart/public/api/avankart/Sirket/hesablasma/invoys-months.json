@@ -1,0 +1,18 @@
+{
+  "data": [
+    { "month": "Yanvar", "count": 9 },
+    { "month": "Fevral", "count": 700 },
+    { "month": "Mart", "count": 600 },
+    { "month": "Aprel", "count": 300 },
+    { "month": "May", "count": 150 },
+    { "month": "İyun", "count": 150 },
+    { "month": "İyul", "count": 150 },
+    { "month": "Avqust", "count": 150 },
+    { "month": "Sentyabr", "count": 150 },
+    { "month": "Oktyabr", "count": 150 },
+    { "month": "Noyabr", "count": 150 },
+    { "month": "Dekabr", "count": 150 }
+  ],
+  "recordsTotal": 12,
+  "recordsFiltered": 12
+}

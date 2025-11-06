@@ -1,0 +1,1026 @@
+<div class="flex items-center justify-between pt-3">
+  <div class="text-[14px] text-medium text-messages">Şirkət</div>
+  <div id="chartToggle"
+    class="icon stratis-arrow-down-right-sm text-xs cursor-pointer transition-transform duration-300"></div>
+</div>
+<div id="chartsContainer"
+  class="active flex flex-col gap-3 transition-all duration-500 ease-in-out overflow-hidden  opacity-100">
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Balans hərəkəti
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div
+          class="flex justify-between min-w-96 py-1 px-1 rounded-full bg-menu dark:bg-menu-dark items-center z-[2] border border-stroke dark:border-surface-variant-dark">
+          <div data-label="Hamısı"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-messages hover:text-messages bg-inverse-on-surface rounded-full py-[3px] px-2">
+            Hamısı
+          </div>
+          <div data-label="Aktiv balans"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Aktiv balans
+          </div>
+          <div data-label="Passiv balans"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Passiv balans
+          </div>
+          <div data-label="Xərcləmə"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Xərclənən
+          </div>
+          <div data-label="Mükafat"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Mükafat
+          </div>
+          <div data-label="Kəşbek"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Kəşbek
+          </div>
+          <div data-label="Toplam"
+            class="odenisTab whitespace-nowrap text-[11px] font-medium cursor-pointer text-tertiary-text hover:text-messages rounded-full py-[3px] px-2">
+            Toplam
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="balance-movement" onclick="openSirketlerModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[150px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Şirkətlər</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div data-target="balansHereketi" onclick="openYearsModal(this)" class=" relative hidden z-[5]">
+          <!-- Year Dropdown -->
+          <div id="yearDropdownToggle"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[110px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A] select-none">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2 transition-transform duration-200">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+          <div id="yearDropdown"
+            class="absolute top-[110%] right-0 w-40 max-h-60 overflow-y-auto bg-menu dark:bg-menu-dark border border-stroke dark:border-[#FFFFFF1A] rounded-xl shadow-lg p-2 flex flex-col gap-1 hidden z-[10]">
+            <% const years=[2025,2024,2023,2022,2021,2020]; years.forEach(function(y){ %>
+              <div data-year="<%= y %>"
+                class="text-[12px] px-3 py-[6px] rounded-lg cursor-pointer hover:bg-inverse-on-surface dark:hover:bg-inverse-on-surface-dark text-tertiary-text dark:text-tertiary-text-color-dark">
+                <%= y %>
+              </div>
+              <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center w-full gap-3 px-4">
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <!-- Qrafiklər -->
+        <div class="flex gap-4 h-[300px] pb-5">
+          <!-- Sol: Xətti qrafik və alt label -->
+          <div class="w-full flex flex-col">
+            <canvas id="balans" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div
+              class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+              id="balanslabels">
+              <!-- Dinamik etiketlər -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="imtiyazChart" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="imtiyazLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full">
+    <div class="flex w-full gap-3">
+      <div class="w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex justify-between">
+          <div class="relative h-[35px] pl-6 pr-8 flex items-center -mt-[10px]">
+            <div class="absolute w-[22px] h-[23px] rotate-65 right-[20px] border-r border-secondary mt-[4px]"></div>
+            <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+              Kəşbek
+            </div>
+            <div
+              class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+            </div>
+            <div class="absolute bottom-0 w-[calc(100%-60px)] border-b border-secondary mb-[1px]"></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="kesbekChart" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="kesbekLegend"></div>
+        </div>
+      </div>
+      <div class="min-w-[50%] mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex justify-between">
+          <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+            <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+            <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+              Şirkət sayı
+            </div>
+            <div
+              class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+            </div>
+            <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+          </div>
+          <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative">
+            <div class="absolute w-full z-[1] border-b border-secondary"></div>
+          </div>
+          <div data-target="sirketSayi" onclick="openYearsModal(this)" class="relative inline-block ml-3 z-[5]">
+            <!-- Second Year Dropdown (qrChart) -->
+            <div id="yearDropdownToggle2"
+              class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal min-w-27 h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A] select-none">
+              <span>İl seçin</span>
+              <div class="relative flex items-center justify-center mt-2">
+                <div class="icon stratis-chevron-right rotate-90"></div>
+              </div>
+            </div>
+            <div id="yearDropdown2"
+              class="absolute top-[110%] right-0 w-40 max-h-60 overflow-y-auto bg-menu dark:bg-menu-dark border border-stroke dark:border-[#FFFFFF1A] rounded-xl shadow-lg p-2 flex flex-col gap-1 hidden z-[10]">
+              <% years.forEach(function(y){ %>
+                <div data-year="<%= y %>"
+                  class="text-[12px] px-3 py-[6px] rounded-lg cursor-pointer hover:bg-inverse-on-surface dark:hover:bg-inverse-on-surface-dark text-tertiary-text dark:text-tertiary-text-color-dark">
+                  <%= y %>
+                </div>
+                <% }) %>
+            </div>
+          </div>
+        </div>
+        <canvas id="qrChart" class="pb-17"></canvas>
+        <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+          <div
+            class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+            <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#7086FDA1] flex items-center justify-center">
+              <div class="border-[1px] border-menu dark:border-menu-dark bg-[#7086FD] w-2 h-2 rounded-full z-1"></div>
+              <div class="w-full h-[2px] bg-[#7086FD] absolute top-1/2 -translate-y-1/2"></div>
+            </div>
+            <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Üzv şirkət sayı:</span>
+            <span class="text-messages dark:text-primary-text-color-dark">126</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Şirkətlərin etdiyi qənaət
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div 
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[150px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Şirkətlər</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-25 h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Kartlar</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div 
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="min-w-[50%] mx-auto rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <canvas id="sirketChart" class="pb-15"></canvas>
+        <div class="mt-2 text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+          <div
+            class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+            <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#FFAE4CA1] flex items-center justify-center">
+              <div class="border-[1px] border-menu dark:border-menu-dark bg-[#FFAE4C] w-2 h-2 rounded-full z-1"></div>
+              <div class="w-full h-[2px] bg-[#FFAE4C] absolute top-1/2 -translate-y-1/2"></div>
+            </div>
+            <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Yemək:</span>
+            <span class="text-messages dark:text-primary-text-color-dark">2.150.00 AZN</span>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[50%] mx-auto rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <canvas id="qenaetChart" class="pb-15" width="1247" height="704" style="
+            display: block;
+            box-sizing: border-box;
+            height: 352px;
+            width: 623px;
+          "></canvas>
+        <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark mt-2">
+          <div
+            class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+            <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#00504BA1] flex items-center justify-center">
+              <div class="border-[1px] border-menu dark:border-menu-dark bg-[#00504B] w-2 h-2 rounded-full z-1"></div>
+              <div class="w-full h-[2px] bg-[#00504B] absolute top-1/2 -translate-y-1/2"></div>
+            </div>
+            <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Toplam qənaət
+              məbləği:</span>
+            <span class="text-messages dark:text-primary-text-color-dark">13.850.00 AZN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full">
+    <div class="w-full mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+      <div class="flex justify-between">
+        <div class="relative h-[35px] pl-6 pr-10 flex items-center -mt-[10px]">
+          <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+          <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+            Şirkətlərdən alınan məbləğ
+          </div>
+          <div
+            class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+          </div>
+          <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+        </div>
+        <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative">
+          <div class="absolute w-full z-[1] border-b border-secondary"></div>
+        </div>
+        <div class="flex gap-1 items-center">
+          <div class="relative inline-block z-[5]">
+            <!-- Dropdown Toggle -->
+            <div data-target="amount-received-from-companies" onclick="openSirketlerModal(this)"
+              class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[150px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+              <span>Şirkətlər</span>
+              <div class="relative flex items-center justify-center mt-2">
+                <div class="icon stratis-chevron-right rotate-90"></div>
+              </div>
+            </div>
+          </div>
+          <div class="relative inline-block z-[5]">
+            <!-- Dropdown Toggle -->
+            <div data-target="sirketlerdenAlınanMebleğ" onclick="openYearsModal(this)"
+              class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+              <span>İl seçin</span>
+              <div class="relative flex items-center justify-center mt-2">
+                <div class="icon stratis-chevron-right rotate-90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas id="meblegChart" class="pb-17"></canvas>
+      <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+        <div id="receivedAmountFromCompanies"
+          class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+          <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#6FD195A1] flex items-center justify-center">
+            <div class="border-[1px] border-menu dark:border-menu-dark bg-[#6FD195] w-2 h-2 rounded-full z-1"></div>
+            <div class="w-full h-[2px] bg-[#6FD195] absolute top-1/2 -translate-y-1/2"></div>
+          </div>
+          <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Şirkətlərdən alınan ümumi
+            məbləğ:</span>
+          <span  class="text-messages dark:text-primary-text-color-dark">245.500.00 AZN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="border-t border-stroke" />
+
+<div class="flex items-center justify-between">
+  <div class="text-[14px] text-medium text-messages">İstifadəçi</div>
+  <div id="chartToggle2"
+    class="icon stratis-arrow-down-right-sm text-xs cursor-pointer transition-transform duration-300"></div>
+</div>
+<div id="chartsContainer2"
+  class="active flex flex-col gap-3 transition-all duration-500 ease-in-out overflow-hidden  opacity-100">
+  <div class="w-full px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+    <div class="flex justify-between">
+      <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Kartlardakı mövcud balans
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+    </div>
+    <canvas id="barsChart" class="pb-17 py-4"></canvas>
+    <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+      <div
+        class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+        <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#00504BA1] flex items-center justify-center">
+          <div class="border-[1px] border-menu dark:border-menu-dark bg-[#00504B] w-2 h-2 rounded-full z-1"></div>
+          <div class="w-full h-[2px] bg-[#00504B] absolute top-1/2 -translate-y-1/2"></div>
+        </div>
+        <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Ümumi məbləğ:</span>
+        <span class="text-messages dark:text-primary-text-color-dark" id="balans-total-amount">32.500.00 AZN</span>
+      </div>
+    </div>
+  </div>
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          İstifadəçi qeydiyyatı sayı
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="number-of-user-registrations" onclick="openSirketlerModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[150px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Şirkətlər</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="istifadeçiQeydiyyatiSayi" onclick="openYearsModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="w-full flex">
+        <div class="min-w-[50%] mx-auto px-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+          <canvas id="qeydiyyatChart" class="pb-17"></canvas>
+          <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+            <div id="qeydiyyatSayiLegend"
+              class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+              <div
+                class="relative overflow-hidden w-4 h-4 rounded-full bg-[#6FD195A1] flex items-center justify-center">
+                <div class="border-[1px] border-menu dark:border-menu-dark bg-[#6FD195] w-2 h-2 rounded-full z-1"></div>
+                <div class="w-full h-[2px] bg-[#6FD195] absolute top-1/2 -translate-y-1/2"></div>
+              </div>
+              <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">İstifadəçi qeydiyyatı
+                sayı:</span>
+              <span class="text-messages dark:text-primary-text-color-dark">4600</span>
+            </div>
+          </div>
+        </div>
+        <div class="min-w-[50%] py-4 rounded-lg h-full bg-container-2 dark:bg-container-2-dark">
+          <div class="flex justify-between px-4 py-4">
+            <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+              <div class="absolute w-[22px] h-[23px] rotate-45 right-0 border-r border-secondary mt-[4px]"></div>
+              <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+                Cins və yaşa görə
+              </div>
+              <div
+                class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+              </div>
+              <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+            </div>
+            <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+              <div class="absolute w-full z-[1] border-b border-secondary"></div>
+            </div>
+          </div>
+          <div >
+            <div class="w-full mt-6 flex items-center justify-between gap-5" style="height: 70% !important;">
+              <div class=" flex gap-1" style="width: 30% !important;">
+                <canvas id="genderChart" style="height: 100% !important;"></canvas>
+              </div>
+              <div id="genderChartLegend"></div>
+              <div class=" flex gap-1" style=" width: 30% !important;">
+                <canvas id="ageChart" style="height: 100% !important;"></canvas>
+              </div>
+              <div class="whitespace-nowrap" id="ageChartLegend"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full">
+    <div class="w-full mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+      <div class="flex justify-between">
+        <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+          <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+          <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+            Tranzaksiya sayı
+          </div>
+          <div
+            class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+          </div>
+          <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+        </div>
+        <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative">
+          <div class="absolute w-full z-[1] border-b border-secondary"></div>
+        </div>
+        <div class="flex gap-1 items-center">
+          <div class="relative inline-block z-[5]">
+            <!-- Dropdown Toggle -->
+            <div data-target="tranzaksiyaSayi" onclick="openYearsModal(this)"
+              class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+              <span>İl seçin</span>
+              <div class="relative flex items-center justify-center mt-2">
+                <div class="icon stratis-chevron-right rotate-90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas id="transactionsChart" class="pb-17"></canvas>
+      <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+        <div id="tranzaksiyaSayiLegend"
+          class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-1 -mt-14">
+          <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#6FD195A1] flex items-center justify-center">
+            <div class="border-[1px] border-menu dark:border-menu-dark bg-[#6FD195] w-2 h-2 rounded-full z-1"></div>
+            <div class="w-full h-[2px] bg-[#6FD195] absolute top-1/2 -translate-y-1/2"></div>
+          </div>
+          <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Tranzaksiya sayı:</span>
+          <span class="text-messages dark:text-primary-text-color-dark">245</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg overflow-hidden">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Kartlar üzrə mədaxil
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="medaxil" onclick="openKartlarModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-25 h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Kartlar</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="kartlarUzreMedaxil" onclick="openYearsModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A] hidden">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <!-- Qrafiklər -->
+        <div class="flex gap-4 h-[300px] pb-5">
+          <!-- Sol: Xətti qrafik və alt label -->
+          <div class="w-full flex flex-col">
+            <canvas id="kartlarChart" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div
+              class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+              id="kartlarChartLabels">
+              <!-- Dinamik etiketlər -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="kartlarDoughnut" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="kartlarDoughnutLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Kartlar üzrə məxaric
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="mexaric" onclick="openKartlarModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-25 h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Kartlar</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="kartlarUzrəMexaric" onclick="openYearsModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A] hidden">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <!-- Qrafiklər -->
+        <div class="flex gap-4 h-[300px] pb-5">
+          <!-- Sol: Xətti qrafik və alt label -->
+          <div class="w-full flex flex-col">
+            <canvas id="mexaricChart" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div
+              class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+              id="mexaricChartLabels">
+              <!-- Dinamik etiketlər -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="kartlarMexaricDoughnut" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="kartlarMexaricDoughnutLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="border-t border-stroke" />
+
+<div class="flex items-center justify-between">
+  <div class="text-[14px] text-medium text-messages">Müəssisə</div>
+  <div id="chartToggle3"
+    class="icon stratis-arrow-down-right-sm text-xs cursor-pointer transition-transform duration-300"></div>
+</div>
+<div id="chartsContainer3"
+  class="active flex flex-col gap-3 transition-all duration-500 ease-in-out overflow-hidden opacity-100">
+  <div class="w-full">
+    <div class="w-full mx-auto px-4 py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+      <div class="flex justify-between">
+        <div class="relative h-[35px] pl-6 pr-10 flex items-center overflow-hidden -mt-[10px]">
+          <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+          <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+            Müəssisə sayı
+          </div>
+          <div
+            class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+          </div>
+          <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+        </div>
+        <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative">
+          <div class="absolute w-full z-[1] border-b border-secondary"></div>
+        </div>
+        <div class="flex gap-1 items-center">
+          <div class="relative inline-block z-[5]">
+            <!-- Dropdown Toggle -->
+            <div data-target="muessiseSayi" onclick="openYearsModal(this)"
+              class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+              <span>İl seçin</span>
+              <div class="relative flex items-center justify-center mt-2">
+                <div class="icon stratis-chevron-right rotate-90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas id="muessiseChart" class="pb-17"></canvas>
+      <div class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark">
+        <div id="muessiseSayiLegend"
+          class="text-center text-xs font-medium text-messages dark:text-primary-text-color-dark flex items-center justify-center gap-3 -mt-14">
+          <div class="relative overflow-hidden w-4 h-4 rounded-full bg-[#6FD195A1] flex items-center justify-center">
+            <div class="border-[1px] border-menu dark:border-menu-dark bg-[#6FD195] w-2 h-2 rounded-full z-1"></div>
+            <div class="w-full h-[2px] bg-[#6FD195] absolute top-1/2 -translate-y-1/2"></div>
+          </div>
+          <span class="text-tertiary-text dark:text-tertiary-text-color-dark font-normal">Üzv müəssisə sayı:</span>
+          <span class="text-messages dark:text-primary-text-color-dark">245</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- hesablasma table -->
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Hesablaşmalı olduğumuz məbləğ
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div onclick="openMuessiselerModal()"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[150px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>Müəssisələr</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="hesablasma" onclick="openYearsModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="min-w-[60%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <!-- Qrafiklər -->
+        <div class="flex gap-4 h-[300px] pb-5">
+          <!-- Sol: Xətti qrafik və alt label -->
+          <div class="w-full flex flex-col">
+            <canvas id="hesablasmaLineChart" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div
+              class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+              id="hesablasmalabels">
+              <!-- Dinamik etiketlər -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[40%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="hesablasmaDoughnut" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="hesablasmaLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="border-t border-stroke" />
+
+<div class="flex items-center justify-between">
+  <div class="text-[14px] text-medium text-messages">Avankart</div>
+  <div id="chartToggle4"
+    class="icon stratis-arrow-down-right-sm text-xs cursor-pointer transition-transform duration-300"></div>
+</div>
+
+<!-- Commission table -->
+<div id="chartsContainer4"
+  class="active flex flex-col gap-3 transition-all duration-500 ease-in-out overflow-hidden opacity-100">
+  <div class="w-full bg-container-2 dark:bg-container-2-dark rounded-lg">
+    <div class="flex justify-between px-4 py-4">
+      <div class="relative h-[35px] pl-6 pr-2 flex items-center -mt-[9px]">
+        <div class="absolute w-[22px] h-[23px] rotate-65 right-0 border-r border-secondary mt-[4px]"></div>
+        <div class="font-medium text-[15px] whitespace-nowrap dark:text-primary-text-color-dark">
+          Alınan komissiyalar
+        </div>
+        <div
+          class="absolute bottom-0 bg-[#07DBFA] w-[29px] h-[3px] -ml-2 z-[1] border-r-[3px] border-container-2 dark:border-container-2-dark border-before [clip-path:polygon(100%_0,100%_100%,0_100%,2px_0)]">
+        </div>
+        <div class="absolute bottom-0 w-[calc(100%-39px)] border-b border-secondary mb-[1px]"></div>
+      </div>
+      <div class="flex items-center gap-1 w-full overflow-hidden justify-end relative mb-[2px]">
+        <div class="absolute w-full z-[1] border-b border-secondary"></div>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="relative inline-block z-[5]">
+          <!-- Dropdown Toggle -->
+          <div data-target="alınanKomissiyalar" onclick="openYearsModal(this)"
+            class="z-[2] flex items-center justify-between gap-[9px] text-[12px] text-messages dark:text-primary-text-color-dark font-normal w-[93px] h-[34px] py-1 px-3 rounded-full bg-menu dark:bg-menu-dark cursor-pointer border border-stroke dark:border-[#FFFFFF1A]">
+            <span>İl seçin</span>
+            <div class="relative flex items-center justify-center mt-2">
+              <div class="icon stratis-chevron-right rotate-90"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full gap-3 px-4">
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <!-- Qrafiklər -->
+        <div class="flex gap-4 h-[300px] pb-5">
+          <!-- Sol: Xətti qrafik və alt label -->
+          <div class="w-full flex flex-col">
+            <canvas id="hesablasmaLineChart2" class="w-full h-full"></canvas>
+            <!-- Etiketlər buraya daxil edildi -->
+            <div
+              class="text-center text-sm text-tertiary-text dark:text-tertiary-text-color-dark flex gap-3 justify-center flex-wrap mt-3"
+              id="hesablasmalabels2">
+              <!-- Dinamik etiketlər -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[50%] py-4 rounded-lg h-96 bg-container-2 dark:bg-container-2-dark">
+        <div class="flex items-center justify-between">
+          <div class="w-1/2">
+            <canvas id="hesablasmaDoughnut2" class="w-[400px] h-[300px]"></canvas>
+          </div>
+          <div class="w-1/2" id="hesablasmaLegend2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="yearsModal" class="hidden fixed inset-0 z-100 items-center justify-center bg-[#0000002A] flex">
+  <!-- Modal Content -->
+  <div
+    class="border-3 border-stroke dark:border-stroke-color-dark bg-white dark:bg-side-bar-item-dark rounded-xl w-[509px] max-w-full shadow-lg relative">
+    <!-- Modal Header -->
+    <div
+      class="flex justify-between items-center border-b border-stroke dark:border-surface-variant-dark px-[18px] py-3">
+      <h2 class="text-[16px] font-semibold text-black dark:text-white">
+        İllər
+      </h2>
+      <button onclick="closeYearsModal()" type="button" class="text-[24px] cursor-pointer text-gray-600 dark:text-white">
+        ×
+      </button>
+    </div>
+    <div
+      class="relative my-3 mx-3 flex items-center border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+      <input id="customSearch" type="text" placeholder="Search..."
+        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]" />
+      <div class="absolute right-3">
+        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <ul class="divide-y divide-stroke dark:divide-surface-variant-dark text-sm my-3 mx-3" id="yearsList">
+    </ul>
+
+    <!-- Footer buttons -->
+    <div class="flex justify-end gap-2 border-t border-stroke dark:border-surface-variant-dark px-6 py-5">
+      <button onclick="closeYearsModal()"
+        class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Bağla
+      </button>
+      <button onclick="clearFilter()"
+        class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Filterləri təmizlə
+      </button>
+      <button
+        id="filterButtonIller"
+        class="cursor-pointer bg-primary dark:bg-primary-dark text-on-primary dark:text-on-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Filterlə
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div id="sirketlerModal" class="hidden fixed inset-0 z-100 items-center justify-center bg-[#0000002A] flex">
+  <!-- Modal Content -->
+  <div
+    class="border-3 border-stroke dark:border-stroke-color-dark bg-white dark:bg-side-bar-item-dark rounded-xl w-[509px] max-w-full shadow-lg relative">
+    <!-- Modal Header -->
+    <div
+      class="flex justify-between items-center border-b border-stroke dark:border-surface-variant-dark px-[18px] py-3">
+      <h2 class="text-[16px] font-semibold text-black dark:text-white">
+        Şirkətlər
+      </h2>
+      <button onclick="closeSirketlerModal()" class="text-[24px] cursor-pointer text-gray-600 dark:text-white">
+        ×
+      </button>
+    </div>
+    <div
+      class="relative my-3 mx-3 flex items-center border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+      <input id="sirketSearchInput" type="text" placeholder="Şirkət axtar..."
+        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]" />
+      <div class="absolute right-3">
+        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+      </div>
+    </div>
+
+    <div id="sirketList"
+      class="divide-y divide-stroke dark:divide-surface-variant-dark text-sm my-3 px-3 max-h-[300px] overflow-y-auto custom-scroll">
+    </div>
+  </div>
+</div>
+<!-- Müəssisələr Modal -->
+<div id="muessiselerModal" class="hidden fixed inset-0 z-100 items-center justify-center bg-[#0000002A] flex">
+  <div
+    class="border-3 border-stroke dark:border-stroke-color-dark bg-white dark:bg-side-bar-item-dark rounded-xl w-[509px] max-w-full shadow-lg relative">
+    <div
+      class="flex justify-between items-center border-b border-stroke dark:border-surface-variant-dark px-[18px] py-3">
+      <h2 class="text-[16px] font-semibold text-black dark:text-white">Müəssisələr</h2>
+      <button onclick="closeMuessiselerModal()"
+        class="text-[24px] cursor-pointer text-gray-600 dark:text-white">×</button>
+    </div>
+
+    <div class="relative my-3 mx-3 flex items-center border rounded-full overflow-hidden">
+      <input id="muessiseSearchInput" type="text" placeholder="Müəssisə axtar"
+        class="w-full h-full bg-transparent border-none focus:outline-none text-[13px] px-4 py-2" />
+      <div class="absolute right-3">
+        <div class="icon stratis-search-02"></div>
+      </div>
+    </div>
+
+    <div id="muessiseList"
+      class="divide-y divide-stroke dark:divide-surface-variant-dark text-sm my-3 px-3 max-h-[300px] overflow-y-auto custom-scroll">
+    </div>
+  </div>
+</div>
+
+<div id="kartlarModal" class="hidden fixed inset-0 z-100 items-center justify-center bg-[#0000002A] flex">
+  <!-- Modal Content -->
+  <div
+    class="border-3 border-stroke dark:border-stroke-color-dark bg-white dark:bg-side-bar-item-dark rounded-xl w-[509px] max-w-full shadow-lg relative">
+    <!-- Modal Header -->
+    <div
+      class="flex justify-between items-center border-b border-stroke dark:border-surface-variant-dark px-[18px] py-3">
+      <h2 class="text-[16px] font-semibold text-black dark:text-white">
+        Kartlar
+      </h2>
+      <button onclick="closeKartlarModal()" class="text-[24px] cursor-pointer text-gray-600 dark:text-white">
+        ×
+      </button>
+    </div>
+    <div
+      class="relative my-3 mx-3 flex items-center border border-surface-variant dark:border-surface-variant-dark rounded-full overflow-hidden focus-within:border-focus focus-within:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] focus-within:ring-0 focus-within:outline-none active:border-focus active:shadow-[0px_0px_0px_2.5px_var(--color-button-disabled)] transition-all ease-out duration-300 hover:bg-input-hover dark:hover:bg-input-hover-dark">
+      <input id="customSearch4" type="text" placeholder="Search..."
+        class="w-full h-full bg-transparent border-none focus:outline-none outline-none ring-0 focus:ring-0 text-[13px] text-messages dark:text-primary-text-color-dark placeholder:text-on-surface-variant-dark dark:placeholder:text-[#636B6F]" />
+      <div class="absolute right-3">
+        <div class="icon stratis-search-02 dark:text-primary-text-color-dark"></div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <ul id="kartlarList" class="divide-y divide-stroke dark:divide-surface-variant-dark text-sm my-3 mx-3 max-h-[300px] overflow-y-auto rounded-md p-1">
+    </ul>
+
+    <!-- Footer buttons -->
+    <div class="flex justify-end gap-2 border-t border-stroke dark:border-surface-variant-dark px-6 py-5">
+      <button onclick="closeKartlarModal()"
+        class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Bağla
+      </button>
+      <button onclick="clearKartlarFilter()"
+        class="cursor-pointer bg-surface-bright dark:bg-surface-bright-dark text-on-surface-variant dark:text-on-surface-variant-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Filterləri təmizlə
+      </button>
+      <button
+        id="filterButtonKartlar"
+        class="cursor-pointer bg-primary dark:bg-primary-dark text-on-primary dark:text-on-primary-dark hover:bg-hover-button dark:hover:bg-hover-button-dark text-[13px] font-medium py-2 px-4 rounded-full">
+        Filterlə
+      </button>
+    </div>
+  </div>
+</div>
+
+<% scripts=` <script>
+  window.csrfToken = "${csrfToken}";
+  </script>
+
+  <script src="/js/chart.js"></script>
+  <script src="/js/datatables/datatables.min.js"></script>
+  <script src="/js/Avankart/dashboard/dashboard.js"></script>
+  <script src="/js/Avankart/dashboard/chart.js"></script>
+
+  `; %> <% styles=` <style>
+    
+    #sidebar .overflow-y-auto::-webkit-scrollbar {
+    width: 0px;
+    /* Scroll barı tam gizlə */
+    }
+
+    #sidebar .overflow-y-auto {
+    scrollbar-width: none;
+    /* Firefox üçün */
+    -ms-overflow-style: none;
+    /* IE 10+ üçün */
+    }
+
+    /* Bu hissəni öz CSS faylında əlavə et */
+    .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+    background-color: transparent;
+    }
+
+    .custom-date::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none;
+    }
+
+    .custom-scroll {
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #b9b9b9;
+    --sb-size: 4px;
+    }
+
+    .custom-scroll::-webkit-scrollbar {
+    width: var(--sb-size);
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 39px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 39px;
+    }
+
+    @supports not selector(::-webkit-scrollbar) {
+    .custom-scroll {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+    }
+    </style>
+    `;%>
